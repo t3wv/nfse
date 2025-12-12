@@ -2,7 +2,7 @@ name: "Release Tag"
 
 on:
   workflow_run:
-    workflows: [ "Release Master" ]
+    workflows: [ "Release Main" ]
     types:
       - completed
 
