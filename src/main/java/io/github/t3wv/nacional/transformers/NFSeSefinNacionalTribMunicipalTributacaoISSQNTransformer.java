@@ -1,0 +1,16 @@
+package io.github.t3wv.nacional.transformers;
+
+import io.github.t3wv.nacional.classes.nfsenacional.NFSeSefinNacionalTribMunicipalTributacaoISSQN;
+import org.simpleframework.xml.transform.Transform;
+
+public class NFSeSefinNacionalTribMunicipalTributacaoISSQNTransformer implements Transform<NFSeSefinNacionalTribMunicipalTributacaoISSQN>{
+    @Override
+    public NFSeSefinNacionalTribMunicipalTributacaoISSQN read(String value) {
+        return NFSeSefinNacionalTribMunicipalTributacaoISSQN.valueOfCodigo(value);
+    }
+
+    @Override
+    public String write(NFSeSefinNacionalTribMunicipalTributacaoISSQN value) {
+        return value.getCodigo();
+    }
+}

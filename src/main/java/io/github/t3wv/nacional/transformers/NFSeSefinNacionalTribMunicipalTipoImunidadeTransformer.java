@@ -1,0 +1,16 @@
+package io.github.t3wv.nacional.transformers;
+
+import io.github.t3wv.nacional.classes.nfsenacional.NFSeSefinNacionalTribMunicipalTipoImunidade;
+import org.simpleframework.xml.transform.Transform;
+
+public class NFSeSefinNacionalTribMunicipalTipoImunidadeTransformer implements Transform<NFSeSefinNacionalTribMunicipalTipoImunidade>{
+    @Override
+    public NFSeSefinNacionalTribMunicipalTipoImunidade read(String value) {
+        return NFSeSefinNacionalTribMunicipalTipoImunidade.valueOfCodigo(value);
+    }
+
+    @Override
+    public String write(NFSeSefinNacionalTribMunicipalTipoImunidade value) {
+        return value.getCodigo();
+    }
+}
