@@ -17,9 +17,9 @@
     </licenses>
 
     <scm>
-        <url>git@github.com:t3wv/nfse.git</url>
-        <connection>scm:git:git@github.com:t3wv/nfse.git</connection>
-        <developerConnection>scm:git:git@github.com:t3wv/nfse.git</developerConnection>
+        <url>https://github.com/t3wv/nfse.git</url>
+        <connection>scm:git:https://github.com/t3wv/nfse.git</connection>
+        <developerConnection>scm:git:https://github.com/t3wv/nfse.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
 
