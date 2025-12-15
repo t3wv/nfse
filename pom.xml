@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.t3wv</groupId>
     <artifactId>nfse</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
     <name>nfse</name>
     <description>Biblioteca de comunicacao de nota fiscal de serviço eletronica brasileira</description>
@@ -20,7 +20,7 @@
         <url>https://github.com/t3wv/nfse.git</url>
         <connection>scm:git:https://github.com/t3wv/nfse.git</connection>
         <developerConnection>scm:git:https://github.com/t3wv/nfse.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>v1.0.0</tag>
     </scm>
 
     <developers>
