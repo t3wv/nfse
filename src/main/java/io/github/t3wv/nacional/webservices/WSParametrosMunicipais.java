@@ -30,10 +30,19 @@ public class WSParametrosMunicipais implements NFSeLogger {
      * @throws Exception Se ocorrer um erro durante a requisição ou no processamento da resposta.
      */
     public NFSeParametrosMunicipaisConvenioResponse consultaConvenioMunicipio(final String codigoMunicipio) throws Exception {
-        final var url = new URI(String.format("%s/%s/convenio", this.config.isTeste() ? URL_BASE_HOMOLOGACAO : URL_BASE_PRODUCAO, codigoMunicipio));
+        //normaliza e valida o codigo do municipio
+        final var codigoMunicipioNumerico = codigoMunicipio.replaceAll("\\D", "");
+        if (!codigoMunicipioNumerico.matches("\\d{7}")) {
+            throw new IllegalArgumentException("O código do município deve conter exatamente 7 dígitos numéricos (IBGE)!");
+        }
+        final var url = new URI(String.format("%s/%s/convenio", this.config.isTeste() ? URL_BASE_HOMOLOGACAO : URL_BASE_PRODUCAO, codigoMunicipioNumerico));
         final var response = new NFSeHttpClient(config).sendGetRequest(url);
-        this.getLogger().info(response.body());
-        return this.objectMapper.convertValue(this.objectMapper.readTree(response.body()), NFSeParametrosMunicipaisConvenioResponse.class);
+        this.getLogger().info("Response: {}", response);
+        if (response.statusCode() != 200) {
+            throw new Exception("Consulta de parametros municipais retornou erro '%d' para o municipio '%s'!".formatted(response.statusCode(), codigoMunicipioNumerico));
+        } else {
+            return this.objectMapper.convertValue(this.objectMapper.readTree(response.body()), NFSeParametrosMunicipaisConvenioResponse.class);
+        }
     }
 
     /**
@@ -45,12 +54,39 @@ public class WSParametrosMunicipais implements NFSeLogger {
      * @return Objeto {@link NFSeParametrosMunicipaisAliquotasResponse} contendo as informações sobre a alíquota do serviço no município para a competência especificada.
      * @throws Exception Se ocorrer um erro durante a requisição ou no processamento da resposta.
      */
-    public NFSeParametrosMunicipaisAliquotasResponse consultaAliquotaMunicipioServicoCompetencia(final String codigoMunicipio, final String codigoServico, final LocalDate competencia) throws Exception {
-        final var competenciaFormatada = formataCompetencia(competencia);
-        final var url = new URI(String.format("%s/%s/%s/%s/aliquota", this.config.isTeste() ? URL_BASE_HOMOLOGACAO : URL_BASE_PRODUCAO, codigoMunicipio, codigoServico, competenciaFormatada));
+    public NFSeParametrosMunicipaisAliquota consultaAliquotaMunicipioServicoCompetencia(final String codigoMunicipio, final String codigoServico, final LocalDate competencia) throws Exception {
+        //normaliza e valida o codigo do municipio
+        final var codigoMunicipioNumerico = codigoMunicipio.replaceAll("\\D", "");
+        if (!codigoMunicipioNumerico.matches("\\d{7}")) {
+            throw new IllegalArgumentException("O código do município deve conter exatamente 7 dígitos numéricos (IBGE)!");
+        }
+
+        //normaliza e valida o codigo do serviço, para que tenha 6 ou 9 dígitos numéricos
+        final var codigoServicoNumerico = codigoServico.replaceAll("\\D", "");
+        if (!codigoServicoNumerico.matches("\\d{6}|\\d{9}")) {
+            throw new IllegalArgumentException("O código do serviço deve conter 6 ou 9 dígitos numéricos!");
+        }
+        final var codigoServicoNormalizado = codigoServicoNumerico.length() == 6 ? codigoServicoNumerico + "000" : codigoServicoNumerico;
+        final var codigoServicoFormatado = String.format("%s.%s.%s.%s", codigoServicoNormalizado.substring(0, 2), codigoServicoNormalizado.substring(2, 4), codigoServicoNormalizado.substring(4, 6), codigoServicoNormalizado.substring(6, 9));
+
+
+        //normaliza e valida a competencia
+        final var competenciaNormalizada = competencia != null ? competencia : LocalDate.now();
+        final var competenciaFormatada = formataCompetencia(competenciaNormalizada);
+
+        //faz a consulta
+        final var url = new URI(String.format("%s/%s/%s/%s/aliquota", this.config.isTeste() ? URL_BASE_HOMOLOGACAO : URL_BASE_PRODUCAO, codigoMunicipioNumerico, codigoServicoFormatado, competenciaFormatada));
         final var response = new NFSeHttpClient(config).sendGetRequest(url);
-        this.getLogger().info(response.body());
-        return this.objectMapper.convertValue(this.objectMapper.readTree(response.body()), NFSeParametrosMunicipaisAliquotasResponse.class);
+        this.getLogger().info("Response: {}", response);
+
+        if (response.statusCode() != 200) {
+            throw new Exception("Consulta de alíquotas retornou erro '%d' para o municipio '%s', serviço '%s', competência '%s'!".formatted(response.statusCode(), codigoMunicipioNumerico, codigoServicoFormatado, competenciaFormatada));
+        } else {
+            final var nfSeParametrosMunicipaisAliquotasResponse = this.objectMapper.convertValue(this.objectMapper.readTree(response.body()), NFSeParametrosMunicipaisAliquotasResponse.class);
+            return nfSeParametrosMunicipaisAliquotasResponse.getAliquotas() != null && nfSeParametrosMunicipaisAliquotasResponse.getAliquotas().containsKey(codigoServicoFormatado) ?
+                    nfSeParametrosMunicipaisAliquotasResponse.getAliquotas().get(codigoServicoFormatado).getFirst() :
+                    null;
+        }
     }
 
     /**
