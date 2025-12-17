@@ -20,7 +20,7 @@ public class NFSeSefinNacionalInfDPS {
     @Element(name = "serie")
     protected String serie;
     @Element(name = "nDPS")
-    protected String numeroDPS;
+    protected long numeroDPS;
     @Element(name = "dCompet")
     protected LocalDate dataInicioPrestacaoServico;
     @Element(name = "tpEmit")
@@ -111,14 +111,14 @@ public class NFSeSefinNacionalInfDPS {
     /**
      * @return Número do DPS
      */
-    public String getNumeroDPS() {
+    public long getNumeroDPS() {
         return numeroDPS;
     }
 
     /**
      * @param numeroDPS Número do Documento de Prestação de Serviço - DPS
      */
-    public NFSeSefinNacionalInfDPS setNumeroDPS(String numeroDPS) {
+    public NFSeSefinNacionalInfDPS setNumeroDPS(long numeroDPS) {
         this.numeroDPS = numeroDPS;
         return this;
     }

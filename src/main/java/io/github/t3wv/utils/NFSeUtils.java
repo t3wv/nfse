@@ -5,14 +5,21 @@ import io.github.t3wv.nacional.classes.nfsenacional.NFSeSefinNacionalInfDPS;
 import io.github.t3wv.nacional.classes.nfsenacional.NFSeSefinNacionalPedRegEvt;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
+import java.util.zip.GZIPInputStream;
 
 public abstract class NFSeUtils {
+
     private static final List<String> CPFS_INVALIDOS = Arrays.asList("00000000000", "11111111111", "22222222222",
             "33333333333", "44444444444", "55555555555", "66666666666", "77777777777", "88888888888", "99999999999",
-            "12345678909"
-    );
+            "12345678909");
 
     /**
      * Verifica se o CNPJ informado eh valido. <br>
@@ -116,15 +123,6 @@ public abstract class NFSeUtils {
     }
 
     /**
-     * Indica se a String informada é formada por somente caracteres numericos.
-     * @param str String a ser verificada
-     * @return Se a String é numerica.
-     */
-    public static boolean isNumerico(final String str) {
-        return str != null && str.matches("\\d+");
-    }
-
-    /**
      * Gera o ID do Pedido de Registro de Evento conforme o layout definido na especificação técnica
      * "PRE" + Chave de Acesso da NFSe (44) + Código do Evento (6) + Número do Pedido de Registro do Evento (3)
      *
@@ -165,34 +163,38 @@ public abstract class NFSeUtils {
         assert infDps != null : "InfDPS deve estar preenchido para gerar o ID";
         final String codigoMunicipioEmissao = infDps.getCodigoMunicipioEmissao();
         assert codigoMunicipioEmissao != null : "Código do município de emissão não pode ser nulo para geração do ID da DPS";
-        final String serie = infDps.getSerie();
-        assert serie != null : "Série do DPS não pode ser nula para geração do ID da DPS";
-        final String numeroDPS = infDps.getNumeroDPS();
-        assert numeroDPS != null : "Número do DPS não pode ser nulo para geração do ID da DPS";
+        final int serie = Integer.parseInt(infDps.getSerie());
+        assert serie > 0 && serie <= 99999 : "Série do DPS deve estar entre 1 e 99999 para geração do ID";
+        final long numeroDPS = infDps.getNumeroDPS();
+        assert numeroDPS > 0 && numeroDPS <= 999999999999999L : "Numero do DPS deve estar entre 1 e 999999999999999 para geração do ID";
 
         // Monto a inscrição federal de acordo com o emitente
         String inscricaoFederalEmitente;
         switch (infDps.getTipoEmitente()) {
             case PRESTADOR:
                 final var prestador = infDps.getPrestador();
-                if (prestador == null) throw new AssertionError("Prestador deve estar preenchido para obter a inscricao federal");
+                if (prestador == null)
+                    throw new AssertionError("Prestador deve estar preenchido para obter a inscricao federal");
                 inscricaoFederalEmitente = StringUtils.firstNonBlank(prestador.getCNPJ(), prestador.getCPF());
                 break;
             case TOMADOR:
                 final var tomador = infDps.getTomador();
-                if (tomador == null) throw new AssertionError("Tomador deve estar preenchido para obter a inscricao federal");
+                if (tomador == null)
+                    throw new AssertionError("Tomador deve estar preenchido para obter a inscricao federal");
                 inscricaoFederalEmitente = StringUtils.firstNonBlank(tomador.getCNPJ(), tomador.getCPF());
                 break;
             case INTERMEDIARIO:
                 final var intermediario = infDps.getIntermediario();
-                if (intermediario == null) throw new AssertionError("Intermediario deve estar preenchido para obter a inscricao federal");
+                if (intermediario == null)
+                    throw new AssertionError("Intermediario deve estar preenchido para obter a inscricao federal");
                 inscricaoFederalEmitente = StringUtils.firstNonBlank(intermediario.getCNPJ(), intermediario.getCPF());
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + infDps.getTipoEmitente());
-        };
+        }
+        ;
 
-        if(inscricaoFederalEmitente == null){
+        if (inscricaoFederalEmitente == null) {
             throw new IllegalArgumentException("Inscrição Federal do emitente não pode ser nula para geração do ID da DPS");
         }
 
@@ -202,19 +204,29 @@ public abstract class NFSeUtils {
         // Formata os campos conforme o layout do ID
         final var codigoMunicipioEmissaoFormatado = StringUtils.leftPad(codigoMunicipioEmissao, 7, '0');
         final var inscricaoFederalFormatada = StringUtils.leftPad(inscricaoFederalEmitente, 14, '0');
-        final var serieFormatada = StringUtils.leftPad(serie, 5, '0');
-        final var numeroDPSFormatado = StringUtils.leftPad(numeroDPS, 15, '0');
+        final var serieFormatada = StringUtils.leftPad(String.valueOf(serie), 5, '0');
+        final var numeroDPSFormatado = StringUtils.leftPad(String.valueOf(numeroDPS), 15, '0');
         return String.format("DPS%s%s%s%s%s", codigoMunicipioEmissaoFormatado, tipoInscricaoFederal, inscricaoFederalFormatada, serieFormatada, numeroDPSFormatado);
     }
 
     /**
-     * Obtém a inscrição federal do emitente (prestador, tomador ou intermediário) conforme o tipo de emitente
+     * Decodifica o XML da NFSe que esta compactado em GZip e codificado em Base64.
      *
-     * @param infDps Informações do DPS.
-     * @return Inscrição federal do emitente.
+     * @param nfseXmlGZipB64 XML da NFSe compactado em GZip e codificado em Base64.
+     * @return XML da NFSe decodificado.
+     * @throws IOException Se ocorrer um erro durante a decodificação.
      */
-    private static String getInscricaoFederalEmitente(NFSeSefinNacionalInfDPS infDps) {
-
-        return null;
+    public static String decodeXmlGZipB64(String nfseXmlGZipB64) throws IOException {
+        final byte[] conteudo = Base64.getDecoder().decode(nfseXmlGZipB64);//java 8
+        try (GZIPInputStream gis = new GZIPInputStream(new ByteArrayInputStream(conteudo))) {
+            try (BufferedReader bf = new BufferedReader(new InputStreamReader(gis, StandardCharsets.UTF_8))) {
+                StringBuilder outStr = new StringBuilder();
+                String line;
+                while ((line = bf.readLine()) != null) {
+                    outStr.append(line);
+                }
+                return outStr.toString();
+            }
+        }
     }
 }

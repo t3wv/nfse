@@ -1,7 +1,8 @@
 
 package io.github.t3wv.nacional.classes.nfsenacional;
 
-import org.simpleframework.xml.*;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
 @Root(name = "end")
 public class NFSeSefinNacionalEndereco {
@@ -29,8 +30,9 @@ public class NFSeSefinNacionalEndereco {
     /**
      * @param enderecoNacional Endereço Nacional do Prestador de Serviço
      */
-    public void setEnderecoNacional(NFSeSefinNacionalEnderNac enderecoNacional) {
+    public NFSeSefinNacionalEndereco setEnderecoNacional(NFSeSefinNacionalEnderNac enderecoNacional) {
         this.enderecoNacional = enderecoNacional;
+        return this;
     }
 
     /**
@@ -43,8 +45,9 @@ public class NFSeSefinNacionalEndereco {
     /**
      * @param enderecoExterior Endereço no Exterior do Prestador de Serviço
      */
-    public void setEnderecoExterior(NFSeSefinNacionalEnderExt enderecoExterior) {
+    public NFSeSefinNacionalEndereco setEnderecoExterior(NFSeSefinNacionalEnderExt enderecoExterior) {
         this.enderecoExterior = enderecoExterior;
+        return this;
     }
 
     /**
@@ -57,8 +60,9 @@ public class NFSeSefinNacionalEndereco {
     /**
      * @param logradouro Logradouro do endereço
      */
-    public void setLogradouro(String logradouro) {
+    public NFSeSefinNacionalEndereco setLogradouro(String logradouro) {
         this.logradouro = logradouro;
+        return this;
     }
 
     /**
@@ -71,8 +75,9 @@ public class NFSeSefinNacionalEndereco {
     /**
      * @param numero Número do endereço
      */
-    public void setNumero(String numero) {
+    public NFSeSefinNacionalEndereco setNumero(String numero) {
         this.numero = numero;
+        return this;
     }
 
     /**
@@ -85,8 +90,9 @@ public class NFSeSefinNacionalEndereco {
     /**
      * @param complemento Complemento do endereço
      */
-    public void setComplemento(String complemento) {
+    public NFSeSefinNacionalEndereco setComplemento(String complemento) {
         this.complemento = complemento;
+        return this;
     }
 
     /**
@@ -99,8 +105,8 @@ public class NFSeSefinNacionalEndereco {
     /**
      * @param bairro Bairro do endereço
      */
-    public void setBairro(String bairro) {
+    public NFSeSefinNacionalEndereco setBairro(String bairro) {
         this.bairro = bairro;
+        return this;
     }
-
 }

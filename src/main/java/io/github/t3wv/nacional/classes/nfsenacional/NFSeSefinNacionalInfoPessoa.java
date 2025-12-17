@@ -1,7 +1,8 @@
 
 package io.github.t3wv.nacional.classes.nfsenacional;
 
-import org.simpleframework.xml.*;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
 /**
  * Informações das pessoas envolvidas na NFS-e. Pode ser o tomador, o intermediário ou o fornecedor (dedução/redução)
@@ -41,8 +42,9 @@ public class NFSeSefinNacionalInfoPessoa {
     /**
      * @param cnpj CNPJ da pessoa
      */
-    public void setCNPJ(String cnpj) {
+    public NFSeSefinNacionalInfoPessoa setCNPJ(String cnpj) {
         this.cnpj = cnpj;
+        return this;
     }
 
     /**
@@ -74,8 +76,9 @@ public class NFSeSefinNacionalInfoPessoa {
      *
      * @param nif NIF do prestador de serviço
      */
-    public void setNIF(String nif) {
+    public NFSeSefinNacionalInfoPessoa setNIF(String nif) {
         this.nif = nif;
+        return this;
     }
 
     /**
@@ -88,8 +91,9 @@ public class NFSeSefinNacionalInfoPessoa {
     /**
      * @param codigoNaoNIF motivo para não informação do NIF
      */
-    public void setCodigoNaoNIF(NFSeSefinNacionalInfoPrestadorCodigoNaoNIF codigoNaoNIF) {
+    public NFSeSefinNacionalInfoPessoa setCodigoNaoNIF(NFSeSefinNacionalInfoPrestadorCodigoNaoNIF codigoNaoNIF) {
         this.codigoNaoNIF = codigoNaoNIF;
+        return this;
     }
 
     /**
@@ -102,8 +106,9 @@ public class NFSeSefinNacionalInfoPessoa {
     /**
      * @param nroCadastroAtividadeEconomicaPessoaFisica CAEPF - Cadastro de Atividade Econômica da Pessoa Física
      */
-    public void setCAEPF(String nroCadastroAtividadeEconomicaPessoaFisica) {
+    public NFSeSefinNacionalInfoPessoa setCAEPF(String nroCadastroAtividadeEconomicaPessoaFisica) {
         this.nroCadastroAtividadeEconomicaPessoaFisica = nroCadastroAtividadeEconomicaPessoaFisica;
+        return this;
     }
 
     /**
@@ -116,8 +121,9 @@ public class NFSeSefinNacionalInfoPessoa {
     /**
      * @param value Inscrição Municipal da pessoa
      */
-    public void setInscricaoMunicipal(String value) {
+    public NFSeSefinNacionalInfoPessoa setInscricaoMunicipal(String value) {
         this.inscricaoMunicipal = value;
+        return this;
     }
 
     /**
@@ -145,8 +151,9 @@ public class NFSeSefinNacionalInfoPessoa {
     /**
      * @param endereco Endereço da pessoa
      */
-    public void setEndereco(NFSeSefinNacionalEndereco endereco) {
+    public NFSeSefinNacionalInfoPessoa setEndereco(NFSeSefinNacionalEndereco endereco) {
         this.endereco = endereco;
+        return this;
     }
 
     /**
@@ -159,8 +166,9 @@ public class NFSeSefinNacionalInfoPessoa {
     /**
      * @param telefone Telefone da pessoa
      */
-    public void setTelefone(String telefone) {
+    public NFSeSefinNacionalInfoPessoa setTelefone(String telefone) {
         this.telefone = telefone;
+        return this;
     }
 
     /**
@@ -170,13 +178,8 @@ public class NFSeSefinNacionalInfoPessoa {
         return email;
     }
 
-    /**
-     * @param email Email da pessoa
-     * @return
-     */
     public NFSeSefinNacionalInfoPessoa setEmail(String email) {
         this.email = email;
         return this;
     }
-
 }

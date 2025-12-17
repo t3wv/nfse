@@ -1,7 +1,8 @@
 
 package io.github.t3wv.nacional.classes.nfsenacional;
 
-import org.simpleframework.xml.*;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
 /**
  * Grupo de informações específicas de endereço nacional
@@ -25,8 +26,9 @@ public class NFSeSefinNacionalEnderNac {
     /**
      * @param codigoMunicipio Código do município conforme tabela do IBGE
      */
-    public void setCodigoMunicipio(String codigoMunicipio) {
+    public NFSeSefinNacionalEnderNac setCodigoMunicipio(String codigoMunicipio) {
         this.codigoMunicipio = codigoMunicipio;
+        return this;
     }
 
     /**
@@ -39,8 +41,8 @@ public class NFSeSefinNacionalEnderNac {
     /**
      * @param cep CEP do endereço
      */
-    public void setCEP(String cep) {
+    public NFSeSefinNacionalEnderNac setCEP(String cep) {
         this.cep = cep;
+        return this;
     }
-
 }

@@ -96,4 +96,18 @@ public class NFSeSefinNacionalPostResponseSucesso {
     public void setAlertas(List<NFSeSefinNacionalPostMensagemProcessamento> alertas) {
         this.alertas = alertas;
     }
+
+    @Override
+    public String toString() {
+        return "NFSeSefinNacionalPostResponseSucesso{" +
+               "tipoAmbiente=" + tipoAmbiente +
+               ", versaoAplicativo='" + versaoAplicativo + '\'' +
+               ", dataHoraProcessamento=" + dataHoraProcessamento +
+               ", idDps='" + idDps + '\'' +
+               ", chaveAcesso='" + chaveAcesso + '\'' +
+               ", nfseXmlGZipB64='" + nfseXmlGZipB64 + '\'' +
+               ", eventoXmlGZipB64='" + eventoXmlGZipB64 + '\'' +
+               ", alertas=" + alertas +
+               '}';
+    }
 }

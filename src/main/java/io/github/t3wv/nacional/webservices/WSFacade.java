@@ -75,7 +75,7 @@ public class WSFacade {
      * @return Objeto {@link NFSeSefinNacionalPostResponseSucesso} contendo as informações sobre a NFSe emitida.
      * @throws Exception Se ocorrer um erro durante a requisição ou no processamento da resposta.
      */
-    public NFSeSefinNacionalPostResponseSucesso emitirNFSeByDPS(final NFSeSefinNacionalDPS dps) throws Exception {
+    public NFSeSefinNacionalPostResponseSucesso emitirNFSe(final NFSeSefinNacionalDPS dps) throws Exception {
         return wsSefinNFSe.emitirNFSeByDPS(dps);
     }
 

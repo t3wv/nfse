@@ -97,7 +97,7 @@ public class NFSeNacionalTest implements NFSeLogger {
                         .setDataHoraEmissao(ZonedDateTime.of(2025, 10, 23, 10, 33, 19, 0, ZoneId.of("-03:00")))
                         .setVersaoApp("NFSe Fake Teste 1.0")
                         .setSerie("901")
-                        .setNumeroDPS("6")
+                        .setNumeroDPS(6)
                         .setDataInicioPrestacaoServico(LocalDate.of(2025, 10, 23))
                         .setTipoEmitente(NFSeSefinNacionalInfDPSTipoEmitente.PRESTADOR)
                         .setCodigoMunicipioEmissao("4205407")

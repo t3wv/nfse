@@ -14,7 +14,7 @@ public class NFSeUtilsTest {
         dps.getInfDPS()
                 .setCodigoMunicipioEmissao("1234567")
                 .setSerie("7")
-                .setNumeroDPS("123")
+                .setNumeroDPS(123)
                 .setPrestador(new NFSeSefinNacionalInfoPrestador().setCPF("00998264024"))
                 .setTomador(new NFSeSefinNacionalInfoPessoa().setCPF("27415855043"))
                 .setIntermediario(new NFSeSefinNacionalInfoPessoa().setCPF("60071397000"));

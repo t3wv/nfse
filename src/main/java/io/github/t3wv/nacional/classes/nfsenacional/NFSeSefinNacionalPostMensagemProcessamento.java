@@ -52,8 +52,10 @@ public class NFSeSefinNacionalPostMensagemProcessamento {
     @Override
     public String toString() {
         return "NFSeSefinNacionalPostMensagemProcessamento{" +
-                "codigo='" + codigo + '\'' +
-                ", descricao='" + descricao + '\'' +
-                '}';
+               "mensagem='" + mensagem + '\'' +
+               ", codigo='" + codigo + '\'' +
+               ", descricao='" + descricao + '\'' +
+               ", complemento='" + complemento + '\'' +
+               '}';
     }
 }

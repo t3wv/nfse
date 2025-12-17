@@ -15,7 +15,7 @@ public class NFSeSefinNacionalDPS {
 
     @Element(name = "infDPS")
     protected NFSeSefinNacionalInfDPS infDPS;
-    @Attribute(name = "versao", empty = "1.00")
+    @Attribute(name = "versao", empty = "1.01")
     protected String versao;
     @Element(name = "Signature", required = false)
     protected SignatureType signature;
