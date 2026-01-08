@@ -17,4 +17,13 @@ public enum NFSeBarueriRPSOutrosValoresTipo {
     public String getCodigo() {
         return codigo;
     }
+
+    public static NFSeBarueriRPSOutrosValoresTipo valueOfCodigo(String codigo) {
+        for (NFSeBarueriRPSOutrosValoresTipo tipo : NFSeBarueriRPSOutrosValoresTipo.values()) {
+            if (tipo.getCodigo().equals(codigo)) {
+                return tipo;
+            }
+        }
+        return null;
+    }
 }

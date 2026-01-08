@@ -16,4 +16,13 @@ public enum NFSeBarueriRPSRegimeApuracaoTributariaSimplesNacional {
     public String getCodigo() {
         return codigo;
     }
+
+    public static NFSeBarueriRPSRegimeApuracaoTributariaSimplesNacional valueOfCodigo(String codigo) {
+        for (NFSeBarueriRPSRegimeApuracaoTributariaSimplesNacional regime : NFSeBarueriRPSRegimeApuracaoTributariaSimplesNacional.values()) {
+            if (regime.getCodigo().equals(codigo)) {
+                return regime;
+            }
+        }
+        return null;
+    }
 }

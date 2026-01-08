@@ -37,7 +37,7 @@ public enum TpTipoRPS {
                 return c;
             }
         }
-        throw new IllegalArgumentException(v);
+        return null;
     }
 
 }

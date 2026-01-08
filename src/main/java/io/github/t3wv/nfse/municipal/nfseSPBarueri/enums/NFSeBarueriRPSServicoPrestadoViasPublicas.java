@@ -13,4 +13,13 @@ public enum NFSeBarueriRPSServicoPrestadoViasPublicas {
     public String getCodigo() {
         return codigo;
     }
+
+    public static NFSeBarueriRPSServicoPrestadoViasPublicas valueOfCodigo(String codigo) {
+        for (NFSeBarueriRPSServicoPrestadoViasPublicas servico : NFSeBarueriRPSServicoPrestadoViasPublicas.values()) {
+            if (servico.getCodigo().equals(codigo)) {
+                return servico;
+            }
+        }
+        return null;
+    }
 }

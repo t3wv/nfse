@@ -20,4 +20,13 @@ public enum NFSeBarueriRPSVinculoEntrePartes {
     public String getCodigo() {
         return codigo;
     }
+
+    public static NFSeBarueriRPSVinculoEntrePartes valueOfCodigo(String codigo) {
+        for (NFSeBarueriRPSVinculoEntrePartes vinculo : NFSeBarueriRPSVinculoEntrePartes.values()) {
+            if (vinculo.getCodigo().equals(codigo)) {
+                return vinculo;
+            }
+        }
+        return null;
+    }
 }

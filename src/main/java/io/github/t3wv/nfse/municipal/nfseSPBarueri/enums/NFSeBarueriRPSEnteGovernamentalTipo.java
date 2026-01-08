@@ -15,4 +15,13 @@ public enum NFSeBarueriRPSEnteGovernamentalTipo {
     public String getCodigo() {
         return codigo;
     }
+
+    public static NFSeBarueriRPSEnteGovernamentalTipo valueOfCodigo(String codigo) {
+        for (NFSeBarueriRPSEnteGovernamentalTipo tipo : NFSeBarueriRPSEnteGovernamentalTipo.values()) {
+            if (tipo.getCodigo().equals(codigo)) {
+                return tipo;
+            }
+        }
+        return null;
+    }
 }

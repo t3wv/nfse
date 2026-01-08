@@ -169,7 +169,7 @@ public enum NFSeBarueriRetornoErros {
                 return erro;
             }
         }
-        throw new IllegalArgumentException("Codigo %s não é um erro valido.".formatted(codigo));
+        return null;
     }
 }
 

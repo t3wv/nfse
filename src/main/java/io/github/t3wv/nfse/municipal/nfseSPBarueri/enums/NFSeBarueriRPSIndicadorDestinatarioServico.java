@@ -15,4 +15,13 @@ public enum NFSeBarueriRPSIndicadorDestinatarioServico {
     public String getCodigo() {
         return codigo;
     }
+
+    public static NFSeBarueriRPSIndicadorDestinatarioServico valueOfCodigo(String codigo) {
+        for (NFSeBarueriRPSIndicadorDestinatarioServico indicador : NFSeBarueriRPSIndicadorDestinatarioServico.values()) {
+            if (indicador.getCodigo().equals(codigo)) {
+                return indicador;
+            }
+        }
+        return null;
+    }
 }

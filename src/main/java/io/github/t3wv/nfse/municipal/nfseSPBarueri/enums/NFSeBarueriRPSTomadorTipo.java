@@ -13,4 +13,13 @@ public enum NFSeBarueriRPSTomadorTipo {
     public String getCodigo() {
         return codigo;
     }
+
+    public static NFSeBarueriRPSTomadorTipo valueOfCodigo(String codigo) {
+        for (NFSeBarueriRPSTomadorTipo tipo : NFSeBarueriRPSTomadorTipo.values()) {
+            if (tipo.getCodigo().equals(codigo)) {
+                return tipo;
+            }
+        }
+        return null;
+    }
 }

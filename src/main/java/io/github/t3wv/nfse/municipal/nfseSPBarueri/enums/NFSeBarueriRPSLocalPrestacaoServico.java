@@ -13,4 +13,13 @@ public enum NFSeBarueriRPSLocalPrestacaoServico {
     public String getCodigo() {
         return codigo;
     }
+
+    public static NFSeBarueriRPSLocalPrestacaoServico valueOfCodigo(String codigo) {
+        for (NFSeBarueriRPSLocalPrestacaoServico local : NFSeBarueriRPSLocalPrestacaoServico.values()) {
+            if (local.getCodigo().equals(codigo)) {
+                return local;
+            }
+        }
+        return null;
+    }
 }

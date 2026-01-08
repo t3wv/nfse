@@ -14,4 +14,13 @@ public enum NFSeBarueriRPSSituacao {
     public String getCodigo() {
         return codigo;
     }
+
+    public static NFSeBarueriRPSSituacao valueOfCodigo(String codigo) {
+        for (NFSeBarueriRPSSituacao situacao : NFSeBarueriRPSSituacao.values()) {
+            if (situacao.getCodigo().equals(codigo)) {
+                return situacao;
+            }
+        }
+        return null;
+    }
 }

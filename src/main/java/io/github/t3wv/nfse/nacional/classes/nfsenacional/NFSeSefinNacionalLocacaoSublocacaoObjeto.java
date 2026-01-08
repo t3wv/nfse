@@ -34,4 +34,4 @@ public enum NFSeSefinNacionalLocacaoSublocacaoObjeto {
         }
         return null;
     }
-    }
+}

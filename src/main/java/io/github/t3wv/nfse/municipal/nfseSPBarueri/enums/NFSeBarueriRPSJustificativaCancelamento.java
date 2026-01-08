@@ -17,4 +17,13 @@ public enum NFSeBarueriRPSJustificativaCancelamento {
     public String getCodigo() {
         return codigo;
     }
+
+    public static NFSeBarueriRPSJustificativaCancelamento valueOfCodigo(String codigo) {
+        for (NFSeBarueriRPSJustificativaCancelamento justificativa : NFSeBarueriRPSJustificativaCancelamento.values()) {
+            if (justificativa.getCodigo().equals(codigo)) {
+                return justificativa;
+            }
+        }
+        return null;
+    }
 }

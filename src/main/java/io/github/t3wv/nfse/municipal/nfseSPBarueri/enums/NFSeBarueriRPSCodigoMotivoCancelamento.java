@@ -14,4 +14,13 @@ public enum NFSeBarueriRPSCodigoMotivoCancelamento {
     public String getCodigo() {
         return codigo;
     }
+
+    public static NFSeBarueriRPSCodigoMotivoCancelamento valueOfCodigo(String codigo) {
+        for (NFSeBarueriRPSCodigoMotivoCancelamento motivo : NFSeBarueriRPSCodigoMotivoCancelamento.values()) {
+            if (motivo.getCodigo().equals(codigo)) {
+                return motivo;
+            }
+        }
+        return null;
+    }
 }

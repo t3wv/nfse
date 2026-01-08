@@ -14,4 +14,13 @@ public enum NFSeBarueriRPSOptanteSimplesNacional {
     public String getCodigo() {
         return codigo;
     }
+
+    public static NFSeBarueriRPSOptanteSimplesNacional valueOfCodigo(String codigo) {
+        for (NFSeBarueriRPSOptanteSimplesNacional optante : NFSeBarueriRPSOptanteSimplesNacional.values()) {
+            if (optante.getCodigo().equals(codigo)) {
+                return optante;
+            }
+        }
+        return null;
+    }
 }

@@ -13,4 +13,13 @@ public enum NFSeBarueriRPSServicoExportacao {
     public String getCodigo() {
         return codigo;
     }
+
+    public static NFSeBarueriRPSServicoExportacao valueOfCodigo(String codigo) {
+        for (NFSeBarueriRPSServicoExportacao exportacao : NFSeBarueriRPSServicoExportacao.values()) {
+            if (exportacao.getCodigo().equals(codigo)) {
+                return exportacao;
+            }
+        }
+        return null;
+    }
 }

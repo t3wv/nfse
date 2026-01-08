@@ -15,4 +15,13 @@ public enum NFSeBarueriRPSEnteGovernamentalOperacaoTipo {
     public String getCodigo() {
         return codigo;
     }
+
+    public static NFSeBarueriRPSEnteGovernamentalOperacaoTipo valueOfCodigo(String codigo) {
+        for (NFSeBarueriRPSEnteGovernamentalOperacaoTipo tipo : NFSeBarueriRPSEnteGovernamentalOperacaoTipo.values()) {
+            if (tipo.getCodigo().equals(codigo)) {
+                return tipo;
+            }
+        }
+        return null;
+    }
 }

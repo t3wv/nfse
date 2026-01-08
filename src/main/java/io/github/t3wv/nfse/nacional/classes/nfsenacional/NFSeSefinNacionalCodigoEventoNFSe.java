@@ -23,13 +23,12 @@ public enum NFSeSefinNacionalCodigoEventoNFSe {
         return value;
     }
 
-    public static NFSeSefinNacionalCodigoEventoNFSe fromValue(String v) {
-        for (NFSeSefinNacionalCodigoEventoNFSe c: NFSeSefinNacionalCodigoEventoNFSe.values()) {
-            if (c.value.equals(v)) {
-                return c;
+    public static NFSeSefinNacionalCodigoEventoNFSe valueOfCodigo(String codigo) {
+        for (NFSeSefinNacionalCodigoEventoNFSe codigoEvento: NFSeSefinNacionalCodigoEventoNFSe.values()) {
+            if (codigoEvento.value.equals(codigo)) {
+                return codigoEvento;
             }
         }
-        throw new IllegalArgumentException(v);
+        return null;
     }
-
 }
