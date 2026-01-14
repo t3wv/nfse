@@ -2,12 +2,12 @@ package io.github.t3wv.nfse.municipal.nfseSPBarueri.classes;
 
 import org.apache.commons.lang3.StringUtils;
 
-public class NFSeBarueriRPSArquivoRegistroTipo5 {
+public class NFSeBarueriRPSArquivoEnvioRegistroTipo5 {
     static final String TIPO_REGISTRO_BODY = "5";
 
-    private NFSeBarueriRPS rps;
+    private final NFSeBarueriRPS rps;
 
-    public NFSeBarueriRPSArquivoRegistroTipo5(NFSeBarueriRPS rps) {
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo5(NFSeBarueriRPS rps) {
         this.rps = rps;
     }
 

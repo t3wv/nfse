@@ -11,14 +11,14 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
-public class NFSeBarueriRPSArquivo {
+public class NFSeBarueriRPSArquivoEnvio {
     private final String inscricaoMunicipalContribuinte;
     private final String documentoContribuinte;
     private final String layoutVersao;
     private final LocalDateTime dataGeracao;
     private final List<NFSeBarueriRPS> rpsList;
 
-    public NFSeBarueriRPSArquivo(final String inscricaoMunicipalContribuinte, final String documentoContribuinte, final String layoutVersao, final LocalDateTime dataGeracao, final List<NFSeBarueriRPS> listaNotas) {
+    public NFSeBarueriRPSArquivoEnvio(final String inscricaoMunicipalContribuinte, final String documentoContribuinte, final String layoutVersao, final LocalDateTime dataGeracao, final List<NFSeBarueriRPS> listaNotas) {
         this.inscricaoMunicipalContribuinte = inscricaoMunicipalContribuinte;
         this.documentoContribuinte = documentoContribuinte;
         this.layoutVersao = layoutVersao;
@@ -30,29 +30,29 @@ public class NFSeBarueriRPSArquivo {
         final List<String> linhasArquivo = new ArrayList<>();
 
         //gera o cabecalho
-        final NFSeBarueriRPSArquivoRegistroTipo1 cabecalho = new NFSeBarueriRPSArquivoRegistroTipo1(this.inscricaoMunicipalContribuinte, this.layoutVersao, this.dataGeracao);
+        final NFSeBarueriRPSArquivoEnvioRegistroTipo1 cabecalho = new NFSeBarueriRPSArquivoEnvioRegistroTipo1(this.inscricaoMunicipalContribuinte, this.layoutVersao, this.dataGeracao);
         linhasArquivo.add(cabecalho.getLinha());
 
         int numeroDeLinhas = 1;
         for (final var rps : this.rpsList) {
             //gero linha do conteudo do arquivo
-            final NFSeBarueriRPSArquivoRegistroTipo2 arquivoRegistroTipo2 = new NFSeBarueriRPSArquivoRegistroTipo2(rps);
+            final NFSeBarueriRPSArquivoEnvioRegistroTipo2 arquivoRegistroTipo2 = new NFSeBarueriRPSArquivoEnvioRegistroTipo2(rps);
             linhasArquivo.add(arquivoRegistroTipo2.getLinha());
             numeroDeLinhas++;
 
             if (rps.getOutrosValores() != null && !rps.getOutrosValores().isEmpty()) {
                 for (final var outroValor : rps.getOutrosValores()) {
-                    final NFSeBarueriRPSArquivoRegistroTipo3 arquivoRegistroTipo3 = new NFSeBarueriRPSArquivoRegistroTipo3(outroValor);
+                    final NFSeBarueriRPSArquivoEnvioRegistroTipo3 arquivoRegistroTipo3 = new NFSeBarueriRPSArquivoEnvioRegistroTipo3(outroValor);
                     linhasArquivo.add(arquivoRegistroTipo3.getLinha());
                     numeroDeLinhas++;
                 }
             }
 
-            final NFSeBarueriRPSArquivoRegistroTipo4 arquivoRegistroTipo4 = new NFSeBarueriRPSArquivoRegistroTipo4(rps);
+            final NFSeBarueriRPSArquivoEnvioRegistroTipo4 arquivoRegistroTipo4 = new NFSeBarueriRPSArquivoEnvioRegistroTipo4(rps);
             linhasArquivo.add(arquivoRegistroTipo4.getLinha());
             numeroDeLinhas++;
 
-            final var arquivoRegistroTipo5Linha = new NFSeBarueriRPSArquivoRegistroTipo5(rps).getLinha();
+            final var arquivoRegistroTipo5Linha = new NFSeBarueriRPSArquivoEnvioRegistroTipo5(rps).getLinha();
             if(arquivoRegistroTipo5Linha.trim().length() > 1) {
                 linhasArquivo.add(arquivoRegistroTipo5Linha);
                 numeroDeLinhas++;
@@ -60,7 +60,7 @@ public class NFSeBarueriRPSArquivo {
         }
 
         //gera o rodape
-        final NFSeBarueriRPSArquivoRegistroTipo9 arquivoRegistroTipo9 = new NFSeBarueriRPSArquivoRegistroTipo9(numeroDeLinhas + 1, this.getValorTotalServico(), this.getValorTotalNaoIncluidoBasecalculoISS());
+        final NFSeBarueriRPSArquivoEnvioRegistroTipo9 arquivoRegistroTipo9 = new NFSeBarueriRPSArquivoEnvioRegistroTipo9(numeroDeLinhas + 1, this.getValorTotalServico(), this.getValorTotalNaoIncluidoBasecalculoISS());
         linhasArquivo.add(arquivoRegistroTipo9.getLinha());
 
         //retorna o arquivo gerados

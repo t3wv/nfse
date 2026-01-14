@@ -4,14 +4,14 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;
 
-public class NFSeBarueriRPSArquivoRegistroTipo9 {
+public class NFSeBarueriRPSArquivoEnvioRegistroTipo9 {
     static final String TIPO_REGISTRO = "9";
 
     private final int quantidadeLinhas;
     private final BigDecimal valorTotalServico;
     private final BigDecimal valorTotalNaoIncluidoBasecalculoISS;
 
-    NFSeBarueriRPSArquivoRegistroTipo9(final int quantidadeLinhas, final BigDecimal valorTotalServico, final BigDecimal valorTotalNaoIncluidoBasecalculoISS) {
+    NFSeBarueriRPSArquivoEnvioRegistroTipo9(final int quantidadeLinhas, final BigDecimal valorTotalServico, final BigDecimal valorTotalNaoIncluidoBasecalculoISS) {
         this.quantidadeLinhas = quantidadeLinhas;
         this.valorTotalServico = valorTotalServico;
         this.valorTotalNaoIncluidoBasecalculoISS = valorTotalNaoIncluidoBasecalculoISS;

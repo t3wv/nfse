@@ -1,21 +1,27 @@
 package io.github.t3wv.nfse.municipal.nfseSPBarueri.enums;
 
 public enum NFSeBarueriRPSOutrosValoresTipo {
-    IRRF("01"),
-    PIS_PASEP("02"),
-    COFINS("03"),
-    CSLL("04"),
-    CONTRIBUICAO_PREVIDENCIARIA("05"),
-    VALOR_NAO_INCLUSO("VN");
+    IRRF("01", "IRRF"),
+    PIS_PASEP("02", "PIS/PASEP"),
+    COFINS("03", "COFINS"),
+    CSLL("04", "CSLL"),
+    CONTRIBUICAO_PREVIDENCIARIA("05", "Contribuição Previdenciária"),
+    VALOR_NAO_INCLUSO("VN", "Valor Não Incluso na base de cálculo (Exceto tributos federais)");
 
     private final String codigo;
+    private final String descricao;
 
-    NFSeBarueriRPSOutrosValoresTipo(final String codigo) {
+    NFSeBarueriRPSOutrosValoresTipo(final String codigo, final String descricao) {
         this.codigo = codigo;
+        this.descricao = descricao;
     }
 
     public String getCodigo() {
         return codigo;
+    }
+
+    public String getDescricao() {
+        return descricao;
     }
 
     public static NFSeBarueriRPSOutrosValoresTipo valueOfCodigo(String codigo) {

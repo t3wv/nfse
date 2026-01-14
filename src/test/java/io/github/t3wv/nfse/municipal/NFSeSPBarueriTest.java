@@ -1,10 +1,9 @@
 package io.github.t3wv.nfse.municipal;
 
 import io.github.t3wv.nfse.NFSeConfig;
+import io.github.t3wv.nfse.municipal.nfseSPBarueri.WSRPS;
 import io.github.t3wv.nfse.municipal.nfseSPBarueri.classes.*;
 import io.github.t3wv.nfse.municipal.nfseSPBarueri.enums.*;
-import io.github.t3wv.nfse.municipal.nfseSPBarueri.WSRPS;
-import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
@@ -18,6 +17,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Base64;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class NFSeSPBarueriTest {
 
@@ -73,7 +73,7 @@ public class NFSeSPBarueriTest {
                 .setTomadorCidadeCodigoIBGE("")
                 .setVinculoEntrePartes(NFSeBarueriRPSVinculoEntrePartes.SEM_VINCULO);
 
-        final var arquivoRps = new NFSeBarueriRPSArquivo("", "", "PMB003", LocalDateTime.now(), List.of(rps));
+        final var arquivoRps = new NFSeBarueriRPSArquivoEnvio("", "", "PMB003", LocalDateTime.now(), List.of(rps));
         Files.write(Paths.get("".formatted(arquivoRps.getNomeArquivo())), arquivoRps.geraConteudoArquivo().toByteArray());
 
         // Envio o lote para emissão
@@ -94,28 +94,29 @@ public class NFSeSPBarueriTest {
         final NFSeBarueriLoteBaixarArquivoResult resultadoEmissao = responseBaixarEmissao.getResultado();
         final byte[] arquivoB64 = Base64.getDecoder().decode(resultadoEmissao.getArquivoRPSBase64());
         Files.write(Paths.get(String.format("",arquivoRps.getNomeArquivo())), arquivoB64);
-        final var linhasArquivoEmissao = resultadoEmissao.getLinhas();
-        final var errosEmissao = NFSeBarueriLoteBaixarArquivoResult.parseErros(linhasArquivoEmissao);
+        final var arquivoRetorno = resultadoEmissao.getArquivoRetorno();
+        final var errosEmissao = resultadoEmissao.getErros();
 
         // Se houverem erros, lanço exceção
-        Assertions.assertTrue(errosEmissao.isEmpty(), String.format("Foram encontrados erros no retorno da emissao da NFS-e: %s", String.join(";\n ", errosEmissao)));
+        Assertions.assertTrue(errosEmissao.isEmpty(), String.format("Foram encontrados erros no retorno da emissao da NFS-e: %s", errosEmissao.entrySet().stream().map((entry) -> "Linha %s - Código %s: %s -  %s".formatted(entry.getKey(), entry.getValue().getCodigo(), entry.getValue().getDescricao(), entry.getValue().getSolucao())).collect(Collectors.joining("; "))));
 
         // Caso não haja erros, extraio os dados relevantes da nota e prossigo com o cancelamento
-        final var serieNf = StringUtils.stripStart(linhasArquivoEmissao[1].substring(1, 6).trim(), "0");
-        final var numeroNf = StringUtils.stripStart(linhasArquivoEmissao[1].substring(6, 12).trim(), "0");
-        final var chaveNFSeNacional = StringUtils.stripStart(linhasArquivoEmissao[1].substring(1628, 1678).trim(), "0");
+        final var serieNf = arquivoRetorno.getNotas().getFirst().getSerieNFe();
+        final var numeroNf = arquivoRetorno.getNotas().getFirst().getNumeroNFe();
+        final var chaveNFSeNacional = arquivoRetorno.getNotas().getFirst().getChaveAcessoNFSeNacional();
 
         // Realizo o cancelamento da nota através do mesmo objeto RPS, alterando os campos necessários para o cancelamento
         rps.setRPSSituacao(NFSeBarueriRPSSituacao.CANCELADO)
                 .setRPSMotivoCancelamento(NFSeBarueriRPSCodigoMotivoCancelamento.CANCELAMENTO)
                 .setNFSubstituidaDescricaoCancelamento("Teste de cancelamento")
-                .setNFSubstituidaNumero(numeroNf.trim())
+                .setNFSubstituidaNumero(String.valueOf(numeroNf))
                 .setNFSerie(serieNf)
                 .setNFSubstituidaDataEmissao(rps.getRPSDataEmissao())//
-                .setRPSCodigoServicoPrestado("101001220");
+                .setRPSCodigoServicoPrestado("101001220")
+                .setChaveNFSeReferenciada(chaveNFSeNacional);
 
         // Gero o arquivo no formato que deve ser enviado dentro do SOAP para o cancelamento
-        final var arquivoRpsCancelamento = new NFSeBarueriRPSArquivo("", "", "PMB003", LocalDateTime.now(), List.of(rps));
+        final var arquivoRpsCancelamento = new NFSeBarueriRPSArquivoEnvio("", "", "PMB003", LocalDateTime.now(), List.of(rps));
 
         // Envio o lote para cancelamento
         final NFSeBarueriLoteEnviarArquivoResponse responseEnvioCancelamento = new WSRPS(config).loteEnviarArquivo(new NFSeBarueriLoteEnviarArquivoRequest(arquivoRpsCancelamento));
@@ -130,11 +131,10 @@ public class NFSeSPBarueriTest {
         final NFSeBarueriLoteBaixarArquivoResult resultadoCancelamento = responseBaixarCancelamento.getResultado();
         final byte[] arquivoCancelamentoB64 = Base64.getDecoder().decode(resultadoCancelamento.getArquivoRPSBase64());
         Files.write(Paths.get(String.format("",arquivoRps.getNomeArquivo())), arquivoCancelamentoB64);
-        final var errosCancelamento = NFSeBarueriLoteBaixarArquivoResult.parseErros(resultadoCancelamento.getLinhas());
+        final var errosCancelamento = resultadoCancelamento.getErros();
 
         // Se houverem erros, lanço exceção
-        Assertions.assertTrue(errosCancelamento.isEmpty(), String.format("Foram encontrados erros no retorno do cancelmaneto da NFS-e: %s", String.join("; ", errosCancelamento)));
-
+        Assertions.assertTrue(errosCancelamento.isEmpty(), String.format("Foram encontrados erros no retorno do cancelmaneto da NFS-e: %s", errosCancelamento.entrySet().stream().map((entry) -> "Linha %s - Código %s: %s -  %s".formatted(entry.getKey(), entry.getValue().getCodigo(), entry.getValue().getDescricao(), entry.getValue().getSolucao())).collect(Collectors.joining("; "))));
     }
 
     @Disabled
@@ -182,7 +182,7 @@ public class NFSeSPBarueriTest {
                 .setVinculoEntrePartes(NFSeBarueriRPSVinculoEntrePartes.SEM_VINCULO);
 
 
-        final var arquivoRps = new NFSeBarueriRPSArquivo("", "", "PMB002", LocalDateTime.now(), List.of(rps));
+        final var arquivoRps = new NFSeBarueriRPSArquivoEnvio("", "", "PMB002", LocalDateTime.now(), List.of(rps));
         Files.write(Paths.get("".formatted(arquivoRps.getNomeArquivo())), arquivoRps.geraConteudoArquivo().toByteArray());
         final NFSeBarueriLoteEnviarArquivoResponse responseEnvioCancelamento = new WSRPS(config).loteEnviarArquivo(new NFSeBarueriLoteEnviarArquivoRequest(arquivoRps));
         Files.writeString(Paths.get("".formatted(responseEnvioCancelamento.getResultado().getProtocoloRemessa())), responseEnvioCancelamento.toXml());

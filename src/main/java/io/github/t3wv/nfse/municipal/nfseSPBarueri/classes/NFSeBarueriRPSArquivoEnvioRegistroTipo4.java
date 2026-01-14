@@ -6,12 +6,12 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.text.SimpleDateFormat;
 
-public class NFSeBarueriRPSArquivoRegistroTipo4 {
+public class NFSeBarueriRPSArquivoEnvioRegistroTipo4 {
     static final String TIPO_REGISTRO_BODY = "4";
 
     private NFSeBarueriRPS rps;
 
-    public NFSeBarueriRPSArquivoRegistroTipo4(NFSeBarueriRPS rps) {
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo4(NFSeBarueriRPS rps) {
         this.rps = rps;
     }
 

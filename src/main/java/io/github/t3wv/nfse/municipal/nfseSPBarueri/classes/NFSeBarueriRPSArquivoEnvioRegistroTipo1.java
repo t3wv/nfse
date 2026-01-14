@@ -4,14 +4,14 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
 
-public class NFSeBarueriRPSArquivoRegistroTipo1 {
+public class NFSeBarueriRPSArquivoEnvioRegistroTipo1 {
 
     static final String TIPO_REGISTRO_HEADER = "1";
     private String inscricaoContribuinte;
     private String versaoLayout;
     private LocalDateTime dataGeracao;
 
-    NFSeBarueriRPSArquivoRegistroTipo1(final String inscricaoContribuinte, final String versaoLayout, final LocalDateTime dataGeracao) {
+    NFSeBarueriRPSArquivoEnvioRegistroTipo1(final String inscricaoContribuinte, final String versaoLayout, final LocalDateTime dataGeracao) {
         this.inscricaoContribuinte = inscricaoContribuinte;
         this.versaoLayout = versaoLayout;
         this.dataGeracao = dataGeracao;
@@ -21,7 +21,7 @@ public class NFSeBarueriRPSArquivoRegistroTipo1 {
         return inscricaoContribuinte;
     }
 
-    public NFSeBarueriRPSArquivoRegistroTipo1 setInscricaoContribuinte(String inscricaoContribuinte) {
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo1 setInscricaoContribuinte(String inscricaoContribuinte) {
         this.inscricaoContribuinte = inscricaoContribuinte;
         return this;
     }
@@ -30,7 +30,7 @@ public class NFSeBarueriRPSArquivoRegistroTipo1 {
         return versaoLayout;
     }
 
-    public NFSeBarueriRPSArquivoRegistroTipo1 setVersaoLayout(String versaoLayout) {
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo1 setVersaoLayout(String versaoLayout) {
         this.versaoLayout = versaoLayout;
         return this;
     }
@@ -39,7 +39,7 @@ public class NFSeBarueriRPSArquivoRegistroTipo1 {
         return dataGeracao;
     }
 
-    public NFSeBarueriRPSArquivoRegistroTipo1 setDataGeracao(LocalDateTime dataGeracao) {
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo1 setDataGeracao(LocalDateTime dataGeracao) {
         this.dataGeracao = dataGeracao;
         return this;
     }

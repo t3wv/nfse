@@ -6,12 +6,12 @@ import org.apache.commons.lang3.StringUtils;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 
-public class NFSeBarueriRPSArquivoRegistroTipo2 {
+public class NFSeBarueriRPSArquivoEnvioRegistroTipo2 {
     static final String TIPO_REGISTRO_BODY = "2";
     static final String TIPO_RPS = "RPS  ";
     private final NFSeBarueriRPS rps;
 
-    public NFSeBarueriRPSArquivoRegistroTipo2(NFSeBarueriRPS rps) {
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2(NFSeBarueriRPS rps) {
         this.rps = rps;
     }
 

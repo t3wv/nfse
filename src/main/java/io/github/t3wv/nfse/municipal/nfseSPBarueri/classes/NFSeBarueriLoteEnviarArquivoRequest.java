@@ -26,7 +26,7 @@ public class NFSeBarueriLoteEnviarArquivoRequest {
     @Element(name = "ArquivoRPSBase64")
     private String arquivoRPSBase64;
 
-    public NFSeBarueriLoteEnviarArquivoRequest(NFSeBarueriRPSArquivo arquivo) throws Exception {
+    public NFSeBarueriLoteEnviarArquivoRequest(NFSeBarueriRPSArquivoEnvio arquivo) throws Exception {
         this.inscricaoMunicipal = arquivo.getInscricaoMunicipalContribuinte();
         this.cpfCnpjContrib = arquivo.getDocumentoContribuinte();
         this.nomeArquivoRPS = arquivo.getNomeArquivo();
