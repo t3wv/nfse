@@ -99,7 +99,7 @@ public class NFSeBarueriRPSArquivoEnvio {
         return String.format("RPS_%s.txt", dataGeracao.format(DateTimeFormatter.ofPattern("DDDAAAAAAAA")));
     }
 
-    public ByteArrayOutputStream geraConteudoArquivo() throws Exception {
+    public byte[] geraConteudoArquivo() throws Exception {
         try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
             try(Writer writer = new OutputStreamWriter(baos, StandardCharsets.ISO_8859_1)) {
                 for (final String linha : this.geraArquivo()) {
@@ -109,11 +109,11 @@ public class NFSeBarueriRPSArquivoEnvio {
                 }
                 writer.flush();
             }
-            return baos;
+            return baos.toByteArray();
         }
     }
 
     public String getArquivoBase64() throws Exception {
-        return Base64.getEncoder().encodeToString(this.geraConteudoArquivo().toByteArray());
+        return Base64.getEncoder().encodeToString(this.geraConteudoArquivo());
     }
 }

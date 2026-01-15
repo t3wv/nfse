@@ -23,6 +23,7 @@ public class NFSeBarueriLoteBaixarArquivoResult {
     private String[] linhas;
 
     private NFSeBarueriRPSArquivoRetorno arquivoRetorno;
+
     private Map<Integer, NFSeBarueriRetornoErros> erros;
 
     public String getArquivoRPSBase64() {
@@ -71,7 +72,7 @@ public class NFSeBarueriLoteBaixarArquivoResult {
     public Map<Integer, NFSeBarueriRetornoErros> getErros() {
         if (this.erros == null) {
             this.erros = new TreeMap<>();
-            for (int indice = 0; indice < this.linhas.length; indice++) {
+            for (int indice = 0; indice < this.getLinhas().length; indice++) {
                 String linha = linhas[indice];
                 if (linha.length() > 1971) {
                     final var errosApi = linha.substring(1970).split(";");

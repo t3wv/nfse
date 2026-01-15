@@ -74,12 +74,12 @@ public class NFSeSPBarueriTest {
                 .setVinculoEntrePartes(NFSeBarueriRPSVinculoEntrePartes.SEM_VINCULO);
 
         final var arquivoRps = new NFSeBarueriRPSArquivoEnvio("", "", "PMB003", LocalDateTime.now(), List.of(rps));
-        Files.write(Paths.get("".formatted(arquivoRps.getNomeArquivo())), arquivoRps.geraConteudoArquivo().toByteArray());
+        Files.write(Paths.get("".formatted(arquivoRps.getNomeArquivo())), arquivoRps.geraConteudoArquivo());
 
         // Envio o lote para emissão
         NFSeBarueriLoteEnviarArquivoRequest request = new NFSeBarueriLoteEnviarArquivoRequest(arquivoRps);
         final NFSeBarueriLoteEnviarArquivoResponse responseEnvioEmissao = new WSRPS(config).loteEnviarArquivo(request);
-        Files.write(Paths.get("".formatted(responseEnvioEmissao.getResultado().getProtocoloRemessa())), arquivoRps.geraConteudoArquivo().toByteArray());
+        Files.write(Paths.get("".formatted(responseEnvioEmissao.getResultado().getProtocoloRemessa())), arquivoRps.geraConteudoArquivo());
         Thread.sleep(2000);
 
         // Consulto o status do arquivo enviado
@@ -183,7 +183,7 @@ public class NFSeSPBarueriTest {
 
 
         final var arquivoRps = new NFSeBarueriRPSArquivoEnvio("", "", "PMB002", LocalDateTime.now(), List.of(rps));
-        Files.write(Paths.get("".formatted(arquivoRps.getNomeArquivo())), arquivoRps.geraConteudoArquivo().toByteArray());
+        Files.write(Paths.get("".formatted(arquivoRps.getNomeArquivo())), arquivoRps.geraConteudoArquivo());
         final NFSeBarueriLoteEnviarArquivoResponse responseEnvioCancelamento = new WSRPS(config).loteEnviarArquivo(new NFSeBarueriLoteEnviarArquivoRequest(arquivoRps));
         Files.writeString(Paths.get("".formatted(responseEnvioCancelamento.getResultado().getProtocoloRemessa())), responseEnvioCancelamento.toXml());
         Thread.sleep(5000);
