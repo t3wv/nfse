@@ -18,6 +18,7 @@ public class NFSeBarueriRPSArquivoRetornoRegistroTipo2 {
     private final String serieNFe;
     private final long numeroNFe;
     private final LocalDateTime dataHoraNFe;
+    private final String codigoAutenticidade;
     private final String serieRPS;
     private final NFSeBarueriRPSArquivoRetornoTipoTributacao tributacao;
     private final boolean issRetido;
@@ -45,6 +46,7 @@ public class NFSeBarueriRPSArquivoRetornoRegistroTipo2 {
         this.serieNFe = linha.substring(1, 5).trim();
         this.numeroNFe = Long.parseLong(linha.substring(5, 12).trim());
         this.dataHoraNFe = LocalDateTime.parse(linha.substring(12, 26).trim(), FORMATO_DATA_HORA);
+        this.codigoAutenticidade = linha.substring(26, 50).trim();
         this.serieRPS = linha.substring(50, 54).trim();
         this.tributacao = NFSeBarueriRPSArquivoRetornoTipoTributacao.valueOfCodigo(Integer.parseInt(linha.substring(64, 65).trim()));
         this.issRetido = linha.substring(65, 66).trim().equalsIgnoreCase("S");
@@ -85,6 +87,10 @@ public class NFSeBarueriRPSArquivoRetornoRegistroTipo2 {
 
     public String getSerieRPS() {
         return serieRPS;
+    }
+
+    public String getCodigoAutenticidade() {
+        return codigoAutenticidade;
     }
 
     public NFSeBarueriRPSArquivoRetornoTipoTributacao getTributacao() {
