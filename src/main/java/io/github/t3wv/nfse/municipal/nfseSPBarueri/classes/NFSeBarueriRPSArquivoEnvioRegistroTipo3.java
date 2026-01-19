@@ -2,6 +2,8 @@ package io.github.t3wv.nfse.municipal.nfseSPBarueri.classes;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.math.RoundingMode;
+
 public class NFSeBarueriRPSArquivoEnvioRegistroTipo3 {
     static final String TIPO_REGISTRO_BODY = "3";
     private final NFSeBarueriRPSOutrosValores outrosValores;
@@ -23,7 +25,7 @@ public class NFSeBarueriRPSArquivoEnvioRegistroTipo3 {
     }
 
     private String getOutrosValoresValor() {
-        return StringUtils.leftPad(this.outrosValores.getValor().toPlainString().replaceAll("[^0-9]", ""), 15, "0");
+        return StringUtils.leftPad(this.outrosValores.getValor().setScale(2, RoundingMode.HALF_UP).toPlainString().replaceAll("[^0-9]", ""), 15, "0");
     }
 
 

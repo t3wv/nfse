@@ -72,7 +72,7 @@ public class NFSeBarueriRPSArquivoEnvio {
         for (final var rps : this.rpsList) {
             retValue = rps.getRPSValorServico() != null ? retValue.add(rps.getRPSValorServico()) : retValue;
         }
-        return this.getValorTotalNaoIncluidoBasecalculoISS() != null ? retValue.subtract(this.getValorTotalNaoIncluidoBasecalculoISS()) : retValue;
+        return retValue;
     }
 
     BigDecimal getValorTotalNaoIncluidoBasecalculoISS() {

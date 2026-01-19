@@ -3,6 +3,7 @@ package io.github.t3wv.nfse.municipal.nfseSPBarueri.classes;
 import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class NFSeBarueriRPSArquivoEnvioRegistroTipo9 {
     static final String TIPO_REGISTRO = "9";
@@ -18,6 +19,6 @@ public class NFSeBarueriRPSArquivoEnvioRegistroTipo9 {
     }
 
     public String getLinha() {
-        return String.format("%s%s%s%s", TIPO_REGISTRO, StringUtils.rightPad(String.valueOf(this.quantidadeLinhas), 7), StringUtils.leftPad(this.valorTotalServico.toPlainString().replaceAll("[^0-9]", ""), 15, "0"), StringUtils.leftPad(this.valorTotalNaoIncluidoBasecalculoISS.toPlainString().replaceAll("[^0-9]", ""), 15, "0"));
+        return String.format("%s%s%s%s", TIPO_REGISTRO, StringUtils.rightPad(String.valueOf(this.quantidadeLinhas), 7), StringUtils.leftPad(this.valorTotalServico.setScale(2, RoundingMode.HALF_UP).toPlainString().replaceAll("[^0-9]", ""), 15, "0"), StringUtils.leftPad(this.valorTotalNaoIncluidoBasecalculoISS.setScale(2, RoundingMode.HALF_UP).toPlainString().replaceAll("[^0-9]", ""), 15, "0"));
     }
 }

@@ -3,6 +3,7 @@ package io.github.t3wv.nfse.municipal.nfseSPBarueri.classes;
 import io.github.t3wv.nfse.utils.NFSeUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import java.math.RoundingMode;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 
@@ -231,7 +232,7 @@ public class NFSeBarueriRPSArquivoEnvioRegistroTipo2 {
 
     private String getRPSFaturaValor() {
         if (StringUtils.isNotBlank(this.rps.getRPSFaturaNumero())) {
-            return StringUtils.leftPad(this.rps.getRPSFaturaValor().toPlainString().replaceAll("[^0-9]", ""), 15, "0");
+            return StringUtils.leftPad(this.rps.getRPSFaturaValor().setScale(2, RoundingMode.HALF_UP).toPlainString().replaceAll("[^0-9]", ""), 15, "0");
         } else {
             return StringUtils.rightPad("", 15);
         }
