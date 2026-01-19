@@ -15,4 +15,16 @@ public class NFSeBarueriRPSArquivoRetornoRegistroTipo4 {
         this.outrosValores = NFSeBarueriRPSOutrosValoresTipo.valueOfCodigo(linha.substring(1, 3).trim());
         this.valor = StringUtils.stripStart(linha.substring(3, 18).trim(), "0").isEmpty() ? BigDecimal.ZERO : new BigDecimal(linha.substring(3, 18).trim()).movePointLeft(2);
     }
+
+    public int getTipoRegistro() {
+        return tipoRegistro;
+    }
+
+    public NFSeBarueriRPSOutrosValoresTipo getOutrosValores() {
+        return outrosValores;
+    }
+
+    public BigDecimal getValor() {
+        return valor;
+    }
 }

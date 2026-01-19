@@ -31,4 +31,32 @@ public class NFSeBarueriRPSArquivoRetornoRegistroTipo3 {
         this.retencoes.add(item);
         return this;
     }
+
+    public int getTipoRegistro() {
+        return tipoRegistro;
+    }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public long getCodigo() {
+        return codigo;
+    }
+
+    public BigDecimal getValorUnitario() {
+        return valorUnitario;
+    }
+
+    public BigDecimal getAliquota() {
+        return aliquota;
+    }
+
+    public List<NFSeBarueriRPSArquivoRetornoRegistroTipo4> getRetencoes() {
+        return retencoes;
+    }
 }

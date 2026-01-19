@@ -14,4 +14,20 @@ public class NFSeBarueriRPSArquivoRetornoRegistroTipo9 {
         this.valorTotalServicos = linha.substring(8, 23).trim().isEmpty() ? BigDecimal.ZERO : new BigDecimal(linha.substring(8, 23).trim()).movePointLeft(2);
         this.valorTotalRetencoes = linha.substring(23, 38).trim().isEmpty() ? BigDecimal.ZERO : new BigDecimal(linha.substring(23, 38).trim()).movePointLeft(2);
     }
+
+    public int getTipoRegistro() {
+        return tipoRegistro;
+    }
+
+    public int getNumeroLinhas() {
+        return numeroLinhas;
+    }
+
+    public BigDecimal getValorTotalServicos() {
+        return valorTotalServicos;
+    }
+
+    public BigDecimal getValorTotalRetencoes() {
+        return valorTotalRetencoes;
+    }
 }
