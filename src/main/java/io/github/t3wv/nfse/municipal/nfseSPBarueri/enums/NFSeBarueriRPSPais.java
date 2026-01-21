@@ -292,7 +292,7 @@ public enum NFSeBarueriRPSPais {
     /**
      *  Busca o país a partir do sigla ISO do país
      *
-     * @param sigla do país na prefeitura de barueri
+     * @param sigla ISO do país
      * @return país correspondente ao código informado ou null se não encontrado
      */
     public static NFSeBarueriRPSPais valueOfSigla(final String sigla) {
