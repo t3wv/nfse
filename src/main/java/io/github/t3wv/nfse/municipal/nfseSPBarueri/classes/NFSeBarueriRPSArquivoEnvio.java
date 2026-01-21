@@ -70,7 +70,7 @@ public class NFSeBarueriRPSArquivoEnvio {
     BigDecimal getValorTotalServico() {
         BigDecimal retValue = BigDecimal.ZERO;
         for (final var rps : this.rpsList) {
-            retValue = rps.getRPSValorServico() != null ? retValue.add(rps.getRPSValorServico()) : retValue;
+            retValue = rps.getValorServico() != null ? retValue.add(rps.getValorServico()) : retValue;
         }
         return retValue;
     }

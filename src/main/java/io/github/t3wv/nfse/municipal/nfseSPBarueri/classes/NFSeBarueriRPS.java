@@ -12,51 +12,56 @@ import java.util.List;
 public class NFSeBarueriRPS {
 
     // Detalhes tipo 2
-    private String RPSSerie;
-    private String NFSerie;
-    private String RPSNumero;
-    private LocalDate RPSDataEmissao;
-    private LocalTime RPSHoraEmissao;
-    private NFSeBarueriRPSSituacao RPSSituacao;
+    private String notaSerie;
+    private String rpsSerie;
+    private String rpsNumero;
+    private LocalDate rpsDataEmissao;
+    private LocalTime rpsHoraEmissao;
+    private NFSeBarueriRPSSituacao rpsSituacao;
+
     // Detalhes 2 e 4
-    private NFSeBarueriRPSCodigoMotivoCancelamento RPSMotivoCancelamento;
-    private String NFSubstituidaNumero;
-    private String NFSubstituidaSerie;
-    private LocalDate NFSubstituidaDataEmissao;
-    private String NFSubstituidaDescricaoCancelamento;
-    private String RPSCodigoServicoPrestado;
-    private NFSeBarueriRPSLocalPrestacaoServico RPSLocalPrestacaoServico;
-    private NFSeBarueriRPSServicoPrestadoViasPublicas RPSServicoPrestadoEmViasPublicas;
-    private String RPSEnderecoServicoPrestado;
-    private String RPSEnderecoServicoPrestadoNumero;
-    private String RPSEnderecoServicoPrestadoComplemento;
-    private String RPSEnderecoServicoPrestadoBairro;
-    private String RPSEnderecoServicoPrestadoCidade;
-    private String RPSEnderecoServicoPrestadoUF;
+    private NFSeBarueriRPSCodigoMotivoCancelamento motivoCancelamento;
+    private String notaSubstituidaNumero;
+    private String notaSubstituidaSerie;
+    private LocalDate notaSubstituidaDataEmissao;
+    private String notaSubstituidaDescricaoCancelamento;
+    private String codigoServicoPrestado;
+    private NFSeBarueriRPSLocalPrestacaoServico localPrestacaoServico;
+    private NFSeBarueriRPSServicoPrestadoViasPublicas servicoPrestadoEmViasPublicas;
+    private String enderecoServicoPrestado;
+    private String enderecoServicoPrestadoNumero;
+    private String enderecoServicoPrestadoComplemento;
+    private String enderecoServicoPrestadoBairro;
+    private String enderecoServicoPrestadoCidade;
+    private String enderecoServicoPrestadoUF;
+
     // DETALHES 2 E 4
-    private String RPSEnderecoServicoPrestadoCodigoPostal;
-    private String RPSQuantidadeServicoPrestado;
-    private BigDecimal RPSValorServico;
-    private BigDecimal RPSValorRetencoes;
-    private NFSeBarueriRPSTomadorTipo RPSTomadorTipo;
+    private String enderecoServicoPrestadoCodigoPostal;
+    private String quantidadeServicoPrestado;
+    private BigDecimal valorServico;
+    private BigDecimal valorRetencoes;
+    private NFSeBarueriRPSTomadorTipo tomadorTipo;
+
     // DETALHES 2 E 4
-    private String RPSCodigoPaisTomadorEstrangeiro;
-    private NFSeBarueriRPSServicoExportacao RPSServicoExportacao;
-    private String RPSTomadorDocumento;
-    private String RPSTomadorRazaoSocial;
-    private String RPSTomadorEndereco;
-    private String RPSTomadorEnderecoNumero;
-    private String RPSTomadorEnderecoComplemento;
-    private String RPSTomadorEnderecoBairro;
-    private String RPSTomadorEnderecoCidade;
-    private String RPSTomadorEnderecoUF;
+    private NFSeBarueriRPSPais paisTomadorEstrangeiro;
+    private NFSeBarueriRPSServicoExportacao servicoExportacao;
+    private String tomadorDocumento;
+    private String tomadorRazaoSocial;
+    private String tomadorEndereco;
+    private String tomadorEnderecoNumero;
+    private String tomadorEnderecoComplemento;
+    private String tomadorEnderecoBairro;
+    private String tomadorEnderecoCidade;
+    private String tomadorCidadeCodigoIBGE;
+    private String tomadorEnderecoUF;
+
     // DETALHES 2 E 4
-    private String RPSTomadorEnderecoCodigoPostal;
-    private String RPSTomadorEmail; // TODO converter para lista de 3 no máximo
-    private String RPSFaturaNumero;
-    private BigDecimal RPSFaturaValor;
-    private String RPSFaturaFormaPagamento;
-    private String RPSDiscriminacaoServicos; // TODO converter para lista 1000 caracteres separados por |
+    private String tomadorEnderecoCodigoPostal;
+    private String tomadorEmail;
+    private String faturaNumero;
+    private BigDecimal faturaValor;
+    private String faturaFormaPagamento;
+    private String discriminacaoServicos;
 
     // Detalhes tipo 3
     private List<NFSeBarueriRPSOutrosValores> outrosValores;
@@ -65,7 +70,6 @@ public class NFSeBarueriRPS {
     private NFSeBarueriRPSOptanteSimplesNacional optanteSimplesNacional;
     private NFSeBarueriRPSRegimeApuracaoTributariaSimplesNacional regimeApuracaoTributariaSimplesNacional;
     private String servicoPrestadoCidadeCodigoIBGE;
-    private String tomadorCidadeCodigoIBGE;
     private String NIF; // cruzar com documento tomador detalhe 2
     private String codigoNBS;
     private String tomadorEstrangeiroEstadoProvinciaRegiao;
@@ -88,6 +92,7 @@ public class NFSeBarueriRPS {
     private String descricaoBemMovel;
     private String quantidadeBemMovel;
     private Boolean doacao;
+
     private Boolean destinatarioEstrangeiro;
     private String destinatarioDocumento;
     private String destinatarioRazaoSocial;
@@ -201,8 +206,8 @@ public class NFSeBarueriRPS {
         return quantidadeBemMovel;
     }
 
-    public String getRPSSerie() {
-        return RPSSerie;
+    public String getRpsSerie() {
+        return rpsSerie;
     }
 
     public NFSeBarueriRPSEnteGovernamentalTipo getEnteGovernamentalTipo() {
@@ -314,368 +319,368 @@ public class NFSeBarueriRPS {
         this.quantidadeBemMovel = quantidadeBemMovel;
     }
 
-    public NFSeBarueriRPS setRPSSerie(String RPSSerie) {
-        this.RPSSerie = RPSSerie;
+    public NFSeBarueriRPS setRpsSerie(String rpsSerie) {
+        this.rpsSerie = rpsSerie;
         return this;
     }
 
-    public String getNFSerie() {
-        return NFSerie;
+    public String getNotaSerie() {
+        return notaSerie;
     }
 
-    public NFSeBarueriRPS setNFSerie(String NFSerie) {
-        this.NFSerie = NFSerie;
+    public NFSeBarueriRPS setNotaSerie(String notaSerie) {
+        this.notaSerie = notaSerie;
         return this;
     }
 
-    public String getRPSNumero() {
-        return RPSNumero;
+    public String getRpsNumero() {
+        return rpsNumero;
     }
 
-    public NFSeBarueriRPS setRPSNumero(String RPSNumero) {
-        this.RPSNumero = RPSNumero;
+    public NFSeBarueriRPS setRpsNumero(String rpsNumero) {
+        this.rpsNumero = rpsNumero;
         return this;
     }
 
-    public LocalDate getRPSDataEmissao() {
-        return RPSDataEmissao;
+    public LocalDate getRpsDataEmissao() {
+        return rpsDataEmissao;
     }
 
-    public NFSeBarueriRPS setRPSDataEmissao(LocalDate RPSDataEmissao) {
-        this.RPSDataEmissao = RPSDataEmissao;
+    public NFSeBarueriRPS setRpsDataEmissao(LocalDate rpsDataEmissao) {
+        this.rpsDataEmissao = rpsDataEmissao;
         return this;
     }
 
-    public LocalTime getRPSHoraEmissao() {
-        return RPSHoraEmissao;
+    public LocalTime getRpsHoraEmissao() {
+        return rpsHoraEmissao;
     }
 
-    public NFSeBarueriRPS setRPSHoraEmissao(LocalTime RPSHoraEmissao) {
-        this.RPSHoraEmissao = RPSHoraEmissao;
+    public NFSeBarueriRPS setRpsHoraEmissao(LocalTime rpsHoraEmissao) {
+        this.rpsHoraEmissao = rpsHoraEmissao;
         return this;
     }
 
-    public NFSeBarueriRPSSituacao getRPSSituacao() {
-        return RPSSituacao;
+    public NFSeBarueriRPSSituacao getRpsSituacao() {
+        return rpsSituacao;
     }
 
-    public NFSeBarueriRPS setRPSSituacao(NFSeBarueriRPSSituacao RPSSituacao) {
-        this.RPSSituacao = RPSSituacao;
+    public NFSeBarueriRPS setRpsSituacao(NFSeBarueriRPSSituacao rpsSituacao) {
+        this.rpsSituacao = rpsSituacao;
         return this;
     }
 
-    public NFSeBarueriRPSCodigoMotivoCancelamento getRPSMotivoCancelamento() {
-        return RPSMotivoCancelamento;
+    public NFSeBarueriRPSCodigoMotivoCancelamento getMotivoCancelamento() {
+        return motivoCancelamento;
     }
 
-    public NFSeBarueriRPS setRPSMotivoCancelamento(NFSeBarueriRPSCodigoMotivoCancelamento RPSMotivoCancelamento) {
-        this.RPSMotivoCancelamento = RPSMotivoCancelamento;
+    public NFSeBarueriRPS setMotivoCancelamento(NFSeBarueriRPSCodigoMotivoCancelamento motivoCancelamento) {
+        this.motivoCancelamento = motivoCancelamento;
         return this;
     }
 
-    public String getNFSubstituidaNumero() {
-        return NFSubstituidaNumero;
+    public String getNotaSubstituidaNumero() {
+        return notaSubstituidaNumero;
     }
 
-    public NFSeBarueriRPS setNFSubstituidaNumero(String NFSubstituidaNumero) {
-        this.NFSubstituidaNumero = NFSubstituidaNumero;
+    public NFSeBarueriRPS setNotaSubstituidaNumero(String notaSubstituidaNumero) {
+        this.notaSubstituidaNumero = notaSubstituidaNumero;
         return this;
     }
 
-    public String getNFSubstituidaSerie() {
-        return NFSubstituidaSerie;
+    public String getNotaSubstituidaSerie() {
+        return notaSubstituidaSerie;
     }
 
-    public NFSeBarueriRPS setNFSubstituidaSerie(String NFSubstituidaSerie) {
-        this.NFSubstituidaSerie = NFSubstituidaSerie;
+    public NFSeBarueriRPS setNotaSubstituidaSerie(String notaSubstituidaSerie) {
+        this.notaSubstituidaSerie = notaSubstituidaSerie;
         return this;
     }
 
-    public LocalDate getNFSubstituidaDataEmissao() {
-        return NFSubstituidaDataEmissao;
+    public LocalDate getNotaSubstituidaDataEmissao() {
+        return notaSubstituidaDataEmissao;
     }
 
-    public NFSeBarueriRPS setNFSubstituidaDataEmissao(LocalDate NFSubstituidaDataEmissao) {
-        this.NFSubstituidaDataEmissao = NFSubstituidaDataEmissao;
+    public NFSeBarueriRPS setNotaSubstituidaDataEmissao(LocalDate notaSubstituidaDataEmissao) {
+        this.notaSubstituidaDataEmissao = notaSubstituidaDataEmissao;
         return this;
     }
 
-    public String getNFSubstituidaDescricaoCancelamento() {
-        return NFSubstituidaDescricaoCancelamento;
+    public String getNotaSubstituidaDescricaoCancelamento() {
+        return notaSubstituidaDescricaoCancelamento;
     }
 
-    public NFSeBarueriRPS setNFSubstituidaDescricaoCancelamento(String NFSubstituidaDescricaoCancelamento) {
-        this.NFSubstituidaDescricaoCancelamento = NFSubstituidaDescricaoCancelamento;
+    public NFSeBarueriRPS setNotaSubstituidaDescricaoCancelamento(String notaSubstituidaDescricaoCancelamento) {
+        this.notaSubstituidaDescricaoCancelamento = notaSubstituidaDescricaoCancelamento;
         return this;
     }
 
-    public String getRPSCodigoServicoPrestado() {
-        return RPSCodigoServicoPrestado;
+    public String getCodigoServicoPrestado() {
+        return codigoServicoPrestado;
     }
 
-    public NFSeBarueriRPS setRPSCodigoServicoPrestado(String RPSCodigoServicoPrestado) {
-        this.RPSCodigoServicoPrestado = RPSCodigoServicoPrestado;
+    public NFSeBarueriRPS setCodigoServicoPrestado(String codigoServicoPrestado) {
+        this.codigoServicoPrestado = codigoServicoPrestado;
         return this;
     }
 
-    public NFSeBarueriRPSLocalPrestacaoServico getRPSLocalPrestacaoServico() {
-        return RPSLocalPrestacaoServico;
+    public NFSeBarueriRPSLocalPrestacaoServico getLocalPrestacaoServico() {
+        return localPrestacaoServico;
     }
 
-    public NFSeBarueriRPS setRPSLocalPrestacaoServico(NFSeBarueriRPSLocalPrestacaoServico RPSLocalPrestacaoServico) {
-        this.RPSLocalPrestacaoServico = RPSLocalPrestacaoServico;
+    public NFSeBarueriRPS setLocalPrestacaoServico(NFSeBarueriRPSLocalPrestacaoServico localPrestacaoServico) {
+        this.localPrestacaoServico = localPrestacaoServico;
         return this;
     }
 
-    public NFSeBarueriRPSServicoPrestadoViasPublicas getRPSServicoPrestadoEmViasPublicas() {
-        return RPSServicoPrestadoEmViasPublicas;
+    public NFSeBarueriRPSServicoPrestadoViasPublicas getServicoPrestadoEmViasPublicas() {
+        return servicoPrestadoEmViasPublicas;
     }
 
-    public NFSeBarueriRPS setRPSServicoPrestadoEmViasPublicas(NFSeBarueriRPSServicoPrestadoViasPublicas RPSServicoPrestadoEmViasPublicas) {
-        this.RPSServicoPrestadoEmViasPublicas = RPSServicoPrestadoEmViasPublicas;
+    public NFSeBarueriRPS setServicoPrestadoEmViasPublicas(NFSeBarueriRPSServicoPrestadoViasPublicas servicoPrestadoEmViasPublicas) {
+        this.servicoPrestadoEmViasPublicas = servicoPrestadoEmViasPublicas;
         return this;
     }
 
-    public String getRPSEnderecoServicoPrestado() {
-        return RPSEnderecoServicoPrestado;
+    public String getEnderecoServicoPrestado() {
+        return enderecoServicoPrestado;
     }
 
-    public NFSeBarueriRPS setRPSEnderecoServicoPrestado(String RPSEnderecoServicoPrestado) {
-        this.RPSEnderecoServicoPrestado = RPSEnderecoServicoPrestado;
+    public NFSeBarueriRPS setEnderecoServicoPrestado(String enderecoServicoPrestado) {
+        this.enderecoServicoPrestado = enderecoServicoPrestado;
         return this;
     }
 
-    public String getRPSEnderecoServicoPrestadoNumero() {
-        return RPSEnderecoServicoPrestadoNumero;
+    public String getEnderecoServicoPrestadoNumero() {
+        return enderecoServicoPrestadoNumero;
     }
 
-    public NFSeBarueriRPS setRPSEnderecoServicoPrestadoNumero(String RPSEnderecoServicoPrestadoNumero) {
-        this.RPSEnderecoServicoPrestadoNumero = RPSEnderecoServicoPrestadoNumero;
+    public NFSeBarueriRPS setEnderecoServicoPrestadoNumero(String enderecoServicoPrestadoNumero) {
+        this.enderecoServicoPrestadoNumero = enderecoServicoPrestadoNumero;
         return this;
     }
 
-    public String getRPSEnderecoServicoPrestadoComplemento() {
-        return RPSEnderecoServicoPrestadoComplemento;
+    public String getEnderecoServicoPrestadoComplemento() {
+        return enderecoServicoPrestadoComplemento;
     }
 
-    public NFSeBarueriRPS setRPSEnderecoServicoPrestadoComplemento(String RPSEnderecoServicoPrestadoComplemento) {
-        this.RPSEnderecoServicoPrestadoComplemento = RPSEnderecoServicoPrestadoComplemento;
+    public NFSeBarueriRPS setEnderecoServicoPrestadoComplemento(String enderecoServicoPrestadoComplemento) {
+        this.enderecoServicoPrestadoComplemento = enderecoServicoPrestadoComplemento;
         return this;
     }
 
-    public String getRPSEnderecoServicoPrestadoBairro() {
-        return RPSEnderecoServicoPrestadoBairro;
+    public String getEnderecoServicoPrestadoBairro() {
+        return enderecoServicoPrestadoBairro;
     }
 
-    public NFSeBarueriRPS setRPSEnderecoServicoPrestadoBairro(String RPSEnderecoServicoPrestadoBairro) {
-        this.RPSEnderecoServicoPrestadoBairro = RPSEnderecoServicoPrestadoBairro;
+    public NFSeBarueriRPS setEnderecoServicoPrestadoBairro(String enderecoServicoPrestadoBairro) {
+        this.enderecoServicoPrestadoBairro = enderecoServicoPrestadoBairro;
         return this;
     }
 
-    public String getRPSEnderecoServicoPrestadoCidade() {
-        return RPSEnderecoServicoPrestadoCidade;
+    public String getEnderecoServicoPrestadoCidade() {
+        return enderecoServicoPrestadoCidade;
     }
 
-    public NFSeBarueriRPS setRPSEnderecoServicoPrestadoCidade(String RPSEnderecoServicoPrestadoCidade) {
-        this.RPSEnderecoServicoPrestadoCidade = RPSEnderecoServicoPrestadoCidade;
+    public NFSeBarueriRPS setEnderecoServicoPrestadoCidade(String enderecoServicoPrestadoCidade) {
+        this.enderecoServicoPrestadoCidade = enderecoServicoPrestadoCidade;
         return this;
     }
 
-    public String getRPSEnderecoServicoPrestadoUF() {
-        return RPSEnderecoServicoPrestadoUF;
+    public String getEnderecoServicoPrestadoUF() {
+        return enderecoServicoPrestadoUF;
     }
 
-    public NFSeBarueriRPS setRPSEnderecoServicoPrestadoUF(String RPSEnderecoServicoPrestadoUF) {
-        this.RPSEnderecoServicoPrestadoUF = RPSEnderecoServicoPrestadoUF;
+    public NFSeBarueriRPS setEnderecoServicoPrestadoUF(String enderecoServicoPrestadoUF) {
+        this.enderecoServicoPrestadoUF = enderecoServicoPrestadoUF;
         return this;
     }
 
-    public String getRPSEnderecoServicoPrestadoCodigoPostal() {
-        return RPSEnderecoServicoPrestadoCodigoPostal;
+    public String getEnderecoServicoPrestadoCodigoPostal() {
+        return enderecoServicoPrestadoCodigoPostal;
     }
 
-    public NFSeBarueriRPS setRPSEnderecoServicoPrestadoCodigoPostal(String RPSEnderecoServicoPrestadoCodigoPostal) {
-        this.RPSEnderecoServicoPrestadoCodigoPostal = RPSEnderecoServicoPrestadoCodigoPostal;
+    public NFSeBarueriRPS setEnderecoServicoPrestadoCodigoPostal(String enderecoServicoPrestadoCodigoPostal) {
+        this.enderecoServicoPrestadoCodigoPostal = enderecoServicoPrestadoCodigoPostal;
         return this;
     }
 
-    public String getRPSQuantidadeServicoPrestado() {
-        return RPSQuantidadeServicoPrestado;
+    public String getQuantidadeServicoPrestado() {
+        return quantidadeServicoPrestado;
     }
 
-    public NFSeBarueriRPS setRPSQuantidadeServicoPrestado(String RPSQuantidadeServicoPrestado) {
-        this.RPSQuantidadeServicoPrestado = RPSQuantidadeServicoPrestado;
+    public NFSeBarueriRPS setQuantidadeServicoPrestado(String quantidadeServicoPrestado) {
+        this.quantidadeServicoPrestado = quantidadeServicoPrestado;
         return this;
     }
 
-    public BigDecimal getRPSValorServico() {
-        return RPSValorServico;
+    public BigDecimal getValorServico() {
+        return valorServico;
     }
 
-    public NFSeBarueriRPS setRPSValorServico(BigDecimal RPSValorServico) {
-        this.RPSValorServico = RPSValorServico;
+    public NFSeBarueriRPS setValorServico(BigDecimal valorServico) {
+        this.valorServico = valorServico;
         return this;
     }
 
-    public BigDecimal getRPSValorRetencoes() {
-        return RPSValorRetencoes;
+    public BigDecimal getValorRetencoes() {
+        return valorRetencoes;
     }
 
-    public NFSeBarueriRPS setRPSValorRetencoes(BigDecimal RPSValorRetencoes) {
-        this.RPSValorRetencoes = RPSValorRetencoes;
+    public NFSeBarueriRPS setValorRetencoes(BigDecimal valorRetencoes) {
+        this.valorRetencoes = valorRetencoes;
         return this;
     }
 
-    public NFSeBarueriRPSTomadorTipo getRPSTomadorTipo() {
-        return RPSTomadorTipo;
+    public NFSeBarueriRPSTomadorTipo getTomadorTipo() {
+        return tomadorTipo;
     }
 
-    public NFSeBarueriRPS setRPSTomadorTipo(NFSeBarueriRPSTomadorTipo RPSTomadorTipo) {
-        this.RPSTomadorTipo = RPSTomadorTipo;
+    public NFSeBarueriRPS setTomadorTipo(NFSeBarueriRPSTomadorTipo tomadorTipo) {
+        this.tomadorTipo = tomadorTipo;
         return this;
     }
 
-    public String getRPSCodigoPaisTomadorEstrangeiro() {
-        return RPSCodigoPaisTomadorEstrangeiro;
+    public NFSeBarueriRPSPais getPaisTomadorEstrangeiro() {
+        return paisTomadorEstrangeiro;
     }
 
-    public NFSeBarueriRPS setRPSCodigoPaisTomadorEstrangeiro(String RPSCodigoPaisTomadorEstrangeiro) {
-        this.RPSCodigoPaisTomadorEstrangeiro = RPSCodigoPaisTomadorEstrangeiro;
+    public NFSeBarueriRPS setPaisTomadorEstrangeiro(NFSeBarueriRPSPais paisTomadorEstrangeiro) {
+        this.paisTomadorEstrangeiro = paisTomadorEstrangeiro;
         return this;
     }
 
-    public NFSeBarueriRPSServicoExportacao getRPSServicoExportacao() {
-        return RPSServicoExportacao;
+    public NFSeBarueriRPSServicoExportacao getServicoExportacao() {
+        return servicoExportacao;
     }
 
-    public NFSeBarueriRPS setRPSServicoExportacao(NFSeBarueriRPSServicoExportacao RPSServicoExportacao) {
-        this.RPSServicoExportacao = RPSServicoExportacao;
+    public NFSeBarueriRPS setServicoExportacao(NFSeBarueriRPSServicoExportacao servicoExportacao) {
+        this.servicoExportacao = servicoExportacao;
         return this;
     }
 
-    public String getRPSTomadorDocumento() {
-        return RPSTomadorDocumento;
+    public String getTomadorDocumento() {
+        return tomadorDocumento;
     }
 
-    public NFSeBarueriRPS setRPSTomadorDocumento(String RPSTomadorDocumento) {
-        this.RPSTomadorDocumento = RPSTomadorDocumento;
+    public NFSeBarueriRPS setTomadorDocumento(String tomadorDocumento) {
+        this.tomadorDocumento = tomadorDocumento;
         return this;
     }
 
-    public String getRPSTomadorRazaoSocial() {
-        return RPSTomadorRazaoSocial;
+    public String getTomadorRazaoSocial() {
+        return tomadorRazaoSocial;
     }
 
-    public NFSeBarueriRPS setRPSTomadorRazaoSocial(String RPSTomadorRazaoSocial) {
-        this.RPSTomadorRazaoSocial = RPSTomadorRazaoSocial;
+    public NFSeBarueriRPS setTomadorRazaoSocial(String tomadorRazaoSocial) {
+        this.tomadorRazaoSocial = tomadorRazaoSocial;
         return this;
     }
 
-    public String getRPSTomadorEndereco() {
-        return RPSTomadorEndereco;
+    public String getTomadorEndereco() {
+        return tomadorEndereco;
     }
 
-    public NFSeBarueriRPS setRPSTomadorEndereco(String RPSTomadorEndereco) {
-        this.RPSTomadorEndereco = RPSTomadorEndereco;
+    public NFSeBarueriRPS setTomadorEndereco(String tomadorEndereco) {
+        this.tomadorEndereco = tomadorEndereco;
         return this;
     }
 
-    public String getRPSTomadorEnderecoNumero() {
-        return RPSTomadorEnderecoNumero;
+    public String getTomadorEnderecoNumero() {
+        return tomadorEnderecoNumero;
     }
 
-    public NFSeBarueriRPS setRPSTomadorEnderecoNumero(String RPSTomadorEnderecoNumero) {
-        this.RPSTomadorEnderecoNumero = RPSTomadorEnderecoNumero;
+    public NFSeBarueriRPS setTomadorEnderecoNumero(String tomadorEnderecoNumero) {
+        this.tomadorEnderecoNumero = tomadorEnderecoNumero;
         return this;
     }
 
-    public String getRPSTomadorEnderecoComplemento() {
-        return RPSTomadorEnderecoComplemento;
+    public String getTomadorEnderecoComplemento() {
+        return tomadorEnderecoComplemento;
     }
 
-    public NFSeBarueriRPS setRPSTomadorEnderecoComplemento(String RPSTomadorEnderecoComplemento) {
-        this.RPSTomadorEnderecoComplemento = RPSTomadorEnderecoComplemento;
+    public NFSeBarueriRPS setTomadorEnderecoComplemento(String tomadorEnderecoComplemento) {
+        this.tomadorEnderecoComplemento = tomadorEnderecoComplemento;
         return this;
     }
 
-    public String getRPSTomadorEnderecoBairro() {
-        return RPSTomadorEnderecoBairro;
+    public String getTomadorEnderecoBairro() {
+        return tomadorEnderecoBairro;
     }
 
-    public NFSeBarueriRPS setRPSTomadorEnderecoBairro(String RPSTomadorEnderecoBairro) {
-        this.RPSTomadorEnderecoBairro = RPSTomadorEnderecoBairro;
+    public NFSeBarueriRPS setTomadorEnderecoBairro(String tomadorEnderecoBairro) {
+        this.tomadorEnderecoBairro = tomadorEnderecoBairro;
         return this;
     }
 
-    public String getRPSTomadorEnderecoCidade() {
-        return RPSTomadorEnderecoCidade;
+    public String getTomadorEnderecoCidade() {
+        return tomadorEnderecoCidade;
     }
 
-    public NFSeBarueriRPS setRPSTomadorEnderecoCidade(String RPSTomadorEnderecoCidade) {
-        this.RPSTomadorEnderecoCidade = RPSTomadorEnderecoCidade;
+    public NFSeBarueriRPS setTomadorEnderecoCidade(String tomadorEnderecoCidade) {
+        this.tomadorEnderecoCidade = tomadorEnderecoCidade;
         return this;
     }
 
-    public String getRPSTomadorEnderecoUF() {
-        return RPSTomadorEnderecoUF;
+    public String getTomadorEnderecoUF() {
+        return tomadorEnderecoUF;
     }
 
-    public NFSeBarueriRPS setRPSTomadorEnderecoUF(String RPSTomadorEnderecoUF) {
-        this.RPSTomadorEnderecoUF = RPSTomadorEnderecoUF;
+    public NFSeBarueriRPS setTomadorEnderecoUF(String tomadorEnderecoUF) {
+        this.tomadorEnderecoUF = tomadorEnderecoUF;
         return this;
     }
 
-    public String getRPSTomadorEnderecoCodigoPostal() {
-        return RPSTomadorEnderecoCodigoPostal;
+    public String getTomadorEnderecoCodigoPostal() {
+        return tomadorEnderecoCodigoPostal;
     }
 
-    public NFSeBarueriRPS setRPSTomadorEnderecoCodigoPostal(String RPSTomadorEnderecoCodigoPostal) {
-        this.RPSTomadorEnderecoCodigoPostal = RPSTomadorEnderecoCodigoPostal;
+    public NFSeBarueriRPS setTomadorEnderecoCodigoPostal(String tomadorEnderecoCodigoPostal) {
+        this.tomadorEnderecoCodigoPostal = tomadorEnderecoCodigoPostal;
         return this;
     }
 
-    public String getRPSTomadorEmail() {
-        return RPSTomadorEmail;
+    public String getTomadorEmail() {
+        return tomadorEmail;
     }
 
-    public NFSeBarueriRPS setRPSTomadorEmail(String RPSTomadorEmail) {
-        this.RPSTomadorEmail = RPSTomadorEmail;
+    public NFSeBarueriRPS setTomadorEmail(String tomadorEmail) {
+        this.tomadorEmail = tomadorEmail;
         return this;
     }
 
-    public String getRPSFaturaNumero() {
-        return RPSFaturaNumero;
+    public String getFaturaNumero() {
+        return faturaNumero;
     }
 
-    public NFSeBarueriRPS setRPSFaturaNumero(String RPSFaturaNumero) {
-        this.RPSFaturaNumero = RPSFaturaNumero;
+    public NFSeBarueriRPS setFaturaNumero(String faturaNumero) {
+        this.faturaNumero = faturaNumero;
         return this;
     }
 
-    public BigDecimal getRPSFaturaValor() {
-        return RPSFaturaValor;
+    public BigDecimal getFaturaValor() {
+        return faturaValor;
     }
 
-    public NFSeBarueriRPS setRPSFaturaValor(BigDecimal RPSFaturaValor) {
-        this.RPSFaturaValor = RPSFaturaValor;
+    public NFSeBarueriRPS setFaturaValor(BigDecimal faturaValor) {
+        this.faturaValor = faturaValor;
         return this;
     }
 
-    public String getRPSFaturaFormaPagamento() {
-        return RPSFaturaFormaPagamento;
+    public String getFaturaFormaPagamento() {
+        return faturaFormaPagamento;
     }
 
-    public NFSeBarueriRPS setRPSFaturaFormaPagamento(String RPSFaturaFormaPagamento) {
-        this.RPSFaturaFormaPagamento = RPSFaturaFormaPagamento;
+    public NFSeBarueriRPS setFaturaFormaPagamento(String faturaFormaPagamento) {
+        this.faturaFormaPagamento = faturaFormaPagamento;
         return this;
     }
 
-    public String getRPSDiscriminacaoServicos() {
-        return RPSDiscriminacaoServicos;
+    public String getDiscriminacaoServicos() {
+        return discriminacaoServicos;
     }
 
-    public NFSeBarueriRPS setRPSDiscriminacaoServicos(String RPSDiscriminacaoServicos) {
-        this.RPSDiscriminacaoServicos = RPSDiscriminacaoServicos;
+    public NFSeBarueriRPS setDiscriminacaoServicos(String discriminacaoServicos) {
+        this.discriminacaoServicos = discriminacaoServicos;
         return this;
     }
 

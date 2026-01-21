@@ -16,23 +16,23 @@ public class NFSeBarueriRPSArquivoEnvioRegistroTipo4 {
     }
 
     public String getLinha() {
-        final var isTomadorEstrangeiro = NFSeBarueriRPSTomadorTipo.ESTRANGEIRO.equals(this.rps.getRPSTomadorTipo());
-        final var isExportacao = NFSeBarueriRPSServicoExportacao.SIM.equals(this.rps.getRPSServicoExportacao());
+        final var isTomadorEstrangeiro = NFSeBarueriRPSTomadorTipo.ESTRANGEIRO.equals(this.rps.getTomadorTipo());
+        final var isExportacao = NFSeBarueriRPSServicoExportacao.SIM.equals(this.rps.getServicoExportacao());
 
         final StringBuilder linha = new StringBuilder();
         linha.append(TIPO_REGISTRO_BODY); // 1/1/1
         linha.append(this.rps.getOptanteSimplesNacional() != null ? this.rps.getOptanteSimplesNacional().getCodigo() : " ");// 1/2/2
         linha.append(isExportacao ? this.rps.getRegimeApuracaoTributariaSimplesNacional().getCodigo() : " "); // 1/3/3
-        linha.append(StringUtils.rightPad(StringUtils.trimToEmpty(isExportacao ? this.rps.getRPSCodigoPaisTomadorEstrangeiro() : ""), 3)); // 3/4/6
+        linha.append(StringUtils.rightPad(StringUtils.trimToEmpty(isExportacao && this.rps.getPaisTomadorEstrangeiro() != null ? this.rps.getPaisTomadorEstrangeiro().getCodigo() : ""), 3)); // 3/4/6
         linha.append(StringUtils.rightPad(StringUtils.trimToEmpty(!isExportacao ? this.rps.getServicoPrestadoCidadeCodigoIBGE() : ""), 7)); // 7/7/13
         linha.append(StringUtils.rightPad(StringUtils.trimToEmpty(!isTomadorEstrangeiro ? this.rps.getTomadorCidadeCodigoIBGE() : ""), 7)); // 7/14/20
         linha.append(StringUtils.rightPad(StringUtils.trimToEmpty(isTomadorEstrangeiro ? this.rps.getNIF() : ""), 40)); // 40/21/60
         linha.append(StringUtils.rightPad(StringUtils.trimToEmpty(isExportacao || isTomadorEstrangeiro ? this.rps.getCodigoNBS() : ""), 9)); // 9/61/69
-        linha.append(StringUtils.rightPad(StringUtils.trimToEmpty(isTomadorEstrangeiro ? this.rps.getRPSTomadorEnderecoCodigoPostal() : ""), 11)); // 11/70/80
+        linha.append(StringUtils.rightPad(StringUtils.trimToEmpty(isTomadorEstrangeiro ? this.rps.getTomadorEnderecoCodigoPostal() : ""), 11)); // 11/70/80
         linha.append(StringUtils.rightPad(StringUtils.trimToEmpty(isTomadorEstrangeiro ? this.rps.getTomadorEstrangeiroEstadoProvinciaRegiao() : ""), 60)); // 60/81/140
         linha.append(StringUtils.rightPad(isExportacao || isTomadorEstrangeiro ? this.rps.getVinculoEntrePartes().getCodigo() : "", 1)); // 1/141/141
         linha.append(StringUtils.rightPad("", 30)); // 30/142/171 - Reservado para uso futuro
-        linha.append(StringUtils.rightPad(StringUtils.trimToEmpty(isExportacao ? this.rps.getRPSEnderecoServicoPrestadoCodigoPostal() : ""), 11)); // 11/172/182
+        linha.append(StringUtils.rightPad(StringUtils.trimToEmpty(isExportacao ? this.rps.getEnderecoServicoPrestadoCodigoPostal() : ""), 11)); // 11/172/182
         linha.append(StringUtils.rightPad(StringUtils.trimToEmpty(isExportacao ? this.rps.getEstadoProvinciaRegiaoServicoPrestadoExterior() : ""), 60)); // 60/183/242
         linha.append(StringUtils.rightPad(StringUtils.trimToEmpty(this.rps.getNomeDoEvento()), 255)); // 255/243/497
         linha.append(StringUtils.rightPad(this.rps.getDataInicioEvento() != null ? new SimpleDateFormat("yyyyMMdd").format(this.rps.getDataInicioEvento()) : "", 8)); // 8/498/505

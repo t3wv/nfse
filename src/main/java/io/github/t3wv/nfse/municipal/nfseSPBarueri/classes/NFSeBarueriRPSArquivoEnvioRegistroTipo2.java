@@ -67,99 +67,99 @@ public class NFSeBarueriRPSArquivoEnvioRegistroTipo2 {
     }
 
     private String getRPSSerie() {
-        return StringUtils.rightPad(this.rps.getRPSSerie(), 4);
+        return StringUtils.rightPad(this.rps.getRpsSerie(), 4);
     }
 
     private String getNFSerie() {
-        return StringUtils.rightPad(StringUtils.trimToEmpty(this.rps.getNFSerie()), 5);
+        return StringUtils.rightPad(StringUtils.trimToEmpty(this.rps.getNotaSerie()), 5);
     }
 
     private String getRPSNumero() {
-        return StringUtils.leftPad(this.rps.getRPSNumero(), 10, "0");
+        return StringUtils.leftPad(this.rps.getRpsNumero(), 10, "0");
     }
 
     private String getRPSDataEmissao() {
-        return this.rps.getRPSDataEmissao() != null ?
-                this.rps.getRPSDataEmissao().format(DateTimeFormatter.ofPattern("yyyyMMdd")) :
+        return this.rps.getRpsDataEmissao() != null ?
+                this.rps.getRpsDataEmissao().format(DateTimeFormatter.ofPattern("yyyyMMdd")) :
                 "";
     }
 
     private String getRPSHoraEmissao() {
-        return this.rps.getRPSHoraEmissao() != null ?
-                new DateTimeFormatterBuilder().appendPattern("HHmmss").toFormatter().format(this.rps.getRPSHoraEmissao()) :
+        return this.rps.getRpsHoraEmissao() != null ?
+                new DateTimeFormatterBuilder().appendPattern("HHmmss").toFormatter().format(this.rps.getRpsHoraEmissao()) :
                 "";
     }
 
     private String getRPSSituacao() {
-        return this.rps.getRPSSituacao().getCodigo();
+        return this.rps.getRpsSituacao().getCodigo();
     }
 
     private String getRPSMotivoCancelamento() {
-        return StringUtils.rightPad(this.rps.getRPSMotivoCancelamento() != null ? this.rps.getRPSMotivoCancelamento().getCodigo() : "", 2);
+        return StringUtils.rightPad(this.rps.getMotivoCancelamento() != null ? this.rps.getMotivoCancelamento().getCodigo() : "", 2);
     }
 
     private String getNFSubstituidaNumero() {
-        return StringUtils.leftPad(StringUtils.trimToEmpty(this.rps.getNFSubstituidaNumero()), 7, "0");
+        return StringUtils.leftPad(StringUtils.trimToEmpty(this.rps.getNotaSubstituidaNumero()), 7, "0");
     }
 
     private String getNFSubstituidaSerie() {
-        return StringUtils.rightPad(StringUtils.trimToEmpty(this.rps.getNFSubstituidaSerie()), 5);
+        return StringUtils.rightPad(StringUtils.trimToEmpty(this.rps.getNotaSubstituidaSerie()), 5);
     }
 
     private String getNFSubstituidaDataEmissao() {
-        return StringUtils.rightPad(this.rps.getNFSubstituidaDataEmissao() != null ? this.rps.getNFSubstituidaDataEmissao().format(DateTimeFormatter.ofPattern("yyyyMMdd")) : "", 8);
+        return StringUtils.rightPad(this.rps.getNotaSubstituidaDataEmissao() != null ? this.rps.getNotaSubstituidaDataEmissao().format(DateTimeFormatter.ofPattern("yyyyMMdd")) : "", 8);
     }
 
     private String getNFSubstituidaDescricaoCancelamento() {
-        return StringUtils.rightPad(StringUtils.trimToEmpty(this.rps.getNFSubstituidaDescricaoCancelamento()), 180);
+        return StringUtils.rightPad(StringUtils.trimToEmpty(this.rps.getNotaSubstituidaDescricaoCancelamento()), 180);
     }
 
     private String getRPSCodigoServicoPrestado() {
-        return StringUtils.rightPad(StringUtils.trimToEmpty(this.rps.getRPSCodigoServicoPrestado()), 9);
+        return StringUtils.rightPad(StringUtils.trimToEmpty(this.rps.getCodigoServicoPrestado()), 9);
     }
 
     private String getRPSLocalPrestacaoServico() {
-        return this.rps.getRPSLocalPrestacaoServico() != null ? this.rps.getRPSLocalPrestacaoServico().getCodigo() : "";
+        return this.rps.getLocalPrestacaoServico() != null ? this.rps.getLocalPrestacaoServico().getCodigo() : "";
     }
 
     private String getRPSServicoPrestadoEmViaPublica() {
-        return this.rps.getRPSServicoPrestadoEmViasPublicas() != null ? this.rps.getRPSServicoPrestadoEmViasPublicas().getCodigo() : "";
+        return this.rps.getServicoPrestadoEmViasPublicas() != null ? this.rps.getServicoPrestadoEmViasPublicas().getCodigo() : "";
     }
 
     private String getRPSEnderecoServicoPrestado() {
-        return StringUtils.rightPad(this.rps.getRPSEnderecoServicoPrestado(), 75);
+        return StringUtils.rightPad(this.rps.getEnderecoServicoPrestado(), 75);
     }
 
     private String getRPSEnderecoServicoPrestadoNumero() {
-        return StringUtils.rightPad(this.rps.getRPSEnderecoServicoPrestadoNumero(), 9);
+        return StringUtils.rightPad(this.rps.getEnderecoServicoPrestadoNumero(), 9);
     }
 
     private String getRPSEnderecoServicoPrestadoComplemento() {
-        return StringUtils.rightPad(this.rps.getRPSEnderecoServicoPrestadoComplemento(), 30);
+        return StringUtils.rightPad(this.rps.getEnderecoServicoPrestadoComplemento(), 30);
     }
 
     private String getRPSEnderecoServicoPrestadoBairro() {
-        return StringUtils.rightPad(this.rps.getRPSEnderecoServicoPrestadoBairro(), 40);
+        return StringUtils.rightPad(this.rps.getEnderecoServicoPrestadoBairro(), 40);
     }
 
     private String getRPSEnderecoServicoPrestadoCidade() {
-        return StringUtils.rightPad(this.rps.getRPSEnderecoServicoPrestadoCidade(), 40);
+        return StringUtils.rightPad(this.rps.getEnderecoServicoPrestadoCidade(), 40);
     }
 
     private String getRPSEnderecoServicoPrestadoUF() {
-        return StringUtils.rightPad(this.rps.getRPSEnderecoServicoPrestadoUF(), 2);
+        return StringUtils.rightPad(this.rps.getEnderecoServicoPrestadoUF(), 2);
     }
 
     private String getRPSEnderecoServicoPrestadoCEP() {
-        return StringUtils.rightPad(this.rps.getRPSEnderecoServicoPrestadoCodigoPostal(), 8);
+        return StringUtils.rightPad(this.rps.getEnderecoServicoPrestadoCodigoPostal(), 8);
     }
 
     private String getRPSQuantidadeServicoPrestado() {
-        return StringUtils.leftPad(this.rps.getRPSQuantidadeServicoPrestado(), 6, "0");
+        return StringUtils.leftPad(this.rps.getQuantidadeServicoPrestado(), 6, "0");
     }
 
     private String getRPSValorServico() {
-        return StringUtils.leftPad(this.rps.getRPSValorServico() != null ? this.rps.getRPSValorServico().toPlainString().replaceAll("[^0-9]", "") : "", 15, "0");
+        return StringUtils.leftPad(this.rps.getValorServico() != null ? this.rps.getValorServico().toPlainString().replaceAll("[^0-9]", "") : "", 15, "0");
     }
 
     private String getCampoReservado() {
@@ -167,83 +167,83 @@ public class NFSeBarueriRPSArquivoEnvioRegistroTipo2 {
     }
 
     private String getRPSValorRetencoes() {
-        return StringUtils.leftPad(this.rps.getRPSValorRetencoes() != null ? this.rps.getRPSValorRetencoes().toPlainString().replaceAll("[^0-9]", "") : "", 15, "0");
+        return StringUtils.leftPad(this.rps.getValorRetencoes() != null ? this.rps.getValorRetencoes().toPlainString().replaceAll("[^0-9]", "") : "", 15, "0");
     }
 
     private String getRPSTomadorTipo() {
-        return this.rps.getRPSTomadorTipo() != null ? this.rps.getRPSTomadorTipo().getCodigo() : "";
+        return this.rps.getTomadorTipo() != null ? this.rps.getTomadorTipo().getCodigo() : "";
     }
 
     private String getRPSTomadorEstrangeiroCodigoPais() {
-        return StringUtils.rightPad(StringUtils.trimToEmpty(this.rps.getRPSCodigoPaisTomadorEstrangeiro()), 3, "0");
+        return StringUtils.rightPad(StringUtils.trimToEmpty(this.rps.getPaisTomadorEstrangeiro() != null ? this.rps.getPaisTomadorEstrangeiro().getCodigo() : ""), 3, "0");
     }
 
     private String getRPSServicoExportacao() {
-        return this.rps.getRPSServicoExportacao() != null ? this.rps.getRPSServicoExportacao().getCodigo() : "";
+        return this.rps.getServicoExportacao() != null ? this.rps.getServicoExportacao().getCodigo() : "";
     }
 
     private String getRPSTomadorDocumentoTipo() {
-        return NFSeUtils.isCpfValido(this.rps.getRPSTomadorDocumento()) ? "1" : NFSeUtils.isCnpjValido(this.rps.getRPSTomadorDocumento()) ? "2" : " ";
+        return NFSeUtils.isCpfValido(this.rps.getTomadorDocumento()) ? "1" : NFSeUtils.isCnpjValido(this.rps.getTomadorDocumento()) ? "2" : " ";
     }
 
     private String getRPSTomadorDocumento() {
-        return StringUtils.leftPad(StringUtils.trimToEmpty(this.rps.getRPSTomadorDocumento()), 14, "0");
+        return StringUtils.leftPad(StringUtils.trimToEmpty(this.rps.getTomadorDocumento()), 14, "0");
     }
 
     private String getRPSTomadorRazaoSocial() {
-        return StringUtils.rightPad(this.rps.getRPSTomadorRazaoSocial(), 60);
+        return StringUtils.rightPad(this.rps.getTomadorRazaoSocial(), 60);
     }
 
     private String getRPSTomadorEndereco() {
-        return StringUtils.rightPad(this.rps.getRPSTomadorEndereco(), 75);
+        return StringUtils.rightPad(this.rps.getTomadorEndereco(), 75);
     }
 
     private String getRPSTomadorEnderecoNumero() {
-        return StringUtils.rightPad(this.rps.getRPSTomadorEnderecoNumero(), 9);
+        return StringUtils.rightPad(this.rps.getTomadorEnderecoNumero(), 9);
     }
 
     private String getRPSTomadorEnderecoComplemento() {
-        return StringUtils.rightPad(StringUtils.trimToEmpty(this.rps.getRPSTomadorEnderecoComplemento()), 30);
+        return StringUtils.rightPad(StringUtils.trimToEmpty(this.rps.getTomadorEnderecoComplemento()), 30);
     }
 
     private String getRPSTomadorEnderecoBairro() {
-        return StringUtils.rightPad(this.rps.getRPSTomadorEnderecoBairro(), 40);
+        return StringUtils.rightPad(this.rps.getTomadorEnderecoBairro(), 40);
     }
 
     private String getRPSTomadorEnderecoCidade() {
-        return StringUtils.rightPad(this.rps.getRPSTomadorEnderecoCidade(), 40);
+        return StringUtils.rightPad(this.rps.getTomadorEnderecoCidade(), 40);
     }
 
     private String getRPSTomadorEnderecoUF() {
-        return StringUtils.rightPad(StringUtils.trimToEmpty(this.rps.getRPSTomadorEnderecoUF()), 2);
+        return StringUtils.rightPad(StringUtils.trimToEmpty(this.rps.getTomadorEnderecoUF()), 2);
     }
 
     private String getRPSTomadorEnderecoCep() {
-        return StringUtils.rightPad(StringUtils.trimToEmpty(this.rps.getRPSTomadorEnderecoCodigoPostal()), 8);
+        return StringUtils.rightPad(StringUtils.trimToEmpty(this.rps.getTomadorEnderecoCodigoPostal()), 8);
     }
 
     private String getRPSTomadorEmail() {
-        return StringUtils.rightPad(StringUtils.trimToEmpty(this.rps.getRPSTomadorEmail()), 152);
+        return StringUtils.rightPad(StringUtils.trimToEmpty(this.rps.getTomadorEmail()), 152);
     }
 
     private String getRPSFaturaNumero() {
-        return StringUtils.rightPad(StringUtils.trimToEmpty(this.rps.getRPSFaturaNumero()), 6);
+        return StringUtils.rightPad(StringUtils.trimToEmpty(this.rps.getFaturaNumero()), 6);
     }
 
     private String getRPSFaturaValor() {
-        if (StringUtils.isNotBlank(this.rps.getRPSFaturaNumero())) {
-            return StringUtils.leftPad(this.rps.getRPSFaturaValor().setScale(2, RoundingMode.HALF_UP).toPlainString().replaceAll("[^0-9]", ""), 15, "0");
+        if (StringUtils.isNotBlank(this.rps.getFaturaNumero())) {
+            return StringUtils.leftPad(this.rps.getFaturaValor().setScale(2, RoundingMode.HALF_UP).toPlainString().replaceAll("[^0-9]", ""), 15, "0");
         } else {
             return StringUtils.rightPad("", 15);
         }
     }
 
     private String getRPSFaturaFormaPagamento() {
-        return StringUtils.rightPad(StringUtils.trimToEmpty(this.rps.getRPSFaturaFormaPagamento()), 15);
+        return StringUtils.rightPad(StringUtils.trimToEmpty(this.rps.getFaturaFormaPagamento()), 15);
     }
 
     private String getRPSDiscriminacaoServicos() {
-        return StringUtils.rightPad(this.rps.getRPSDiscriminacaoServicos(), 1000);
+        return StringUtils.rightPad(this.rps.getDiscriminacaoServicos(), 1000);
     }
 
 }
