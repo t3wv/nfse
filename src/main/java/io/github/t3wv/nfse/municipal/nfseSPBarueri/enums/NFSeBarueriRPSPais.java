@@ -273,9 +273,31 @@ public enum NFSeBarueriRPSPais {
         return sigla;
     }
 
+
+    /**
+     *  Busca o país a partir do código da prefeitura de Barueri
+     *
+     * @param codigo do país na prefeitura de barueri
+     * @return país correspondente ao código informado ou null se não encontrado
+     */
     public static NFSeBarueriRPSPais valueOfCodigo(final String codigo) {
         for (final NFSeBarueriRPSPais pais : NFSeBarueriRPSPais.values()) {
             if (pais.getCodigo().equals(codigo)) {
+                return pais;
+            }
+        }
+        return null;
+    }
+
+    /**
+     *  Busca o país a partir do sigla ISO do país
+     *
+     * @param sigla do país na prefeitura de barueri
+     * @return país correspondente ao código informado ou null se não encontrado
+     */
+    public static NFSeBarueriRPSPais valueOfSigla(final String sigla) {
+        for (final NFSeBarueriRPSPais pais : NFSeBarueriRPSPais.values()) {
+            if (pais.getSigla().equalsIgnoreCase(sigla)) {
                 return pais;
             }
         }
