@@ -1,13 +1,13 @@
 package io.github.t3wv.nfse.municipal.nfseSPBarueri.enums;
 
-public enum NFSeBarueriRPSArquivoRetornoSituacaoNFe {
+public enum NFSeBarueriArquivoRetornoSituacaoNFe {
     ATIVA("A", "Ativa"),
     CANCELADA("C", "Cancelada");
 
     private final String codigo;
     private final String descricao;
 
-    NFSeBarueriRPSArquivoRetornoSituacaoNFe(final String codigo, final String descricao) {
+    NFSeBarueriArquivoRetornoSituacaoNFe(final String codigo, final String descricao) {
         this.codigo = codigo;
         this.descricao = descricao;
     }
@@ -20,8 +20,8 @@ public enum NFSeBarueriRPSArquivoRetornoSituacaoNFe {
         return descricao;
     }
 
-    public static NFSeBarueriRPSArquivoRetornoSituacaoNFe valueOfCodigo(String codigo) {
-        for (NFSeBarueriRPSArquivoRetornoSituacaoNFe tipo : NFSeBarueriRPSArquivoRetornoSituacaoNFe.values()) {
+    public static NFSeBarueriArquivoRetornoSituacaoNFe valueOfCodigo(String codigo) {
+        for (NFSeBarueriArquivoRetornoSituacaoNFe tipo : NFSeBarueriArquivoRetornoSituacaoNFe.values()) {
             if (tipo.getCodigo().equalsIgnoreCase(codigo)) {
                 return tipo;
             }

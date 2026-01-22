@@ -5,7 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class NFSeBarueriRPSArquivoRetornoRegistroTipo3 {
+public class NFSeBarueriRPSArquivoRetornoRegistroTipo3 extends NFSeBarueriRPSArquivoRetornoRegistro{
 
     private final int tipoRegistro;
     private final int quantidade;
@@ -16,6 +16,7 @@ public class NFSeBarueriRPSArquivoRetornoRegistroTipo3 {
     private List<NFSeBarueriRPSArquivoRetornoRegistroTipo4> retencoes;
 
     public NFSeBarueriRPSArquivoRetornoRegistroTipo3(String linha) {
+        super(linha);
         this.tipoRegistro = Integer.parseInt(linha.substring(0, 1).trim());
         this.quantidade = Integer.parseInt(linha.substring(1, 7).trim());
         this.descricao = linha.substring(7, 67).trim();

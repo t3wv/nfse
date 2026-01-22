@@ -1,6 +1,6 @@
 package io.github.t3wv.nfse.municipal.nfseSPBarueri.enums;
 
-public enum NFSeBarueriRPSOutrosValoresTipo {
+public enum NFSeBarueriOutrosValoresTipo {
     IRRF("01", "IRRF"),
     PIS_PASEP("02", "PIS/PASEP"),
     COFINS("03", "COFINS"),
@@ -11,7 +11,7 @@ public enum NFSeBarueriRPSOutrosValoresTipo {
     private final String codigo;
     private final String descricao;
 
-    NFSeBarueriRPSOutrosValoresTipo(final String codigo, final String descricao) {
+    NFSeBarueriOutrosValoresTipo(final String codigo, final String descricao) {
         this.codigo = codigo;
         this.descricao = descricao;
     }
@@ -24,8 +24,8 @@ public enum NFSeBarueriRPSOutrosValoresTipo {
         return descricao;
     }
 
-    public static NFSeBarueriRPSOutrosValoresTipo valueOfCodigo(String codigo) {
-        for (NFSeBarueriRPSOutrosValoresTipo tipo : NFSeBarueriRPSOutrosValoresTipo.values()) {
+    public static NFSeBarueriOutrosValoresTipo valueOfCodigo(String codigo) {
+        for (NFSeBarueriOutrosValoresTipo tipo : NFSeBarueriOutrosValoresTipo.values()) {
             if (tipo.getCodigo().equals(codigo)) {
                 return tipo;
             }

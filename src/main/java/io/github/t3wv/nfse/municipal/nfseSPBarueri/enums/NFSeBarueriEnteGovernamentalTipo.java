@@ -1,6 +1,6 @@
 package io.github.t3wv.nfse.municipal.nfseSPBarueri.enums;
 
-public enum NFSeBarueriRPSEnteGovernamentalTipo {
+public enum NFSeBarueriEnteGovernamentalTipo {
     UNIAO("1"),
     ESTADO("2"),
     DISTRITO_FEDERAL("3"),
@@ -8,7 +8,7 @@ public enum NFSeBarueriRPSEnteGovernamentalTipo {
 
     private final String codigo;
 
-    NFSeBarueriRPSEnteGovernamentalTipo(final String codigo) {
+    NFSeBarueriEnteGovernamentalTipo(final String codigo) {
         this.codigo = codigo;
     }
 
@@ -16,8 +16,8 @@ public enum NFSeBarueriRPSEnteGovernamentalTipo {
         return codigo;
     }
 
-    public static NFSeBarueriRPSEnteGovernamentalTipo valueOfCodigo(String codigo) {
-        for (NFSeBarueriRPSEnteGovernamentalTipo tipo : NFSeBarueriRPSEnteGovernamentalTipo.values()) {
+    public static NFSeBarueriEnteGovernamentalTipo valueOfCodigo(String codigo) {
+        for (NFSeBarueriEnteGovernamentalTipo tipo : NFSeBarueriEnteGovernamentalTipo.values()) {
             if (tipo.getCodigo().equals(codigo)) {
                 return tipo;
             }

@@ -1,6 +1,6 @@
 package io.github.t3wv.nfse.municipal.nfseSPBarueri.enums;
 
-public enum NFSeBarueriRPSEnteGovernamentalOperacaoTipo {
+public enum NFSeBarueriEnteGovernamentalOperacaoTipo {
      FORNECIMENTO_PAGAMENTO_POSTERIOR("1"),
      RECEBIMENTO_PAGAMENTO_FORNECIMENTO_REALIZADO("2"),
      FORNECIMENTO_PAGAMENTO_REALIZADO("3"),
@@ -8,7 +8,7 @@ public enum NFSeBarueriRPSEnteGovernamentalOperacaoTipo {
 
     private final String codigo;
 
-    NFSeBarueriRPSEnteGovernamentalOperacaoTipo(final String codigo) {
+    NFSeBarueriEnteGovernamentalOperacaoTipo(final String codigo) {
         this.codigo = codigo;
     }
 
@@ -16,8 +16,8 @@ public enum NFSeBarueriRPSEnteGovernamentalOperacaoTipo {
         return codigo;
     }
 
-    public static NFSeBarueriRPSEnteGovernamentalOperacaoTipo valueOfCodigo(String codigo) {
-        for (NFSeBarueriRPSEnteGovernamentalOperacaoTipo tipo : NFSeBarueriRPSEnteGovernamentalOperacaoTipo.values()) {
+    public static NFSeBarueriEnteGovernamentalOperacaoTipo valueOfCodigo(String codigo) {
+        for (NFSeBarueriEnteGovernamentalOperacaoTipo tipo : NFSeBarueriEnteGovernamentalOperacaoTipo.values()) {
             if (tipo.getCodigo().equals(codigo)) {
                 return tipo;
             }

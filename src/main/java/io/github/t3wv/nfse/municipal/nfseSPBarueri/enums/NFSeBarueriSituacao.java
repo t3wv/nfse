@@ -1,13 +1,13 @@
 package io.github.t3wv.nfse.municipal.nfseSPBarueri.enums;
 
-public enum NFSeBarueriRPSSituacao {
+public enum NFSeBarueriSituacao {
     ENVIADO("E"),
     CANCELADO("C"),
     REENVIO("R");
 
     private final String codigo;
 
-    NFSeBarueriRPSSituacao(final String codigo) {
+    NFSeBarueriSituacao(final String codigo) {
         this.codigo = codigo;
     }
 
@@ -15,8 +15,8 @@ public enum NFSeBarueriRPSSituacao {
         return codigo;
     }
 
-    public static NFSeBarueriRPSSituacao valueOfCodigo(String codigo) {
-        for (NFSeBarueriRPSSituacao situacao : NFSeBarueriRPSSituacao.values()) {
+    public static NFSeBarueriSituacao valueOfCodigo(String codigo) {
+        for (NFSeBarueriSituacao situacao : NFSeBarueriSituacao.values()) {
             if (situacao.getCodigo().equals(codigo)) {
                 return situacao;
             }

@@ -1,6 +1,6 @@
 package io.github.t3wv.nfse.municipal.nfseSPBarueri.enums;
 
-public enum NFSeBarueriRPSPais {
+public enum NFSeBarueriPais {
     BR("001", "BRASIL ", "BR"),
     AF("002", "AFEGANISTAO ", "AF"),
     ZA("003", "AFRICA DO SUL ", "ZA"),
@@ -255,7 +255,7 @@ public enum NFSeBarueriRPSPais {
     private String nome;
     private String sigla;
 
-    NFSeBarueriRPSPais(final String codigo, final String nome, final String sigla) {
+    NFSeBarueriPais(final String codigo, final String nome, final String sigla) {
         this.codigo = codigo;
         this.nome = nome;
         this.sigla = sigla;
@@ -280,8 +280,8 @@ public enum NFSeBarueriRPSPais {
      * @param codigo do país na prefeitura de barueri
      * @return país correspondente ao código informado ou null se não encontrado
      */
-    public static NFSeBarueriRPSPais valueOfCodigo(final String codigo) {
-        for (final NFSeBarueriRPSPais pais : NFSeBarueriRPSPais.values()) {
+    public static NFSeBarueriPais valueOfCodigo(final String codigo) {
+        for (final NFSeBarueriPais pais : NFSeBarueriPais.values()) {
             if (pais.getCodigo().equals(codigo)) {
                 return pais;
             }
@@ -295,8 +295,8 @@ public enum NFSeBarueriRPSPais {
      * @param sigla ISO do país
      * @return país correspondente ao código informado ou null se não encontrado
      */
-    public static NFSeBarueriRPSPais valueOfSigla(final String sigla) {
-        for (final NFSeBarueriRPSPais pais : NFSeBarueriRPSPais.values()) {
+    public static NFSeBarueriPais valueOfSigla(final String sigla) {
+        for (final NFSeBarueriPais pais : NFSeBarueriPais.values()) {
             if (pais.getSigla().equalsIgnoreCase(sigla)) {
                 return pais;
             }

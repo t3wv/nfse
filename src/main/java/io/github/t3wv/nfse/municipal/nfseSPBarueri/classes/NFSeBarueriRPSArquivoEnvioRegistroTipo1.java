@@ -1,20 +1,17 @@
 package io.github.t3wv.nfse.municipal.nfseSPBarueri.classes;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatterBuilder;
-import java.time.temporal.ChronoField;
+import org.apache.commons.lang3.StringUtils;
 
-public class NFSeBarueriRPSArquivoEnvioRegistroTipo1 {
+public class NFSeBarueriRPSArquivoEnvioRegistroTipo1 extends NFSeBarueriRPSArquivoEnvioRegistro<NFSeBarueriRPSArquivoEnvioRegistroTipo1> {
 
-    static final String TIPO_REGISTRO_HEADER = "1";
+    static final String TIPO_REGISTRO = "1";
     private String inscricaoContribuinte;
     private String versaoLayout;
-    private LocalDateTime dataGeracao;
+    private String identificacaoRemessaContribuinte;
 
-    NFSeBarueriRPSArquivoEnvioRegistroTipo1(final String inscricaoContribuinte, final String versaoLayout, final LocalDateTime dataGeracao) {
-        this.inscricaoContribuinte = inscricaoContribuinte;
-        this.versaoLayout = versaoLayout;
-        this.dataGeracao = dataGeracao;
+    @Override
+    public String getTipoRegistro() {
+        return TIPO_REGISTRO;
     }
 
     public String getInscricaoContribuinte() {
@@ -35,30 +32,29 @@ public class NFSeBarueriRPSArquivoEnvioRegistroTipo1 {
         return this;
     }
 
-    public LocalDateTime getDataGeracao() {
-        return dataGeracao;
+    public String getIdentificacaoRemessaContribuinte() {
+        return identificacaoRemessaContribuinte;
     }
 
-    public NFSeBarueriRPSArquivoEnvioRegistroTipo1 setDataGeracao(LocalDateTime dataGeracao) {
-        this.dataGeracao = dataGeracao;
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo1 setIdentificacaoRemessaContribuinte(String identificacaoRemessaContribuinte) {
+        this.identificacaoRemessaContribuinte = identificacaoRemessaContribuinte;
         return this;
     }
 
-    public String getIdentificacaoRemessaContribuinte(){
-        return dataGeracao.format(new DateTimeFormatterBuilder().appendValueReduced(ChronoField.YEAR, 2, 2, 2000).appendValue(ChronoField.DAY_OF_YEAR, 3).appendValue(ChronoField.SECOND_OF_DAY, 5).toFormatter());
+    @Override
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo1 fromLinha(String linha) {
+        return new NFSeBarueriRPSArquivoEnvioRegistroTipo1()
+                .setInscricaoContribuinte(StringUtils.trimToEmpty(linha.substring(1, 8)))
+                .setVersaoLayout(StringUtils.trimToEmpty(linha.substring(8, 14)))
+                .setIdentificacaoRemessaContribuinte(StringUtils.trimToEmpty(linha.substring(14, 25)));
     }
 
-    /* Padrao para evitar problemas de transmissões em curtos periodos de tempo
-    * 1 - Tipo da linha - Cabeçalho (1 posição)
-    * 2 - Inscrição do municipal do contribuinte (7 posições)
-    * 3 - Versão do layout do arquivo (6 posições)
-    *
-    * Segundo a documentação as últimas 11 posições devem ser preenchidas conforme o contribuinte desejar desde que sejam únicas
-    * 4 - Separador de campos 0 (1 posição), Ano (2 posições), dia do ano (3 posições) e segundos do dia (5 posições) da geração do arquivo
-    *
-    * Totalizando 25 posições
-    */
-    public String getLinha() {
-        return String.format("%s%s%s0%s", TIPO_REGISTRO_HEADER, inscricaoContribuinte, versaoLayout, this.getIdentificacaoRemessaContribuinte());
+    @Override
+    public String toLinha() {
+        return String.format("%s%s%s%s",
+                getTipoRegistro(),
+                StringUtils.rightPad(StringUtils.trimToEmpty(inscricaoContribuinte), 7),
+                StringUtils.rightPad(StringUtils.trimToEmpty(versaoLayout), 6),
+                StringUtils.rightPad(StringUtils.trimToEmpty(identificacaoRemessaContribuinte), 11));
     }
 }

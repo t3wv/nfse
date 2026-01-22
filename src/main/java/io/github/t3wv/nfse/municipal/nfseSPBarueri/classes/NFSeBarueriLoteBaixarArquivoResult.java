@@ -24,8 +24,6 @@ public class NFSeBarueriLoteBaixarArquivoResult {
 
     private NFSeBarueriRPSArquivoRetorno arquivoRetorno;
 
-    private Map<Integer, NFSeBarueriRetornoErros> erros;
-
     public String getArquivoRPSBase64() {
         return arquivoRPSBase64;
     }
@@ -63,34 +61,16 @@ public class NFSeBarueriLoteBaixarArquivoResult {
                     case '9' -> {
                         arquivoRetorno.setFooter(new NFSeBarueriRPSArquivoRetornoRegistroTipo9(linha));
                     }
+                    default -> throw new IllegalArgumentException("Tipo de registro desconhecido: " + linha.charAt(0));
                 }
             }
         }
         return arquivoRetorno;
     }
 
-    public Map<Integer, NFSeBarueriRetornoErros> getErros() {
-        if (this.erros == null) {
-            this.erros = new TreeMap<>();
-            for (int indice = 0; indice < this.getLinhas().length; indice++) {
-                String linha = linhas[indice];
-                if (linha.length() > 1971) {
-                    final var errosApi = linha.substring(1970).split(";");
-                    for (var erroApi : errosApi) {
-                        erros.put(indice + 1, NFSeBarueriRetornoErros.valueOfCodigo(erroApi));
-                    }
-                }
-            }
-            return erros;
-        }
-        return erros;
-    }
-
-
     public String toXml() throws Exception {
-        NFSePersister serializer = new NFSePersister();
-        StringWriter writer = new StringWriter();
-        serializer.write(this, writer);
+        final StringWriter writer = new StringWriter();
+        new NFSePersister().write(this, writer);
         return writer.toString();
     }
 }

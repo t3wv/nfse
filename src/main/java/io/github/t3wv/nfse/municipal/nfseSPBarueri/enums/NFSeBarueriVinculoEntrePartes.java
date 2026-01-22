@@ -1,6 +1,6 @@
 package io.github.t3wv.nfse.municipal.nfseSPBarueri.enums;
 
-public enum NFSeBarueriRPSVinculoEntrePartes {
+public enum NFSeBarueriVinculoEntrePartes {
 
     SEM_VINCULO("0"),
     CONTROLADA("1"),
@@ -13,7 +13,7 @@ public enum NFSeBarueriRPSVinculoEntrePartes {
 
     private final String codigo;
 
-    NFSeBarueriRPSVinculoEntrePartes(final String codigo) {
+    NFSeBarueriVinculoEntrePartes(final String codigo) {
         this.codigo = codigo;
     }
 
@@ -21,8 +21,8 @@ public enum NFSeBarueriRPSVinculoEntrePartes {
         return codigo;
     }
 
-    public static NFSeBarueriRPSVinculoEntrePartes valueOfCodigo(String codigo) {
-        for (NFSeBarueriRPSVinculoEntrePartes vinculo : NFSeBarueriRPSVinculoEntrePartes.values()) {
+    public static NFSeBarueriVinculoEntrePartes valueOfCodigo(String codigo) {
+        for (NFSeBarueriVinculoEntrePartes vinculo : NFSeBarueriVinculoEntrePartes.values()) {
             if (vinculo.getCodigo().equals(codigo)) {
                 return vinculo;
             }

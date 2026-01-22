@@ -1,12 +1,12 @@
 package io.github.t3wv.nfse.municipal.nfseSPBarueri.enums;
 
-public enum NFSeBarueriRPSServicoExportacao {
+public enum NFSeBarueriServicoExportacao {
     SIM("1"),
     NAO("2");
 
     private final String codigo;
 
-    NFSeBarueriRPSServicoExportacao(final String codigo) {
+    NFSeBarueriServicoExportacao(final String codigo) {
         this.codigo = codigo;
     }
 
@@ -14,8 +14,8 @@ public enum NFSeBarueriRPSServicoExportacao {
         return codigo;
     }
 
-    public static NFSeBarueriRPSServicoExportacao valueOfCodigo(String codigo) {
-        for (NFSeBarueriRPSServicoExportacao exportacao : NFSeBarueriRPSServicoExportacao.values()) {
+    public static NFSeBarueriServicoExportacao valueOfCodigo(String codigo) {
+        for (NFSeBarueriServicoExportacao exportacao : NFSeBarueriServicoExportacao.values()) {
             if (exportacao.getCodigo().equals(codigo)) {
                 return exportacao;
             }

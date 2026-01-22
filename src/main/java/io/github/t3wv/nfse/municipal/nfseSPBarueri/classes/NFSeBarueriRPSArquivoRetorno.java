@@ -9,6 +9,7 @@ import java.util.Base64;
 import java.util.List;
 
 public class NFSeBarueriRPSArquivoRetorno {
+
     private NFSeBarueriRPSArquivoRetornoRegistroTipo1 header;
     private NFSeBarueriRPSArquivoRetornoRegistroTipo9 footer;
     private List<NFSeBarueriRPSArquivoRetornoRegistroTipo2> notas;
@@ -25,27 +26,29 @@ public class NFSeBarueriRPSArquivoRetorno {
         return this.notas;
     }
 
-    private List<String> geraArquivo() {
-        final List<String> linhasArquivo = new ArrayList<>();
-        return linhasArquivo;
-    }
-
     public byte[] geraConteudoArquivo() throws Exception {
         try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
             try (Writer writer = new OutputStreamWriter(baos, StandardCharsets.ISO_8859_1)) {
-                for (final String linha : this.geraArquivo()) {
-                    writer.write(linha);
+                writer.write(header.toString());
+                writer.write((char) 13);
+                writer.write((char) 10);
+                for (NFSeBarueriRPSArquivoRetornoRegistroTipo2 nota : this.notas) {
+                    writer.write(nota.toString());
                     writer.write((char) 13);
                     writer.write((char) 10);
+                    for (NFSeBarueriRPSArquivoRetornoRegistroTipo3 notaItem : nota.getItens()) {
+                        writer.write(notaItem.toString());
+                        writer.write((char) 13);
+                        writer.write((char) 10);
+                    }
                 }
+                writer.write(footer.toString());
+                writer.write((char) 13);
+                writer.write((char) 10);
                 writer.flush();
             }
             return baos.toByteArray();
         }
-    }
-
-    public String getArquivoBase64() throws Exception {
-        return Base64.getEncoder().encodeToString(this.geraConteudoArquivo());
     }
 
     public NFSeBarueriRPSArquivoRetorno setHeader(NFSeBarueriRPSArquivoRetornoRegistroTipo1 nfSeBarueriRPSArquivoRetornoRegistroTipo1) {

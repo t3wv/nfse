@@ -2,7 +2,7 @@ package io.github.t3wv.nfse.utils;
 
 import io.github.t3wv.nfse.NFSeConfig;
 import io.github.t3wv.nfse.NFSeLogger;
-import io.github.t3wv.nfse.municipal.nfseSPBarueri.WSRPS;
+import io.github.t3wv.nfse.municipal.nfseSPBarueri.WSBarueri;
 import io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.WSLoteNFe;
 import io.github.t3wv.nfse.nacional.WSDANFSe;
 import io.github.t3wv.nfse.nacional.WSParametrosMunicipais;
@@ -35,8 +35,8 @@ public abstract class NFSeCadeiaCertificados implements NFSeLogger {
             NFSeCadeiaCertificados.get(keyStore, WSDANFSe.URL_BASE_HOMOLOGACAO);
             NFSeCadeiaCertificados.get(keyStore, WSParametrosMunicipais.URL_BASE_PRODUCAO);
             NFSeCadeiaCertificados.get(keyStore, WSParametrosMunicipais.URL_BASE_HOMOLOGACAO);
-            NFSeCadeiaCertificados.get(keyStore, WSRPS.URL_BASE_PRODUCAO);
-            NFSeCadeiaCertificados.get(keyStore, WSRPS.URL_BASE_HOMOLOGACAO);
+            NFSeCadeiaCertificados.get(keyStore, WSBarueri.URL_BASE_PRODUCAO);
+            NFSeCadeiaCertificados.get(keyStore, WSBarueri.URL_BASE_HOMOLOGACAO);
             NFSeCadeiaCertificados.get(keyStore, WSLoteNFe.URL_BASE);
 
             // grava o keystore em um array de bytes

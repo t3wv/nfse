@@ -26,13 +26,13 @@ public class NFSeBarueriLoteEnviarArquivoRequest {
     @Element(name = "ArquivoRPSBase64")
     private String arquivoRPSBase64;
 
-    public NFSeBarueriLoteEnviarArquivoRequest(NFSeBarueriRPSArquivoEnvio arquivo) throws Exception {
-        this.inscricaoMunicipal = arquivo.getInscricaoMunicipalContribuinte();
-        this.cpfCnpjContrib = arquivo.getDocumentoContribuinte();
-        this.nomeArquivoRPS = arquivo.getNomeArquivo();
-        this.apenasValidaArq = false;
-        this.arquivoRPSBase64 = arquivo.getArquivoBase64();
-    }
+//    public NFSeBarueriLoteEnviarArquivoRequest(NFSeBarueriRPSArquivoEnvio arquivo) throws Exception {
+//        this.inscricaoMunicipal = arquivo.getInscricaoMunicipalContribuinte();
+//        this.cpfCnpjContrib = arquivo.getDocumentoContribuinte();
+//        this.nomeArquivoRPS = arquivo.getNomeArquivo();
+//        this.apenasValidaArq = false;
+//        this.arquivoRPSBase64 = arquivo.getArquivoBase64();
+//    }
 
     public String getInscricaoMunicipal() {
         return inscricaoMunicipal;

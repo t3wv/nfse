@@ -1,13 +1,13 @@
 package io.github.t3wv.nfse.municipal.nfseSPBarueri.enums;
 
-public enum NFSeBarueriRPSOptanteSimplesNacional {
+public enum NFSeBarueriOptanteSimplesNacional {
     NAO_OPTANTE("1"),
     MEI("2"),
     ME_EPP("3");
 
     private final String codigo;
 
-    NFSeBarueriRPSOptanteSimplesNacional(final String codigo) {
+    NFSeBarueriOptanteSimplesNacional(final String codigo) {
         this.codigo = codigo;
     }
 
@@ -15,8 +15,8 @@ public enum NFSeBarueriRPSOptanteSimplesNacional {
         return codigo;
     }
 
-    public static NFSeBarueriRPSOptanteSimplesNacional valueOfCodigo(String codigo) {
-        for (NFSeBarueriRPSOptanteSimplesNacional optante : NFSeBarueriRPSOptanteSimplesNacional.values()) {
+    public static NFSeBarueriOptanteSimplesNacional valueOfCodigo(String codigo) {
+        for (NFSeBarueriOptanteSimplesNacional optante : NFSeBarueriOptanteSimplesNacional.values()) {
             if (optante.getCodigo().equals(codigo)) {
                 return optante;
             }

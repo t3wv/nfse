@@ -1,111 +1,59 @@
 package io.github.t3wv.nfse.municipal.nfseSPBarueri.classes;
 
+import io.github.t3wv.nfse.municipal.nfseSPBarueri.WSBarueri;
+
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStreamWriter;
-import java.io.Writer;
-import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
 public class NFSeBarueriRPSArquivoEnvio {
-    private final String inscricaoMunicipalContribuinte;
-    private final String documentoContribuinte;
-    private final String layoutVersao;
-    private final LocalDateTime dataGeracao;
-    private final List<NFSeBarueriRPS> rpsList;
 
-    public NFSeBarueriRPSArquivoEnvio(final String inscricaoMunicipalContribuinte, final String documentoContribuinte, final String layoutVersao, final LocalDateTime dataGeracao, final List<NFSeBarueriRPS> listaNotas) {
-        this.inscricaoMunicipalContribuinte = inscricaoMunicipalContribuinte;
-        this.documentoContribuinte = documentoContribuinte;
-        this.layoutVersao = layoutVersao;
-        this.dataGeracao = dataGeracao;
-        this.rpsList = listaNotas;
+    private final List<NFSeBarueriRPSArquivoEnvioRegistro> linhas = new ArrayList<>();
+
+    public NFSeBarueriRPSArquivoEnvio addLinha(NFSeBarueriRPSArquivoEnvioRegistro linha) {
+        this.linhas.add(linha);
+        return this;
     }
 
-    private List<String> geraArquivo() {
-        final List<String> linhasArquivo = new ArrayList<>();
-
-        //gera o cabecalho
-        final NFSeBarueriRPSArquivoEnvioRegistroTipo1 cabecalho = new NFSeBarueriRPSArquivoEnvioRegistroTipo1(this.inscricaoMunicipalContribuinte, this.layoutVersao, this.dataGeracao);
-        linhasArquivo.add(cabecalho.getLinha());
-
-        int numeroDeLinhas = 1;
-        for (final var rps : this.rpsList) {
-            //gero linha do conteudo do arquivo
-            final NFSeBarueriRPSArquivoEnvioRegistroTipo2 arquivoRegistroTipo2 = new NFSeBarueriRPSArquivoEnvioRegistroTipo2(rps);
-            linhasArquivo.add(arquivoRegistroTipo2.getLinha());
-            numeroDeLinhas++;
-
-            if (rps.getOutrosValores() != null && !rps.getOutrosValores().isEmpty()) {
-                for (final var outroValor : rps.getOutrosValores()) {
-                    final NFSeBarueriRPSArquivoEnvioRegistroTipo3 arquivoRegistroTipo3 = new NFSeBarueriRPSArquivoEnvioRegistroTipo3(outroValor);
-                    linhasArquivo.add(arquivoRegistroTipo3.getLinha());
-                    numeroDeLinhas++;
-                }
-            }
-
-            final NFSeBarueriRPSArquivoEnvioRegistroTipo4 arquivoRegistroTipo4 = new NFSeBarueriRPSArquivoEnvioRegistroTipo4(rps);
-            linhasArquivo.add(arquivoRegistroTipo4.getLinha());
-            numeroDeLinhas++;
-
-            final var arquivoRegistroTipo5Linha = new NFSeBarueriRPSArquivoEnvioRegistroTipo5(rps).getLinha();
-            if(arquivoRegistroTipo5Linha.trim().length() > 1) {
-                linhasArquivo.add(arquivoRegistroTipo5Linha);
-                numeroDeLinhas++;
-            }
+    public NFSeBarueriRPSArquivoEnvio addLinha(final String linha) {
+        final var tipoRegistro = linha.substring(0, 1);
+        switch (tipoRegistro) {
+            case NFSeBarueriRPSArquivoEnvioRegistroTipo1.TIPO_REGISTRO ->
+                    this.linhas.add(new NFSeBarueriRPSArquivoEnvioRegistroTipo1().fromLinha(linha));
+            case NFSeBarueriRPSArquivoEnvioRegistroTipo2.TIPO_REGISTRO ->
+                    this.linhas.add(new NFSeBarueriRPSArquivoEnvioRegistroTipo2().fromLinha(linha));
+            case NFSeBarueriRPSArquivoEnvioRegistroTipo3.TIPO_REGISTRO ->
+                    this.linhas.add(new NFSeBarueriRPSArquivoEnvioRegistroTipo3().fromLinha(linha));
+            case NFSeBarueriRPSArquivoEnvioRegistroTipo4.TIPO_REGISTRO ->
+                    this.linhas.add(new NFSeBarueriRPSArquivoEnvioRegistroTipo4().fromLinha(linha));
+            case NFSeBarueriRPSArquivoEnvioRegistroTipo5.TIPO_REGISTRO ->
+                    this.linhas.add(new NFSeBarueriRPSArquivoEnvioRegistroTipo5().fromLinha(linha));
+            case NFSeBarueriRPSArquivoEnvioRegistroTipo9.TIPO_REGISTRO ->
+                    this.linhas.add(new NFSeBarueriRPSArquivoEnvioRegistroTipo9().fromLinha(linha));
+            default -> throw new IllegalStateException("Tipo de registro desconhecido: " + tipoRegistro);
         }
-
-        //gera o rodape
-        final NFSeBarueriRPSArquivoEnvioRegistroTipo9 arquivoRegistroTipo9 = new NFSeBarueriRPSArquivoEnvioRegistroTipo9(numeroDeLinhas + 1, this.getValorTotalServico(), this.getValorTotalNaoIncluidoBasecalculoISS());
-        linhasArquivo.add(arquivoRegistroTipo9.getLinha());
-
-        //retorna o arquivo gerados
-        return linhasArquivo;
+        return this;
     }
 
-    BigDecimal getValorTotalServico() {
-        BigDecimal retValue = BigDecimal.ZERO;
-        for (final var rps : this.rpsList) {
-            retValue = rps.getValorServico() != null ? retValue.add(rps.getValorServico()) : retValue;
+    @Override
+    public String toString() {
+        try {
+            return new String(this.toByteArray(), StandardCharsets.ISO_8859_1);
+        } catch (Exception e) {
+            return null;
         }
-        return retValue;
     }
 
-    BigDecimal getValorTotalNaoIncluidoBasecalculoISS() {
-        BigDecimal retValue = BigDecimal.ZERO;
-        for (final var rps : this.rpsList) {
-            if (rps.getOutrosValores() != null && !rps.getOutrosValores().isEmpty()) {
-                retValue = retValue.add(rps.getOutrosValores().stream()
-                        .map(NFSeBarueriRPSOutrosValores::getValor)
-                        .reduce(BigDecimal.ZERO, BigDecimal::add));
-            }
-        }
-        return retValue;
-    }
-
-    public String getInscricaoMunicipalContribuinte() {
-        return inscricaoMunicipalContribuinte;
-    }
-
-    public String getDocumentoContribuinte() {
-        return documentoContribuinte;
-    }
-
-    public String getNomeArquivo() {
-        return String.format("RPS_%s.txt", dataGeracao.format(DateTimeFormatter.ofPattern("DDDAAAAAAAA")));
-    }
-
-    public byte[] geraConteudoArquivo() throws Exception {
-        try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
-            try(Writer writer = new OutputStreamWriter(baos, StandardCharsets.ISO_8859_1)) {
-                for (final String linha : this.geraArquivo()) {
-                    writer.write(linha);
-                    writer.write((char) 13);
-                    writer.write((char) 10);
+    public byte[] toByteArray() throws Exception {
+        try (var baos = new ByteArrayOutputStream()) {
+            try (var writer = new OutputStreamWriter(baos, StandardCharsets.ISO_8859_1)) {
+                for (final var registro : this.linhas) {
+                    writer.write(registro.toLinha());
+                    writer.write(WSBarueri.CHR13);
+                    writer.write(WSBarueri.CHR10);
                 }
                 writer.flush();
             }
@@ -113,7 +61,7 @@ public class NFSeBarueriRPSArquivoEnvio {
         }
     }
 
-    public String getArquivoBase64() throws Exception {
-        return Base64.getEncoder().encodeToString(this.geraConteudoArquivo());
+    public String toBase64() throws Exception {
+        return Base64.getEncoder().encodeToString(this.toByteArray());
     }
 }

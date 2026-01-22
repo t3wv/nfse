@@ -4,29 +4,40 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.math.RoundingMode;
 
-public class NFSeBarueriRPSArquivoEnvioRegistroTipo3 {
-    static final String TIPO_REGISTRO_BODY = "3";
-    private final NFSeBarueriRPSOutrosValores outrosValores;
+public class NFSeBarueriRPSArquivoEnvioRegistroTipo3 extends NFSeBarueriRPSArquivoEnvioRegistro<NFSeBarueriRPSArquivoEnvioRegistroTipo3> {
+    static final String TIPO_REGISTRO = "3";
+//    private final NFSeBarueriRPSOutrosValores outrosValores;
+//
+//
+//    public NFSeBarueriRPSArquivoEnvioRegistroTipo3(NFSeBarueriRPSOutrosValores outrosValores) {
+//        this.outrosValores = outrosValores;
+//    }
 
-    public NFSeBarueriRPSArquivoEnvioRegistroTipo3(NFSeBarueriRPSOutrosValores outrosValores) {
-        this.outrosValores = outrosValores;
+    @Override
+    public String getTipoRegistro() {
+        return TIPO_REGISTRO;
     }
 
-    public String getLinha() {
-        final StringBuilder linha = new StringBuilder();
-        linha.append(TIPO_REGISTRO_BODY);
-        linha.append(this.getCodigoOutrosValores());
-        linha.append(this.getOutrosValoresValor());
-        return linha.toString();
+//    private String getCodigoOutrosValores() {
+//        return this.outrosValores.getTipo().getCodigo();
+//    }
+//
+//    private String getOutrosValoresValor() {
+//        return StringUtils.leftPad(this.outrosValores.getValor().setScale(2, RoundingMode.HALF_UP).toPlainString().replaceAll("[^0-9]", ""), 15, "0");
+//    }
+
+    @Override
+    public String toLinha() {
+//        final StringBuilder linha = new StringBuilder();
+//        linha.append(TIPO_REGISTRO);
+//        linha.append(this.getCodigoOutrosValores());
+//        linha.append(this.getOutrosValoresValor());
+//        return linha.toString();
+        return null;
     }
 
-    private String getCodigoOutrosValores() {
-        return this.outrosValores.getTipo().getCodigo();
+    @Override
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo3 fromLinha(String linha) {
+        return null;
     }
-
-    private String getOutrosValoresValor() {
-        return StringUtils.leftPad(this.outrosValores.getValor().setScale(2, RoundingMode.HALF_UP).toPlainString().replaceAll("[^0-9]", ""), 15, "0");
-    }
-
-
 }

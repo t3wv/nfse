@@ -1,6 +1,6 @@
 package io.github.t3wv.nfse.municipal.nfseSPBarueri.enums;
 
-public enum NFSeBarueriRPSRegimeApuracaoTributariaSimplesNacional {
+public enum NFSeBarueriRegimeApuracaoTributariaSimplesNacional {
 
     SIMPLES_NACIONAL("1"),
     SIMPLES_NACIONAL_ISSQN_TRIBUTO_MUNICIPAL("2"),
@@ -9,7 +9,7 @@ public enum NFSeBarueriRPSRegimeApuracaoTributariaSimplesNacional {
 
     private final String codigo;
 
-    NFSeBarueriRPSRegimeApuracaoTributariaSimplesNacional(final String codigo) {
+    NFSeBarueriRegimeApuracaoTributariaSimplesNacional(final String codigo) {
         this.codigo = codigo;
     }
 
@@ -17,8 +17,8 @@ public enum NFSeBarueriRPSRegimeApuracaoTributariaSimplesNacional {
         return codigo;
     }
 
-    public static NFSeBarueriRPSRegimeApuracaoTributariaSimplesNacional valueOfCodigo(String codigo) {
-        for (NFSeBarueriRPSRegimeApuracaoTributariaSimplesNacional regime : NFSeBarueriRPSRegimeApuracaoTributariaSimplesNacional.values()) {
+    public static NFSeBarueriRegimeApuracaoTributariaSimplesNacional valueOfCodigo(String codigo) {
+        for (NFSeBarueriRegimeApuracaoTributariaSimplesNacional regime : NFSeBarueriRegimeApuracaoTributariaSimplesNacional.values()) {
             if (regime.getCodigo().equals(codigo)) {
                 return regime;
             }

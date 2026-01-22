@@ -1,6 +1,6 @@
 package io.github.t3wv.nfse.municipal.nfseSPBarueri.enums;
 
-public enum NFSeBarueriRPSArquivoRetornoTipoTributacao {
+public enum NFSeBarueriArquivoRetornoTipoTributacao {
     MUNICIPAL(1, "Serviço prestado no município"),
     INTERMUNICIPAL(2, "Serviço prestado fora do município"),
     ISENTA(3, "Serviço isento"),
@@ -9,7 +9,7 @@ public enum NFSeBarueriRPSArquivoRetornoTipoTributacao {
     private final int codigo;
     private final String descricao;
 
-    NFSeBarueriRPSArquivoRetornoTipoTributacao(final int codigo, final String descricao) {
+    NFSeBarueriArquivoRetornoTipoTributacao(final int codigo, final String descricao) {
         this.codigo = codigo;
         this.descricao = descricao;
     }
@@ -22,8 +22,8 @@ public enum NFSeBarueriRPSArquivoRetornoTipoTributacao {
         return descricao;
     }
 
-    public static NFSeBarueriRPSArquivoRetornoTipoTributacao valueOfCodigo(int codigo) {
-        for (NFSeBarueriRPSArquivoRetornoTipoTributacao tipo : NFSeBarueriRPSArquivoRetornoTipoTributacao.values()) {
+    public static NFSeBarueriArquivoRetornoTipoTributacao valueOfCodigo(int codigo) {
+        for (NFSeBarueriArquivoRetornoTipoTributacao tipo : NFSeBarueriArquivoRetornoTipoTributacao.values()) {
             if (tipo.getCodigo() == codigo) {
                 return tipo;
             }

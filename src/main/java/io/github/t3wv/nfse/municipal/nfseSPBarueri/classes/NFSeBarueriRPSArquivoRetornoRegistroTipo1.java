@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 import static io.github.t3wv.nfse.municipal.nfseSPBarueri.classes.NFSeBarueriLoteBaixarArquivoResult.FORMATO_DATA;
 
-public class NFSeBarueriRPSArquivoRetornoRegistroTipo1 {
+public class NFSeBarueriRPSArquivoRetornoRegistroTipo1 extends NFSeBarueriRPSArquivoRetornoRegistro{
 
     private final int tipoRegistro;
     private final String inscricaoContribuinte;
@@ -16,6 +16,7 @@ public class NFSeBarueriRPSArquivoRetornoRegistroTipo1 {
     private final long identificacaoRemessa;
 
     public NFSeBarueriRPSArquivoRetornoRegistroTipo1(String linha) {
+        super(linha);
         this.tipoRegistro = Integer.parseInt(linha.substring(0, 1).trim());
         this.inscricaoContribuinte = linha.substring(1, 8).trim();
         this.inicioTransferencia = StringUtils.isNotBlank(StringUtils.stripStart(linha.substring(8, 16).trim(), "0")) ? LocalDate.parse(linha.substring(8, 16).trim(), FORMATO_DATA) : null;

@@ -1,12 +1,13 @@
 package io.github.t3wv.nfse.municipal.nfseSPBarueri.enums;
 
-public enum NFSeBarueriRPSLocalPrestacaoServico {
+public enum NFSeBarueriLocalPrestacaoServico {
+
     BARUERI("1"),
     OUTROS("2");
 
     private final String codigo;
 
-    NFSeBarueriRPSLocalPrestacaoServico(final String codigo) {
+    NFSeBarueriLocalPrestacaoServico(final String codigo) {
         this.codigo = codigo;
     }
 
@@ -14,8 +15,8 @@ public enum NFSeBarueriRPSLocalPrestacaoServico {
         return codigo;
     }
 
-    public static NFSeBarueriRPSLocalPrestacaoServico valueOfCodigo(String codigo) {
-        for (NFSeBarueriRPSLocalPrestacaoServico local : NFSeBarueriRPSLocalPrestacaoServico.values()) {
+    public static NFSeBarueriLocalPrestacaoServico valueOfCodigo(String codigo) {
+        for (NFSeBarueriLocalPrestacaoServico local : NFSeBarueriLocalPrestacaoServico.values()) {
             if (local.getCodigo().equals(codigo)) {
                 return local;
             }

@@ -1,7 +1,7 @@
 package io.github.t3wv.nfse.municipal.nfseSPBarueri.classes;
 
-import io.github.t3wv.nfse.municipal.nfseSPBarueri.enums.NFSeBarueriRPSArquivoRetornoSituacaoNFe;
-import io.github.t3wv.nfse.municipal.nfseSPBarueri.enums.NFSeBarueriRPSArquivoRetornoTipoTributacao;
+import io.github.t3wv.nfse.municipal.nfseSPBarueri.enums.NFSeBarueriArquivoRetornoSituacaoNFe;
+import io.github.t3wv.nfse.municipal.nfseSPBarueri.enums.NFSeBarueriArquivoRetornoTipoTributacao;
 import org.apache.commons.lang3.StringUtils;
 
 import java.time.LocalDate;
@@ -12,7 +12,7 @@ import static io.github.t3wv.nfse.municipal.nfseSPBarueri.classes.NFSeBarueriLot
 import static io.github.t3wv.nfse.municipal.nfseSPBarueri.classes.NFSeBarueriLoteBaixarArquivoResult.FORMATO_DATA_HORA;
 
 
-public class NFSeBarueriRPSArquivoRetornoRegistroTipo2 {
+public class NFSeBarueriRPSArquivoRetornoRegistroTipo2 extends NFSeBarueriRPSArquivoRetornoRegistro{
 
     private final int tipoRegistro;
     private final String serieNFe;
@@ -20,9 +20,9 @@ public class NFSeBarueriRPSArquivoRetornoRegistroTipo2 {
     private final LocalDateTime dataHoraNFe;
     private final String codigoAutenticidade;
     private final String serieRPS;
-    private final NFSeBarueriRPSArquivoRetornoTipoTributacao tributacao;
+    private final NFSeBarueriArquivoRetornoTipoTributacao tributacao;
     private final boolean issRetido;
-    private final NFSeBarueriRPSArquivoRetornoSituacaoNFe situacaoNfe;
+    private final NFSeBarueriArquivoRetornoSituacaoNFe situacaoNfe;
     private final LocalDate dataCancelamento;
     private final Long numeroGuia;
     private final LocalDate dataPagamentoGuia;
@@ -42,15 +42,16 @@ public class NFSeBarueriRPSArquivoRetornoRegistroTipo2 {
     private List<NFSeBarueriRPSArquivoRetornoRegistroTipo3> itens;
 
     public NFSeBarueriRPSArquivoRetornoRegistroTipo2(String linha) {
+        super(linha);
         this.tipoRegistro = Integer.parseInt(linha.substring(0, 1).trim());
         this.serieNFe = linha.substring(1, 5).trim();
         this.numeroNFe = Long.parseLong(linha.substring(5, 12).trim());
         this.dataHoraNFe = LocalDateTime.parse(linha.substring(12, 26).trim(), FORMATO_DATA_HORA);
         this.codigoAutenticidade = linha.substring(26, 50).trim();
         this.serieRPS = linha.substring(50, 54).trim();
-        this.tributacao = NFSeBarueriRPSArquivoRetornoTipoTributacao.valueOfCodigo(Integer.parseInt(linha.substring(64, 65).trim()));
+        this.tributacao = NFSeBarueriArquivoRetornoTipoTributacao.valueOfCodigo(Integer.parseInt(linha.substring(64, 65).trim()));
         this.issRetido = linha.substring(65, 66).trim().equalsIgnoreCase("S");
-        this.situacaoNfe = NFSeBarueriRPSArquivoRetornoSituacaoNFe.valueOfCodigo(linha.substring(66, 67).trim());
+        this.situacaoNfe = NFSeBarueriArquivoRetornoSituacaoNFe.valueOfCodigo(linha.substring(66, 67).trim());
         this.dataCancelamento = StringUtils.isNotBlank(linha.substring(67, 75).trim()) ? LocalDate.parse(linha.substring(67, 75), FORMATO_DATA) : null;
         this.numeroGuia = StringUtils.isNotBlank(linha.substring(75, 85).trim()) ? Long.parseLong(linha.substring(75, 85).trim()) : null;
         this.dataPagamentoGuia = StringUtils.isNotBlank(linha.substring(85, 93).trim()) ? LocalDate.parse(linha.substring(85, 93), FORMATO_DATA) : null;
@@ -93,7 +94,7 @@ public class NFSeBarueriRPSArquivoRetornoRegistroTipo2 {
         return codigoAutenticidade;
     }
 
-    public NFSeBarueriRPSArquivoRetornoTipoTributacao getTributacao() {
+    public NFSeBarueriArquivoRetornoTipoTributacao getTributacao() {
         return tributacao;
     }
 
@@ -101,7 +102,7 @@ public class NFSeBarueriRPSArquivoRetornoRegistroTipo2 {
         return issRetido;
     }
 
-    public NFSeBarueriRPSArquivoRetornoSituacaoNFe getSituacaoNfe() {
+    public NFSeBarueriArquivoRetornoSituacaoNFe getSituacaoNfe() {
         return situacaoNfe;
     }
 

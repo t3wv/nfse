@@ -1,249 +1,564 @@
 package io.github.t3wv.nfse.municipal.nfseSPBarueri.classes;
 
-import io.github.t3wv.nfse.utils.NFSeUtils;
+import io.github.t3wv.nfse.municipal.nfseSPBarueri.WSBarueri;
+import io.github.t3wv.nfse.municipal.nfseSPBarueri.enums.*;
 import org.apache.commons.lang3.StringUtils;
 
+import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
-public class NFSeBarueriRPSArquivoEnvioRegistroTipo2 {
-    static final String TIPO_REGISTRO_BODY = "2";
-    static final String TIPO_RPS = "RPS  ";
-    private final NFSeBarueriRPS rps;
+public class NFSeBarueriRPSArquivoEnvioRegistroTipo2 extends NFSeBarueriRPSArquivoEnvioRegistro<NFSeBarueriRPSArquivoEnvioRegistroTipo2> {
 
-    public NFSeBarueriRPSArquivoEnvioRegistroTipo2(NFSeBarueriRPS rps) {
-        this.rps = rps;
+    static final String TIPO_REGISTRO = "2";
+
+    private String tipoRPS, serieRPS, serieNFe;
+    private Long numeroRPS;
+    private LocalDate dataRPS;
+    private LocalTime horaRPS;
+    private NFSeBarueriSituacao situacaoRPS;
+    private NFSeBarueriMotivoCancelamento motivoCancelamento;
+    private String numeroNfeASerCanceladaOuSubstituida;
+    private String serieNfeASerCanceladaOuSubstituida;
+    private LocalDate dataEmissaoNFeASerCanceladaOuSubstituida;
+    private String descricaoCancelamento;
+    private String codigoServicoPrestado;
+    private NFSeBarueriLocalPrestacaoServico localPrestacaoServico;
+    private Boolean servicoPrestadoEmViaPublica;
+
+    private String enderecoLogradouroLocalServicoPrestado;
+    private String enderecoNumeroLocalServicoPrestado;
+    private String enderecoComplementoLocalServicoPrestado;
+    private String enderecoBairroLocalServicoPrestado;
+    private String enderecoCidadeLocalServicoPrestado;
+    private String enderecoUFLocalServicoPrestado;
+    private String enderecoCEPLocalServicoPrestado;
+
+    private Integer quantidadeServicoPrestado;
+    private BigDecimal valorServicoPrestado;
+
+    private String reservado;
+
+    private BigDecimal valorRetencoes;
+
+    private Boolean tomadorEstrangeiro;
+    private NFSeBarueriPais paisTomadorEstrangeiro;
+    private Boolean servicoExportacao;
+    private NFSeBarueriPessoaTipo indicadorCpfCnpjTomador;
+    private String cpfCnpjTomador;
+    private String razaoSocialTomador;
+    private String enderecoLogradouroTomador;
+    private String enderecoNumeroTomador;
+    private String enderecoComplementoTomador;
+    private String enderecoBairroTomador;
+    private String enderecoCidadeTomador;
+    private String enderecoUFTomador;
+    private String enderecoCEPTomador;
+    private String emailTomador;
+    private String numeroFatura;
+    private BigDecimal valorFatura;
+    private String formaPagamentoFatura;
+
+    private String discriminacaoServico;
+
+    public String getTipoRPS() {
+        return tipoRPS;
     }
 
-    public String getLinha() {
-        final StringBuilder linha = new StringBuilder();
-        linha.append(TIPO_REGISTRO_BODY);
-        linha.append(TIPO_RPS);
-        linha.append(this.getRPSSerie());
-        linha.append(this.getNFSerie());
-        linha.append(this.getRPSNumero());
-        linha.append(this.getRPSDataEmissao());
-        linha.append(this.getRPSHoraEmissao());
-        linha.append(this.getRPSSituacao());
-        linha.append(this.getRPSMotivoCancelamento());
-        linha.append(this.getNFSubstituidaNumero());
-        linha.append(this.getNFSubstituidaSerie());
-        linha.append(this.getNFSubstituidaDataEmissao());
-        linha.append(this.getNFSubstituidaDescricaoCancelamento());
-        linha.append(this.getRPSCodigoServicoPrestado());
-        linha.append(this.getRPSLocalPrestacaoServico());
-        linha.append(this.getRPSServicoPrestadoEmViaPublica());
-        linha.append(this.getRPSEnderecoServicoPrestado());
-        linha.append(this.getRPSEnderecoServicoPrestadoNumero());
-        linha.append(this.getRPSEnderecoServicoPrestadoComplemento());
-        linha.append(this.getRPSEnderecoServicoPrestadoBairro());
-        linha.append(this.getRPSEnderecoServicoPrestadoCidade());
-        linha.append(this.getRPSEnderecoServicoPrestadoUF());
-        linha.append(this.getRPSEnderecoServicoPrestadoCEP());
-        linha.append(this.getRPSQuantidadeServicoPrestado());
-        linha.append(this.getRPSValorServico());
-        linha.append(this.getCampoReservado());
-        linha.append(this.getRPSValorRetencoes());
-        linha.append(this.getRPSTomadorTipo());
-        linha.append(this.getRPSTomadorEstrangeiroCodigoPais());
-        linha.append(this.getRPSServicoExportacao());
-        linha.append(this.getRPSTomadorDocumentoTipo());
-        linha.append(this.getRPSTomadorDocumento());
-        linha.append(this.getRPSTomadorRazaoSocial());
-        linha.append(this.getRPSTomadorEndereco());
-        linha.append(this.getRPSTomadorEnderecoNumero());
-        linha.append(this.getRPSTomadorEnderecoComplemento());
-        linha.append(this.getRPSTomadorEnderecoBairro());
-        linha.append(this.getRPSTomadorEnderecoCidade());
-        linha.append(this.getRPSTomadorEnderecoUF());
-        linha.append(this.getRPSTomadorEnderecoCep());
-        linha.append(this.getRPSTomadorEmail());
-        linha.append(this.getRPSFaturaNumero());
-        linha.append(this.getRPSFaturaValor());
-        linha.append(this.getRPSFaturaFormaPagamento());
-        linha.append(this.getRPSDiscriminacaoServicos());
-        return linha.toString();
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setTipoRPS(String tipoRPS) {
+        this.tipoRPS = tipoRPS;
+        return this;
     }
 
-    private String getRPSSerie() {
-        return StringUtils.rightPad(this.rps.getRpsSerie(), 4);
+    public String getSerieRPS() {
+        return serieRPS;
     }
 
-    private String getNFSerie() {
-        return StringUtils.rightPad(StringUtils.trimToEmpty(this.rps.getNotaSerie()), 5);
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setSerieRPS(String serieRPS) {
+        this.serieRPS = serieRPS;
+        return this;
     }
 
-    private String getRPSNumero() {
-        return StringUtils.leftPad(this.rps.getRpsNumero(), 10, "0");
+    public String getSerieNFe() {
+        return serieNFe;
     }
 
-    private String getRPSDataEmissao() {
-        return this.rps.getRpsDataEmissao() != null ?
-                this.rps.getRpsDataEmissao().format(DateTimeFormatter.ofPattern("yyyyMMdd")) :
-                "";
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setSerieNFe(String serieNFe) {
+        this.serieNFe = serieNFe;
+        return this;
     }
 
-    private String getRPSHoraEmissao() {
-        return this.rps.getRpsHoraEmissao() != null ?
-                new DateTimeFormatterBuilder().appendPattern("HHmmss").toFormatter().format(this.rps.getRpsHoraEmissao()) :
-                "";
+    public Long getNumeroRPS() {
+        return numeroRPS;
     }
 
-    private String getRPSSituacao() {
-        return this.rps.getRpsSituacao().getCodigo();
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setNumeroRPS(Long numeroRPS) {
+        this.numeroRPS = numeroRPS;
+        return this;
     }
 
-    private String getRPSMotivoCancelamento() {
-        return StringUtils.rightPad(this.rps.getMotivoCancelamento() != null ? this.rps.getMotivoCancelamento().getCodigo() : "", 2);
+    public LocalDate getDataRPS() {
+        return dataRPS;
     }
 
-    private String getNFSubstituidaNumero() {
-        return StringUtils.leftPad(StringUtils.trimToEmpty(this.rps.getNotaSubstituidaNumero()), 7, "0");
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setDataRPS(LocalDate dataRPS) {
+        this.dataRPS = dataRPS;
+        return this;
     }
 
-    private String getNFSubstituidaSerie() {
-        return StringUtils.rightPad(StringUtils.trimToEmpty(this.rps.getNotaSubstituidaSerie()), 5);
+    public LocalTime getHoraRPS() {
+        return horaRPS;
     }
 
-    private String getNFSubstituidaDataEmissao() {
-        return StringUtils.rightPad(this.rps.getNotaSubstituidaDataEmissao() != null ? this.rps.getNotaSubstituidaDataEmissao().format(DateTimeFormatter.ofPattern("yyyyMMdd")) : "", 8);
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setHoraRPS(LocalTime horaRPS) {
+        this.horaRPS = horaRPS;
+        return this;
     }
 
-    private String getNFSubstituidaDescricaoCancelamento() {
-        return StringUtils.rightPad(StringUtils.trimToEmpty(this.rps.getNotaSubstituidaDescricaoCancelamento()), 180);
+    public NFSeBarueriSituacao getSituacaoRPS() {
+        return situacaoRPS;
     }
 
-    private String getRPSCodigoServicoPrestado() {
-        return StringUtils.rightPad(StringUtils.trimToEmpty(this.rps.getCodigoServicoPrestado()), 9);
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setSituacaoRPS(NFSeBarueriSituacao situacaoRPS) {
+        this.situacaoRPS = situacaoRPS;
+        return this;
     }
 
-    private String getRPSLocalPrestacaoServico() {
-        return this.rps.getLocalPrestacaoServico() != null ? this.rps.getLocalPrestacaoServico().getCodigo() : "";
+    public NFSeBarueriMotivoCancelamento getMotivoCancelamento() {
+        return motivoCancelamento;
     }
 
-    private String getRPSServicoPrestadoEmViaPublica() {
-        return this.rps.getServicoPrestadoEmViasPublicas() != null ? this.rps.getServicoPrestadoEmViasPublicas().getCodigo() : "";
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setMotivoCancelamento(NFSeBarueriMotivoCancelamento motivoCancelamento) {
+        this.motivoCancelamento = motivoCancelamento;
+        return this;
     }
 
-    private String getRPSEnderecoServicoPrestado() {
-        return StringUtils.rightPad(this.rps.getEnderecoServicoPrestado(), 75);
+    public String getNumeroNfeASerCanceladaOuSubstituida() {
+        return numeroNfeASerCanceladaOuSubstituida;
     }
 
-    private String getRPSEnderecoServicoPrestadoNumero() {
-        return StringUtils.rightPad(this.rps.getEnderecoServicoPrestadoNumero(), 9);
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setNumeroNfeASerCanceladaOuSubstituida(String numeroNfeASerCanceladaOuSubstituida) {
+        this.numeroNfeASerCanceladaOuSubstituida = numeroNfeASerCanceladaOuSubstituida;
+        return this;
     }
 
-    private String getRPSEnderecoServicoPrestadoComplemento() {
-        return StringUtils.rightPad(this.rps.getEnderecoServicoPrestadoComplemento(), 30);
+    public String getSerieNfeASerCanceladaOuSubstituida() {
+        return serieNfeASerCanceladaOuSubstituida;
     }
 
-    private String getRPSEnderecoServicoPrestadoBairro() {
-        return StringUtils.rightPad(this.rps.getEnderecoServicoPrestadoBairro(), 40);
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setSerieNfeASerCanceladaOuSubstituida(String serieNfeASerCanceladaOuSubstituida) {
+        this.serieNfeASerCanceladaOuSubstituida = serieNfeASerCanceladaOuSubstituida;
+        return this;
     }
 
-    private String getRPSEnderecoServicoPrestadoCidade() {
-        return StringUtils.rightPad(this.rps.getEnderecoServicoPrestadoCidade(), 40);
+    public LocalDate getDataEmissaoNFeASerCanceladaOuSubstituida() {
+        return dataEmissaoNFeASerCanceladaOuSubstituida;
     }
 
-    private String getRPSEnderecoServicoPrestadoUF() {
-        return StringUtils.rightPad(this.rps.getEnderecoServicoPrestadoUF(), 2);
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setDataEmissaoNFeASerCanceladaOuSubstituida(LocalDate dataEmissaoNFeASerCanceladaOuSubstituida) {
+        this.dataEmissaoNFeASerCanceladaOuSubstituida = dataEmissaoNFeASerCanceladaOuSubstituida;
+        return this;
     }
 
-    private String getRPSEnderecoServicoPrestadoCEP() {
-        return StringUtils.rightPad(this.rps.getEnderecoServicoPrestadoCodigoPostal(), 8);
+    public String getDescricaoCancelamento() {
+        return descricaoCancelamento;
     }
 
-    private String getRPSQuantidadeServicoPrestado() {
-        return StringUtils.leftPad(this.rps.getQuantidadeServicoPrestado(), 6, "0");
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setDescricaoCancelamento(String descricaoCancelamento) {
+        this.descricaoCancelamento = descricaoCancelamento;
+        return this;
     }
 
-    private String getRPSValorServico() {
-        return StringUtils.leftPad(this.rps.getValorServico() != null ? this.rps.getValorServico().toPlainString().replaceAll("[^0-9]", "") : "", 15, "0");
+    public String getCodigoServicoPrestado() {
+        return codigoServicoPrestado;
     }
 
-    private String getCampoReservado() {
-        return StringUtils.rightPad("", 5);
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setCodigoServicoPrestado(String codigoServicoPrestado) {
+        this.codigoServicoPrestado = codigoServicoPrestado;
+        return this;
     }
 
-    private String getRPSValorRetencoes() {
-        return StringUtils.leftPad(this.rps.getValorRetencoes() != null ? this.rps.getValorRetencoes().toPlainString().replaceAll("[^0-9]", "") : "", 15, "0");
+    public NFSeBarueriLocalPrestacaoServico getLocalPrestacaoServico() {
+        return localPrestacaoServico;
     }
 
-    private String getRPSTomadorTipo() {
-        return this.rps.getTomadorTipo() != null ? this.rps.getTomadorTipo().getCodigo() : "";
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setLocalPrestacaoServico(NFSeBarueriLocalPrestacaoServico localPrestacaoServico) {
+        this.localPrestacaoServico = localPrestacaoServico;
+        return this;
     }
 
-    private String getRPSTomadorEstrangeiroCodigoPais() {
-        return StringUtils.rightPad(StringUtils.trimToEmpty(this.rps.getPaisTomadorEstrangeiro() != null ? this.rps.getPaisTomadorEstrangeiro().getCodigo() : ""), 3, "0");
+    public Boolean getServicoPrestadoEmViaPublica() {
+        return servicoPrestadoEmViaPublica;
     }
 
-    private String getRPSServicoExportacao() {
-        return this.rps.getServicoExportacao() != null ? this.rps.getServicoExportacao().getCodigo() : "";
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setServicoPrestadoEmViaPublica(Boolean servicoPrestadoEmViaPublica) {
+        this.servicoPrestadoEmViaPublica = servicoPrestadoEmViaPublica;
+        return this;
     }
 
-    private String getRPSTomadorDocumentoTipo() {
-        return NFSeUtils.isCpfValido(this.rps.getTomadorDocumento()) ? "1" : NFSeUtils.isCnpjValido(this.rps.getTomadorDocumento()) ? "2" : " ";
+    public String getEnderecoLogradouroLocalServicoPrestado() {
+        return enderecoLogradouroLocalServicoPrestado;
     }
 
-    private String getRPSTomadorDocumento() {
-        return StringUtils.leftPad(StringUtils.trimToEmpty(this.rps.getTomadorDocumento()), 14, "0");
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setEnderecoLogradouroLocalServicoPrestado(String enderecoLogradouroLocalServicoPrestado) {
+        this.enderecoLogradouroLocalServicoPrestado = enderecoLogradouroLocalServicoPrestado;
+        return this;
     }
 
-    private String getRPSTomadorRazaoSocial() {
-        return StringUtils.rightPad(this.rps.getTomadorRazaoSocial(), 60);
+    public String getEnderecoNumeroLocalServicoPrestado() {
+        return enderecoNumeroLocalServicoPrestado;
     }
 
-    private String getRPSTomadorEndereco() {
-        return StringUtils.rightPad(this.rps.getTomadorEndereco(), 75);
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setEnderecoNumeroLocalServicoPrestado(String enderecoNumeroLocalServicoPrestado) {
+        this.enderecoNumeroLocalServicoPrestado = enderecoNumeroLocalServicoPrestado;
+        return this;
     }
 
-    private String getRPSTomadorEnderecoNumero() {
-        return StringUtils.rightPad(this.rps.getTomadorEnderecoNumero(), 9);
+    public String getEnderecoComplementoLocalServicoPrestado() {
+        return enderecoComplementoLocalServicoPrestado;
     }
 
-    private String getRPSTomadorEnderecoComplemento() {
-        return StringUtils.rightPad(StringUtils.trimToEmpty(this.rps.getTomadorEnderecoComplemento()), 30);
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setEnderecoComplementoLocalServicoPrestado(String enderecoComplementoLocalServicoPrestado) {
+        this.enderecoComplementoLocalServicoPrestado = enderecoComplementoLocalServicoPrestado;
+        return this;
     }
 
-    private String getRPSTomadorEnderecoBairro() {
-        return StringUtils.rightPad(this.rps.getTomadorEnderecoBairro(), 40);
+    public String getEnderecoBairroLocalServicoPrestado() {
+        return enderecoBairroLocalServicoPrestado;
     }
 
-    private String getRPSTomadorEnderecoCidade() {
-        return StringUtils.rightPad(this.rps.getTomadorEnderecoCidade(), 40);
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setEnderecoBairroLocalServicoPrestado(String enderecoBairroLocalServicoPrestado) {
+        this.enderecoBairroLocalServicoPrestado = enderecoBairroLocalServicoPrestado;
+        return this;
     }
 
-    private String getRPSTomadorEnderecoUF() {
-        return StringUtils.rightPad(StringUtils.trimToEmpty(this.rps.getTomadorEnderecoUF()), 2);
+    public String getEnderecoCidadeLocalServicoPrestado() {
+        return enderecoCidadeLocalServicoPrestado;
     }
 
-    private String getRPSTomadorEnderecoCep() {
-        return StringUtils.rightPad(StringUtils.trimToEmpty(this.rps.getTomadorEnderecoCodigoPostal()), 8);
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setEnderecoCidadeLocalServicoPrestado(String enderecoCidadeLocalServicoPrestado) {
+        this.enderecoCidadeLocalServicoPrestado = enderecoCidadeLocalServicoPrestado;
+        return this;
     }
 
-    private String getRPSTomadorEmail() {
-        return StringUtils.rightPad(StringUtils.trimToEmpty(this.rps.getTomadorEmail()), 152);
+    public String getEnderecoUFLocalServicoPrestado() {
+        return enderecoUFLocalServicoPrestado;
     }
 
-    private String getRPSFaturaNumero() {
-        return StringUtils.rightPad(StringUtils.trimToEmpty(this.rps.getFaturaNumero()), 6);
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setEnderecoUFLocalServicoPrestado(String enderecoUFLocalServicoPrestado) {
+        this.enderecoUFLocalServicoPrestado = enderecoUFLocalServicoPrestado;
+        return this;
     }
 
-    private String getRPSFaturaValor() {
-        if (StringUtils.isNotBlank(this.rps.getFaturaNumero())) {
-            return StringUtils.leftPad(this.rps.getFaturaValor().setScale(2, RoundingMode.HALF_UP).toPlainString().replaceAll("[^0-9]", ""), 15, "0");
-        } else {
-            return StringUtils.rightPad("", 15);
-        }
+    public String getEnderecoCEPLocalServicoPrestado() {
+        return enderecoCEPLocalServicoPrestado;
     }
 
-    private String getRPSFaturaFormaPagamento() {
-        return StringUtils.rightPad(StringUtils.trimToEmpty(this.rps.getFaturaFormaPagamento()), 15);
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setEnderecoCEPLocalServicoPrestado(String enderecoCEPLocalServicoPrestado) {
+        this.enderecoCEPLocalServicoPrestado = enderecoCEPLocalServicoPrestado;
+        return this;
     }
 
-    private String getRPSDiscriminacaoServicos() {
-        return StringUtils.rightPad(this.rps.getDiscriminacaoServicos(), 1000);
+    public Integer getQuantidadeServicoPrestado() {
+        return quantidadeServicoPrestado;
     }
 
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setQuantidadeServicoPrestado(Integer quantidadeServicoPrestado) {
+        this.quantidadeServicoPrestado = quantidadeServicoPrestado;
+        return this;
+    }
+
+    public BigDecimal getValorServicoPrestado() {
+        return valorServicoPrestado;
+    }
+
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setValorServicoPrestado(BigDecimal valorServicoPrestado) {
+        this.valorServicoPrestado = valorServicoPrestado;
+        return this;
+    }
+
+    public String getReservado() {
+        return reservado;
+    }
+
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setReservado(String reservado) {
+        this.reservado = reservado;
+        return this;
+    }
+
+    public BigDecimal getValorRetencoes() {
+        return valorRetencoes;
+    }
+
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setValorRetencoes(BigDecimal valorRetencoes) {
+        this.valorRetencoes = valorRetencoes;
+        return this;
+    }
+
+    public Boolean getTomadorEstrangeiro() {
+        return tomadorEstrangeiro;
+    }
+
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setTomadorEstrangeiro(Boolean tomadorEstrangeiro) {
+        this.tomadorEstrangeiro = tomadorEstrangeiro;
+        return this;
+    }
+
+    public NFSeBarueriPais getPaisTomadorEstrangeiro() {
+        return paisTomadorEstrangeiro;
+    }
+
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setPaisTomadorEstrangeiro(NFSeBarueriPais paisTomadorEstrangeiro) {
+        this.paisTomadorEstrangeiro = paisTomadorEstrangeiro;
+        return this;
+    }
+
+    public Boolean getServicoExportacao() {
+        return servicoExportacao;
+    }
+
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setServicoExportacao(Boolean servicoExportacao) {
+        this.servicoExportacao = servicoExportacao;
+        return this;
+    }
+
+    public NFSeBarueriPessoaTipo getIndicadorCpfCnpjTomador() {
+        return indicadorCpfCnpjTomador;
+    }
+
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setIndicadorCpfCnpjTomador(NFSeBarueriPessoaTipo indicadorCpfCnpjTomador) {
+        this.indicadorCpfCnpjTomador = indicadorCpfCnpjTomador;
+        return this;
+    }
+
+    public String getCpfCnpjTomador() {
+        return cpfCnpjTomador;
+    }
+
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setCpfCnpjTomador(String cpfCnpjTomador) {
+        this.cpfCnpjTomador = cpfCnpjTomador;
+        return this;
+    }
+
+    public String getRazaoSocialTomador() {
+        return razaoSocialTomador;
+    }
+
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setRazaoSocialTomador(String razaoSocialTomador) {
+        this.razaoSocialTomador = razaoSocialTomador;
+        return this;
+    }
+
+    public String getEnderecoLogradouroTomador() {
+        return enderecoLogradouroTomador;
+    }
+
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setEnderecoLogradouroTomador(String enderecoLogradouroTomador) {
+        this.enderecoLogradouroTomador = enderecoLogradouroTomador;
+        return this;
+    }
+
+    public String getEnderecoNumeroTomador() {
+        return enderecoNumeroTomador;
+    }
+
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setEnderecoNumeroTomador(String enderecoNumeroTomador) {
+        this.enderecoNumeroTomador = enderecoNumeroTomador;
+        return this;
+    }
+
+    public String getEnderecoComplementoTomador() {
+        return enderecoComplementoTomador;
+    }
+
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setEnderecoComplementoTomador(String enderecoComplementoTomador) {
+        this.enderecoComplementoTomador = enderecoComplementoTomador;
+        return this;
+    }
+
+    public String getEnderecoBairroTomador() {
+        return enderecoBairroTomador;
+    }
+
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setEnderecoBairroTomador(String enderecoBairroTomador) {
+        this.enderecoBairroTomador = enderecoBairroTomador;
+        return this;
+    }
+
+    public String getEnderecoCidadeTomador() {
+        return enderecoCidadeTomador;
+    }
+
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setEnderecoCidadeTomador(String enderecoCidadeTomador) {
+        this.enderecoCidadeTomador = enderecoCidadeTomador;
+        return this;
+    }
+
+    public String getEnderecoUFTomador() {
+        return enderecoUFTomador;
+    }
+
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setEnderecoUFTomador(String enderecoUFTomador) {
+        this.enderecoUFTomador = enderecoUFTomador;
+        return this;
+    }
+
+    public String getEnderecoCEPTomador() {
+        return enderecoCEPTomador;
+    }
+
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setEnderecoCEPTomador(String enderecoCEPTomador) {
+        this.enderecoCEPTomador = enderecoCEPTomador;
+        return this;
+    }
+
+    public String getEmailTomador() {
+        return emailTomador;
+    }
+
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setEmailTomador(String emailTomador) {
+        this.emailTomador = emailTomador;
+        return this;
+    }
+
+    public String getNumeroFatura() {
+        return numeroFatura;
+    }
+
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setNumeroFatura(String numeroFatura) {
+        this.numeroFatura = numeroFatura;
+        return this;
+    }
+
+    public BigDecimal getValorFatura() {
+        return valorFatura;
+    }
+
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setValorFatura(BigDecimal valorFatura) {
+        this.valorFatura = valorFatura;
+        return this;
+    }
+
+    public String getFormaPagamentoFatura() {
+        return formaPagamentoFatura;
+    }
+
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setFormaPagamentoFatura(String formaPagamentoFatura) {
+        this.formaPagamentoFatura = formaPagamentoFatura;
+        return this;
+    }
+
+    public String getDiscriminacaoServico() {
+        return discriminacaoServico;
+    }
+
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setDiscriminacaoServico(String discriminacaoServico) {
+        this.discriminacaoServico = discriminacaoServico;
+        return this;
+    }
+
+    @Override
+    public String getTipoRegistro() {
+        return TIPO_REGISTRO;
+    }
+
+    @Override
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 fromLinha(String linha) {
+        return new NFSeBarueriRPSArquivoEnvioRegistroTipo2()
+                .setTipoRPS(StringUtils.trimToEmpty(linha.substring(1, 6)))
+                .setSerieRPS(StringUtils.trimToEmpty(linha.substring(6, 10)))
+                .setSerieNFe(StringUtils.trimToEmpty(linha.substring(10, 15)))
+                .setNumeroRPS(Long.parseLong(linha.substring(15, 25)))
+                .setDataRPS(LocalDate.from(WSBarueri.FORMATO_DATA.parse(linha.substring(25, 33))))
+                .setHoraRPS(LocalTime.from(WSBarueri.FORMATO_HORA.parse(linha.substring(33, 39))))
+                .setSituacaoRPS(NFSeBarueriSituacao.valueOfCodigo(linha.substring(39, 40)))
+                .setMotivoCancelamento(NFSeBarueriMotivoCancelamento.valueOfCodigo(linha.substring(40, 42)))
+                .setNumeroNfeASerCanceladaOuSubstituida(linha.substring(42, 49))
+                .setSerieNfeASerCanceladaOuSubstituida(linha.substring(49, 54))
+                .setDataEmissaoNFeASerCanceladaOuSubstituida(StringUtils.isNotBlank(StringUtils.stripStart(linha.substring(54, 62).trim(), "0")) ? LocalDate.from(WSBarueri.FORMATO_DATA.parse(linha.substring(54, 62))) : null)
+                .setDescricaoCancelamento(linha.substring(62, 242))
+                .setCodigoServicoPrestado(linha.substring(242, 251))
+                .setLocalPrestacaoServico(NFSeBarueriLocalPrestacaoServico.valueOfCodigo(linha.substring(251, 252)))
+                .setServicoPrestadoEmViaPublica("1".equals(linha.substring(252, 253)))
+                .setEnderecoLogradouroLocalServicoPrestado(linha.substring(253, 328))
+                .setEnderecoNumeroLocalServicoPrestado(linha.substring(328, 337))
+                .setEnderecoComplementoLocalServicoPrestado(linha.substring(337, 367))
+                .setEnderecoBairroLocalServicoPrestado(linha.substring(367, 407))
+                .setEnderecoCidadeLocalServicoPrestado(linha.substring(407, 447))
+                .setEnderecoUFLocalServicoPrestado(linha.substring(447, 449))
+                .setEnderecoCEPLocalServicoPrestado(linha.substring(449, 457))
+                .setQuantidadeServicoPrestado(Integer.parseInt(linha.substring(457, 463).trim()))
+                .setValorServicoPrestado(new BigDecimal(linha.substring(463, 478)).movePointLeft(2))
+                .setReservado(linha.substring(478, 483))
+                .setValorRetencoes(new BigDecimal(linha.substring(483, 498)).movePointLeft(2))
+                .setTomadorEstrangeiro("1".equals(linha.substring(498, 499)))
+                .setPaisTomadorEstrangeiro(NFSeBarueriPais.valueOfCodigo(linha.substring(499, 502)))
+                .setServicoExportacao("1".equals(linha.substring(502, 503)))
+                .setIndicadorCpfCnpjTomador(NFSeBarueriPessoaTipo.valueOfCodigo(linha.substring(503, 504)))
+                .setCpfCnpjTomador(linha.substring(504, 518))
+                .setRazaoSocialTomador(linha.substring(518, 578))
+                .setEnderecoLogradouroTomador(linha.substring(578, 653))
+                .setEnderecoNumeroTomador(linha.substring(653, 662))
+                .setEnderecoComplementoTomador(linha.substring(662, 692))
+                .setEnderecoBairroTomador(linha.substring(692, 732))
+                .setEnderecoCidadeTomador(linha.substring(732, 772))
+                .setEnderecoUFTomador(linha.substring(772, 774))
+                .setEnderecoCEPTomador(linha.substring(774, 782))
+                .setEmailTomador(linha.substring(782, 934))
+                .setNumeroFatura(linha.substring(934, 940))
+                .setValorFatura(StringUtils.isNotBlank(linha.substring(940, 955)) ? new BigDecimal(linha.substring(940, 955)).movePointLeft(2) : null)
+                .setFormaPagamentoFatura(linha.substring(955, 970))
+                .setDiscriminacaoServico(linha.substring(970, 1970));
+    }
+
+    @Override
+    public String toLinha() {
+        return String.format("%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s",
+                getTipoRegistro(),
+                StringUtils.rightPad(StringUtils.trimToEmpty(this.tipoRPS), 5),
+                StringUtils.rightPad(StringUtils.trimToEmpty(this.serieRPS), 4),
+                StringUtils.rightPad(StringUtils.trimToEmpty(this.serieNFe), 5),
+                StringUtils.leftPad(String.valueOf(this.numeroRPS), 10, '0'),
+                dataRPS.format(WSBarueri.FORMATO_DATA),
+                horaRPS.format(WSBarueri.FORMATO_HORA),
+                this.situacaoRPS.getCodigo(),
+                StringUtils.leftPad(this.motivoCancelamento != null ? this.motivoCancelamento.getCodigo() : "", 2),
+                StringUtils.rightPad(StringUtils.trimToEmpty(this.numeroNfeASerCanceladaOuSubstituida), 7),
+                StringUtils.rightPad(StringUtils.trimToEmpty(this.serieNfeASerCanceladaOuSubstituida), 5),
+                dataEmissaoNFeASerCanceladaOuSubstituida != null ? dataEmissaoNFeASerCanceladaOuSubstituida.format(WSBarueri.FORMATO_DATA) : StringUtils.rightPad("", 8),
+                StringUtils.rightPad(this.descricaoCancelamento, 180),
+                StringUtils.rightPad(this.codigoServicoPrestado, 9, '0'),
+                this.localPrestacaoServico.getCodigo(),
+                this.servicoPrestadoEmViaPublica ? "1" : "2",
+                StringUtils.rightPad(this.enderecoLogradouroLocalServicoPrestado, 75),
+                StringUtils.rightPad(this.enderecoNumeroLocalServicoPrestado, 9),
+                StringUtils.rightPad(this.enderecoComplementoLocalServicoPrestado, 30),
+                StringUtils.rightPad(this.enderecoBairroLocalServicoPrestado, 40),
+                StringUtils.rightPad(this.enderecoCidadeLocalServicoPrestado, 40),
+                StringUtils.rightPad(this.enderecoUFLocalServicoPrestado, 2),
+                StringUtils.leftPad(this.enderecoCEPLocalServicoPrestado, 8, '0'),
+                StringUtils.leftPad(String.valueOf(this.quantidadeServicoPrestado), 6, '0'),
+                StringUtils.leftPad(this.valorServicoPrestado != null ? this.valorServicoPrestado.setScale(2, RoundingMode.HALF_UP).toPlainString().replaceAll("[^0-9]", "") : "", 15, '0'),
+                StringUtils.rightPad(this.reservado, 5),
+                StringUtils.leftPad(this.valorRetencoes != null ? this.valorRetencoes.setScale(2, RoundingMode.HALF_UP).toPlainString().replaceAll("[^0-9]", "") : "", 15, '0'),
+                this.tomadorEstrangeiro ? "1" : "2",
+                StringUtils.leftPad(this.paisTomadorEstrangeiro != null ? this.paisTomadorEstrangeiro.getCodigo() : "", 3, '0'),
+                this.servicoExportacao ? "1" : "2",
+                this.indicadorCpfCnpjTomador != null ? this.indicadorCpfCnpjTomador.getCodigo() : NFSeBarueriPessoaTipo.ESTRANGEIRA.getCodigo(),
+                StringUtils.leftPad(this.cpfCnpjTomador, 14, '0'),
+                StringUtils.leftPad(this.razaoSocialTomador, 60),
+                StringUtils.leftPad(this.enderecoLogradouroTomador, 75),
+                StringUtils.leftPad(this.enderecoNumeroTomador, 9),
+                StringUtils.leftPad(this.enderecoComplementoTomador, 30),
+                StringUtils.leftPad(this.enderecoBairroTomador, 40),
+                StringUtils.leftPad(this.enderecoCidadeTomador, 40),
+                StringUtils.leftPad(this.enderecoUFTomador, 2),
+                StringUtils.leftPad(this.enderecoCEPTomador, 8, '0'),
+                StringUtils.leftPad(this.emailTomador, 152),
+                StringUtils.leftPad(StringUtils.isNotBlank(this.numeroFatura) ? StringUtils.leftPad(this.numeroFatura, 6, '0') : "", 6),
+                StringUtils.leftPad(this.valorFatura != null ? StringUtils.leftPad(this.valorFatura.setScale(2, RoundingMode.HALF_UP).toPlainString().replaceAll("[^0-9]", ""), 15, '0') : "", 15),
+                StringUtils.rightPad(this.formaPagamentoFatura, 15),
+                StringUtils.rightPad(this.discriminacaoServico, 1000));
+    }
 }

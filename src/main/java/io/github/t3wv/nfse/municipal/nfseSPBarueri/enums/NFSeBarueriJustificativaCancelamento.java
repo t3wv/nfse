@@ -1,6 +1,6 @@
 package io.github.t3wv.nfse.municipal.nfseSPBarueri.enums;
 
-public enum NFSeBarueriRPSJustificativaCancelamento {
+public enum NFSeBarueriJustificativaCancelamento {
     DESENQUADRAMENTO_SIMPLES_NACIONAL("1"),
     ENQUADRAMENTO_SIMPLES_NACIONAL("2"),
     INCLUSAO_RETROATIVA_IMUNIDADE("3"),
@@ -10,7 +10,7 @@ public enum NFSeBarueriRPSJustificativaCancelamento {
 
     private final String codigo;
 
-    NFSeBarueriRPSJustificativaCancelamento(final String codigo) {
+    NFSeBarueriJustificativaCancelamento(final String codigo) {
         this.codigo = codigo;
     }
 
@@ -18,8 +18,8 @@ public enum NFSeBarueriRPSJustificativaCancelamento {
         return codigo;
     }
 
-    public static NFSeBarueriRPSJustificativaCancelamento valueOfCodigo(String codigo) {
-        for (NFSeBarueriRPSJustificativaCancelamento justificativa : NFSeBarueriRPSJustificativaCancelamento.values()) {
+    public static NFSeBarueriJustificativaCancelamento valueOfCodigo(String codigo) {
+        for (NFSeBarueriJustificativaCancelamento justificativa : NFSeBarueriJustificativaCancelamento.values()) {
             if (justificativa.getCodigo().equals(codigo)) {
                 return justificativa;
             }

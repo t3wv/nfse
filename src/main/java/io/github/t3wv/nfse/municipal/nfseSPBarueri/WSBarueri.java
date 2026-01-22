@@ -1,22 +1,27 @@
 package io.github.t3wv.nfse.municipal.nfseSPBarueri;
 
 import io.github.t3wv.nfse.NFSeConfig;
-import io.github.t3wv.nfse.utils.NFSeHttpClient;
 import io.github.t3wv.nfse.municipal.nfseSPBarueri.classes.*;
+import io.github.t3wv.nfse.utils.NFSeHttpClient;
 import org.simpleframework.xml.core.Persister;
 
 import java.net.URI;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
-public class WSRPS {
+public class WSBarueri {
 
     public static final String URL_BASE_PRODUCAO = "https://www.barueri.sp.gov.br/nfeservice/wsrps.asmx";
     public static final String URL_BASE_HOMOLOGACAO = "https://testeeiss.barueri.sp.gov.br/nfeservice/wsrps.asmx";
+    public static final char CHR13 = (char) 13;
+    public static final char CHR10 = (char) 10;
+    public static final DateTimeFormatter FORMATO_DATA = DateTimeFormatter.ofPattern("yyyyMMdd");
+    public static final DateTimeFormatter FORMATO_HORA = DateTimeFormatter.ofPattern("HHmmss");
 
     //private final NFSeObjectMapper objectMapper = new NFSeObjectMapper();
     private final NFSeConfig config;
 
-    public WSRPS(NFSeConfig config) {
+    public WSBarueri(NFSeConfig config) {
         this.config = config;
     }
 

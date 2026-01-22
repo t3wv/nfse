@@ -1,4 +1,4 @@
-package io.github.t3wv.nfse.municipal.nfseSPBarueri.classes;
+package io.github.t3wv.nfse.municipal.nfseSPBarueri.enums;
 
 public enum NFSeBarueriRetornoErros {
     ERRO_100("100", "Tipo de Registro Inválido", "Informar Tipo Especificado: 1"),

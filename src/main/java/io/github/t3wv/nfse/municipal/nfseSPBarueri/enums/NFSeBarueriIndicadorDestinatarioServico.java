@@ -1,14 +1,13 @@
 package io.github.t3wv.nfse.municipal.nfseSPBarueri.enums;
 
-public enum NFSeBarueriRPSIndicadorDestinatarioServico {
+public enum NFSeBarueriIndicadorDestinatarioServico {
 
     TOMADOR("0"),
     TERCEIRO("1");
 
-
     private final String codigo;
 
-    NFSeBarueriRPSIndicadorDestinatarioServico(final String codigo) {
+    NFSeBarueriIndicadorDestinatarioServico(final String codigo) {
         this.codigo = codigo;
     }
 
@@ -16,8 +15,8 @@ public enum NFSeBarueriRPSIndicadorDestinatarioServico {
         return codigo;
     }
 
-    public static NFSeBarueriRPSIndicadorDestinatarioServico valueOfCodigo(String codigo) {
-        for (NFSeBarueriRPSIndicadorDestinatarioServico indicador : NFSeBarueriRPSIndicadorDestinatarioServico.values()) {
+    public static NFSeBarueriIndicadorDestinatarioServico valueOfCodigo(String codigo) {
+        for (NFSeBarueriIndicadorDestinatarioServico indicador : NFSeBarueriIndicadorDestinatarioServico.values()) {
             if (indicador.getCodigo().equals(codigo)) {
                 return indicador;
             }
