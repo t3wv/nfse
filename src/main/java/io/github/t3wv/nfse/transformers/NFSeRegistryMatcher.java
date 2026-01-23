@@ -1,5 +1,7 @@
 package io.github.t3wv.nfse.transformers;
 
+import io.github.t3wv.nfse.municipal.nfseSPBarueri.enums.NFSeBarueriArquivoRetornoSituacaoArquivo;
+import io.github.t3wv.nfse.municipal.nfseSPBarueri.transformers.NFSeBarueriArquivoRetornoSituacaoArquivoTransformer;
 import io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.classes.TpOpcaoSimplesNFe;
 import io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.transformers.NFSeSPSaoPauloTpOpcaoSimplesNFeTransformer;
 import io.github.t3wv.nfse.nacional.classes.nfsenacional.*;
@@ -56,5 +58,8 @@ public class NFSeRegistryMatcher extends RegistryMatcher {
 
         // NFSe São Paulo
         super.bind(TpOpcaoSimplesNFe.class, new NFSeSPSaoPauloTpOpcaoSimplesNFeTransformer());
+
+        //NFSe Barueri
+        super.bind(NFSeBarueriArquivoRetornoSituacaoArquivo.class, new NFSeBarueriArquivoRetornoSituacaoArquivoTransformer());
     }
 }

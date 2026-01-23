@@ -260,7 +260,8 @@ public class NFSeBarueriRPSArquivoEnvioRegistroTipo4 extends NFSeBarueriRPSArqui
                 .setCodigoClassificacaoTributariaIBSCBS(StringUtils.trimToEmpty(linha.substring(520, 526)))
                 .setCodigoSituacaoTributariaIBSCBS(StringUtils.trimToEmpty(linha.substring(526, 529)))
                 .setOperacaoConsumoPessoal("S".equalsIgnoreCase(StringUtils.trimToEmpty(linha.substring(529, 530))) ? Boolean.TRUE : Boolean.FALSE)
-                .setIndicadorDestinatarioServico(NFSeBarueriIndicadorDestinatarioServico.valueOfCodigo(linha.substring(530, 531)));
+                .setIndicadorDestinatarioServico(NFSeBarueriIndicadorDestinatarioServico.valueOfCodigo(linha.substring(530, 531)))
+                .setErros(parseErros(linha));
     }
 
     @Override
@@ -273,7 +274,7 @@ public class NFSeBarueriRPSArquivoEnvioRegistroTipo4 extends NFSeBarueriRPSArqui
                 StringUtils.isNotBlank(this.codigoCidadeLocalServicoPrestado) ? StringUtils.leftPad(this.codigoCidadeLocalServicoPrestado, 7, '0') : "       ",
                 StringUtils.isNotBlank(this.codigoCidadeTomador) ? StringUtils.leftPad(this.codigoCidadeTomador, 7, '0') : "       ",
                 StringUtils.rightPad(StringUtils.trimToEmpty(this.nif), 40),
-                StringUtils.rightPad(StringUtils.trimToEmpty(this.codigoNBS), 9, '0'),
+                StringUtils.rightPad(StringUtils.trimToEmpty(this.codigoNBS), 9, ' '),
                 StringUtils.rightPad(StringUtils.trimToEmpty(this.codigoPostalTomadorEstrangeiro), 11),
                 StringUtils.rightPad(StringUtils.trimToEmpty(this.estadoProvinciaRegiaoTomadorEstrangeiro), 60),
                 this.vinculoEntrePartes != null ? this.vinculoEntrePartes.getCodigo() : " ",
@@ -284,10 +285,10 @@ public class NFSeBarueriRPSArquivoEnvioRegistroTipo4 extends NFSeBarueriRPSArqui
                 this.dataInicioEvento != null ? this.dataInicioEvento.format(WSBarueri.FORMATO_DATA) : "        ",
                 this.dataTerminoEvento != null ? this.dataTerminoEvento.format(WSBarueri.FORMATO_DATA) : "        ",
                 this.justificativaCancelamento != null ? this.justificativaCancelamento.getCodigo() : " ",
-                StringUtils.rightPad(StringUtils.trimToEmpty(this.codigoIndicadorOperacaoFornecimento), 6, '0'),
-                StringUtils.rightPad(StringUtils.trimToEmpty(this.codigoClassificacaoTributariaIBSCBS), 6, '0'),
-                StringUtils.rightPad(StringUtils.trimToEmpty(this.codigoSituacaoTributariaIBSCBS), 3, '0'),
+                StringUtils.rightPad(StringUtils.trimToEmpty(this.codigoIndicadorOperacaoFornecimento), 6),
+                StringUtils.rightPad(StringUtils.trimToEmpty(this.codigoClassificacaoTributariaIBSCBS), 6),
+                StringUtils.rightPad(StringUtils.trimToEmpty(this.codigoSituacaoTributariaIBSCBS), 3),
                 this.operacaoConsumoPessoal != null && this.operacaoConsumoPessoal ? "1" : "0",
-                this.indicadorDestinatarioServico.getCodigo());
+                this.indicadorDestinatarioServico != null ? this.indicadorDestinatarioServico.getCodigo() : " ");
     }
 }

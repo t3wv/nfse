@@ -39,7 +39,8 @@ public class NFSeBarueriRPSArquivoEnvioRegistroTipo3 extends NFSeBarueriRPSArqui
     public NFSeBarueriRPSArquivoEnvioRegistroTipo3 fromLinha(String linha) {
         return new NFSeBarueriRPSArquivoEnvioRegistroTipo3()
                 .setOutrosValoresTipo(NFSeBarueriOutrosValoresTipo.valueOfCodigo(linha.substring(1, 3)))
-                .setValor(new BigDecimal(StringUtils.trimToEmpty(linha.substring(3, 18))).movePointLeft(2));
+                .setValor(new BigDecimal(StringUtils.trimToEmpty(linha.substring(3, 18))).movePointLeft(2))
+                .setErros(parseErros(linha));
     }
 
     @Override

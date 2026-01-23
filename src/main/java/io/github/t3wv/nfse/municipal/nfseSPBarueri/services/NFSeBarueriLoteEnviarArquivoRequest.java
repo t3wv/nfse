@@ -1,9 +1,9 @@
 package io.github.t3wv.nfse.municipal.nfseSPBarueri.services;
 
+import io.github.t3wv.nfse.utils.NFSePersister;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
 import org.simpleframework.xml.Root;
-import org.simpleframework.xml.core.Persister;
 
 import java.io.StringWriter;
 
@@ -72,9 +72,8 @@ public class NFSeBarueriLoteEnviarArquivoRequest {
     }
 
     public String toXml() throws Exception {
-        Persister serializer = new Persister();
-        StringWriter writer = new StringWriter();
-        serializer.write(this, writer);
+        final var writer = new StringWriter();
+        new NFSePersister().write(this, writer);
         return writer.toString();
     }
 }

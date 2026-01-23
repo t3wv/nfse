@@ -1,6 +1,9 @@
 package io.github.t3wv.nfse.municipal.nfseSPBarueri.arquivos;
 
+import io.github.t3wv.nfse.municipal.nfseSPBarueri.enums.NFSeBarueriRetornoErros;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

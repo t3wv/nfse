@@ -1,11 +1,10 @@
 package io.github.t3wv.nfse.municipal;
 
 import io.github.t3wv.nfse.NFSeConfig;
+import io.github.t3wv.nfse.NFSeLogger;
 import io.github.t3wv.nfse.municipal.nfseSPBarueri.WSBarueri;
 import io.github.t3wv.nfse.municipal.nfseSPBarueri.arquivos.*;
-import io.github.t3wv.nfse.municipal.nfseSPBarueri.enums.NFSeBarueriLocalPrestacaoServico;
-import io.github.t3wv.nfse.municipal.nfseSPBarueri.enums.NFSeBarueriPessoaTipo;
-import io.github.t3wv.nfse.municipal.nfseSPBarueri.enums.NFSeBarueriSituacao;
+import io.github.t3wv.nfse.municipal.nfseSPBarueri.enums.*;
 import io.github.t3wv.nfse.municipal.nfseSPBarueri.services.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
@@ -14,18 +13,17 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Base64;
 
-public class NFSeSPBarueriTest {
+@Disabled
+public class NFSeSPBarueriTest implements NFSeLogger {
 
     private static NFSeConfig config;
 
-    @Disabled
     @BeforeAll
     static void prepara() {
         config = new NFSeConfig(
@@ -35,27 +33,19 @@ public class NFSeSPBarueriTest {
                 System.getenv("CADEIA_CERTIFICADOS_SENHA"), true);
     }
 
-    @Disabled
     @Test
     public void testeEmiteCancela() throws Exception {
         final var arquivo = new NFSeBarueriRPSArquivoEnvio()
-                .addLinha(new NFSeBarueriRPSArquivoEnvioRegistroTipo1()
+                .addRegistro(new NFSeBarueriRPSArquivoEnvioRegistroTipo1()
                         .setInscricaoContribuinte("4458481")
                         .setVersaoLayout("PMB004")
                         .setIdentificacaoRemessaContribuinte(String.valueOf(System.nanoTime()).substring(0, 11)))
-                .addLinha(new NFSeBarueriRPSArquivoEnvioRegistroTipo2()
+                .addRegistro(new NFSeBarueriRPSArquivoEnvioRegistroTipo2()
                         .setTipoRPS("RPS")
-                        //.setSerieRPS(StringUtils.trimToEmpty(linha.substring(6, 10)))
-                        //.setSerieNFe(StringUtils.trimToEmpty(linha.substring(10, 15)))
                         .setNumeroRPS(1L)
                         .setDataRPS(LocalDate.now())
                         .setHoraRPS(LocalTime.now())
                         .setSituacaoRPS(NFSeBarueriSituacao.ENVIADO)
-                        //.setMotivoCancelamento(NFSeBarueriMotivoCancelamento.valueOfCodigo(linha.substring(40, 42)))
-                        //.setNumeroNfeASerCanceladaOuSubstituida(linha.substring(42, 49))
-                        //.setSerieNfeASerCanceladaOuSubstituida(linha.substring(49, 54))
-                        //.setDataEmissaoNFeASerCanceladaOuSubstituida(StringUtils.isNotBlank(StringUtils.stripStart(linha.substring(54, 62).trim(), "0")) ? LocalDate.from(WSBarueri.FORMATO_DATA.parse(linha.substring(54, 62))) : null)
-                        //.setDescricaoCancelamento(linha.substring(62, 242))
                         .setCodigoServicoPrestado("990101200")
                         .setLocalPrestacaoServico(NFSeBarueriLocalPrestacaoServico.OUTROS)
                         .setServicoPrestadoEmViaPublica(false)
@@ -68,10 +58,8 @@ public class NFSeSPBarueriTest {
                         .setEnderecoCEPLocalServicoPrestado("88101050")
                         .setQuantidadeServicoPrestado(1)
                         .setValorServicoPrestado(BigDecimal.TEN)
-                        //.setReservado(linha.substring(478, 483))
                         .setValorRetencoes(BigDecimal.ZERO)
                         .setTomadorEstrangeiro(false)
-                        //.setPaisTomadorEstrangeiro(NFSeBarueriPais.valueOfCodigo(linha.substring(499, 502)))
                         .setServicoExportacao(false)
                         .setIndicadorCpfCnpjTomador(NFSeBarueriPessoaTipo.JURIDICA)
                         .setCpfCnpjTomador("52398509000138")
@@ -84,12 +72,19 @@ public class NFSeSPBarueriTest {
                         .setEnderecoUFTomador("SC")
                         .setEnderecoCEPTomador("88101050")
                         .setEmailTomador("DIEGO@T3W.IO")
-                        //.setNumeroFatura(linha.substring(934, 940))
-                        //.setValorFatura(StringUtils.isNotBlank(linha.substring(940, 955)) ? new BigDecimal(linha.substring(940, 955)).movePointLeft(2) : null)
-                        //.setFormaPagamentoFatura(linha.substring(955, 970))
                         .setDiscriminacaoServico("TESTE DE EMISSAO E CANCELAMENTO"))
-                .addLinha(new NFSeBarueriRPSArquivoEnvioRegistroTipo9()
-                        .setQuantidadeLinhas(2)
+                .addRegistro(new NFSeBarueriRPSArquivoEnvioRegistroTipo4()
+                        .setIndicadorDestinatarioServico(NFSeBarueriIndicadorDestinatarioServico.TERCEIRO)
+                        .setOptanteSimplesNacional(NFSeBarueriOptanteSimplesNacional.NAO_OPTANTE)
+                        .setCodigoCidadeLocalServicoPrestado("4216602")
+                        .setCodigoCidadeTomador("4216602")
+                        //.setCodigoNBS("102010000")
+                        .setCodigoIndicadorOperacaoFornecimento("100301")
+                        .setCodigoClassificacaoTributariaIBSCBS("000001")
+                        .setCodigoSituacaoTributariaIBSCBS("410")
+                        .setOperacaoConsumoPessoal(false))
+                .addRegistro(new NFSeBarueriRPSArquivoEnvioRegistroTipo9()
+                        .setQuantidadeLinhas(4)
                         .setValorTotalServicos(BigDecimal.TEN)
                         .setValorTotalServicosContidosRegistro3(BigDecimal.ZERO));
 
@@ -105,27 +100,60 @@ public class NFSeSPBarueriTest {
 
         // Envio o lote para emissão
         final NFSeBarueriLoteEnviarArquivoResponse responseEnvioEmissao = wsBarueri.loteEnviarArquivo(arquivoRequest);
-        final var responseEnvioEmissaoErros = responseEnvioEmissao.getResultado().getListaMensagemRetorno();
-        if (responseEnvioEmissaoErros != null) {
-            throw new IllegalStateException("%s - %s - %s".formatted(responseEnvioEmissaoErros.getCodigo(), responseEnvioEmissaoErros.getMensagem(), responseEnvioEmissaoErros.getCorrecao()));
-        }
-        Thread.sleep(5000);
+        final var responseEnvioEmissaoProtocoloRemessa = responseEnvioEmissao.getResultado().getProtocoloRemessa();
+        this.getLogger().info("Protocolo de remessa da emissão: %s".formatted(responseEnvioEmissaoProtocoloRemessa));
+        Thread.sleep(1000);
 
         // Consulto o status do arquivo enviado
         final NFSeBarueriLoteStatusArquivoResponse responseStatusEmissao = wsBarueri
                 .loteStatusArquivo(new NFSeBarueriLoteStatusArquivoRequest("4458481", "03918609000647", responseEnvioEmissao.getResultado().getProtocoloRemessa()));
-        Files.writeString(Path.of("/tmp/%s_%s.rem".formatted(arquivoRequest.getNomeArquivoRPS(), responseEnvioEmissao.getResultado().getProtocoloRemessa())), responseStatusEmissao.toXml());
-        Thread.sleep(5000);
+        Files.writeString(Path.of("/tmp/%s".formatted(arquivoRequest.getNomeArquivoRPS().replaceAll(".rem", "_response_%s.xml".formatted(responseEnvioEmissao.getResultado().getProtocoloRemessa())))), responseStatusEmissao.toXml());
+        this.getLogger().info("Arquivo enviado {}, com nome de retorno {}, com situacao {}: {}",
+                responseStatusEmissao.getResult().getListaNfeArquivosRPS().getNomeArquivoOriginal(),
+                responseStatusEmissao.getResult().getListaNfeArquivosRPS().getNomeArquivoRetorno(),
+                responseStatusEmissao.getResult().getListaNfeArquivosRPS().getSituacaoArquivo().getCodigo(),
+                responseStatusEmissao.getResult().getListaNfeArquivosRPS().getSituacaoArquivo().getDescricao());
+        Thread.sleep(1000);
 
         // Baixo o arquivo de retorno da emissão
         final NFSeBarueriLoteBaixarArquivoResponse responseBaixarEmissao = wsBarueri
-                .loteBaixarArquivo(new NFSeBarueriLoteBaixarArquivoRequest("4458481", "03918609000647", responseStatusEmissao.getResultado().getListaNfeArquivosRPS().getNomeArqRetorno()));
-        Files.writeString(Path.of("/tmp/%s_%s.xml".formatted(arquivoRequest.getNomeArquivoRPS(), responseEnvioEmissao.getResultado().getProtocoloRemessa())), responseBaixarEmissao.toXml());
+                .loteBaixarArquivo(new NFSeBarueriLoteBaixarArquivoRequest(
+                        "4458481",
+                        "03918609000647",
+                        responseStatusEmissao.getResult().getListaNfeArquivosRPS().getNomeArquivoRetorno()));
+        Files.writeString(Path.of("/tmp/%s".formatted(arquivoRequest.getNomeArquivoRPS().replaceAll(".rem", "_download_%s.xml".formatted(responseEnvioEmissao.getResultado().getProtocoloRemessa())))), responseBaixarEmissao.toXml());
+
+        if (!"OK200".equals(responseBaixarEmissao.getResultado().getListaMensagemRetorno().getCodigo())) {
+            throw new IllegalStateException("%s - %s - %s".formatted(
+                    responseBaixarEmissao.getResultado().getListaMensagemRetorno().getCodigo(),
+                    responseBaixarEmissao.getResultado().getListaMensagemRetorno().getMensagem(),
+                    responseBaixarEmissao.getResultado().getListaMensagemRetorno().getCorrecao()));
+        }
 
         final NFSeBarueriLoteBaixarArquivoResult resultadoEmissao = responseBaixarEmissao.getResultado();
-        final byte[] arquivoB64 = Base64.getDecoder().decode(resultadoEmissao.getArquivoRPSBase64());
-        Files.write(Path.of("/tmp/%s_%s.ret".formatted(arquivoRequest.getNomeArquivoRPS(), responseEnvioEmissao.getResultado().getProtocoloRemessa())), arquivoB64);
-        final var arquivoRetorno = resultadoEmissao.getArquivoRetorno();
+        Files.write(Path.of("/tmp/%s".formatted(arquivoRequest.getNomeArquivoRPS().replaceAll(".rem", "_resultado_%s.txt".formatted(responseEnvioEmissao.getResultado().getProtocoloRemessa())))), Base64.getDecoder().decode(resultadoEmissao.getArquivoRPSBase64()));
+        if (!"OK200".equals(resultadoEmissao.getListaMensagemRetorno().getCodigo())) {
+            throw new IllegalStateException("%s - %s - %s".formatted(
+                    resultadoEmissao.getListaMensagemRetorno().getCodigo(),
+                    resultadoEmissao.getListaMensagemRetorno().getMensagem(),
+                    resultadoEmissao.getListaMensagemRetorno().getCorrecao()));
+        }
+
+        if (NFSeBarueriArquivoRetornoSituacaoArquivo.ARQUIVO_COM_ERROS.equals(responseStatusEmissao.getResult().getListaNfeArquivosRPS().getSituacaoArquivo())) {
+            final var arquivoRemessaComErros = resultadoEmissao.getArquivoEnvioComErros();
+            for (final var erro : arquivoRemessaComErros.getErros()) {
+                this.getLogger().error("Erro no arquivo de remessa - Código: {}, Descrição: {}, Solução: {}",
+                        erro.getCodigo(),
+                        erro.getDescricao(),
+                        erro.getSolucao());
+            }
+        } else {
+            final var arquivoRetorno = resultadoEmissao.getArquivoRetorno();
+            for (NFSeBarueriRPSArquivoRetornoRegistro registro : arquivoRetorno.getRegistros()) {
+                this.getLogger().info("Registro tipo %s: %s", registro.getTipoRegistro(), registro.toString());
+            }
+        }
+
 
 //        arquivoRetorno.getNotas()
 //        final var errosEmissao = resultadoEmissao.getErros();

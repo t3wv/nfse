@@ -1,5 +1,6 @@
 package io.github.t3wv.nfse.municipal.nfseSPBarueri.services;
 
+import io.github.t3wv.nfse.municipal.nfseSPBarueri.enums.NFSeBarueriArquivoRetornoSituacaoArquivo;
 import io.github.t3wv.nfse.utils.NFSePersister;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;
@@ -12,21 +13,21 @@ import java.io.StringWriter;
 @Namespace(reference = "http://www.barueri.sp.gov.br/nfe")
 public class NFSeBarueriLoteStatusArquivoResponse {
 
-    @Element(name = "NFeLoteStatusArquivoResult")
-    private NFeLoteStatusArquivoResult resultado;
+    @Element(name = "NFeLoteStatusArquivoResult", required = false)
+    private NFeLoteStatusArquivoResult result;
 
-    public NFeLoteStatusArquivoResult getResultado() {
-        return resultado;
+    public NFeLoteStatusArquivoResult getResult() {
+        return result;
     }
 
-    public void setResultado(NFeLoteStatusArquivoResult resultado) {
-        this.resultado = resultado;
+    public NFSeBarueriLoteStatusArquivoResponse setResult(NFeLoteStatusArquivoResult result) {
+        this.result = result;
+        return this;
     }
 
     public String toXml() throws Exception {
-        Persister serializer = new Persister();
-        StringWriter writer = new StringWriter();
-        serializer.write(this, writer);
+        final var writer = new StringWriter();
+        new NFSePersister().write(this, writer);
         return writer.toString();
     }
 
@@ -106,7 +107,7 @@ public class NFSeBarueriLoteStatusArquivoResponse {
         private boolean apenasValidaArq;
 
         @Element(name = "SituacaoArq", required = false)
-        private String situacaoArq;
+        private NFSeBarueriArquivoRetornoSituacaoArquivo situacaoArquivo;
 
         @Element(name = "NomeArqRetorno", required = false)
         private String nomeArqRetorno;
@@ -143,15 +144,15 @@ public class NFSeBarueriLoteStatusArquivoResponse {
             this.apenasValidaArq = apenasValidaArq;
         }
 
-        public String getSituacaoArq() {
-            return situacaoArq;
+        public NFSeBarueriArquivoRetornoSituacaoArquivo getSituacaoArquivo() {
+            return situacaoArquivo;
         }
 
-        public void setSituacaoArq(String situacaoArq) {
-            this.situacaoArq = situacaoArq;
+        public void setSituacaoArquivo(NFSeBarueriArquivoRetornoSituacaoArquivo situacaoArquivo) {
+            this.situacaoArquivo = situacaoArquivo;
         }
 
-        public String getNomeArqRetorno() {
+        public String getNomeArquivoRetorno() {
             return nomeArqRetorno;
         }
 
@@ -160,9 +161,8 @@ public class NFSeBarueriLoteStatusArquivoResponse {
         }
 
         public String toXml() throws Exception {
-            NFSePersister serializer = new NFSePersister();
-            StringWriter writer = new StringWriter();
-            serializer.write(this, writer);
+            final var writer = new StringWriter();
+            new NFSePersister().write(this, writer);
             return writer.toString();
         }
     }

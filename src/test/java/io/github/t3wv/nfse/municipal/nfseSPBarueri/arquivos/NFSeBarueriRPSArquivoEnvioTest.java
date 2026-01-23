@@ -26,11 +26,11 @@ class NFSeBarueriRPSArquivoEnvioTest {
     @Test
     void testMontaArquivo() {
         final var envio = new NFSeBarueriRPSArquivoEnvio()
-                .addLinha(new NFSeBarueriRPSArquivoEnvioRegistroTipo1()
+                .addRegistro(new NFSeBarueriRPSArquivoEnvioRegistroTipo1()
                         .setInscricaoContribuinte("12345678909")
                         .setVersaoLayout("PMB004")
                         .setIdentificacaoRemessaContribuinte("12345678901"))
-                .addLinha(new NFSeBarueriRPSArquivoEnvioRegistroTipo9()
+                .addRegistro(new NFSeBarueriRPSArquivoEnvioRegistroTipo9()
                         .setQuantidadeLinhas(2)
                         .setValorTotalServicos(BigDecimal.ZERO)
                         .setValorTotalServicosContidosRegistro3(BigDecimal.ZERO));

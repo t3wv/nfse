@@ -45,19 +45,20 @@ public class NFSeBarueriRPSArquivoEnvioRegistroTipo9 extends NFSeBarueriRPSArqui
     }
 
     @Override
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo9 fromLinha(String linha) {
+        return new NFSeBarueriRPSArquivoEnvioRegistroTipo9()
+                .setQuantidadeLinhas(Integer.parseInt(linha.substring(1, 8).trim()))
+                .setValorTotalServicos(new BigDecimal(linha.substring(8, 23)).movePointLeft(2))
+                .setValorTotalServicosContidosRegistro3(new BigDecimal(linha.substring(23, 38)).movePointLeft(2))
+                .setErros(parseErros(linha));
+    }
+
+    @Override
     public String toLinha() {
         return String.format("%s%s%s%s",
                 getTipoRegistro(),
                 StringUtils.rightPad(String.valueOf(this.quantidadeLinhas), 7),
                 StringUtils.leftPad(this.valorTotalServicos.setScale(2, RoundingMode.HALF_UP).toPlainString().replaceAll("[^0-9]", ""), 15, "0"),
                 StringUtils.leftPad(this.valorTotalServicosContidosRegistro3.setScale(2, RoundingMode.HALF_UP).toPlainString().replaceAll("[^0-9]", ""), 15, "0"));
-    }
-
-    @Override
-    public NFSeBarueriRPSArquivoEnvioRegistroTipo9 fromLinha(String linha) {
-        return new NFSeBarueriRPSArquivoEnvioRegistroTipo9()
-                .setQuantidadeLinhas(Integer.parseInt(linha.substring(1,8).trim()))
-                .setValorTotalServicos(new BigDecimal(linha.substring(8,23)).movePointLeft(2))
-                .setValorTotalServicosContidosRegistro3(new BigDecimal(linha.substring(23,38)).movePointLeft(2));
     }
 }

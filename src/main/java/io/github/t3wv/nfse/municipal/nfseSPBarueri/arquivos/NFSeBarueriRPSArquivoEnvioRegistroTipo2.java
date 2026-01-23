@@ -509,7 +509,8 @@ public class NFSeBarueriRPSArquivoEnvioRegistroTipo2 extends NFSeBarueriRPSArqui
                 .setNumeroFatura(linha.substring(934, 940))
                 .setValorFatura(StringUtils.isNotBlank(linha.substring(940, 955)) ? new BigDecimal(linha.substring(940, 955)).movePointLeft(2) : null)
                 .setFormaPagamentoFatura(linha.substring(955, 970))
-                .setDiscriminacaoServico(linha.substring(970, 1970));
+                .setDiscriminacaoServico(linha.substring(970, 1970))
+                .setErros(parseErros(linha));
     }
 
     @Override
@@ -527,38 +528,38 @@ public class NFSeBarueriRPSArquivoEnvioRegistroTipo2 extends NFSeBarueriRPSArqui
                 StringUtils.rightPad(StringUtils.trimToEmpty(this.numeroNfeASerCanceladaOuSubstituida), 7),
                 StringUtils.rightPad(StringUtils.trimToEmpty(this.serieNfeASerCanceladaOuSubstituida), 5),
                 dataEmissaoNFeASerCanceladaOuSubstituida != null ? dataEmissaoNFeASerCanceladaOuSubstituida.format(WSBarueri.FORMATO_DATA) : StringUtils.rightPad("", 8),
-                StringUtils.rightPad(this.descricaoCancelamento, 180),
-                StringUtils.rightPad(this.codigoServicoPrestado, 9, '0'),
+                StringUtils.rightPad(StringUtils.trimToEmpty(this.descricaoCancelamento), 180),
+                StringUtils.rightPad(StringUtils.trimToEmpty(this.codigoServicoPrestado), 9, '0'),
                 this.localPrestacaoServico.getCodigo(),
                 this.servicoPrestadoEmViaPublica ? "1" : "2",
-                StringUtils.rightPad(this.enderecoLogradouroLocalServicoPrestado, 75),
-                StringUtils.rightPad(this.enderecoNumeroLocalServicoPrestado, 9),
-                StringUtils.rightPad(this.enderecoComplementoLocalServicoPrestado, 30),
-                StringUtils.rightPad(this.enderecoBairroLocalServicoPrestado, 40),
-                StringUtils.rightPad(this.enderecoCidadeLocalServicoPrestado, 40),
-                StringUtils.rightPad(this.enderecoUFLocalServicoPrestado, 2),
-                StringUtils.leftPad(this.enderecoCEPLocalServicoPrestado, 8, '0'),
+                StringUtils.rightPad(StringUtils.trimToEmpty(this.enderecoLogradouroLocalServicoPrestado), 75),
+                StringUtils.rightPad(StringUtils.trimToEmpty(this.enderecoNumeroLocalServicoPrestado), 9),
+                StringUtils.rightPad(StringUtils.trimToEmpty(this.enderecoComplementoLocalServicoPrestado), 30),
+                StringUtils.rightPad(StringUtils.trimToEmpty(this.enderecoBairroLocalServicoPrestado), 40),
+                StringUtils.rightPad(StringUtils.trimToEmpty(this.enderecoCidadeLocalServicoPrestado), 40),
+                StringUtils.rightPad(StringUtils.trimToEmpty(this.enderecoUFLocalServicoPrestado), 2),
+                StringUtils.leftPad(StringUtils.trimToEmpty(this.enderecoCEPLocalServicoPrestado), 8, '0'),
                 StringUtils.leftPad(String.valueOf(this.quantidadeServicoPrestado), 6, '0'),
                 StringUtils.leftPad(this.valorServicoPrestado != null ? this.valorServicoPrestado.setScale(2, RoundingMode.HALF_UP).toPlainString().replaceAll("[^0-9]", "") : "", 15, '0'),
-                StringUtils.rightPad(this.reservado, 5),
+                StringUtils.rightPad(StringUtils.trimToEmpty(this.reservado), 5),
                 StringUtils.leftPad(this.valorRetencoes != null ? this.valorRetencoes.setScale(2, RoundingMode.HALF_UP).toPlainString().replaceAll("[^0-9]", "") : "", 15, '0'),
                 this.tomadorEstrangeiro ? "1" : "2",
                 StringUtils.leftPad(this.paisTomadorEstrangeiro != null ? this.paisTomadorEstrangeiro.getCodigo() : "", 3, '0'),
                 this.servicoExportacao ? "1" : "2",
                 this.indicadorCpfCnpjTomador != null ? this.indicadorCpfCnpjTomador.getCodigo() : NFSeBarueriPessoaTipo.ESTRANGEIRA.getCodigo(),
-                StringUtils.leftPad(this.cpfCnpjTomador, 14, '0'),
-                StringUtils.leftPad(this.razaoSocialTomador, 60),
-                StringUtils.leftPad(this.enderecoLogradouroTomador, 75),
-                StringUtils.leftPad(this.enderecoNumeroTomador, 9),
-                StringUtils.leftPad(this.enderecoComplementoTomador, 30),
-                StringUtils.leftPad(this.enderecoBairroTomador, 40),
-                StringUtils.leftPad(this.enderecoCidadeTomador, 40),
-                StringUtils.leftPad(this.enderecoUFTomador, 2),
-                StringUtils.leftPad(this.enderecoCEPTomador, 8, '0'),
-                StringUtils.leftPad(this.emailTomador, 152),
+                StringUtils.leftPad(StringUtils.trimToEmpty(this.cpfCnpjTomador), 14, '0'),
+                StringUtils.leftPad(StringUtils.trimToEmpty(this.razaoSocialTomador), 60),
+                StringUtils.leftPad(StringUtils.trimToEmpty(this.enderecoLogradouroTomador), 75),
+                StringUtils.leftPad(StringUtils.trimToEmpty(this.enderecoNumeroTomador), 9),
+                StringUtils.leftPad(StringUtils.trimToEmpty(this.enderecoComplementoTomador), 30),
+                StringUtils.leftPad(StringUtils.trimToEmpty(this.enderecoBairroTomador), 40),
+                StringUtils.leftPad(StringUtils.trimToEmpty(this.enderecoCidadeTomador), 40),
+                StringUtils.leftPad(StringUtils.trimToEmpty(this.enderecoUFTomador), 2),
+                StringUtils.leftPad(StringUtils.trimToEmpty(this.enderecoCEPTomador), 8, '0'),
+                StringUtils.leftPad(StringUtils.trimToEmpty(this.emailTomador), 152),
                 StringUtils.leftPad(StringUtils.isNotBlank(this.numeroFatura) ? StringUtils.leftPad(this.numeroFatura, 6, '0') : "", 6),
                 StringUtils.leftPad(this.valorFatura != null ? StringUtils.leftPad(this.valorFatura.setScale(2, RoundingMode.HALF_UP).toPlainString().replaceAll("[^0-9]", ""), 15, '0') : "", 15),
-                StringUtils.rightPad(this.formaPagamentoFatura, 15),
-                StringUtils.rightPad(this.discriminacaoServico, 1000));
+                StringUtils.rightPad(StringUtils.trimToEmpty(this.formaPagamentoFatura), 15),
+                StringUtils.rightPad(StringUtils.trimToEmpty(this.discriminacaoServico), 1000));
     }
 }

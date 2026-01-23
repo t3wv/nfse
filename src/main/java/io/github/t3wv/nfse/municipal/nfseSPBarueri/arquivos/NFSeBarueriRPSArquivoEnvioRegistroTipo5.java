@@ -278,7 +278,8 @@ public class NFSeBarueriRPSArquivoEnvioRegistroTipo5 extends NFSeBarueriRPSArqui
                 .setEmailDestinatarioServico(StringUtils.trimToNull(linha.substring(506, 586)))
                 .setNifDestinatarioServico(StringUtils.trimToNull(linha.substring(586, 626)))
                 .setCodigoEnderecoPostalDestinatarioEstrangeiro(StringUtils.trimToNull(linha.substring(626, 637)))
-                .setEstadoProvinciaRegiaoDestinatarioEstrangeiro(StringUtils.trimToNull(linha.substring(637, 697)));
+                .setEstadoProvinciaRegiaoDestinatarioEstrangeiro(StringUtils.trimToNull(linha.substring(637, 697)))
+                .setErros(parseErros(linha));
     }
 
     @Override

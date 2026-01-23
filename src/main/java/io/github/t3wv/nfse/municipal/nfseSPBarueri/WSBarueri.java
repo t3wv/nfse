@@ -1,15 +1,16 @@
 package io.github.t3wv.nfse.municipal.nfseSPBarueri;
 
 import io.github.t3wv.nfse.NFSeConfig;
+import io.github.t3wv.nfse.NFSeLogger;
 import io.github.t3wv.nfse.municipal.nfseSPBarueri.services.*;
 import io.github.t3wv.nfse.utils.NFSeHttpClient;
-import org.simpleframework.xml.core.Persister;
+import io.github.t3wv.nfse.utils.NFSePersister;
 
 import java.net.URI;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
-public class WSBarueri {
+public class WSBarueri implements NFSeLogger {
 
     public static final String URL_BASE_PRODUCAO = "https://www.barueri.sp.gov.br/nfeservice/wsrps.asmx";
     public static final String URL_BASE_HOMOLOGACAO = "https://testeeiss.barueri.sp.gov.br/nfeservice/wsrps.asmx";
@@ -18,7 +19,6 @@ public class WSBarueri {
     public static final char CHR13 = (char) 13;
     public static final char CHR10 = (char) 10;
 
-    //private final NFSeObjectMapper objectMapper = new NFSeObjectMapper();
     private final NFSeConfig config;
 
     public WSBarueri(NFSeConfig config) {
@@ -40,8 +40,9 @@ public class WSBarueri {
                               "</soap12:Envelope>";
 
         final var response = new NFSeHttpClient(config).sendPostRequest(new URI(config.isTeste() ? URL_BASE_HOMOLOGACAO : URL_BASE_PRODUCAO), Map.of("Content-Type", "application/soap+xml; charset=utf-8"), soapEnvelope);
-        Persister serializer = new Persister();
-        return (NFSeBarueriLoteEnviarArquivoResponse) serializer.read(NFSeBarueriSoapEnvelope.class, response.body()).getResponse();
+        final var body = response.body();
+        this.getLogger().debug(body);
+        return (NFSeBarueriLoteEnviarArquivoResponse) new NFSePersister().read(NFSeBarueriSoapEnvelope.class, body).getResponse();
     }
 
     public NFSeBarueriLoteStatusArquivoResponse loteStatusArquivo(final NFSeBarueriLoteStatusArquivoRequest request) throws Exception {
@@ -59,8 +60,9 @@ public class WSBarueri {
                               "</soap12:Envelope>";
 
         final var response = new NFSeHttpClient(config).sendPostRequest(new URI(config.isTeste() ? URL_BASE_HOMOLOGACAO : URL_BASE_PRODUCAO), Map.of("Content-Type", "application/soap+xml; charset=utf-8"), soapEnvelope);
-        Persister serializer = new Persister();
-        return (NFSeBarueriLoteStatusArquivoResponse) serializer.read(NFSeBarueriSoapEnvelope.class, response.body()).getResponse();
+        final var body = response.body();
+        this.getLogger().debug(body);
+        return (NFSeBarueriLoteStatusArquivoResponse) new NFSePersister().read(NFSeBarueriSoapEnvelope.class, body).getResponse();
     }
 
     public NFSeBarueriLoteBaixarArquivoResponse loteBaixarArquivo(NFSeBarueriLoteBaixarArquivoRequest request) throws Exception {
@@ -78,7 +80,8 @@ public class WSBarueri {
                               "</soap12:Envelope>";
 
         final var response = new NFSeHttpClient(config).sendPostRequest(new URI(config.isTeste() ? URL_BASE_HOMOLOGACAO : URL_BASE_PRODUCAO), Map.of("Content-Type", "application/soap+xml; charset=utf-8"), soapEnvelope);
-        Persister serializer = new Persister();
-        return (NFSeBarueriLoteBaixarArquivoResponse) serializer.read(NFSeBarueriSoapEnvelope.class, response.body()).getResponse();
+        final var body = response.body();
+        this.getLogger().debug(body);
+        return (NFSeBarueriLoteBaixarArquivoResponse) new NFSePersister().read(NFSeBarueriSoapEnvelope.class, body).getResponse();
     }
 }

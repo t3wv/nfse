@@ -20,8 +20,16 @@ public class NFSeBarueriLoteBaixarArquivoResult {
         return arquivoRPSBase64;
     }
 
+    public NFSeBarueriRPSArquivoEnvio getArquivoEnvioComErros() {
+        return NFSeBarueriRPSArquivoEnvio.fromBase64(arquivoRPSBase64);
+    }
+
     public NFSeBarueriRPSArquivoRetorno getArquivoRetorno() {
         return NFSeBarueriRPSArquivoRetorno.fromBase64(arquivoRPSBase64);
+    }
+
+    public NFSeBarueriLoteBaixarArquivoResultMensagemRetorno getListaMensagemRetorno() {
+        return listaMensagemRetorno;
     }
 
     public String toXml() throws Exception {

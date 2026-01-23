@@ -24,9 +24,8 @@ public class NFSeBarueriLoteEnviarArquivoResponse {
     }
 
     public String toXml() throws Exception {
-        Persister serializer = new Persister();
         StringWriter writer = new StringWriter();
-        serializer.write(this, writer);
+        new NFSePersister().write(this, writer);
         return writer.toString();
     }
 
@@ -91,9 +90,8 @@ public class NFSeBarueriLoteEnviarArquivoResponse {
         }
 
         public String toXml() throws Exception {
-            NFSePersister serializer = new NFSePersister();
             StringWriter writer = new StringWriter();
-            serializer.write(this, writer);
+            new NFSePersister().write(this, writer);
             return writer.toString();
         }
     }

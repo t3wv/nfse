@@ -46,7 +46,8 @@ public class NFSeBarueriRPSArquivoEnvioRegistroTipo1 extends NFSeBarueriRPSArqui
         return new NFSeBarueriRPSArquivoEnvioRegistroTipo1()
                 .setInscricaoContribuinte(StringUtils.trimToEmpty(linha.substring(1, 8)))
                 .setVersaoLayout(StringUtils.trimToEmpty(linha.substring(8, 14)))
-                .setIdentificacaoRemessaContribuinte(StringUtils.trimToEmpty(linha.substring(14, 25)));
+                .setIdentificacaoRemessaContribuinte(StringUtils.trimToEmpty(linha.substring(14, 25)))
+                .setErros(parseErros(linha));
     }
 
     @Override
