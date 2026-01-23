@@ -15,13 +15,13 @@ public class NFSeBarueriLoteEnviarArquivoRequest {
     private String inscricaoMunicipal;
 
     @Element(name = "CPFCNPJContrib")
-    private String cpfCnpjContrib;
+    private String cpfCnpjContribuinte;
 
     @Element(name = "NomeArquivoRPS")
     private String nomeArquivoRPS;
 
     @Element(name = "ApenasValidaArq")
-    private Boolean apenasValidaArq;
+    private Boolean apenasValidaArquivo;
 
     @Element(name = "ArquivoRPSBase64")
     private String arquivoRPSBase64;
@@ -35,12 +35,12 @@ public class NFSeBarueriLoteEnviarArquivoRequest {
         return this;
     }
 
-    public String getCpfCnpjContrib() {
-        return cpfCnpjContrib;
+    public String getCpfCnpjContribuinte() {
+        return cpfCnpjContribuinte;
     }
 
-    public NFSeBarueriLoteEnviarArquivoRequest setCpfCnpjContrib(String cpfCnpjContrib) {
-        this.cpfCnpjContrib = cpfCnpjContrib;
+    public NFSeBarueriLoteEnviarArquivoRequest setCpfCnpjContribuinte(String cpfCnpjContribuinte) {
+        this.cpfCnpjContribuinte = cpfCnpjContribuinte;
         return this;
     }
 
@@ -53,12 +53,12 @@ public class NFSeBarueriLoteEnviarArquivoRequest {
         return this;
     }
 
-    public Boolean getApenasValidaArq() {
-        return apenasValidaArq;
+    public Boolean getApenasValidaArquivo() {
+        return apenasValidaArquivo;
     }
 
-    public NFSeBarueriLoteEnviarArquivoRequest setApenasValidaArq(Boolean apenasValidaArq) {
-        this.apenasValidaArq = apenasValidaArq;
+    public NFSeBarueriLoteEnviarArquivoRequest setApenasValidaArquivo(Boolean apenasValidaArquivo) {
+        this.apenasValidaArquivo = apenasValidaArquivo;
         return this;
     }
 

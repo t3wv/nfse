@@ -11,7 +11,7 @@ import java.time.LocalTime;
 
 public class NFSeBarueriRPSArquivoRetornoRegistroTipo2 extends NFSeBarueriRPSArquivoRetornoRegistro<NFSeBarueriRPSArquivoRetornoRegistroTipo2> {
 
-    static final String TIPO_REGISTRO = "2";
+    public static final String TIPO_REGISTRO = "2";
 
     private String serieNFe;
     private Long numeroNFe;

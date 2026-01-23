@@ -10,7 +10,9 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import java.io.InputStream;
 import java.math.BigDecimal;
+import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
@@ -38,11 +40,13 @@ public class NFSeSPBarueriTest implements NFSeLogger {
         final var arquivo = new NFSeBarueriRPSArquivoEnvio()
                 .addRegistro(new NFSeBarueriRPSArquivoEnvioRegistroTipo1()
                         .setInscricaoContribuinte("4458481")
-                        .setVersaoLayout("PMB004")
+                        //.setVersaoLayout("PMB004")
+                        .setVersaoLayout("PMB003")
                         .setIdentificacaoRemessaContribuinte(String.valueOf(System.nanoTime()).substring(0, 11)))
                 .addRegistro(new NFSeBarueriRPSArquivoEnvioRegistroTipo2()
                         .setTipoRPS("RPS")
-                        .setNumeroRPS(1L)
+                        //.setNumeroRPS(3L)
+                        .setNumeroRPS(Long.parseLong(String.valueOf(System.nanoTime()).substring(0, 7)))
                         .setDataRPS(LocalDate.now())
                         .setHoraRPS(LocalTime.now())
                         .setSituacaoRPS(NFSeBarueriSituacao.ENVIADO)
@@ -89,9 +93,9 @@ public class NFSeSPBarueriTest implements NFSeLogger {
                         .setValorTotalServicosContidosRegistro3(BigDecimal.ZERO));
 
         final var arquivoRequest = new NFSeBarueriLoteEnviarArquivoRequest()
-                .setApenasValidaArq(true)
-                .setCpfCnpjContrib("03918609000647")
+                .setCpfCnpjContribuinte("03918609000647")
                 .setInscricaoMunicipal("4458481")
+                .setApenasValidaArquivo(false)
                 .setNomeArquivoRPS("RPS_%s.rem".formatted(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"))))
                 .setArquivoRPSBase64(arquivo.toBase64());
         Files.write(Path.of("/tmp/%s.txt".formatted(arquivoRequest.getNomeArquivoRPS())), arquivo.toByteArray());
@@ -150,7 +154,23 @@ public class NFSeSPBarueriTest implements NFSeLogger {
         } else {
             final var arquivoRetorno = resultadoEmissao.getArquivoRetorno();
             for (NFSeBarueriRPSArquivoRetornoRegistro registro : arquivoRetorno.getRegistros()) {
-                this.getLogger().info("Registro tipo %s: %s", registro.getTipoRegistro(), registro.toString());
+                if (NFSeBarueriRPSArquivoRetornoRegistroTipo2.TIPO_REGISTRO.equals(registro.getTipoRegistro())) {
+                    final var registroTipo2 = (NFSeBarueriRPSArquivoRetornoRegistroTipo2) registro;
+                    //final var serieNf = registroTipo2.getSerieNFe();
+                    final var numeroNf = registroTipo2.getNumeroNFe();
+                    final var numeroRPS = registroTipo2.getNumeroRPS();
+                    final var tomadorDocumento = registroTipo2.getTomadorDocumento();
+                    final var codigoAtenticidade = registroTipo2.getCodigoAutenticidade();
+                    //final var chaveNFSeNacional = registroTipo2.getChaveAcessoNFSeNacional();
+
+                    //salva o pdf
+                    try (final InputStream in = new URI(String.format("http://testeeiss.barueri.sp.gov.br/nfe/wfimagemnota.aspx?codigoautenticidade=%s&numdoc=%s", codigoAtenticidade, tomadorDocumento)).toURL().openStream()) {
+                        this.getLogger().debug("Download PDF nota servico Barueri: {} {}", codigoAtenticidade, tomadorDocumento);
+                        Files.write(Path.of("/tmp/%s_%s_emitida.pdf".formatted(numeroRPS, numeroNf)), in.readAllBytes());
+                    }
+
+                    //inicia o cancelamento
+                }
             }
         }
 
