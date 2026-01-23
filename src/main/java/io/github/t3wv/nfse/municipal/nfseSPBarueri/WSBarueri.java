@@ -1,7 +1,7 @@
 package io.github.t3wv.nfse.municipal.nfseSPBarueri;
 
 import io.github.t3wv.nfse.NFSeConfig;
-import io.github.t3wv.nfse.municipal.nfseSPBarueri.classes.*;
+import io.github.t3wv.nfse.municipal.nfseSPBarueri.services.*;
 import io.github.t3wv.nfse.utils.NFSeHttpClient;
 import org.simpleframework.xml.core.Persister;
 
