@@ -16,52 +16,12 @@ public class NFSeBarueriLoteBaixarArquivoResult {
     @Element(name = "ArquivoRPSBase64")
     private String arquivoRPSBase64;
 
-    private String[] linhas;
-
-    private NFSeBarueriRPSArquivoRetorno arquivoRetorno;
-
     public String getArquivoRPSBase64() {
         return arquivoRPSBase64;
     }
 
-    public String[] getLinhas() {
-        if (this.linhas == null) {
-            final byte[] resultadoEmissaoB64 = Base64.getDecoder().decode(this.getArquivoRPSBase64());
-            this.linhas = new String(resultadoEmissaoB64).split("\r\n");
-        }
-        return linhas;
-    }
-
-    public NFSeBarueriLoteBaixarArquivoResult setLinhas(String[] linhas) {
-        this.linhas = linhas;
-        return this;
-    }
-
     public NFSeBarueriRPSArquivoRetorno getArquivoRetorno() {
-        if (this.arquivoRetorno == null) {
-            this.arquivoRetorno = new NFSeBarueriRPSArquivoRetorno();
-            for (String linha : getLinhas()) {
-//                switch (linha.charAt(0)) {
-//                    case '1' -> {
-//                        arquivoRetorno.setHeader(new NFSeBarueriRPSArquivoRetornoRegistroTipo1(linha));
-//                    }
-//                    case '2' -> {
-//                        arquivoRetorno.addNota(new NFSeBarueriRPSArquivoRetornoRegistroTipo2(linha));
-//                    }
-//                    case '3' -> {
-//                        arquivoRetorno.getNotas().getLast().addItem(new NFSeBarueriRPSArquivoRetornoRegistroTipo3(linha));
-//                    }
-//                    case '4' -> {
-//                        arquivoRetorno.getNotas().getLast().getItens().getLast().addRetencao(new NFSeBarueriRPSArquivoRetornoRegistroTipo4(linha));
-//                    }
-//                    case '9' -> {
-//                        arquivoRetorno.setFooter(new NFSeBarueriRPSArquivoRetornoRegistroTipo9(linha));
-//                    }
-//                    default -> throw new IllegalArgumentException("Tipo de registro desconhecido: " + linha.charAt(0));
-//                }
-            }
-        }
-        return arquivoRetorno;
+        return NFSeBarueriRPSArquivoRetorno.fromBase64(arquivoRPSBase64);
     }
 
     public String toXml() throws Exception {

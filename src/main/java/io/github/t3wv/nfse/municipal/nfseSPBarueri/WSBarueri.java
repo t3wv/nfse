@@ -13,10 +13,10 @@ public class WSBarueri {
 
     public static final String URL_BASE_PRODUCAO = "https://www.barueri.sp.gov.br/nfeservice/wsrps.asmx";
     public static final String URL_BASE_HOMOLOGACAO = "https://testeeiss.barueri.sp.gov.br/nfeservice/wsrps.asmx";
-    public static final char CHR13 = (char) 13;
-    public static final char CHR10 = (char) 10;
     public static final DateTimeFormatter FORMATO_DATA = DateTimeFormatter.ofPattern("yyyyMMdd");
     public static final DateTimeFormatter FORMATO_HORA = DateTimeFormatter.ofPattern("HHmmss");
+    public static final char CHR13 = (char) 13;
+    public static final char CHR10 = (char) 10;
 
     //private final NFSeObjectMapper objectMapper = new NFSeObjectMapper();
     private final NFSeConfig config;

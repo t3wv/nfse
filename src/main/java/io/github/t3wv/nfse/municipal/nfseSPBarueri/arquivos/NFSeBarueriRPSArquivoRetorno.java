@@ -4,9 +4,9 @@ import io.github.t3wv.nfse.municipal.nfseSPBarueri.WSBarueri;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStreamWriter;
-import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
 
@@ -61,5 +61,14 @@ public class NFSeBarueriRPSArquivoRetorno {
 
     public String toBase64() throws Exception {
         return Base64.getEncoder().encodeToString(this.toByteArray());
+    }
+
+    public static NFSeBarueriRPSArquivoRetorno fromBase64(String arquivoRPSBase64) {
+        final var arquivoBytes = Base64.getDecoder().decode(arquivoRPSBase64);
+        final var arquivoString = new String(arquivoBytes, StandardCharsets.ISO_8859_1);
+        final var arquivoLinhas = arquivoString.split("\r\n");
+        final var retorno = new NFSeBarueriRPSArquivoRetorno();
+        Arrays.stream(arquivoLinhas).forEach(retorno::addLinha);
+        return retorno;
     }
 }
