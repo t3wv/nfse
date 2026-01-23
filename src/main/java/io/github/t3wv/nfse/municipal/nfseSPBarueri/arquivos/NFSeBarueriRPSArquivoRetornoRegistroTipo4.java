@@ -8,21 +8,25 @@ import java.math.BigDecimal;
 public class NFSeBarueriRPSArquivoRetornoRegistroTipo4 extends NFSeBarueriRPSArquivoRetornoRegistro<NFSeBarueriRPSArquivoRetornoRegistroTipo4> {
 
     static final String TIPO_REGISTRO = "4";
-    private NFSeBarueriOutrosValoresTipo outrosValores;
+    private NFSeBarueriOutrosValoresTipo tipoOutrosValores;
     private BigDecimal valor;
 
-    public NFSeBarueriRPSArquivoRetornoRegistroTipo4() {
-//        this.outrosValores = NFSeBarueriOutrosValoresTipo.valueOfCodigo(linha.substring(1, 3).trim());
-//        this.valor = StringUtils.stripStart(linha.substring(3, 18).trim(), "0").isEmpty() ? BigDecimal.ZERO : new BigDecimal(linha.substring(3, 18).trim()).movePointLeft(2);
+    public NFSeBarueriOutrosValoresTipo getTipoOutrosValores() {
+        return tipoOutrosValores;
     }
 
-
-    public NFSeBarueriOutrosValoresTipo getOutrosValores() {
-        return outrosValores;
+    public NFSeBarueriRPSArquivoRetornoRegistroTipo4 setTipoOutrosValores(NFSeBarueriOutrosValoresTipo tipoOutrosValores) {
+        this.tipoOutrosValores = tipoOutrosValores;
+        return this;
     }
 
     public BigDecimal getValor() {
         return valor;
+    }
+
+    public NFSeBarueriRPSArquivoRetornoRegistroTipo4 setValor(BigDecimal valor) {
+        this.valor = valor;
+        return this;
     }
 
     @Override
@@ -32,11 +36,16 @@ public class NFSeBarueriRPSArquivoRetornoRegistroTipo4 extends NFSeBarueriRPSArq
 
     @Override
     public NFSeBarueriRPSArquivoRetornoRegistroTipo4 fromLinha(String linha) {
-        return null;
+        return new NFSeBarueriRPSArquivoRetornoRegistroTipo4()
+                .setTipoOutrosValores(NFSeBarueriOutrosValoresTipo.valueOfCodigo(linha.substring(1, 3)))
+                .setValor(new BigDecimal(StringUtils.trimToEmpty(linha.substring(3, 18))).movePointLeft(2));
     }
 
     @Override
     public String toLinha() {
-        return "";
+        return "%s%s%s".formatted(
+                TIPO_REGISTRO,
+                tipoOutrosValores.getCodigo(),
+                StringUtils.leftPad(valor.movePointRight(2).toPlainString().replace(".", ""), 15, '0'));
     }
 }
