@@ -12,6 +12,3 @@ class NFSeBarueriRPSArquivoRetornoRegistroTipo1Test {
         assertEquals(linha, new NFSeBarueriRPSArquivoRetornoRegistroTipo1().fromLinha(linha).toLinha());
     }
 }
-
-//144584810000000000000000PMB00302601562144
-//144584810000000000000000PMB00 0260156214
