@@ -1,44 +1,62 @@
 package io.github.t3wv.nfse.municipal.nfseSPBarueri.arquivos;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.math.BigDecimal;
 
 public class NFSeBarueriRPSArquivoRetornoRegistroTipo3 extends NFSeBarueriRPSArquivoRetornoRegistro<NFSeBarueriRPSArquivoRetornoRegistroTipo3> {
 
     static final String TIPO_REGISTRO = "3";
-    private int tipoRegistro;
-    private int quantidade;
+
+    private Integer quantidade;
     private String descricao;
-    private long codigo;
+    private Long codigo;
     private BigDecimal valorUnitario;
     private BigDecimal aliquota;
 
-    public NFSeBarueriRPSArquivoRetornoRegistroTipo3() {
-//        this.tipoRegistro = Integer.parseInt(linha.substring(0, 1).trim());
-//        this.quantidade = Integer.parseInt(linha.substring(1, 7).trim());
-//        this.descricao = linha.substring(7, 67).trim();
-//        this.codigo = Long.parseLong(linha.substring(67, 76).trim());
-//        this.valorUnitario = StringUtils.stripStart(linha.substring(76, 91).trim(), "0").isEmpty() ? BigDecimal.ZERO : new BigDecimal(linha.substring(76, 91).trim()).movePointLeft(2);
-//        this.aliquota = StringUtils.stripStart(linha.substring(91, 95).trim(), "0").isEmpty() ? BigDecimal.ZERO : new BigDecimal(linha.substring(91, 95).trim()).movePointLeft(2);
+    public Integer getQuantidade() {
+        return quantidade;
     }
 
-    public int getQuantidade() {
-        return quantidade;
+    public NFSeBarueriRPSArquivoRetornoRegistroTipo3 setQuantidade(Integer quantidade) {
+        this.quantidade = quantidade;
+        return this;
     }
 
     public String getDescricao() {
         return descricao;
     }
 
-    public long getCodigo() {
+    public NFSeBarueriRPSArquivoRetornoRegistroTipo3 setDescricao(String descricao) {
+        this.descricao = descricao;
+        return this;
+    }
+
+    public Long getCodigo() {
         return codigo;
+    }
+
+    public NFSeBarueriRPSArquivoRetornoRegistroTipo3 setCodigo(Long codigo) {
+        this.codigo = codigo;
+        return this;
     }
 
     public BigDecimal getValorUnitario() {
         return valorUnitario;
     }
 
+    public NFSeBarueriRPSArquivoRetornoRegistroTipo3 setValorUnitario(BigDecimal valorUnitario) {
+        this.valorUnitario = valorUnitario;
+        return this;
+    }
+
     public BigDecimal getAliquota() {
         return aliquota;
+    }
+
+    public NFSeBarueriRPSArquivoRetornoRegistroTipo3 setAliquota(BigDecimal aliquota) {
+        this.aliquota = aliquota;
+        return this;
     }
 
     @Override
@@ -48,11 +66,22 @@ public class NFSeBarueriRPSArquivoRetornoRegistroTipo3 extends NFSeBarueriRPSArq
 
     @Override
     public NFSeBarueriRPSArquivoRetornoRegistroTipo3 fromLinha(String linha) {
-        return null;
+        return new NFSeBarueriRPSArquivoRetornoRegistroTipo3()
+                .setQuantidade(Integer.parseInt(linha.substring(1, 7).trim()))
+                .setDescricao(StringUtils.trimToEmpty(linha.substring(7, 67)))
+                .setCodigo(Long.parseLong(StringUtils.trimToEmpty(linha.substring(67, 76))))
+                .setValorUnitario(new BigDecimal(StringUtils.trimToEmpty(linha.substring(76, 91))).movePointLeft(2))
+                .setAliquota(new BigDecimal(StringUtils.trimToEmpty(linha.substring(91, 95))).movePointLeft(2));
     }
 
     @Override
     public String toLinha() {
-        return "";
+        return String.format("%s%s%s%s%s%s",
+                getTipoRegistro(),
+                StringUtils.leftPad(String.valueOf(getQuantidade()), 6, '0'),
+                StringUtils.rightPad(getDescricao(), 60),
+                StringUtils.leftPad(String.valueOf(getCodigo()), 9, '0'),
+                StringUtils.leftPad(getValorUnitario().movePointRight(2).toPlainString(), 15, '0'),
+                StringUtils.leftPad(getAliquota().movePointRight(2).toPlainString(), 4, '0'));
     }
 }
