@@ -11,7 +11,7 @@ import java.time.LocalTime;
 
 public class NFSeBarueriRPSArquivoEnvioRegistroTipo2 extends NFSeBarueriRPSArquivoEnvioRegistro<NFSeBarueriRPSArquivoEnvioRegistroTipo2> {
 
-    static final String TIPO_REGISTRO = "2";
+    public static final String TIPO_REGISTRO = "2";
 
     private String tipoRPS, serieRPS, serieNFe;
     private Long numeroRPS;
