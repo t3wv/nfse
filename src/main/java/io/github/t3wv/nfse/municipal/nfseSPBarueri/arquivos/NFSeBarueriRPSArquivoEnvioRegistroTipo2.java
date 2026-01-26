@@ -531,7 +531,7 @@ public class NFSeBarueriRPSArquivoEnvioRegistroTipo2 extends NFSeBarueriRPSArqui
                 StringUtils.rightPad(StringUtils.trimToEmpty(this.descricaoCancelamento), 180),
                 StringUtils.rightPad(StringUtils.trimToEmpty(this.codigoServicoPrestado), 9, '0'),
                 this.localPrestacaoServico.getCodigo(),
-                this.servicoPrestadoEmViaPublica ? "1" : "2",
+                this.servicoPrestadoEmViaPublica != null && this.servicoPrestadoEmViaPublica ? "1" : "2",
                 StringUtils.rightPad(StringUtils.trimToEmpty(this.enderecoLogradouroLocalServicoPrestado), 75),
                 StringUtils.rightPad(StringUtils.trimToEmpty(this.enderecoNumeroLocalServicoPrestado), 9),
                 StringUtils.rightPad(StringUtils.trimToEmpty(this.enderecoComplementoLocalServicoPrestado), 30),

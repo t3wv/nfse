@@ -2,7 +2,6 @@ package io.github.t3wv.nfse.municipal.nfseSPBarueri.arquivos;
 
 import io.github.t3wv.nfse.municipal.nfseSPBarueri.WSBarueri;
 import io.github.t3wv.nfse.municipal.nfseSPBarueri.enums.*;
-import io.github.t3wv.nfse.nacional.classes.nfsenacional.NFSeSefinNacionalRegimeTributarioSituacaoSimplesNacional;
 import org.apache.commons.lang3.StringUtils;
 
 import java.time.LocalDate;
@@ -11,7 +10,7 @@ public class NFSeBarueriRPSArquivoEnvioRegistroTipo4 extends NFSeBarueriRPSArqui
 
     static final String TIPO_REGISTRO = "4";
     private NFSeBarueriOptanteSimplesNacional optanteSimplesNacional;
-    private NFSeSefinNacionalRegimeTributarioSituacaoSimplesNacional regimeApuracaoTributariaSimplesNacional;
+    private NFSeBarueriRegimeApuracaoTributariaSimplesNacional regimeApuracaoTributariaSimplesNacional;
     private NFSeBarueriPais paisLocalServicoPrestado;
     private String codigoCidadeLocalServicoPrestado;
     private String codigoCidadeTomador;
@@ -42,11 +41,11 @@ public class NFSeBarueriRPSArquivoEnvioRegistroTipo4 extends NFSeBarueriRPSArqui
         return this;
     }
 
-    public NFSeSefinNacionalRegimeTributarioSituacaoSimplesNacional getRegimeApuracaoTributariaSimplesNacional() {
+    public NFSeBarueriRegimeApuracaoTributariaSimplesNacional getRegimeApuracaoTributariaSimplesNacional() {
         return regimeApuracaoTributariaSimplesNacional;
     }
 
-    public NFSeBarueriRPSArquivoEnvioRegistroTipo4 setRegimeApuracaoTributariaSimplesNacional(NFSeSefinNacionalRegimeTributarioSituacaoSimplesNacional regimeApuracaoTributariaSimplesNacional) {
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo4 setRegimeApuracaoTributariaSimplesNacional(NFSeBarueriRegimeApuracaoTributariaSimplesNacional regimeApuracaoTributariaSimplesNacional) {
         this.regimeApuracaoTributariaSimplesNacional = regimeApuracaoTributariaSimplesNacional;
         return this;
     }
@@ -240,7 +239,7 @@ public class NFSeBarueriRPSArquivoEnvioRegistroTipo4 extends NFSeBarueriRPSArqui
     public NFSeBarueriRPSArquivoEnvioRegistroTipo4 fromLinha(String linha) {
         return new NFSeBarueriRPSArquivoEnvioRegistroTipo4()
                 .setOptanteSimplesNacional(NFSeBarueriOptanteSimplesNacional.valueOfCodigo(linha.substring(1, 2)))
-                .setRegimeApuracaoTributariaSimplesNacional(NFSeSefinNacionalRegimeTributarioSituacaoSimplesNacional.valueOfCodigo(linha.substring(2, 3)))
+                .setRegimeApuracaoTributariaSimplesNacional(NFSeBarueriRegimeApuracaoTributariaSimplesNacional.valueOfCodigo(linha.substring(2, 3)))
                 .setPaisLocalServicoPrestado(NFSeBarueriPais.valueOfCodigo(linha.substring(3, 6)))
                 .setCodigoCidadeLocalServicoPrestado(StringUtils.trimToEmpty(linha.substring(6, 13)))
                 .setCodigoCidadeTomador(StringUtils.trimToEmpty(linha.substring(13, 20)))
@@ -259,7 +258,7 @@ public class NFSeBarueriRPSArquivoEnvioRegistroTipo4 extends NFSeBarueriRPSArqui
                 .setCodigoIndicadorOperacaoFornecimento(StringUtils.trimToEmpty(linha.substring(514, 520)))
                 .setCodigoClassificacaoTributariaIBSCBS(StringUtils.trimToEmpty(linha.substring(520, 526)))
                 .setCodigoSituacaoTributariaIBSCBS(StringUtils.trimToEmpty(linha.substring(526, 529)))
-                .setOperacaoConsumoPessoal("S".equalsIgnoreCase(StringUtils.trimToEmpty(linha.substring(529, 530))) ? Boolean.TRUE : Boolean.FALSE)
+                .setOperacaoConsumoPessoal("1".equals(StringUtils.trimToEmpty(linha.substring(529, 530))) ? Boolean.TRUE : Boolean.FALSE)
                 .setIndicadorDestinatarioServico(NFSeBarueriIndicadorDestinatarioServico.valueOfCodigo(linha.substring(530, 531)))
                 .setErros(parseErros(linha));
     }
