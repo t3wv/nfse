@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 public class NFSeBarueriRPSArquivoEnvioRegistroTipo1 extends NFSeBarueriRPSArquivoEnvioRegistro<NFSeBarueriRPSArquivoEnvioRegistroTipo1> {
 
     public static final String TIPO_REGISTRO = "1";
+
     private String inscricaoContribuinte;
     private String versaoLayout;
     private String identificacaoRemessaContribuinte;

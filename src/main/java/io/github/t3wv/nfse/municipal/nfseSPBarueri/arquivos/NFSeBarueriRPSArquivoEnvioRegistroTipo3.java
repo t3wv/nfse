@@ -8,7 +8,8 @@ import java.math.RoundingMode;
 
 public class NFSeBarueriRPSArquivoEnvioRegistroTipo3 extends NFSeBarueriRPSArquivoEnvioRegistro<NFSeBarueriRPSArquivoEnvioRegistroTipo3> {
 
-    static final String TIPO_REGISTRO = "3";
+    public static final String TIPO_REGISTRO = "3";
+
     private NFSeBarueriOutrosValoresTipo outrosValoresTipo;
     private BigDecimal valor;
 

@@ -8,7 +8,8 @@ import java.time.LocalDate;
 
 public class NFSeBarueriRPSArquivoRetornoRegistroTipo1 extends NFSeBarueriRPSArquivoRetornoRegistro<NFSeBarueriRPSArquivoRetornoRegistroTipo1> {
 
-    static final String TIPO_REGISTRO = "1";
+    public static final String TIPO_REGISTRO = "1";
+
     private String inscricaoContribuinte;
     private LocalDate inicioTransferencia;
     private LocalDate terminoTransferencia;

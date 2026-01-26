@@ -319,7 +319,7 @@ public class NFSeBarueriRPSArquivoRetornoRegistroTipo2 extends NFSeBarueriRPSArq
                 this.horaNFe != null ? this.horaNFe.format(WSBarueri.FORMATO_HORA) : StringUtils.repeat(" ", 6),
                 StringUtils.rightPad(StringUtils.trimToEmpty(this.codigoAutenticidade), 24),
                 StringUtils.rightPad(StringUtils.trimToEmpty(this.serieRPS), 4),
-                StringUtils.rightPad(StringUtils.trimToEmpty(this.numeroRPS), 10),
+                StringUtils.leftPad(StringUtils.trimToEmpty(this.numeroRPS), 10, "0"),
                 StringUtils.rightPad(this.tributacao != null ? String.valueOf(this.tributacao.getCodigo()) : "0", 1),
                 StringUtils.rightPad(this.issRetido != null && this.issRetido ? "S" : "N", 1),
                 StringUtils.rightPad(this.situacaoNfe != null ? this.situacaoNfe.getCodigo() : "0", 1),

@@ -7,7 +7,8 @@ import java.math.BigDecimal;
 
 public class NFSeBarueriRPSArquivoRetornoRegistroTipo4 extends NFSeBarueriRPSArquivoRetornoRegistro<NFSeBarueriRPSArquivoRetornoRegistroTipo4> {
 
-    static final String TIPO_REGISTRO = "4";
+    public static final String TIPO_REGISTRO = "4";
+
     private NFSeBarueriOutrosValoresTipo tipoOutrosValores;
     private BigDecimal valor;
 

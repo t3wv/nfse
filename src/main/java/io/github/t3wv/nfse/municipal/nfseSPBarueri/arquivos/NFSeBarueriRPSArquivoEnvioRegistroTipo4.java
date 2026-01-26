@@ -8,7 +8,8 @@ import java.time.LocalDate;
 
 public class NFSeBarueriRPSArquivoEnvioRegistroTipo4 extends NFSeBarueriRPSArquivoEnvioRegistro<NFSeBarueriRPSArquivoEnvioRegistroTipo4> {
 
-    static final String TIPO_REGISTRO = "4";
+    public static final String TIPO_REGISTRO = "4";
+
     private NFSeBarueriOptanteSimplesNacional optanteSimplesNacional;
     private NFSeBarueriRegimeApuracaoTributariaSimplesNacional regimeApuracaoTributariaSimplesNacional;
     private NFSeBarueriPais paisLocalServicoPrestado;

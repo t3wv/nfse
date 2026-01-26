@@ -5,7 +5,8 @@ import org.apache.commons.lang3.StringUtils;
 
 public class NFSeBarueriRPSArquivoEnvioRegistroTipo5 extends NFSeBarueriRPSArquivoEnvioRegistro<NFSeBarueriRPSArquivoEnvioRegistroTipo5> {
 
-    static final String TIPO_REGISTRO = "5";
+    public static final String TIPO_REGISTRO = "5";
+
     private String codigoClassificacaoCreditoPresumidoIBSCBS;
     private NFSeBarueriEnteGovernamentalTipo tipoEnteGovernamentalParaAquisicaoServicoPelaAdministracaoPublica;
     private NFSeBarueriEnteGovernamentalOperacaoTipo tipoOperacaoEnteGovernamentalOuSobreBensImoveis;

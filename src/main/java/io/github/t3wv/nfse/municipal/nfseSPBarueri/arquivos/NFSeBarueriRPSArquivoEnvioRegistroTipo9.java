@@ -7,7 +7,8 @@ import java.math.RoundingMode;
 
 public class NFSeBarueriRPSArquivoEnvioRegistroTipo9 extends NFSeBarueriRPSArquivoEnvioRegistro<NFSeBarueriRPSArquivoEnvioRegistroTipo9> {
 
-    static final String TIPO_REGISTRO = "9";
+    public static final String TIPO_REGISTRO = "9";
+
     private int quantidadeLinhas;
     private BigDecimal valorTotalServicos;
     private BigDecimal valorTotalServicosContidosRegistro3;
