@@ -520,7 +520,7 @@ public class NFSeBarueriRPSArquivoEnvioRegistroTipo2 extends NFSeBarueriRPSArqui
                 StringUtils.rightPad(StringUtils.trimToEmpty(this.tipoRPS), 5),
                 StringUtils.rightPad(StringUtils.trimToEmpty(this.serieRPS), 4),
                 StringUtils.rightPad(StringUtils.trimToEmpty(this.serieNFe), 5),
-                StringUtils.leftPad(String.valueOf(this.numeroRPS), 10, '0'),
+                StringUtils.leftPad(this.numeroRPS != null ? this.numeroRPS.toString() : "", 10, '0'),
                 dataRPS.format(WSBarueri.FORMATO_DATA),
                 horaRPS.format(WSBarueri.FORMATO_HORA),
                 this.situacaoRPS.getCodigo(),
