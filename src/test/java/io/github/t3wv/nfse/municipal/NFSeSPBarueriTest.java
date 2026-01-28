@@ -1,6 +1,7 @@
 package io.github.t3wv.nfse.municipal;
 
 import io.github.t3wv.nfse.NFSeConfig;
+import io.github.t3wv.nfse.NFSeConfigTest;
 import io.github.t3wv.nfse.NFSeLogger;
 import io.github.t3wv.nfse.municipal.nfseSPBarueri.WSBarueri;
 import io.github.t3wv.nfse.municipal.nfseSPBarueri.arquivos.*;
@@ -28,11 +29,7 @@ public class NFSeSPBarueriTest implements NFSeLogger {
 
     @BeforeAll
     static void prepara() {
-        config = new NFSeConfig(
-                System.getenv("CERTIFICADO_PATH"),
-                System.getenv("CERTIFICADO_SENHA"),
-                System.getenv("CADEIA_CERTIFICADOS_PATH"),
-                System.getenv("CADEIA_CERTIFICADOS_SENHA"), true);
+        config = new NFSeConfigTest();
     }
 
     @Test

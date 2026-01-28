@@ -1,6 +1,7 @@
 package io.github.t3wv.nfse.utils;
 
 import io.github.t3wv.nfse.NFSeConfig;
+import io.github.t3wv.nfse.NFSeConfigTest;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -15,7 +16,7 @@ public class NFSeCadeiaCertificadosTest {
     @Disabled
     @BeforeAll
     static void prepara() {
-        config = new NFSeConfig(null, null, null, "senha", false);
+        config = new NFSeConfigTest();
     }
 
     @Test

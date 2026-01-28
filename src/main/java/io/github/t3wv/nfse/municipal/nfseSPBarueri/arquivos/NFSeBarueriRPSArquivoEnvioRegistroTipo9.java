@@ -1,9 +1,6 @@
 package io.github.t3wv.nfse.municipal.nfseSPBarueri.arquivos;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 public class NFSeBarueriRPSArquivoEnvioRegistroTipo9 extends NFSeBarueriRPSArquivoEnvioRegistro<NFSeBarueriRPSArquivoEnvioRegistroTipo9> {
 
@@ -58,8 +55,8 @@ public class NFSeBarueriRPSArquivoEnvioRegistroTipo9 extends NFSeBarueriRPSArqui
     public String toLinha() {
         return String.format("%s%s%s%s",
                 getTipoRegistro(),
-                StringUtils.rightPad(String.valueOf(this.quantidadeLinhas), 7),
-                StringUtils.leftPad(this.valorTotalServicos.setScale(2, RoundingMode.HALF_UP).toPlainString().replaceAll("[^0-9]", ""), 15, "0"),
-                StringUtils.leftPad(this.valorTotalServicosContidosRegistro3.setScale(2, RoundingMode.HALF_UP).toPlainString().replaceAll("[^0-9]", ""), 15, "0"));
+                trataString(this.quantidadeLinhas, 7),
+                trataNumerico(this.valorTotalServicos, 15),
+                trataNumerico(this.valorTotalServicosContidosRegistro3,15));
     }
 }

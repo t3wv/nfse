@@ -2,6 +2,7 @@ package io.github.t3wv.nfse.nacional.webservices;
 
 
 import io.github.t3wv.nfse.NFSeConfig;
+import io.github.t3wv.nfse.NFSeConfigTest;
 import io.github.t3wv.nfse.NFSeLogger;
 import io.github.t3wv.nfse.nacional.WSParametrosMunicipais;
 import io.github.t3wv.nfse.nacional.WSSefinNFSe;
@@ -29,11 +30,7 @@ public class NFSeNacionalTest implements NFSeLogger {
     @Disabled
     @BeforeAll
     public static void prepara() {
-        config = new NFSeConfig(
-                System.getenv("CERTIFICADO_PATH"),
-                System.getenv("CERTIFICADO_SENHA"),
-                System.getenv("CADEIA_CERTIFICADOS_PATH"),
-                System.getenv("CADEIA_CERTIFICADOS_SENHA"), false);
+        config = new NFSeConfigTest();
     }
 
     @Disabled
@@ -42,13 +39,6 @@ public class NFSeNacionalTest implements NFSeLogger {
         getLogger().info("Teste de consulta de convênio do município na API de Parâmetros Municipais do Governo Federal");
         final var codigoDoMunicipio = "3550308"; // SC - São José
         final var consulta = new WSParametrosMunicipais(config).consultaConvenioMunicipio(codigoDoMunicipio);
-//        Assertions.assertNotNull(consulta);
-//        Assertions.assertEquals("Parâmetros do convênio recuperados com sucesso.", consulta.getMensagem());
-//        Assertions.assertTrue(consulta.getParametrosConvenio().isAderenteAmbienteNacional());
-//        Assertions.assertFalse(consulta.getParametrosConvenio().isAderenteEmissorNacional());
-//        Assertions.assertFalse(consulta.getParametrosConvenio().isAderenteMAN());
-//        Assertions.assertTrue(consulta.getParametrosConvenio().isPermiteAproveitametoDeCreditos());
-//        Assertions.assertEquals(1, consulta.getParametrosConvenio().getSituacaoEmissaoPadraoContribuintesRFB());
         getLogger().info(consulta.toString());
     }
 

@@ -55,8 +55,8 @@ public class NFSeBarueriRPSArquivoEnvioRegistroTipo1 extends NFSeBarueriRPSArqui
     public String toLinha() {
         return String.format("%s%s%s%s",
                 getTipoRegistro(),
-                StringUtils.rightPad(StringUtils.trimToEmpty(inscricaoContribuinte), 7),
-                StringUtils.rightPad(StringUtils.trimToEmpty(versaoLayout), 6),
-                StringUtils.rightPad(StringUtils.trimToEmpty(identificacaoRemessaContribuinte), 11));
+                trataString(inscricaoContribuinte, 7),
+                trataString(versaoLayout, 6),
+                trataString(identificacaoRemessaContribuinte, 11));
     }
 }

@@ -19,7 +19,7 @@ class NFSeBarueriRPSArquivoEnvioTest {
                         .setQuantidadeLinhas(2)
                         .setValorTotalServicos(BigDecimal.ZERO)
                         .setValorTotalServicosContidosRegistro3(BigDecimal.ZERO));
-        final var expected = List.of("112345678909PMB00412345678901", "92      000000000000000000000000000000");
+        final var expected = List.of("11234567PMB00412345678901", "92      000000000000000000000000000000");
         Assertions.assertEquals(
                 expected,
                 envio.toLinhas());

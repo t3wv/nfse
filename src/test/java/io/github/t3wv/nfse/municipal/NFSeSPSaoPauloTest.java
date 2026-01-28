@@ -2,6 +2,7 @@ package io.github.t3wv.nfse.municipal;
 
 
 import io.github.t3wv.nfse.NFSeConfig;
+import io.github.t3wv.nfse.NFSeConfigTest;
 import io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.WSFacade;
 import io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.classes.*;
 import io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.requests.*;
@@ -20,11 +21,7 @@ public class NFSeSPSaoPauloTest {
     @Disabled
     @BeforeAll
     static void prepara() {
-        config = new NFSeConfig(
-                System.getenv("CERTIFICADO_PATH"),
-                System.getenv("CERTIFICADO_SENHA"),
-                System.getenv("CADEIA_CERTIFICADOS_PATH"),
-                System.getenv("CADEIA_CERTIFICADOS_SENHA"), true);
+        config = new NFSeConfigTest();
     }
 
     @Disabled

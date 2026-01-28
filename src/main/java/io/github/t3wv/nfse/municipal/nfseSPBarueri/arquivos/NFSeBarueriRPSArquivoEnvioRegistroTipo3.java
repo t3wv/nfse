@@ -4,7 +4,6 @@ import io.github.t3wv.nfse.municipal.nfseSPBarueri.enums.NFSeBarueriOutrosValore
 import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 public class NFSeBarueriRPSArquivoEnvioRegistroTipo3 extends NFSeBarueriRPSArquivoEnvioRegistro<NFSeBarueriRPSArquivoEnvioRegistroTipo3> {
 
@@ -49,6 +48,6 @@ public class NFSeBarueriRPSArquivoEnvioRegistroTipo3 extends NFSeBarueriRPSArqui
         return String.format("%s%s%s",
                 getTipoRegistro(),
                 this.outrosValoresTipo.getCodigo(),
-                StringUtils.leftPad(this.valor.setScale(2, RoundingMode.HALF_UP).toPlainString().replaceAll("[^0-9]", ""), 15, '0'));
+                trataNumerico(this.valor, 15));
     }
 }
