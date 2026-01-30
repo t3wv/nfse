@@ -1,5 +1,11 @@
 package io.github.t3wv.nfse.transformers;
 
+import io.github.t3wv.nfse.municipal.nfseSCSaoJose.enums.NFSeSCSaoJosePessoaTipo;
+import io.github.t3wv.nfse.municipal.nfseSCSaoJose.enums.NFSeSCSaoJoseSituacaoTributaria;
+import io.github.t3wv.nfse.municipal.nfseSCSaoJose.enums.NFSeSCSaoJoseTipoPagamento;
+import io.github.t3wv.nfse.municipal.nfseSCSaoJose.transformers.NFSeSCSaoJosePessoaTipoTransformer;
+import io.github.t3wv.nfse.municipal.nfseSCSaoJose.transformers.NFSeSCSaoJoseSituacaoTributariaTransformer;
+import io.github.t3wv.nfse.municipal.nfseSCSaoJose.transformers.NFSeSCSaoJoseTipoPagamentoTransformer;
 import io.github.t3wv.nfse.municipal.nfseSPBarueri.enums.NFSeBarueriArquivoRetornoSituacaoArquivo;
 import io.github.t3wv.nfse.municipal.nfseSPBarueri.transformers.NFSeBarueriArquivoRetornoSituacaoArquivoTransformer;
 import io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.classes.TpOpcaoSimplesNFe;
@@ -18,6 +24,7 @@ public class NFSeRegistryMatcher extends RegistryMatcher {
         super.bind(LocalDateTime.class, new NFSeLocalDateTimeTransformer());
         super.bind(YearMonth.class, new NFSeYearMonthTransformer());
         super.bind(ZonedDateTime.class, new NFSeZonedDateTimeTransformer());
+        super.bind(Boolean.class, new NFSeBooleanTransformer());
 
         // NFSe
         super.bind(NFSeSefinNacionalTipoAmbiente.class, new NFSeSefinNacionalTipoAmbienteTransformer());
@@ -59,7 +66,13 @@ public class NFSeRegistryMatcher extends RegistryMatcher {
         // NFSe São Paulo
         super.bind(TpOpcaoSimplesNFe.class, new NFSeSPSaoPauloTpOpcaoSimplesNFeTransformer());
 
-        //NFSe Barueri
+        // NFSe Barueri
         super.bind(NFSeBarueriArquivoRetornoSituacaoArquivo.class, new NFSeBarueriArquivoRetornoSituacaoArquivoTransformer());
+
+        // NFSe São José-SC
+        super.bind(NFSeSCSaoJosePessoaTipo.class, new NFSeSCSaoJosePessoaTipoTransformer());
+        super.bind(NFSeSCSaoJoseSituacaoTributaria.class, new NFSeSCSaoJoseSituacaoTributariaTransformer());
+        super.bind(NFSeSCSaoJoseTipoPagamento.class, new NFSeSCSaoJoseTipoPagamentoTransformer());
+
     }
 }

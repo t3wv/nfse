@@ -3,6 +3,7 @@ package io.github.t3wv.nfse.transformers;
 import org.simpleframework.xml.transform.Transform;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
@@ -13,10 +14,11 @@ public class NFSeBigDecimalTransformer implements Transform<BigDecimal> {
         public NFSeBigDecimalTransformer() {
             DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.of("pt", "BR"));
             symbols.setDecimalSeparator(',');
-            symbols.setGroupingSeparator('.');
 
             formatter = new DecimalFormat("#,##0.00", symbols);
             formatter.setParseBigDecimal(true);
+            formatter.setGroupingUsed(false);
+            formatter.setRoundingMode(RoundingMode.HALF_UP);
         }
 
         @Override
