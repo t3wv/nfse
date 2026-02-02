@@ -30,6 +30,14 @@ public class NFSeSCSaoJoseEmissaoRetorno {
         return this;
     }
 
+    public List<String> getMensagem() {
+        return mensagem;
+    }
+
+    public NFSeSCSaoJoseEmissaoRetorno setMensagem(List<String> mensagem) {
+        this.mensagem = mensagem;
+        return this;
+    }
 
     public String toXml() throws Exception {
         final var registryMatcher = new NFSeRegistryMatcher();

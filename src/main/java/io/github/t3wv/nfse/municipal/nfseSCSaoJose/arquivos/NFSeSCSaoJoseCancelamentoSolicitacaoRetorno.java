@@ -23,6 +23,15 @@ public class NFSeSCSaoJoseCancelamentoSolicitacaoRetorno {
     @ElementList(inline = true, entry = "nfse", required = false)
     private List<NFSeSCSaoJoseNFSeCancelamentoSolicitacaoRetorno> documentos;
 
+    public List<String> getMensagem() {
+        return mensagem;
+    }
+
+    public NFSeSCSaoJoseCancelamentoSolicitacaoRetorno setMensagem(List<String> mensagem) {
+        this.mensagem = mensagem;
+        return this;
+    }
+
     public List<NFSeSCSaoJoseNFSeCancelamentoSolicitacaoRetorno> getDocumentos() {
         return documentos;
     }

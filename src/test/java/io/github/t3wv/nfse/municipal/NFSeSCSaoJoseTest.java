@@ -8,6 +8,7 @@ import io.github.t3wv.nfse.municipal.nfseSCSaoJose.arquivos.NFSeSCSaoJoseEmissao
 import io.github.t3wv.nfse.municipal.nfseSCSaoJose.arquivos.NFSeSCSaoJosePesquisaCodigoAutenticidadeEnvio;
 import io.github.t3wv.nfse.municipal.nfseSCSaoJose.classes.*;
 import io.github.t3wv.nfse.municipal.nfseSCSaoJose.enums.NFSeSCSaoJosePessoaTipo;
+import io.github.t3wv.nfse.municipal.nfseSCSaoJose.enums.NFSeSCSaoJoseSituacaoTributaria;
 import io.github.t3wv.nfse.nacional.classes.nfsenacional.NFSeSefinNacionalInfDPS;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -35,7 +36,7 @@ class NFSeSCSaoJoseTest implements NFSeLogger {
         final var arquivo = new NFSeSCSaoJoseEmissaoEnvio()
             .setTeste(true)
             .setNf(
-                new NFSeSCSaoJoseNFSeEmissao()
+                new NFSeSCSaoJoseNF()
                     .setValorTotal(new BigDecimal("")))
             .setPrestador(
                 new NFSeSCSaoJoseNFSePrestador()
@@ -54,7 +55,7 @@ class NFSeSCSaoJoseTest implements NFSeLogger {
                     .setDescritivo("")
                     .setAliquotaItemListaServico(new BigDecimal(""))
                     .setTributaMunicipioPrestador(true)
-                    .setSituacaoTributaria("")
+                    .setSituacaoTributaria(NFSeSCSaoJoseSituacaoTributaria.TRIBUTADA_INTEGRALMENTE)
                     .setValorTributavel(new BigDecimal(""))
                     .setValorDeducao(BigDecimal.ZERO)
                     .setValorISSRF(BigDecimal.ZERO)
@@ -112,7 +113,7 @@ class NFSeSCSaoJoseTest implements NFSeLogger {
         nfseSCSaoJose
             .setTeste(true)
             .setNf(
-                new NFSeSCSaoJoseNFSeEmissao()
+                new NFSeSCSaoJoseNF()
                     .setValorTotal(nfseSefinNacionalInfDPS.getValores().getValoresServicoPrestado().getValorServicos()))
             .setPrestador(
                 new NFSeSCSaoJoseNFSePrestador()
@@ -132,7 +133,7 @@ class NFSeSCSaoJoseTest implements NFSeLogger {
                         .setDescritivo(nfseSefinNacionalInfDPS.getServicoPrestado().getCServ().getDescricaoServico())
                         .setAliquotaItemListaServico(BigDecimal.ZERO)
                         .setTributaMunicipioPrestador(true)
-                        .setSituacaoTributaria("0")
+                        .setSituacaoTributaria(NFSeSCSaoJoseSituacaoTributaria.TRIBUTADA_INTEGRALMENTE)
                         .setValorTributavel(nfseSefinNacionalInfDPS.getValores().getValoresServicoPrestado().getValorServicos())
                         .setValorDeducao(BigDecimal.ZERO)
                         .setValorISSRF(BigDecimal.ZERO)

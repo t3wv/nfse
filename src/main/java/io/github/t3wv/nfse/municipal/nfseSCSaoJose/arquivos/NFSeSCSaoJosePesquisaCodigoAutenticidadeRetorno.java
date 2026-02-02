@@ -1,6 +1,6 @@
 package io.github.t3wv.nfse.municipal.nfseSCSaoJose.arquivos;
 
-import io.github.t3wv.nfse.municipal.nfseSCSaoJose.classes.NFSeSCSaoJoseNFSeEmissao;
+import io.github.t3wv.nfse.municipal.nfseSCSaoJose.classes.NFSeSCSaoJoseNF;
 import io.github.t3wv.nfse.municipal.nfseSCSaoJose.classes.NFSeSCSaoJoseNFSeListaItem;
 import io.github.t3wv.nfse.municipal.nfseSCSaoJose.classes.NFSeSCSaoJoseNFSePrestador;
 import io.github.t3wv.nfse.municipal.nfseSCSaoJose.classes.NFSeSCSaoJoseNFSeTomador;
@@ -25,7 +25,7 @@ public class NFSeSCSaoJosePesquisaCodigoAutenticidadeRetorno {
     private List<String> mensagem;
 
     @Element(name = "nf", required = false)
-    private NFSeSCSaoJoseNFSeEmissao nf;
+    private NFSeSCSaoJoseNF nf;
 
     @Element(name = "prestador", required = false)
     private NFSeSCSaoJoseNFSePrestador prestador;
@@ -37,11 +37,20 @@ public class NFSeSCSaoJosePesquisaCodigoAutenticidadeRetorno {
     @ElementList(inline = true, entry = "lista", required = false)
     private List<NFSeSCSaoJoseNFSeListaItem> itens;
 
-    public NFSeSCSaoJoseNFSeEmissao getNf() {
+    public List<String> getMensagem() {
+        return mensagem;
+    }
+
+    public NFSeSCSaoJosePesquisaCodigoAutenticidadeRetorno setMensagem(List<String> mensagem) {
+        this.mensagem = mensagem;
+        return this;
+    }
+
+    public NFSeSCSaoJoseNF getNf() {
         return nf;
     }
 
-    public NFSeSCSaoJosePesquisaCodigoAutenticidadeRetorno setNf(NFSeSCSaoJoseNFSeEmissao nf) {
+    public NFSeSCSaoJosePesquisaCodigoAutenticidadeRetorno setNf(NFSeSCSaoJoseNF nf) {
         this.nf = nf;
         return this;
     }

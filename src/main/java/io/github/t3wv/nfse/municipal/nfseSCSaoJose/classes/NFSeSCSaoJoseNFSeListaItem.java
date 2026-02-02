@@ -1,5 +1,6 @@
 package io.github.t3wv.nfse.municipal.nfseSCSaoJose.classes;
 
+import io.github.t3wv.nfse.municipal.nfseSCSaoJose.enums.NFSeSCSaoJoseSituacaoTributaria;
 import io.github.t3wv.nfse.transformers.NFSeBigDecimalTransformer;
 import io.github.t3wv.nfse.transformers.NFSeBooleanTransformer;
 import io.github.t3wv.nfse.transformers.NFSeRegistryMatcher;
@@ -44,7 +45,7 @@ public class NFSeSCSaoJoseNFSeListaItem {
     private BigDecimal aliquotaItemListaServico;
 
     @Element(name = "situacao_tributaria")
-    private String situacaoTributaria;
+    private NFSeSCSaoJoseSituacaoTributaria situacaoTributaria;
 
     @Element(name = "valor_tributavel")
     private BigDecimal valorTributavel;
@@ -146,11 +147,11 @@ public class NFSeSCSaoJoseNFSeListaItem {
         return this;
     }
 
-    public String getSituacaoTributaria() {
+    public NFSeSCSaoJoseSituacaoTributaria getSituacaoTributaria() {
         return situacaoTributaria;
     }
 
-    public NFSeSCSaoJoseNFSeListaItem setSituacaoTributaria(String situacaoTributaria) {
+    public NFSeSCSaoJoseNFSeListaItem setSituacaoTributaria(NFSeSCSaoJoseSituacaoTributaria situacaoTributaria) {
         this.situacaoTributaria = situacaoTributaria;
         return this;
     }

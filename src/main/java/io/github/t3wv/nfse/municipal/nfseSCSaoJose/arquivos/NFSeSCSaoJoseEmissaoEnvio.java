@@ -31,7 +31,7 @@ public class NFSeSCSaoJoseEmissaoEnvio {
     private NFSeSCSaoJoseNFSePedagio pedagio;
 
     @Element(name = "nf")
-    private NFSeSCSaoJoseNFSeEmissao nf;
+    private NFSeSCSaoJoseNF nf;
 
     @Element(name = "prestador")
     private NFSeSCSaoJoseNFSePrestador prestador;
@@ -91,11 +91,11 @@ public class NFSeSCSaoJoseEmissaoEnvio {
         return this;
     }
 
-    public NFSeSCSaoJoseNFSeEmissao getNf() {
+    public NFSeSCSaoJoseNF getNf() {
         return nf;
     }
 
-    public NFSeSCSaoJoseEmissaoEnvio setNf(NFSeSCSaoJoseNFSeEmissao nf) {
+    public NFSeSCSaoJoseEmissaoEnvio setNf(NFSeSCSaoJoseNF nf) {
         this.nf = nf;
         return this;
     }

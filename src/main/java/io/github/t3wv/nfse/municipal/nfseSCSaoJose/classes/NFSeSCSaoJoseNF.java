@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class NFSeSCSaoJoseNFSeEmissao {
+public class NFSeSCSaoJoseNF {
 
     @Element(name = "serie_nfse", required = false)
     private String serieNFSe;
@@ -100,7 +100,7 @@ public class NFSeSCSaoJoseNFSeEmissao {
         return numeroNFSe;
     }
 
-    public NFSeSCSaoJoseNFSeEmissao setNumeroNFSe(String numeroNFSe) {
+    public NFSeSCSaoJoseNF setNumeroNFSe(String numeroNFSe) {
         this.numeroNFSe = numeroNFSe;
         return this;
     }
@@ -118,7 +118,7 @@ public class NFSeSCSaoJoseNFSeEmissao {
         return serieNFSe;
     }
 
-    public NFSeSCSaoJoseNFSeEmissao setSerieNFSe(String serieNFSe) {
+    public NFSeSCSaoJoseNF setSerieNFSe(String serieNFSe) {
         this.serieNFSe = serieNFSe;
         return this;
     }
@@ -127,7 +127,7 @@ public class NFSeSCSaoJoseNFSeEmissao {
         return dataFatoGerador;
     }
 
-    public NFSeSCSaoJoseNFSeEmissao setDataFatoGerador(LocalDate dataFatoGerador) {
+    public NFSeSCSaoJoseNF setDataFatoGerador(LocalDate dataFatoGerador) {
         this.dataFatoGerador = dataFatoGerador;
         return this;
     }
@@ -136,7 +136,7 @@ public class NFSeSCSaoJoseNFSeEmissao {
         return valorTotal;
     }
 
-    public NFSeSCSaoJoseNFSeEmissao setValorTotal(BigDecimal valorTotal) {
+    public NFSeSCSaoJoseNF setValorTotal(BigDecimal valorTotal) {
         this.valorTotal = valorTotal;
         return this;
     }
@@ -145,7 +145,7 @@ public class NFSeSCSaoJoseNFSeEmissao {
         return valorDesconto;
     }
 
-    public NFSeSCSaoJoseNFSeEmissao setValorDesconto(BigDecimal valorDesconto) {
+    public NFSeSCSaoJoseNF setValorDesconto(BigDecimal valorDesconto) {
         this.valorDesconto = valorDesconto;
         return this;
     }
@@ -154,7 +154,7 @@ public class NFSeSCSaoJoseNFSeEmissao {
         return valorIR;
     }
 
-    public NFSeSCSaoJoseNFSeEmissao setValorIR(BigDecimal valorIR) {
+    public NFSeSCSaoJoseNF setValorIR(BigDecimal valorIR) {
         this.valorIR = valorIR;
         return this;
     }
@@ -163,7 +163,7 @@ public class NFSeSCSaoJoseNFSeEmissao {
         return valorINSS;
     }
 
-    public NFSeSCSaoJoseNFSeEmissao setValorINSS(BigDecimal valorINSS) {
+    public NFSeSCSaoJoseNF setValorINSS(BigDecimal valorINSS) {
         this.valorINSS = valorINSS;
         return this;
     }
@@ -172,7 +172,7 @@ public class NFSeSCSaoJoseNFSeEmissao {
         return valorContribuicaoSocial;
     }
 
-    public NFSeSCSaoJoseNFSeEmissao setValorContribuicaoSocial(BigDecimal valorContribuicaoSocial) {
+    public NFSeSCSaoJoseNF setValorContribuicaoSocial(BigDecimal valorContribuicaoSocial) {
         this.valorContribuicaoSocial = valorContribuicaoSocial;
         return this;
     }
@@ -181,7 +181,7 @@ public class NFSeSCSaoJoseNFSeEmissao {
         return valorRPS;
     }
 
-    public NFSeSCSaoJoseNFSeEmissao setValorRPS(BigDecimal valorRPS) {
+    public NFSeSCSaoJoseNF setValorRPS(BigDecimal valorRPS) {
         this.valorRPS = valorRPS;
         return this;
     }
@@ -190,7 +190,7 @@ public class NFSeSCSaoJoseNFSeEmissao {
         return valorPIS;
     }
 
-    public NFSeSCSaoJoseNFSeEmissao setValorPIS(BigDecimal valorPIS) {
+    public NFSeSCSaoJoseNF setValorPIS(BigDecimal valorPIS) {
         this.valorPIS = valorPIS;
         return this;
     }
@@ -199,7 +199,7 @@ public class NFSeSCSaoJoseNFSeEmissao {
         return valorCOFINS;
     }
 
-    public NFSeSCSaoJoseNFSeEmissao setValorCOFINS(BigDecimal valorCOFINS) {
+    public NFSeSCSaoJoseNF setValorCOFINS(BigDecimal valorCOFINS) {
         this.valorCOFINS = valorCOFINS;
         return this;
     }
@@ -208,7 +208,7 @@ public class NFSeSCSaoJoseNFSeEmissao {
         return observacao;
     }
 
-    public NFSeSCSaoJoseNFSeEmissao setObservacao(String observacao) {
+    public NFSeSCSaoJoseNF setObservacao(String observacao) {
         this.observacao = observacao;
         return this;
     }
@@ -226,7 +226,7 @@ public class NFSeSCSaoJoseNFSeEmissao {
         return dataNfse;
     }
 
-    public NFSeSCSaoJoseNFSeEmissao setDataNfse(LocalDate dataNfse) {
+    public NFSeSCSaoJoseNF setDataNfse(LocalDate dataNfse) {
         this.dataNfse = dataNfse;
         return this;
     }
@@ -235,7 +235,7 @@ public class NFSeSCSaoJoseNFSeEmissao {
         return horaNfse;
     }
 
-    public NFSeSCSaoJoseNFSeEmissao setHoraNfse(LocalTime horaNfse) {
+    public NFSeSCSaoJoseNF setHoraNfse(LocalTime horaNfse) {
         this.horaNfse = horaNfse;
         return this;
     }
@@ -244,7 +244,7 @@ public class NFSeSCSaoJoseNFSeEmissao {
         return situacaoCodigoNfse;
     }
 
-    public NFSeSCSaoJoseNFSeEmissao setSituacaoCodigoNfse(String situacaoCodigoNfse) {
+    public NFSeSCSaoJoseNF setSituacaoCodigoNfse(String situacaoCodigoNfse) {
         this.situacaoCodigoNfse = situacaoCodigoNfse;
         return this;
     }
@@ -253,7 +253,7 @@ public class NFSeSCSaoJoseNFSeEmissao {
         return situacaoDescricaoNfse;
     }
 
-    public NFSeSCSaoJoseNFSeEmissao setSituacaoDescricaoNfse(String situacaoDescricaoNfse) {
+    public NFSeSCSaoJoseNF setSituacaoDescricaoNfse(String situacaoDescricaoNfse) {
         this.situacaoDescricaoNfse = situacaoDescricaoNfse;
         return this;
     }
@@ -262,7 +262,7 @@ public class NFSeSCSaoJoseNFSeEmissao {
         return linkNfse;
     }
 
-    public NFSeSCSaoJoseNFSeEmissao setLinkNfse(String linkNfse) {
+    public NFSeSCSaoJoseNF setLinkNfse(String linkNfse) {
         this.linkNfse = linkNfse;
         return this;
     }
@@ -271,7 +271,7 @@ public class NFSeSCSaoJoseNFSeEmissao {
         return codVerificadorAutenticidade;
     }
 
-    public NFSeSCSaoJoseNFSeEmissao setCodVerificadorAutenticidade(String codVerificadorAutenticidade) {
+    public NFSeSCSaoJoseNF setCodVerificadorAutenticidade(String codVerificadorAutenticidade) {
         this.codVerificadorAutenticidade = codVerificadorAutenticidade;
         return this;
     }
@@ -280,7 +280,7 @@ public class NFSeSCSaoJoseNFSeEmissao {
         return chaveAcessoNfseNacional;
     }
 
-    public NFSeSCSaoJoseNFSeEmissao setChaveAcessoNfseNacional(String chaveAcessoNfseNacional) {
+    public NFSeSCSaoJoseNF setChaveAcessoNfseNacional(String chaveAcessoNfseNacional) {
         this.chaveAcessoNfseNacional = chaveAcessoNfseNacional;
         return this;
     }
@@ -289,7 +289,7 @@ public class NFSeSCSaoJoseNFSeEmissao {
         return dataFato;
     }
 
-    public NFSeSCSaoJoseNFSeEmissao setDataFato(LocalDate dataFato) {
+    public NFSeSCSaoJoseNF setDataFato(LocalDate dataFato) {
         this.dataFato = dataFato;
         return this;
     }
