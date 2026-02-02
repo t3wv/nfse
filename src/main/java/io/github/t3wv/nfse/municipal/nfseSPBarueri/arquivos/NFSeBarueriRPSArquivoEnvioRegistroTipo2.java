@@ -547,7 +547,7 @@ public class NFSeBarueriRPSArquivoEnvioRegistroTipo2 extends NFSeBarueriRPSArqui
                 trataNumerico(this.paisTomadorEstrangeiro != null ? this.paisTomadorEstrangeiro.getCodigo() : "", 3),
                 this.servicoExportacao ? "1" : "2",
                 this.indicadorCpfCnpjTomador != null ? this.indicadorCpfCnpjTomador.getCodigo() : NFSeBarueriPessoaTipo.ESTRANGEIRA.getCodigo(),
-                trataNumerico(this.cpfCnpjTomador, 14),
+                StringUtils.isNotBlank(this.cpfCnpjTomador) ? trataNumerico(this.cpfCnpjTomador, 14) : trataString("", 14),
                 trataString(this.razaoSocialTomador, 60),
                 trataString(this.enderecoLogradouroTomador, 75),
                 trataString(this.enderecoNumeroTomador, 9),
