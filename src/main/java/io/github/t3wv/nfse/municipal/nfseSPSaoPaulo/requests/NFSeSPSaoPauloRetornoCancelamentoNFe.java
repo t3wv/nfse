@@ -1,6 +1,6 @@
 package io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.requests;// java
 
-import io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.classes.TpEvento;
+import io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.tipos.TpEvento;
 import io.github.t3wv.nfse.utils.NFSePersister;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;

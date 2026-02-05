@@ -12,11 +12,9 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.InputStream;
-import java.math.BigDecimal;
 import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -33,60 +31,47 @@ public class NFSeSPBarueriTest implements NFSeLogger {
     }
 
     @Test
-    public void testeEmiteCancela() throws Exception {
+    void name() {
+        NFSeBarueriRPSArquivoEnvioRegistroTipo1 linha1 = new NFSeBarueriRPSArquivoEnvioRegistroTipo1().fromLinha("14458481PMB00326013070205");
+        NFSeBarueriRPSArquivoEnvioRegistroTipo2 linha2 = new NFSeBarueriRPSArquivoEnvioRegistroTipo2().fromLinha("2RPS           000822690420260130193005E                                                                                                                                                                                                          10030122012Av Ipanema                                                                 165                                    Dezoito do Forte Emp                    Alphaville                              SP06472002000001000000006591636     00000000000000010751               Paramount Pictures Corporation                              5555 Melrose Avenue, 5555                                                  SN                                     5555 MELROSE AVENUE                     Los Angeles                               00000000faturamento@imagemfilmes.com.br                                                                                                                                                             Licenciamento para exibi��o de obra audiovisual.|PREDESTINADO: ARIG� E O ESP�RITO DO DR. FRITZ; SVOD; De 01/04/2025 a 30/06/2025; R$ 65.916,36                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ");
+        NFSeBarueriRPSArquivoEnvioRegistroTipo4 linha4 = new NFSeBarueriRPSArquivoEnvioRegistroTipo4().fromLinha("41    3505708       132574663                               12501400090038      CA                                                          0                                                                                                                                                                                                                                                                                                                                                                                                    01");
+        NFSeBarueriRPSArquivoEnvioRegistroTipo9 linha9 = new NFSeBarueriRPSArquivoEnvioRegistroTipo9().fromLinha("94      000000006591636000000000000000");
+
         final var arquivo = new NFSeBarueriRPSArquivoEnvio()
-                .addRegistro(new NFSeBarueriRPSArquivoEnvioRegistroTipo1()
-                        .setInscricaoContribuinte("4458481")
-                        //.setVersaoLayout("PMB004")
-                        .setVersaoLayout("PMB003")
-                        .setIdentificacaoRemessaContribuinte("%s%s".formatted(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMdd")), LocalTime.now().toSecondOfDay())))
-                .addRegistro(new NFSeBarueriRPSArquivoEnvioRegistroTipo2()
-                        .setTipoRPS("RPS")
-                        .setNumeroRPS((long) LocalTime.now().toSecondOfDay())
-                        .setDataRPS(LocalDate.now())
-                        .setHoraRPS(LocalTime.now())
-                        .setSituacaoRPS(NFSeBarueriSituacao.ENVIADO)
-                        .setCodigoServicoPrestado("990101200")
-                        .setLocalPrestacaoServico(NFSeBarueriLocalPrestacaoServico.OUTROS)
-                        .setServicoPrestadoEmViaPublica(false)
-                        .setEnderecoLogradouroLocalServicoPrestado("AV PRESIDENTE KENNEDY")
-                        .setEnderecoNumeroLocalServicoPrestado("568")
-                        .setEnderecoComplementoLocalServicoPrestado("SALA 902")
-                        .setEnderecoBairroLocalServicoPrestado("CAMPINAS")
-                        .setEnderecoCidadeLocalServicoPrestado("SAO JOSE")
-                        .setEnderecoUFLocalServicoPrestado("SC")
-                        .setEnderecoCEPLocalServicoPrestado("88101050")
-                        .setQuantidadeServicoPrestado(1)
-                        .setValorServicoPrestado(BigDecimal.TEN)
-                        .setValorRetencoes(BigDecimal.ZERO)
-                        .setTomadorEstrangeiro(false)
-                        .setServicoExportacao(false)
-                        .setIndicadorCpfCnpjTomador(NFSeBarueriPessoaTipo.JURIDICA)
-                        .setCpfCnpjTomador("52398509000138")
-                        .setRazaoSocialTomador("T3W TECNOLOGIA LTDA")
-                        .setEnderecoLogradouroTomador("RUA")
-                        .setEnderecoNumeroTomador("NUMERO")
-                        .setEnderecoComplementoTomador("COMPLEMENTO")
-                        .setEnderecoBairroTomador("BAIRRO")
-                        .setEnderecoCidadeTomador("SAO JOSE")
-                        .setEnderecoUFTomador("SC")
-                        .setEnderecoCEPTomador("88101050")
-                        .setEmailTomador("DIEGO@T3W.IO")
-                        .setDiscriminacaoServico("TESTE DE EMISSAO E CANCELAMENTO"))
-                .addRegistro(new NFSeBarueriRPSArquivoEnvioRegistroTipo4()
-                        .setIndicadorDestinatarioServico(NFSeBarueriIndicadorDestinatarioServico.TERCEIRO)
-                        .setOptanteSimplesNacional(NFSeBarueriOptanteSimplesNacional.NAO_OPTANTE)
-                        .setCodigoCidadeLocalServicoPrestado("4216602")
-                        .setCodigoCidadeTomador("4216602")
-                        //.setCodigoNBS("102010000")
-                        .setCodigoIndicadorOperacaoFornecimento("100301")
-                        .setCodigoClassificacaoTributariaIBSCBS("000001")
-                        .setCodigoSituacaoTributariaIBSCBS("410")
-                        .setOperacaoConsumoPessoal(false))
-                .addRegistro(new NFSeBarueriRPSArquivoEnvioRegistroTipo9()
-                        .setQuantidadeLinhas(4)
-                        .setValorTotalServicos(BigDecimal.TEN)
-                        .setValorTotalServicosContidosRegistro3(BigDecimal.ZERO));
+            .addRegistro(linha1)
+            .addRegistro(linha2)
+            .addRegistro(linha4)
+            .addRegistro(linha9);
+
+        System.out.println(linha2.getPaisTomadorEstrangeiro());
+        System.out.println(linha2.getEnderecoUFTomador());
+        System.out.println(linha2.getEnderecoCEPTomador());
+        System.out.println(linha2.getServicoExportacao());
+        System.out.println(linha4.getCodigoNBS());
+
+    }
+
+    @Test
+    public void testeEmiteCancela() throws Exception {
+        NFSeBarueriRPSArquivoEnvioRegistroTipo1 linha1 = new NFSeBarueriRPSArquivoEnvioRegistroTipo1().fromLinha("14458481PMB00326013070205");
+        NFSeBarueriRPSArquivoEnvioRegistroTipo2 linha2 = new NFSeBarueriRPSArquivoEnvioRegistroTipo2().fromLinha("2RPS           000822690420260130193005E                                                                                                                                                                                                          10030122012Av Ipanema                                                                 165                                    Dezoito do Forte Emp                    Alphaville                              SP06472002000001000000006591636     00000000000000010751               Paramount Pictures Corporation                              5555 Melrose Avenue, 5555                                                  SN                                     5555 MELROSE AVENUE                     Los Angeles                               00000000faturamento@imagemfilmes.com.br                                                                                                                                                             Licenciamento para exibi��o de obra audiovisual.|PREDESTINADO: ARIG� E O ESP�RITO DO DR. FRITZ; SVOD; De 01/04/2025 a 30/06/2025; R$ 65.916,36                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ");
+        NFSeBarueriRPSArquivoEnvioRegistroTipo4 linha4 = new NFSeBarueriRPSArquivoEnvioRegistroTipo4().fromLinha("41    3505708       132574663                               12501400090038      CA                                                          0                                                                                                                                                                                                                                                                                                                                                                                                    01");
+        NFSeBarueriRPSArquivoEnvioRegistroTipo9 linha9 = new NFSeBarueriRPSArquivoEnvioRegistroTipo9().fromLinha("94      000000006591636000000000000000");
+
+        linha1.setIdentificacaoRemessaContribuinte("26013070211");
+
+        linha2.setLocalPrestacaoServico(NFSeBarueriLocalPrestacaoServico.OUTROS);
+
+        linha4.setCodigoCidadeLocalServicoPrestado(null);
+        linha4.setCodigoPostalLocalServicoPrestadoExterior("666");
+        linha4.setEstadoProvinciaRegiaoLocalServicoPrestadoExterior("sldfk");
+        linha4.setPaisLocalServicoPrestado(NFSeBarueriPais.US);
+
+        final var arquivo = new NFSeBarueriRPSArquivoEnvio()
+            .addRegistro(linha1)
+            .addRegistro(linha2)
+            .addRegistro(linha4)
+            .addRegistro(linha9);
 
         final var wsBarueri = new WSBarueri(config);
 

@@ -1,7 +1,7 @@
 package io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.utils;
 
 import io.github.t3wv.nfse.NFSeConfig;
-import io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.classes.TpRPS;
+import io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.tipos.TpRPS;
 import io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.requests.NFSeSPSaoPauloRequestEnvioRPS;
 import io.github.t3wv.nfse.utils.NFSeUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -28,10 +28,10 @@ public abstract class NFSeSPSaoPauloUtils {
                 assinaturaDigitalString.append(StringUtils.rightPad(StringUtils.trimToEmpty(chaveRps.getSerieRPS()), 5));
                 assinaturaDigitalString.append(StringUtils.leftPad(chaveRps.getNumeroRPS(), 12, "0"));
                 assinaturaDigitalString.append(rps.getDataEmissao().format(DateTimeFormatter.ofPattern("yyyyMMdd")));
-                assinaturaDigitalString.append(rps.getTributacaoRPS());
+                assinaturaDigitalString.append(rps.getTributacaoRPS().getCodigo());
                 assinaturaDigitalString.append(rps.getStatusRPS());
                 assinaturaDigitalString.append(rps.isISSRetido() ? "S" : "N");
-                assinaturaDigitalString.append(StringUtils.leftPad(String.valueOf(versaoSchemas.equals("2") ? rps.getValorInicialCobrado() : rps.getValorServicos()).replaceAll("\\D", ""), 15, "0"));
+                assinaturaDigitalString.append(StringUtils.leftPad(String.valueOf(versaoSchemas.equals("2") ? rps.getValorFinalCobrado() : rps.getValorServicos()).replaceAll("\\D", ""), 15, "0"));
                 assinaturaDigitalString.append(StringUtils.leftPad(String.valueOf(rps.getValorDeducoes()).replaceAll("\\D", ""), 15, "0"));
                 assinaturaDigitalString.append(StringUtils.leftPad(rps.getCodigoServico(), 5, "0"));
                 assinaturaDigitalString.append(NFSeUtils.isCpfValido(tomador.getCPF()) ? "1" : NFSeUtils.isCnpjValido(tomador.getCNPJ()) ? "2" : versaoSchemas.equals("2") && StringUtils.isNotBlank(tomador.getNIF()) ? "4" : "3");

@@ -27,44 +27,45 @@ class NFSeSCSaoJoseTest implements NFSeLogger {
 
     @BeforeAll
     static void setup() {
-        ws = new WSSaoJose("", "");
+        ws = new WSSaoJose("52398509000138", "T3w2023-");
     }
 
     @Disabled
     @Test
     void testeEmissaoSJ() throws Exception {
         final var arquivo = new NFSeSCSaoJoseEmissaoEnvio()
-            .setTeste(true)
+            .setTeste(false)
             .setNf(
                 new NFSeSCSaoJoseNF()
-                    .setValorTotal(new BigDecimal("")))
+                    .setValorTotal(new BigDecimal("0.01"))
+                    .setSerieNFSe("1"))
             .setPrestador(
                 new NFSeSCSaoJoseNFSePrestador()
-                    .setCidade("")
-                    .setCpfCnpj(""))
+                    .setCidade("4216602")
+                    .setCpfCnpj("52398509000138"))
             .setTomador(
                 new NFSeSCSaoJoseNFSeTomador()
                     .setTipoPessoa(NFSeSCSaoJosePessoaTipo.FISICA)
-                    .setCpfcnpj("")
-                    .setNomeRazaoSocial("")
-                    .setEmail(""))
+                    .setCpfcnpj("08205599971")
+                    .setNomeRazaoSocial("Rafael da Silva Pereira")
+                    .setEmail("rpereira@t3w.io"))
             .addItem(
                 new NFSeSCSaoJoseNFSeListaItem()
-                    .setCodigoLocalPrestacaoServico("")
-                    .setCodigoItemListaServico("")
-                    .setDescritivo("")
-                    .setAliquotaItemListaServico(new BigDecimal(""))
+                    .setCodigoLocalPrestacaoServico("4216602")
+                    .setCodigoItemListaServico("010101")
+                    .setDescritivo("Teste emissão e cancelamento")
+                    .setAliquotaItemListaServico(new BigDecimal("2.00"))
                     .setTributaMunicipioPrestador(true)
                     .setSituacaoTributaria(NFSeSCSaoJoseSituacaoTributaria.TRIBUTADA_INTEGRALMENTE)
-                    .setValorTributavel(new BigDecimal(""))
+                    .setValorTributavel(new BigDecimal("0.01"))
                     .setValorDeducao(BigDecimal.ZERO)
                     .setValorISSRF(BigDecimal.ZERO)
-                    .setUnidadeCodigo("")
+                    .setUnidadeCodigo("1")
                     .setUnidadeQuantidade(BigDecimal.ONE)
-                    .setUnidadeValorUnitario(new BigDecimal(""))
+                    .setUnidadeValorUnitario(new BigDecimal("0.01"))
             );
 
-        final var retorno = ws.enviarEmissaoNFSe(arquivo, "arquivo.xml");
+        final var retorno = ws.enviarEmissaoNFSe(arquivo, "arquivo.xptossssa33");
         this.getLogger().info("NFSe emitida com sucesso: {}", retorno.toXml());
     }
 
@@ -79,8 +80,8 @@ class NFSeSCSaoJoseTest implements NFSeLogger {
     @Disabled
     @Test
     void testeCancelamento() throws Exception {
-        final var prestador = new NFSeSCSaoJoseNFSePrestador().setCidade("").setCpfCnpj("");
-        final var nf = new NFSeSCSaoJoseNFSeCancelamento().setNumero("").setSerieNFSe("").setSituacao("C").setObservacao("");
+        final var prestador = new NFSeSCSaoJoseNFSePrestador().setCidade("8327").setCpfCnpj("52398509000138");
+        final var nf = new NFSeSCSaoJoseNFSeCancelamento().setNumero("1068").setSerieNFSe("1").setSituacao("C").setObservacao("Cancelamento teste");
         final var cancelamento = new NFSeSCSaoJoseCancelamentoEnvio().setNf(nf).setPrestador(prestador);
         final var retorno = ws.enviarCancelamentoNFSe(cancelamento, "cancelamento.xml");
         this.getLogger().info(retorno.toXml());
@@ -143,5 +144,10 @@ class NFSeSCSaoJoseTest implements NFSeLogger {
 
                 ));
         return nfseSCSaoJose;
+    }
+
+    @Test
+    void name() {
+        System.out.println("00191 - Tomador e Prestador do servi�o n�o podem ser iguais.");
     }
 }

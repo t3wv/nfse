@@ -1,6 +1,6 @@
 package io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.transformers;
 
-import io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.classes.TpOpcaoSimplesNFe;
+import io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.tipos.TpOpcaoSimplesNFe;
 import org.simpleframework.xml.transform.Transform;
 
 public class NFSeSPSaoPauloTpOpcaoSimplesNFeTransformer implements Transform<TpOpcaoSimplesNFe>{

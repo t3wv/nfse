@@ -1,6 +1,6 @@
 package io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.requests;
 
-import io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.classes.TpChaveNFe;
+import io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.tipos.TpChaveNFe;
 import org.apache.commons.lang3.StringUtils;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Namespace;

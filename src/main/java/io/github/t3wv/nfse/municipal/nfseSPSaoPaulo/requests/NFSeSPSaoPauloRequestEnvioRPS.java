@@ -1,7 +1,7 @@
 package io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.requests;
 
-import io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.classes.SignatureType;
-import io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.classes.TpRPS;
+import io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.tipos.SignatureType;
+import io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.tipos.TpRPS;
 import io.github.t3wv.nfse.utils.NFSePersister;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;

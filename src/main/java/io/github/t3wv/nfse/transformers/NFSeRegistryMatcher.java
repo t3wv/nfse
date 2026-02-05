@@ -8,8 +8,12 @@ import io.github.t3wv.nfse.municipal.nfseSCSaoJose.transformers.NFSeSCSaoJoseSit
 import io.github.t3wv.nfse.municipal.nfseSCSaoJose.transformers.NFSeSCSaoJoseTipoPagamentoTransformer;
 import io.github.t3wv.nfse.municipal.nfseSPBarueri.enums.NFSeBarueriArquivoRetornoSituacaoArquivo;
 import io.github.t3wv.nfse.municipal.nfseSPBarueri.transformers.NFSeBarueriArquivoRetornoSituacaoArquivoTransformer;
-import io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.classes.TpOpcaoSimplesNFe;
+import io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.tipos.TpIndDest;
+import io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.tipos.TpOpcaoSimplesNFe;
+import io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.tipos.TpTributacaoNFe;
+import io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.transformers.NFSeSPSaoPauloTpIndDestTransformer;
 import io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.transformers.NFSeSPSaoPauloTpOpcaoSimplesNFeTransformer;
+import io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.transformers.NFSeSPSaoPauloTpTributacaoNFeTransformer;
 import io.github.t3wv.nfse.nacional.classes.nfsenacional.*;
 import io.github.t3wv.nfse.nacional.transformers.*;
 import org.simpleframework.xml.transform.RegistryMatcher;
@@ -65,6 +69,8 @@ public class NFSeRegistryMatcher extends RegistryMatcher {
 
         // NFSe São Paulo
         super.bind(TpOpcaoSimplesNFe.class, new NFSeSPSaoPauloTpOpcaoSimplesNFeTransformer());
+        super.bind(TpTributacaoNFe.class, new NFSeSPSaoPauloTpTributacaoNFeTransformer());
+        super.bind(TpIndDest.class, new NFSeSPSaoPauloTpIndDestTransformer());
 
         // NFSe Barueri
         super.bind(NFSeBarueriArquivoRetornoSituacaoArquivo.class, new NFSeBarueriArquivoRetornoSituacaoArquivoTransformer());

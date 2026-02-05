@@ -1,6 +1,6 @@
 package io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.requests;
 
-import io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.classes.TpCPFCNPJ;
+import io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.tipos.TpCPFCNPJ;
 import org.simpleframework.xml.Element;
 
 import java.math.BigDecimal;
