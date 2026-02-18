@@ -11,8 +11,9 @@ public class TpGTribRegular {
         return cClassTribReg;
     }
 
-    public void setCClassTribReg(String value) {
+    public TpGTribRegular setCClassTribReg(String value) {
         this.cClassTribReg = value;
+        return this;
     }
 
 }

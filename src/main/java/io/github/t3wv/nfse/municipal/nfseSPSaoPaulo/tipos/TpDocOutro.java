@@ -13,16 +13,18 @@ public class TpDocOutro {
         return nDoc;
     }
 
-    public void setNDoc(String value) {
+    public TpDocOutro setNDoc(String value) {
         this.nDoc = value;
+        return this;
     }
 
     public String getXDoc() {
         return xDoc;
     }
 
-    public void setXDoc(String value) {
+    public TpDocOutro setXDoc(String value) {
         this.xDoc = value;
+        return this;
     }
 
 }

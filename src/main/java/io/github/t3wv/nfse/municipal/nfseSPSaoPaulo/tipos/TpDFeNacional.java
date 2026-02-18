@@ -15,24 +15,27 @@ public class TpDFeNacional {
         return tipoChaveDFe;
     }
 
-    public void setTipoChaveDFe(int value) {
+    public TpDFeNacional setTipoChaveDFe(int value) {
         this.tipoChaveDFe = value;
+        return this;
     }
 
     public String getXTipoChaveDFe() {
         return xTipoChaveDFe;
     }
 
-    public void setXTipoChaveDFe(String value) {
+    public TpDFeNacional setXTipoChaveDFe(String value) {
         this.xTipoChaveDFe = value;
+        return this;
     }
 
     public String getChaveDFe() {
         return chaveDFe;
     }
 
-    public void setChaveDFe(String value) {
+    public TpDFeNacional setChaveDFe(String value) {
         this.chaveDFe = value;
+        return this;
     }
 
 }

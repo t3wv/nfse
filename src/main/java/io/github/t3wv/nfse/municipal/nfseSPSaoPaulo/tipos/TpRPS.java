@@ -125,272 +125,306 @@ public class TpRPS {
         return assinatura;
     }
 
-    public void setAssinatura(String value) {
+    public TpRPS setAssinatura(String value) {
         this.assinatura = value;
+        return this;
     }
 
     public TpChaveRPS getChaveRPS() {
         return chaveRPS;
     }
 
-    public void setChaveRPS(TpChaveRPS value) {
+    public TpRPS setChaveRPS(TpChaveRPS value) {
         this.chaveRPS = value;
+        return this;
     }
 
     public TpTipoRPS getTipoRPS() {
         return tipoRPS;
     }
 
-    public void setTipoRPS(TpTipoRPS value) {
+    public TpRPS setTipoRPS(TpTipoRPS value) {
         this.tipoRPS = value;
+        return this;
     }
 
     public LocalDate getDataEmissao() {
         return dataEmissao;
     }
 
-    public void setDataEmissao(LocalDate value) {
+    public TpRPS setDataEmissao(LocalDate value) {
         this.dataEmissao = value;
+        return this;
     }
 
     public TpStatusNFe getStatusRPS() {
         return statusRPS;
     }
 
-    public void setStatusRPS(TpStatusNFe value) {
+    public TpRPS setStatusRPS(TpStatusNFe value) {
         this.statusRPS = value;
+        return this;
     }
 
     public TpTributacaoNFe getTributacaoRPS() {
         return tributacaoRPS;
     }
 
-    public void setTributacaoRPS(TpTributacaoNFe value) {
+    public TpRPS setTributacaoRPS(TpTributacaoNFe value) {
         this.tributacaoRPS = value;
+        return this;
     }
 
     public BigDecimal getValorDeducoes() {
         return valorDeducoes;
     }
 
-    public void setValorDeducoes(BigDecimal value) {
+    public TpRPS setValorDeducoes(BigDecimal value) {
         this.valorDeducoes = value;
+        return this;
     }
 
     public BigDecimal getValorPIS() {
         return valorPIS;
     }
 
-    public void setValorPIS(BigDecimal value) {
+    public TpRPS setValorPIS(BigDecimal value) {
         this.valorPIS = value;
+        return this;
     }
 
     public BigDecimal getValorCOFINS() {
         return valorCOFINS;
     }
 
-    public void setValorCOFINS(BigDecimal value) {
+    public TpRPS setValorCOFINS(BigDecimal value) {
         this.valorCOFINS = value;
+        return this;
     }
 
     public BigDecimal getValorINSS() {
         return valorINSS;
     }
 
-    public void setValorINSS(BigDecimal value) {
+    public TpRPS setValorINSS(BigDecimal value) {
         this.valorINSS = value;
+        return this;
     }
 
     public BigDecimal getValorIR() {
         return valorIR;
     }
 
-    public void setValorIR(BigDecimal value) {
+    public TpRPS setValorIR(BigDecimal value) {
         this.valorIR = value;
+        return this;
     }
 
     public BigDecimal getValorCSLL() {
         return valorCSLL;
     }
 
-    public void setValorCSLL(BigDecimal value) {
+    public TpRPS setValorCSLL(BigDecimal value) {
         this.valorCSLL = value;
+        return this;
     }
 
     public String getCodigoServico() {
         return codigoServico;
     }
 
-    public void setCodigoServico(String value) {
+    public TpRPS setCodigoServico(String value) {
         this.codigoServico = value;
+        return this;
     }
 
     public BigDecimal getAliquotaServicos() {
         return aliquotaServicos;
     }
 
-    public void setAliquotaServicos(BigDecimal value) {
+    public TpRPS setAliquotaServicos(BigDecimal value) {
         this.aliquotaServicos = value;
+        return this;
     }
 
     public boolean isISSRetido() {
         return issRetido;
     }
 
-    public void setISSRetido(boolean value) {
+    public TpRPS setISSRetido(boolean value) {
         this.issRetido = value;
+        return this;
     }
 
     public TpCPFCNPJNIF getCPFCNPJTomador() {
         return cpfcnpjTomador;
     }
 
-    public void setCPFCNPJTomador(TpCPFCNPJNIF value) {
+    public TpRPS setCPFCNPJTomador(TpCPFCNPJNIF value) {
         this.cpfcnpjTomador = value;
+        return this;
     }
 
     public Long getInscricaoMunicipalTomador() {
         return inscricaoMunicipalTomador;
     }
 
-    public void setInscricaoMunicipalTomador(Long value) {
+    public TpRPS setInscricaoMunicipalTomador(Long value) {
         this.inscricaoMunicipalTomador = value;
+        return this;
     }
 
     public Long getInscricaoEstadualTomador() {
         return inscricaoEstadualTomador;
     }
 
-    public void setInscricaoEstadualTomador(Long value) {
+    public TpRPS setInscricaoEstadualTomador(Long value) {
         this.inscricaoEstadualTomador = value;
+        return this;
     }
 
     public String getRazaoSocialTomador() {
         return razaoSocialTomador;
     }
 
-    public void setRazaoSocialTomador(String value) {
+    public TpRPS setRazaoSocialTomador(String value) {
         this.razaoSocialTomador = value;
+        return this;
     }
 
     public TpEndereco getEnderecoTomador() {
         return enderecoTomador;
     }
 
-    public void setEnderecoTomador(TpEndereco value) {
+    public TpRPS setEnderecoTomador(TpEndereco value) {
         this.enderecoTomador = value;
+        return this;
     }
 
     public String getEmailTomador() {
         return emailTomador;
     }
 
-    public void setEmailTomador(String value) {
+    public TpRPS setEmailTomador(String value) {
         this.emailTomador = value;
+        return this;
     }
 
     public TpCPFCNPJ getCPFCNPJIntermediario() {
         return cpfcnpjIntermediario;
     }
 
-    public void setCPFCNPJIntermediario(TpCPFCNPJ value) {
+    public TpRPS setCPFCNPJIntermediario(TpCPFCNPJ value) {
         this.cpfcnpjIntermediario = value;
+        return this;
     }
 
     public Long getInscricaoMunicipalIntermediario() {
         return inscricaoMunicipalIntermediario;
     }
 
-    public void setInscricaoMunicipalIntermediario(Long value) {
+    public TpRPS setInscricaoMunicipalIntermediario(Long value) {
         this.inscricaoMunicipalIntermediario = value;
+        return this;
     }
 
     public String getISSRetidoIntermediario() {
         return issRetidoIntermediario;
     }
 
-    public void setISSRetidoIntermediario(String value) {
+    public TpRPS setISSRetidoIntermediario(String value) {
         this.issRetidoIntermediario = value;
+        return this;
     }
 
     public String getEmailIntermediario() {
         return emailIntermediario;
     }
 
-    public void setEmailIntermediario(String value) {
+    public TpRPS setEmailIntermediario(String value) {
         this.emailIntermediario = value;
+        return this;
     }
 
     public String getDiscriminacao() {
         return discriminacao;
     }
 
-    public void setDiscriminacao(String value) {
+    public TpRPS setDiscriminacao(String value) {
         this.discriminacao = value;
+        return this;
     }
 
     public BigDecimal getValorCargaTributaria() {
         return valorCargaTributaria;
     }
 
-    public void setValorCargaTributaria(BigDecimal value) {
+    public TpRPS setValorCargaTributaria(BigDecimal value) {
         this.valorCargaTributaria = value;
+        return this;
     }
 
     public BigDecimal getPercentualCargaTributaria() {
         return percentualCargaTributaria;
     }
 
-    public void setPercentualCargaTributaria(BigDecimal value) {
+    public TpRPS setPercentualCargaTributaria(BigDecimal value) {
         this.percentualCargaTributaria = value;
+        return this;
     }
 
     public String getFonteCargaTributaria() {
         return fonteCargaTributaria;
     }
 
-    public void setFonteCargaTributaria(String value) {
+    public TpRPS setFonteCargaTributaria(String value) {
         this.fonteCargaTributaria = value;
+        return this;
     }
 
     public Long getCodigoCEI() {
         return codigoCEI;
     }
 
-    public void setCodigoCEI(Long value) {
+    public TpRPS setCodigoCEI(Long value) {
         this.codigoCEI = value;
+        return this;
     }
 
     public Long getMatriculaObra() {
         return matriculaObra;
     }
 
-    public void setMatriculaObra(Long value) {
+    public TpRPS setMatriculaObra(Long value) {
         this.matriculaObra = value;
+        return this;
     }
 
     public Integer getMunicipioPrestacao() {
         return municipioPrestacao;
     }
 
-    public void setMunicipioPrestacao(Integer value) {
+    public TpRPS setMunicipioPrestacao(Integer value) {
         this.municipioPrestacao = value;
+        return this;
     }
 
     public Long getNumeroEncapsulamento() {
         return numeroEncapsulamento;
     }
 
-    public void setNumeroEncapsulamento(Long value) {
+    public TpRPS setNumeroEncapsulamento(Long value) {
         this.numeroEncapsulamento = value;
+        return this;
     }
 
     public BigDecimal getValorTotalRecebido() {
         return valorTotalRecebido;
     }
 
-    public void setValorTotalRecebido(BigDecimal value) {
+    public TpRPS setValorTotalRecebido(BigDecimal value) {
         this.valorTotalRecebido = value;
+        return this;
     }
 
     public BigDecimal getValorServicos() {
@@ -406,104 +440,117 @@ public class TpRPS {
         return valorInicialCobrado;
     }
 
-    public void setValorInicialCobrado(BigDecimal value) {
+    public TpRPS setValorInicialCobrado(BigDecimal value) {
         this.valorInicialCobrado = value;
+        return this;
     }
 
     public BigDecimal getValorFinalCobrado() {
         return valorFinalCobrado;
     }
 
-    public void setValorFinalCobrado(BigDecimal value) {
+    public TpRPS setValorFinalCobrado(BigDecimal value) {
         this.valorFinalCobrado = value;
+        return this;
     }
 
     public BigDecimal getValorMulta() {
         return valorMulta;
     }
 
-    public void setValorMulta(BigDecimal value) {
+    public TpRPS setValorMulta(BigDecimal value) {
         this.valorMulta = value;
+        return this;
     }
 
     public BigDecimal getValorJuros() {
         return valorJuros;
     }
 
-    public void setValorJuros(BigDecimal value) {
+    public TpRPS setValorJuros(BigDecimal value) {
         this.valorJuros = value;
+        return this;
     }
 
     public BigDecimal getValorIPI() {
         return valorIPI;
     }
 
-    public void setValorIPI(BigDecimal value) {
+    public TpRPS setValorIPI(BigDecimal value) {
         this.valorIPI = value;
+        return this;
     }
 
     public Boolean getExigibilidadeSuspensa() {
         return exigibilidadeSuspensa;
     }
 
-    public void setExigibilidadeSuspensa(Boolean value) {
+    public TpRPS setExigibilidadeSuspensa(Boolean value) {
         this.exigibilidadeSuspensa = value;
+        return this;
     }
 
     public Boolean getPagamentoParceladoAntecipado() {
         return pagamentoParceladoAntecipado;
     }
 
-    public void setPagamentoParceladoAntecipado(Boolean value) {
+    public TpRPS setPagamentoParceladoAntecipado(Boolean value) {
         this.pagamentoParceladoAntecipado = value;
+        return this;
     }
 
     public String getNCM() {
         return ncm;
     }
 
-    public void setNCM(String value) {
+    public TpRPS setNCM(String value) {
         this.ncm = value;
+        return this;
     }
 
     public String getNBS() {
         return nbs;
     }
 
-    public void setNBS(String value) {
+    public TpRPS setNBS(String value) {
         this.nbs = value;
+        return this;
     }
 
     public TpAtividadeEvento getAtvEvento() {
         return atvEvento;
     }
 
-    public void setAtvEvento(TpAtividadeEvento value) {
+    public TpRPS setAtvEvento(TpAtividadeEvento value) {
         this.atvEvento = value;
+        return this;
     }
 
     public String getCLocPrestacao() {
         return cLocPrestacao;
     }
 
-    public void setCLocPrestacao(String value) {
+    public TpRPS setCLocPrestacao(String value) {
         this.cLocPrestacao = value;
+        return this;
     }
 
     public String getCPaisPrestacao() {
         return cPaisPrestacao;
     }
 
-    public void setCPaisPrestacao(String value) {
+    public TpRPS setCPaisPrestacao(String value) {
         this.cPaisPrestacao = value;
+        return this;
     }
 
     public TpIBSCBS getIBSCBS() {
         return ibscbs;
     }
 
-    public void setIBSCBS(TpIBSCBS value) {
+    public TpRPS setIBSCBS(TpIBSCBS value) {
         this.ibscbs = value;
+        return this;
     }
 
     public String toXml() throws Exception {

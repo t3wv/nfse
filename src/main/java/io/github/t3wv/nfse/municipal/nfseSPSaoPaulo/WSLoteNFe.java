@@ -3,6 +3,7 @@ package io.github.t3wv.nfse.municipal.nfseSPSaoPaulo;
 import io.github.t3wv.nfse.NFSeConfig;
 import io.github.t3wv.nfse.NFSeLogger;
 import io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.requests.*;
+import io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.utils.NFSeSPSaoPauloUtils;
 import io.github.t3wv.nfse.utils.NFSeAssinaturaDigital;
 import io.github.t3wv.nfse.utils.NFSeHttpClient;
 import io.github.t3wv.nfse.utils.NFSePersister;
@@ -22,7 +23,7 @@ public class WSLoteNFe implements NFSeLogger {
     }
 
     public NFSeSPSaoPauloRetornoEnvioLoteRPS enviarTesteLoteRPS(NFSeSPSaoPauloRequestEnvioRPS pedidoEnvioRPS) throws Exception {
-        final var body = String.format("<?xml version=\"1.0\" encoding=\"utf-8\"?><soap12:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap12=\"http://www.w3.org/2003/05/soap-envelope\"><soap12:Body><TesteEnvioLoteRPSRequest xmlns=\"http://www.prefeitura.sp.gov.br/nfe\"><VersaoSchema>%s</VersaoSchema><MensagemXML><![CDATA[%s]]></MensagemXML></TesteEnvioLoteRPSRequest></soap12:Body></soap12:Envelope>", pedidoEnvioRPS.getCabecalho().getVersao(), new NFSeAssinaturaDigital(this.config).setOmitirDeclaracaoXML(true).setUsarIdComoReferencia(false).assinarDocumento(pedidoEnvioRPS.toXml()));
+        final var body = String.format("<?xml version=\"1.0\" encoding=\"utf-8\"?><soap12:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap12=\"http://www.w3.org/2003/05/soap-envelope\"><soap12:Body><TesteEnvioLoteRPSRequest xmlns=\"http://www.prefeitura.sp.gov.br/nfe\"><VersaoSchema>%s</VersaoSchema><MensagemXML><![CDATA[%s]]></MensagemXML></TesteEnvioLoteRPSRequest></soap12:Body></soap12:Envelope>", pedidoEnvioRPS.getCabecalho().getVersao(), new NFSeAssinaturaDigital(this.config).setOmitirDeclaracaoXML(true).setUsarIdComoReferencia(false).assinarDocumento(NFSeSPSaoPauloUtils.assinarRPSs(config, pedidoEnvioRPS).toXml()));
         this.getLogger().debug("Enviando RPS de teste para o município de São Paulo com xml: {}", body);
 
         final var response = new NFSeHttpClient(this.config).sendPostRequest(new URI(URL_BASE), Map.of("Content-Type", "application/soap+xml; charset=utf-8"), body);
@@ -38,7 +39,7 @@ public class WSLoteNFe implements NFSeLogger {
     }
 
     public NFSeSPSaoPauloRetornoEnvioLoteRPS enviarRPS(NFSeSPSaoPauloRequestEnvioRPS pedidoEnvioRPS) throws Exception {
-        final var body = String.format("<?xml version=\"1.0\" encoding=\"utf-8\"?><soap12:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap12=\"http://www.w3.org/2003/05/soap-envelope\"><soap12:Body><EnvioRPSRequest xmlns=\"http://www.prefeitura.sp.gov.br/nfe\"><VersaoSchema>%s</VersaoSchema><MensagemXML><![CDATA[%s]]></MensagemXML></EnvioRPSRequest></soap12:Body></soap12:Envelope>", pedidoEnvioRPS.getCabecalho().getVersao(), new NFSeAssinaturaDigital(this.config).setOmitirDeclaracaoXML(true).setUsarIdComoReferencia(false).assinarDocumento(pedidoEnvioRPS.toXml()));
+        final var body = String.format("<?xml version=\"1.0\" encoding=\"utf-8\"?><soap12:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap12=\"http://www.w3.org/2003/05/soap-envelope\"><soap12:Body><EnvioRPSRequest xmlns=\"http://www.prefeitura.sp.gov.br/nfe\"><VersaoSchema>%s</VersaoSchema><MensagemXML><![CDATA[%s]]></MensagemXML></EnvioRPSRequest></soap12:Body></soap12:Envelope>", pedidoEnvioRPS.getCabecalho().getVersao(), new NFSeAssinaturaDigital(this.config).setOmitirDeclaracaoXML(true).setUsarIdComoReferencia(false).assinarDocumento(NFSeSPSaoPauloUtils.assinarRPSs(config, pedidoEnvioRPS).toXml()));
         this.getLogger().debug("Enviando RPS para o município de São Paulo com xml: {}", body);
 
         final var response = new NFSeHttpClient(this.config).sendPostRequest(new URI(URL_BASE), Map.of("Content-Type", "application/soap+xml; charset=utf-8"), body);
@@ -70,6 +71,11 @@ public class WSLoteNFe implements NFSeLogger {
     }
 
     public NFSeSPSaoPauloRetornoCancelamentoNFe enviarPedidoCancelamentoNFe(NFSeSPSaoPauloRequestCancelamentoNFe pedidoCancelamentoNFe) throws Exception {
+        // assinatura extra cancelamentos
+        for (final var detalheItem : pedidoCancelamentoNFe.getDetalhe()) {
+            detalheItem.setAssinaturaCancelamento(NFSeSPSaoPauloUtils.gerarAssinaturaDigital(config, detalheItem.getAssinaturaString()));
+        }
+
         final var body = String.format("<?xml version=\"1.0\" encoding=\"utf-8\"?><soap12:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap12=\"http://www.w3.org/2003/05/soap-envelope\"><soap12:Body><CancelamentoNFeRequest xmlns=\"http://www.prefeitura.sp.gov.br/nfe\"><VersaoSchema>%s</VersaoSchema><MensagemXML><![CDATA[%s]]></MensagemXML></CancelamentoNFeRequest></soap12:Body></soap12:Envelope>", pedidoCancelamentoNFe.getCabecalho().getVersao(), new NFSeAssinaturaDigital(this.config).setOmitirDeclaracaoXML(true).setUsarIdComoReferencia(false).assinarDocumento(pedidoCancelamentoNFe.toXml()));
         this.getLogger().debug("Enviando pedido de cancelamento de NFe para o município de São Paulo com xml: {}", body);
 

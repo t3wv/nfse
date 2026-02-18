@@ -30,72 +30,81 @@ public class TpDocumento {
         return dFeNacional;
     }
 
-    public void setDFeNacional(TpDFeNacional value) {
+    public TpDocumento setDFeNacional(TpDFeNacional value) {
         this.dFeNacional = value;
+        return this;
     }
 
     public TpDocFiscalOutro getDocFiscalOutro() {
         return docFiscalOutro;
     }
 
-    public void setDocFiscalOutro(TpDocFiscalOutro value) {
+    public TpDocumento setDocFiscalOutro(TpDocFiscalOutro value) {
         this.docFiscalOutro = value;
+        return this;
     }
 
     public TpDocOutro getDocOutro() {
         return docOutro;
     }
 
-    public void setDocOutro(TpDocOutro value) {
+    public TpDocumento setDocOutro(TpDocOutro value) {
         this.docOutro = value;
+        return this;
     }
 
     public TpFornecedor getFornec() {
         return fornec;
     }
 
-    public void setFornec(TpFornecedor value) {
+    public TpDocumento setFornec(TpFornecedor value) {
         this.fornec = value;
+        return this;
     }
 
     public LocalDate getDtEmiDoc() {
         return dtEmiDoc;
     }
 
-    public void setDtEmiDoc(LocalDate value) {
+    public TpDocumento setDtEmiDoc(LocalDate value) {
         this.dtEmiDoc = value;
+        return this;
     }
 
     public LocalDate getDtCompDoc() {
         return dtCompDoc;
     }
 
-    public void setDtCompDoc(LocalDate value) {
+    public TpDocumento setDtCompDoc(LocalDate value) {
         this.dtCompDoc = value;
+        return this;
     }
 
     public int getTpReeRepRes() {
         return tpReeRepRes;
     }
 
-    public void setTpReeRepRes(int value) {
+    public TpDocumento setTpReeRepRes(int value) {
         this.tpReeRepRes = value;
+        return this;
     }
 
     public String getXTpReeRepRes() {
         return xTpReeRepRes;
     }
 
-    public void setXTpReeRepRes(String value) {
+    public TpDocumento setXTpReeRepRes(String value) {
         this.xTpReeRepRes = value;
+        return this;
     }
 
     public BigDecimal getVlrReeRepRes() {
         return vlrReeRepRes;
     }
 
-    public void setVlrReeRepRes(BigDecimal value) {
+    public TpDocumento setVlrReeRepRes(BigDecimal value) {
         this.vlrReeRepRes = value;
+        return this;
     }
 
 }

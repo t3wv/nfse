@@ -10,9 +10,11 @@ import io.github.t3wv.nfse.municipal.nfseSPBarueri.enums.NFSeBarueriArquivoRetor
 import io.github.t3wv.nfse.municipal.nfseSPBarueri.transformers.NFSeBarueriArquivoRetornoSituacaoArquivoTransformer;
 import io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.tipos.TpIndDest;
 import io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.tipos.TpOpcaoSimplesNFe;
+import io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.tipos.TpStatusNFe;
 import io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.tipos.TpTributacaoNFe;
 import io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.transformers.NFSeSPSaoPauloTpIndDestTransformer;
 import io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.transformers.NFSeSPSaoPauloTpOpcaoSimplesNFeTransformer;
+import io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.transformers.NFSeSPSaoPauloTpStatusNFeTransformer;
 import io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.transformers.NFSeSPSaoPauloTpTributacaoNFeTransformer;
 import io.github.t3wv.nfse.nacional.classes.nfsenacional.*;
 import io.github.t3wv.nfse.nacional.transformers.*;
@@ -71,6 +73,7 @@ public class NFSeRegistryMatcher extends RegistryMatcher {
         super.bind(TpOpcaoSimplesNFe.class, new NFSeSPSaoPauloTpOpcaoSimplesNFeTransformer());
         super.bind(TpTributacaoNFe.class, new NFSeSPSaoPauloTpTributacaoNFeTransformer());
         super.bind(TpIndDest.class, new NFSeSPSaoPauloTpIndDestTransformer());
+        super.bind(TpStatusNFe.class, new NFSeSPSaoPauloTpStatusNFeTransformer());
 
         // NFSe Barueri
         super.bind(NFSeBarueriArquivoRetornoSituacaoArquivo.class, new NFSeBarueriArquivoRetornoSituacaoArquivoTransformer());

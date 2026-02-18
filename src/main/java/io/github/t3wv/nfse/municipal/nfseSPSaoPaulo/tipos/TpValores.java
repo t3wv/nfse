@@ -13,8 +13,9 @@ public class TpValores {
         return gReeRepRes;
     }
 
-    public void setGReeRepRes(TpGrupoReeRepRes value) {
+    public TpValores setGReeRepRes(TpGrupoReeRepRes value) {
         this.gReeRepRes = value;
+        return this;
     }
 
     public TpTrib getTrib() {

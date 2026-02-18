@@ -17,32 +17,36 @@ public class TpImovelObra {
         return inscImobFisc;
     }
 
-    public void setInscImobFisc(String value) {
+    public TpImovelObra setInscImobFisc(String value) {
         this.inscImobFisc = value;
+        return this;
     }
 
     public String getCCIB() {
         return ccib;
     }
 
-    public void setCCIB(String value) {
+    public TpImovelObra setCCIB(String value) {
         this.ccib = value;
+        return this;
     }
 
     public String getCObra() {
         return cObra;
     }
 
-    public void setCObra(String value) {
+    public TpImovelObra setCObra(String value) {
         this.cObra = value;
+        return this;
     }
 
     public TpEnderecoSimplesIBSCBS getEnd() {
         return end;
     }
 
-    public void setEnd(TpEnderecoSimplesIBSCBS value) {
+    public TpImovelObra setEnd(TpEnderecoSimplesIBSCBS value) {
         this.end = value;
+        return this;
     }
 
 }

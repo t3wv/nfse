@@ -13,8 +13,9 @@ public class TpCPFCNPJ {
         return cpf;
     }
 
-    public void setCPF(String value) {
+    public TpCPFCNPJ setCPF(String value) {
         this.cpf = value;
+        return this;
     }
 
     public String getCNPJ() {

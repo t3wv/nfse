@@ -14,24 +14,27 @@ public class TpDocFiscalOutro {
         return cMunDocFiscal;
     }
 
-    public void setCMunDocFiscal(int value) {
+    public TpDocFiscalOutro setCMunDocFiscal(int value) {
         this.cMunDocFiscal = value;
+        return this;
     }
 
     public String getNDocFiscal() {
         return nDocFiscal;
     }
 
-    public void setNDocFiscal(String value) {
+    public TpDocFiscalOutro setNDocFiscal(String value) {
         this.nDocFiscal = value;
+        return this;
     }
 
     public String getXDocFiscal() {
         return xDocFiscal;
     }
 
-    public void setXDocFiscal(String value) {
+    public TpDocFiscalOutro setXDocFiscal(String value) {
         this.xDocFiscal = value;
+        return this;
     }
 
 }

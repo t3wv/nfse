@@ -19,32 +19,36 @@ public class TpAtividadeEvento {
         return xNomeEvt;
     }
 
-    public void setXNomeEvt(String value) {
+    public TpAtividadeEvento setXNomeEvt(String value) {
         this.xNomeEvt = value;
+        return this;
     }
 
     public LocalDate getDtIniEvt() {
         return dtIniEvt;
     }
 
-    public void setDtIniEvt(LocalDate value) {
+    public TpAtividadeEvento setDtIniEvt(LocalDate value) {
         this.dtIniEvt = value;
+        return this;
     }
 
     public LocalDate getDtFimEvt() {
         return dtFimEvt;
     }
 
-    public void setDtFimEvt(LocalDate value) {
+    public TpAtividadeEvento setDtFimEvt(LocalDate value) {
         this.dtFimEvt = value;
+        return this;
     }
 
     public TpEnderecoSimplesIBSCBS getEnd() {
         return end;
     }
 
-    public void setEnd(TpEnderecoSimplesIBSCBS value) {
+    public TpAtividadeEvento setEnd(TpEnderecoSimplesIBSCBS value) {
         this.end = value;
+        return this;
     }
 
 }

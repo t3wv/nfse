@@ -19,40 +19,45 @@ public class TpFornecedor {
         return cpf;
     }
 
-    public void setCPF(String value) {
+    public TpFornecedor setCPF(String value) {
         this.cpf = value;
+        return this;
     }
 
     public String getCNPJ() {
         return cnpj;
     }
 
-    public void setCNPJ(String value) {
+    public TpFornecedor setCNPJ(String value) {
         this.cnpj = value;
+        return this;
     }
 
     public String getNIF() {
         return nif;
     }
 
-    public void setNIF(String value) {
+    public TpFornecedor setNIF(String value) {
         this.nif = value;
+        return this;
     }
 
     public Integer getNaoNIF() {
         return naoNIF;
     }
 
-    public void setNaoNIF(Integer value) {
+    public TpFornecedor setNaoNIF(Integer value) {
         this.naoNIF = value;
+        return this;
     }
 
     public String getXNome() {
         return xNome;
     }
 
-    public void setXNome(String value) {
+    public TpFornecedor setXNome(String value) {
         this.xNome = value;
+        return this;
     }
 
 }

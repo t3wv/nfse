@@ -13,16 +13,18 @@ public class TpEnderecoNacional {
         return cMun;
     }
 
-    public void setCMun(int value) {
+    public TpEnderecoNacional setCMun(int value) {
         this.cMun = value;
+        return this;
     }
 
     public int getCEP() {
         return cep;
     }
 
-    public void setCEP(int value) {
+    public TpEnderecoNacional setCEP(int value) {
         this.cep = value;
+        return this;
     }
 
 }

@@ -17,32 +17,36 @@ public class TpEnderecoExterior {
         return cPais;
     }
 
-    public void setCPais(String value) {
+    public TpEnderecoExterior setCPais(String value) {
         this.cPais = value;
+        return this;
     }
 
     public String getCEndPost() {
         return cEndPost;
     }
 
-    public void setCEndPost(String value) {
+    public TpEnderecoExterior setCEndPost(String value) {
         this.cEndPost = value;
+        return this;
     }
 
     public String getXCidade() {
         return xCidade;
     }
 
-    public void setXCidade(String value) {
+    public TpEnderecoExterior setXCidade(String value) {
         this.xCidade = value;
+        return this;
     }
 
     public String getXEstProvReg() {
         return xEstProvReg;
     }
 
-    public void setXEstProvReg(String value) {
+    public TpEnderecoExterior setXEstProvReg(String value) {
         this.xEstProvReg = value;
+        return this;
     }
 
 }

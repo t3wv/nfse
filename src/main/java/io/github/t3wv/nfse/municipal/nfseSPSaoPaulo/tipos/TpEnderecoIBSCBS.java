@@ -21,48 +21,54 @@ public class TpEnderecoIBSCBS {
         return endNac;
     }
 
-    public void setEndNac(TpEnderecoNacional value) {
+    public TpEnderecoIBSCBS setEndNac(TpEnderecoNacional value) {
         this.endNac = value;
+        return this;
     }
 
     public TpEnderecoExterior getEndExt() {
         return endExt;
     }
 
-    public void setEndExt(TpEnderecoExterior value) {
+    public TpEnderecoIBSCBS setEndExt(TpEnderecoExterior value) {
         this.endExt = value;
+        return this;
     }
 
     public String getXLgr() {
         return xLgr;
     }
 
-    public void setXLgr(String value) {
+    public TpEnderecoIBSCBS setXLgr(String value) {
         this.xLgr = value;
+        return this;
     }
 
     public String getNro() {
         return nro;
     }
 
-    public void setNro(String value) {
+    public TpEnderecoIBSCBS setNro(String value) {
         this.nro = value;
+        return this;
     }
 
     public String getXCpl() {
         return xCpl;
     }
 
-    public void setXCpl(String value) {
+    public TpEnderecoIBSCBS setXCpl(String value) {
         this.xCpl = value;
+        return this;
     }
 
     public String getXBairro() {
         return xBairro;
     }
 
-    public void setXBairro(String value) {
+    public TpEnderecoIBSCBS setXBairro(String value) {
         this.xBairro = value;
+        return this;
     }
 
 }

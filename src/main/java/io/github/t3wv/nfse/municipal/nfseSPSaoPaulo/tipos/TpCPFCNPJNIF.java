@@ -35,16 +35,18 @@ public class TpCPFCNPJNIF {
         return nif;
     }
 
-    public void setNIF(String value) {
+    public TpCPFCNPJNIF setNIF(String value) {
         this.nif = value;
+        return this;
     }
 
     public Integer getNaoNIF() {
         return naoNIF;
     }
 
-    public void setNaoNIF(Integer value) {
+    public TpCPFCNPJNIF setNaoNIF(Integer value) {
         this.naoNIF = value;
+        return this;
     }
 
 }

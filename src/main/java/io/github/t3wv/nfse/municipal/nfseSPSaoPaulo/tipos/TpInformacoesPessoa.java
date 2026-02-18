@@ -23,56 +23,63 @@ public class TpInformacoesPessoa {
         return cpf;
     }
 
-    public void setCPF(String value) {
+    public TpInformacoesPessoa setCPF(String value) {
         this.cpf = value;
+        return this;
     }
 
     public String getCNPJ() {
         return cnpj;
     }
 
-    public void setCNPJ(String value) {
+    public TpInformacoesPessoa setCNPJ(String value) {
         this.cnpj = value;
+        return this;
     }
 
     public String getNIF() {
         return nif;
     }
 
-    public void setNIF(String value) {
+    public TpInformacoesPessoa setNIF(String value) {
         this.nif = value;
+        return this;
     }
 
     public Integer getNaoNIF() {
         return naoNIF;
     }
 
-    public void setNaoNIF(Integer value) {
+    public TpInformacoesPessoa setNaoNIF(Integer value) {
         this.naoNIF = value;
+        return this;
     }
 
     public String getXNome() {
         return xNome;
     }
 
-    public void setXNome(String value) {
+    public TpInformacoesPessoa setXNome(String value) {
         this.xNome = value;
+        return this;
     }
 
     public TpEnderecoIBSCBS getEnd() {
         return end;
     }
 
-    public void setEnd(TpEnderecoIBSCBS value) {
+    public TpInformacoesPessoa setEnd(TpEnderecoIBSCBS value) {
         this.end = value;
+        return this;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String value) {
+    public TpInformacoesPessoa setEmail(String value) {
         this.email = value;
+        return this;
     }
 
 }
