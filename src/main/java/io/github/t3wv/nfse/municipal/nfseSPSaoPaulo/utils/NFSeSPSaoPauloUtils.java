@@ -29,7 +29,7 @@ public abstract class NFSeSPSaoPauloUtils {
                 assinaturaDigitalString.append(StringUtils.leftPad(chaveRps.getNumeroRPS(), 12, "0"));
                 assinaturaDigitalString.append(rps.getDataEmissao().format(DateTimeFormatter.ofPattern("yyyyMMdd")));
                 assinaturaDigitalString.append(rps.getTributacaoRPS().getCodigo());
-                assinaturaDigitalString.append(rps.getStatusRPS());
+                assinaturaDigitalString.append(rps.getStatusRPS().getCodigo());
                 assinaturaDigitalString.append(rps.isISSRetido() ? "S" : "N");
                 assinaturaDigitalString.append(StringUtils.leftPad(String.valueOf(versaoSchemas.equals("2") ? rps.getValorFinalCobrado() : rps.getValorServicos()).replaceAll("\\D", ""), 15, "0"));
                 assinaturaDigitalString.append(StringUtils.leftPad(String.valueOf(rps.getValorDeducoes()).replaceAll("\\D", ""), 15, "0"));

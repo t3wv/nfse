@@ -2,7 +2,6 @@ package io.github.t3wv.nfse.utils;
 
 import io.github.t3wv.nfse.NFSeConfig;
 import io.github.t3wv.nfse.NFSeLogger;
-import org.apache.commons.lang3.Strings;
 import org.apache.jcp.xml.dsig.internal.dom.XMLDSigRI;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -26,9 +25,15 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.*;
-import java.security.*;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableEntryException;
 import java.security.cert.X509Certificate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.List;
 
 public class NFSeAssinaturaDigital implements NFSeLogger {
 
@@ -103,7 +108,7 @@ public class NFSeAssinaturaDigital implements NFSeLogger {
         this.getLogger().debug("DN: {}", dn);
 
         final String cn = new LdapName(dn).getRdns().stream()
-                .filter(rdn -> Strings.CI.equals(rdn.getType(), "CN"))
+                .filter(rdn -> "CN".equalsIgnoreCase(rdn.getType()))
                 .map(val -> String.valueOf(val.getValue()))
                 .findFirst()
                 .orElse("");
