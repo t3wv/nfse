@@ -59,12 +59,7 @@
             <artifactId>jackson-datatype-jsr310</artifactId>
             <version>${jackson.version}</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.santuario/xmlsec -->
-        <dependency>
-            <groupId>org.apache.santuario</groupId>
-            <artifactId>xmlsec</artifactId>
-            <version>4.0.4</version>
-        </dependency>
+
         <!-- Simple Xml Framework -->
         <dependency>
             <groupId>org.simpleframework</groupId>

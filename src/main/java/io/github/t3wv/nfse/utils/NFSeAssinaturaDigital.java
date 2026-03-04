@@ -2,17 +2,14 @@ package io.github.t3wv.nfse.utils;
 
 import io.github.t3wv.nfse.NFSeConfig;
 import io.github.t3wv.nfse.NFSeLogger;
-import org.apache.jcp.xml.dsig.internal.dom.XMLDSigRI;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
 import javax.naming.ldap.LdapName;
-import javax.xml.crypto.*;
 import javax.xml.crypto.dsig.*;
 import javax.xml.crypto.dsig.dom.DOMSignContext;
-import javax.xml.crypto.dsig.dom.DOMValidateContext;
 import javax.xml.crypto.dsig.keyinfo.KeyInfo;
 import javax.xml.crypto.dsig.keyinfo.KeyInfoFactory;
 import javax.xml.crypto.dsig.keyinfo.X509Data;
@@ -24,7 +21,10 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import java.io.*;
+import java.io.Reader;
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
@@ -66,27 +66,28 @@ public class NFSeAssinaturaDigital implements NFSeLogger {
         return this;
     }
 
-    public static boolean isValida(final InputStream xmlStream) throws Exception {
-        final DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        dbf.setNamespaceAware(true);
-
-        final Document document = dbf.newDocumentBuilder().parse(xmlStream);
-        final NodeList nodeList = document.getElementsByTagNameNS(XMLSignature.XMLNS, "Signature");
-        if (nodeList.getLength() == 0) {
-            throw new IllegalStateException("Nao foi encontrada a assinatura do XML.");
-        }
-
-        final DOMValidateContext validateContext = new DOMValidateContext(new NFSeKeySelector(), nodeList.item(0));
-        for (final String tag : NFSeAssinaturaDigital.ELEMENTOS_ASSINAVEIS) {
-            final NodeList elements = document.getElementsByTagName(tag);
-            if (elements.getLength() > 0) {
-                validateContext.setIdAttributeNS((Element) elements.item(0), null, "Id");
-            }
-        }
-
-        final XMLSignatureFactory signatureFactory = XMLSignatureFactory.getInstance("DOM", new XMLDSigRI());
-        return signatureFactory.unmarshalXMLSignature(validateContext).validate(validateContext);
-    }
+//    public static boolean isValida(final InputStream xmlStream) throws Exception {
+//        final DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+//        dbf.setNamespaceAware(true);
+//
+//        final Document document = dbf.newDocumentBuilder().parse(xmlStream);
+//        final NodeList nodeList = document.getElementsByTagNameNS(XMLSignature.XMLNS, "Signature");
+//        if (nodeList.getLength() == 0) {
+//            throw new IllegalStateException("Nao foi encontrada a assinatura do XML.");
+//        }
+//
+//        final DOMValidateContext validateContext = new DOMValidateContext(new NFSeKeySelector(), nodeList.item(0));
+//        for (final String tag : NFSeAssinaturaDigital.ELEMENTOS_ASSINAVEIS) {
+//            final NodeList elements = document.getElementsByTagName(tag);
+//            if (elements.getLength() > 0) {
+//                validateContext.setIdAttributeNS((Element) elements.item(0), null, "Id");
+//            }
+//        }
+//
+//        //final XMLSignatureFactory signatureFactory = XMLSignatureFactory.getInstance("DOM", new XMLDSigRI());
+//        final XMLSignatureFactory signatureFactory = XMLSignatureFactory.getInstance("DOM");
+//        return signatureFactory.unmarshalXMLSignature(validateContext).validate(validateContext);
+//    }
 
     public String assinarDocumento(final String conteudoXml) throws Exception {
         return this.assinarDocumento(conteudoXml, NFSeAssinaturaDigital.ELEMENTOS_ASSINAVEIS);
@@ -162,25 +163,25 @@ public class NFSeAssinaturaDigital implements NFSeLogger {
         throw new KeyStoreException("Não foi possível encontrar a chave privada do certificado!");
     }
 
-    private static class NFSeKeySelector extends KeySelector {
-        @Override
-        public KeySelectorResult select(final KeyInfo keyInfo, final KeySelector.Purpose purpose, final AlgorithmMethod method, final XMLCryptoContext context) throws KeySelectorException {
-            for (final XMLStructure info : keyInfo.getContent()) {
-                if (info instanceof X509Data x509Data) {
-                    for (final Object certificado : x509Data.getContent()) {
-                        if (certificado instanceof X509Certificate x509Certificate) {
-                            if (this.algEquals(method.getAlgorithm(), x509Certificate.getPublicKey().getAlgorithm())) {
-                                return x509Certificate::getPublicKey;
-                            }
-                        }
-                    }
-                }
-            }
-            throw new KeySelectorException("Nao foi localizada a chave do certificado.");
-        }
-
-        private boolean algEquals(final String algURI, final String algName) {
-            return ((algName.equalsIgnoreCase("DSA") && algURI.equalsIgnoreCase(SignatureMethod.DSA_SHA1)) || (algName.equalsIgnoreCase("RSA") && algURI.equalsIgnoreCase(SignatureMethod.RSA_SHA1)));
-        }
-    }
+//    private static class NFSeKeySelector extends KeySelector {
+//        @Override
+//        public KeySelectorResult select(final KeyInfo keyInfo, final KeySelector.Purpose purpose, final AlgorithmMethod method, final XMLCryptoContext context) throws KeySelectorException {
+//            for (final XMLStructure info : keyInfo.getContent()) {
+//                if (info instanceof X509Data x509Data) {
+//                    for (final Object certificado : x509Data.getContent()) {
+//                        if (certificado instanceof X509Certificate x509Certificate) {
+//                            if (this.algEquals(method.getAlgorithm(), x509Certificate.getPublicKey().getAlgorithm())) {
+//                                return x509Certificate::getPublicKey;
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//            throw new KeySelectorException("Nao foi localizada a chave do certificado.");
+//        }
+//
+//        private boolean algEquals(final String algURI, final String algName) {
+//            return ((algName.equalsIgnoreCase("DSA") && algURI.equalsIgnoreCase(SignatureMethod.DSA_SHA1)) || (algName.equalsIgnoreCase("RSA") && algURI.equalsIgnoreCase(SignatureMethod.RSA_SHA1)));
+//        }
+//    }
 }
