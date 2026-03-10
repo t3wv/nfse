@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 
 public class NFSeSCSaoJoseNFSeNfIBSCBSTotCIBS {
 
-    @Element(name = "vTotNF")
+    @Element(name = "vTotNF", required = false)
     private BigDecimal valorTotalNF;
 
     @Element(name = "gTribRegular", required = false)
@@ -20,10 +20,10 @@ public class NFSeSCSaoJoseNFSeNfIBSCBSTotCIBS {
     @Element(name = "gTribCompraGov", required = false)
     private NFSeSCSaoJoseNFSeNfIBSCBSTotCIBSgTribCompraGov gTribCompraGov;
 
-    @Element(name = "gIBS")
+    @Element(name = "gIBS", required = false)
     private NFSeSCSaoJoseNFSeNfIBSCBSTotCIBSgIBS gIBS;
 
-    @Element(name = "gCBS")
+    @Element(name = "gCBS", required = false)
     private NFSeSCSaoJoseNFSeNfIBSCBSTotCIBSgCBS gCBS;
 
     public BigDecimal getValorTotalNF() {

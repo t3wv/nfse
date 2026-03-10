@@ -70,32 +70,12 @@ public class NFSeSCSaoJoseNF {
     @Element(name = "observacao", required = false)
     private String observacao;
 
+    @Element(name = "IBSCBS", required = false)
+    private NFSeSCSaoJoseNFSeNfIBSCBS ibscbs;
+
     @Element(name = "chave_acesso_nfse_nacional", required = false)
     private String chaveAcessoNfseNacional;
 
-
-
-    //
-    //
-    //
-    //    @Element(name = "situacao", required = false)
-    //    private String situacao;
-    //
-//
-//
-//
-//    @Element(name = "IBSCBS", required = false)
-//    private NFSeSCSaoJoseNFSeNfIBSCBS ibscbs;
-//
-//    public String getNumero() {
-//        return numero;
-//    }
-//
-//    public NFSeSCSaoJoseNFSeNF setNumero(String numero) {
-//        this.numero = numero;
-//        return this;
-//    }
-//
     public String getNumeroNFSe() {
         return numeroNFSe;
     }
@@ -213,15 +193,15 @@ public class NFSeSCSaoJoseNF {
         return this;
     }
 
-//    public NFSeSCSaoJoseNFSeNfIBSCBS getIbscbs() {
-//        return ibscbs;
-//    }
-//
-//    public NFSeSCSaoJoseNFSeNF setIbscbs(NFSeSCSaoJoseNFSeNfIBSCBS ibscbs) {
-//        this.ibscbs = ibscbs;
-//        return this;
-//    }
-//
+    public NFSeSCSaoJoseNFSeNfIBSCBS getIbscbs() {
+        return ibscbs;
+    }
+
+    public NFSeSCSaoJoseNF setIbscbs(NFSeSCSaoJoseNFSeNfIBSCBS ibscbs) {
+        this.ibscbs = ibscbs;
+        return this;
+    }
+
     public LocalDate getDataNfse() {
         return dataNfse;
     }

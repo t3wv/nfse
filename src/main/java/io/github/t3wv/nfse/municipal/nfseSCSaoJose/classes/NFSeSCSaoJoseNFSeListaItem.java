@@ -35,6 +35,9 @@ public class NFSeSCSaoJoseNFSeListaItem {
     @Element(name = "codigo_item_lista_servico")
     private String codigoItemListaServico;
 
+    @Element(name = "codigo_nbs", required = false)
+    private String codigoNBS;
+
     @Element(name = "codigo_atividade", required = false)
     private String codigoAtividade;
 
@@ -117,6 +120,15 @@ public class NFSeSCSaoJoseNFSeListaItem {
 
     public NFSeSCSaoJoseNFSeListaItem setCodigoItemListaServico(String codigoItemListaServico) {
         this.codigoItemListaServico = codigoItemListaServico;
+        return this;
+    }
+
+    public String getCodigoNBS() {
+        return codigoNBS;
+    }
+
+    public NFSeSCSaoJoseNFSeListaItem setCodigoNBS(String codigoNBS) {
+        this.codigoNBS = codigoNBS;
         return this;
     }
 

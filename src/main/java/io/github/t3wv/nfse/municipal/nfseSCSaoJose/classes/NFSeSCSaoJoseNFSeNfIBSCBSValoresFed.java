@@ -10,13 +10,13 @@ import java.io.StringWriter;
 import java.math.BigDecimal;
 
 public class NFSeSCSaoJoseNFSeNfIBSCBSValoresFed {
-    @Element(name = "pCBS")
+    @Element(name = "pCBS", required = false)
     private Double percentualCBS;
 
     @Element(name = "pRedAliqCBS", required = false)
     private Double percentualReducaoAliquotaCBS;
 
-    @Element(name = "pAliqEfetCBS")
+    @Element(name = "pAliqEfetCBS", required = false)
     private Double percentualAliquotaEfetivaCBS;
 
     public Double getPercentualCBS() {

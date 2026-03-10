@@ -10,16 +10,16 @@ import java.io.StringWriter;
 import java.math.BigDecimal;
 
 public class NFSeSCSaoJoseNFSeNfIBSCBSValores {
-    @Element(name = "vBC")
+    @Element(name = "vBC", required = false)
     private BigDecimal valorBaseCalculo;
 
-    @Element(name = "uf")
+    @Element(name = "uf", required = false)
     private NFSeSCSaoJoseNFSeNfIBSCBSValoresUF uf;
 
-    @Element(name = "mun")
+    @Element(name = "mun", required = false)
     private NFSeSCSaoJoseNFSeNfIBSCBSValoresMun mun;
 
-    @Element(name = "fed")
+    @Element(name = "fed", required = false)
     private NFSeSCSaoJoseNFSeNfIBSCBSValoresFed fed;
 
     public BigDecimal getValorBaseCalculo() {

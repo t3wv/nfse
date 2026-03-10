@@ -10,13 +10,13 @@ import java.io.StringWriter;
 import java.math.BigDecimal;
 
 public class NFSeSCSaoJoseNFSeNfIBSCBSValoresMun {
-    @Element(name = "pIBSMun")
+    @Element(name = "pIBSMun", required = false)
     private Double percentualIBSMun;
 
     @Element(name = "pRedAliqMun", required = false)
     private Double percentualReducaoAliquotaMun;
 
-    @Element(name = "pAliqEfetMun")
+    @Element(name = "pAliqEfetMun", required = false)
     private Double percentualAliquotaEfetivaMun;
 
     public Double getPercentualIBSMun() {

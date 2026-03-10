@@ -10,13 +10,13 @@ import java.io.StringWriter;
 import java.math.BigDecimal;
 
 public class NFSeSCSaoJoseNFSeNfIBSCBS {
-    @Element(name = "pRedutor")
+    @Element(name = "pRedutor", required = false)
     private Double percentualRedutor;
 
-    @Element(name = "valores")
+    @Element(name = "valores", required = false)
     private NFSeSCSaoJoseNFSeNfIBSCBSValores valores;
 
-    @Element(name = "totCIBS")
+    @Element(name = "totCIBS", required = false)
     private NFSeSCSaoJoseNFSeNfIBSCBSTotCIBS totCIBS;
 
     public Double getPercentualRedutor() {
