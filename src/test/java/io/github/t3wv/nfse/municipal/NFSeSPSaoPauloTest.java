@@ -158,7 +158,7 @@ public class NFSeSPSaoPauloTest implements NFSeLogger {
     @Test
     public void testeConsultaNFe() throws Exception {
         final var pedidoConsultaNFe = new NFSeSPSaoPauloRequestConsultaNFe();
-        pedidoConsultaNFe.setCabecalho(new NFSeSPSaoPauloRequestConsultaNFeCabecalho().setCpfCnpjRemetente(new TpCPFCNPJ().setCNPJ("")).setVersao("1"));
+        pedidoConsultaNFe.setCabecalho(new NFSeSPSaoPauloRequestConsultaNFeCabecalho().setCpfCnpjRemetente(new TpCPFCNPJ().setCNPJ("")).setVersao("2"));
         pedidoConsultaNFe.addDetalhe(new NFSeSPSaoPauloRequestConsultaNFeDetalhe().setChaveNFe(new TpChaveNFe().setNumeroNFe("").setInscricaoPrestador("")));
         final var response = new WSFacade(config).enviarPedidoConsultaNFe(pedidoConsultaNFe);
         System.out.println(response.toXml());

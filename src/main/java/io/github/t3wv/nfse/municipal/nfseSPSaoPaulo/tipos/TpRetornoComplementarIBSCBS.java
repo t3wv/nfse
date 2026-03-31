@@ -5,85 +5,85 @@ import org.simpleframework.xml.Element;
 import java.math.BigDecimal;
 
 public class TpRetornoComplementarIBSCBS {
-    @Element(name = "Adquirente")
+    @Element(name = "Adquirente", required = false)
     protected TpInformacoesPessoa Adquirente;
-    @Element(name = "ValorBCIBSCBS")
+    @Element(name = "ValorBCIBSCBS", required = false)
     protected BigDecimal ValorBCIBSCBS;
-    @Element(name = "ValorAliqEstadualIBS")
+    @Element(name = "ValorAliqEstadualIBS", required = false)
     protected BigDecimal ValorAliqEstadualIBS;
-    @Element(name = "ValorPercRedEstadualIBS")
+    @Element(name = "ValorPercRedEstadualIBS", required = false)
     protected BigDecimal ValorPercRedEstadualIBS;
-    @Element(name = "ValorAliqEfetivaEstadualIBS")
+    @Element(name = "ValorAliqEfetivaEstadualIBS", required = false)
     protected BigDecimal ValorAliqEfetivaEstadualIBS;
-    @Element(name = "ValorEstadualIBS")
+    @Element(name = "ValorEstadualIBS", required = false)
     protected BigDecimal ValorEstadualIBS;
-    @Element(name = "ValorAliqMunicipalIBS")
+    @Element(name = "ValorAliqMunicipalIBS", required = false)
     protected BigDecimal ValorAliqMunicipalIBS;
-    @Element(name = "ValorPercRedMunicipalIBS")
+    @Element(name = "ValorPercRedMunicipalIBS", required = false)
     protected BigDecimal ValorPercRedMunicipalIBS;
-    @Element(name = "ValorAliqEfetivaMunicipalIBS")
+    @Element(name = "ValorAliqEfetivaMunicipalIBS", required = false)
     protected BigDecimal ValorAliqEfetivaMunicipalIBS;
-    @Element(name = "ValorMunicipalIBS")
+    @Element(name = "ValorMunicipalIBS", required = false)
     protected BigDecimal ValorMunicipalIBS;
-    @Element(name = "ValorIBS")
+    @Element(name = "ValorIBS", required = false)
     protected BigDecimal ValorIBS;
-    @Element(name = "ValorAliqCBS")
+    @Element(name = "ValorAliqCBS", required = false)
     protected BigDecimal ValorAliqCBS;
-    @Element(name = "ValorPercRedCBS")
+    @Element(name = "ValorPercRedCBS", required = false)
     protected BigDecimal ValorPercRedCBS;
-    @Element(name = "ValorAliqEfetivaCBS")
+    @Element(name = "ValorAliqEfetivaCBS", required = false)
     protected BigDecimal ValorAliqEfetivaCBS;
-    @Element(name = "ValorCBS")
+    @Element(name = "ValorCBS", required = false)
     protected BigDecimal ValorCBS;
-    @Element(name = "ValorPercDiferimentoEstadual")
+    @Element(name = "ValorPercDiferimentoEstadual", required = false)
     protected BigDecimal ValorPercDiferimentoEstadual;
-    @Element(name = "ValorDiferimentoEstadual")
+    @Element(name = "ValorDiferimentoEstadual", required = false)
     protected BigDecimal ValorDiferimentoEstadual;
-    @Element(name = "ValorPercDiferimentoMunicipal")
+    @Element(name = "ValorPercDiferimentoMunicipal", required = false)
     protected BigDecimal ValorPercDiferimentoMunicipal;
-    @Element(name = "ValorDiferimentoMunicipal")
+    @Element(name = "ValorDiferimentoMunicipal", required = false)
     protected BigDecimal ValorDiferimentoMunicipal;
-    @Element(name = "ValorPercDiferimentoCBS")
+    @Element(name = "ValorPercDiferimentoCBS", required = false)
     protected BigDecimal ValorPercDiferimentoCBS;
-    @Element(name = "ValorDiferimentoCBS")
+    @Element(name = "ValorDiferimentoCBS", required = false)
     protected BigDecimal ValorDiferimentoCBS;
-    @Element(name = "CodigoClassCredPresumidoIBS")
+    @Element(name = "CodigoClassCredPresumidoIBS", required = false)
     protected BigDecimal CodigoClassCredPresumidoIBS;
-    @Element(name = "ValorPercCredPresumidoIBS")
+    @Element(name = "ValorPercCredPresumidoIBS", required = false)
     protected BigDecimal ValorPercCredPresumidoIBS;
-    @Element(name = "ValorCredPresumidoIBS")
+    @Element(name = "ValorCredPresumidoIBS", required = false)
     protected BigDecimal ValorCredPresumidoIBS;
-    @Element(name = "CodigoClassCredPresumidoCBS")
+    @Element(name = "CodigoClassCredPresumidoCBS", required = false)
     protected BigDecimal CodigoClassCredPresumidoCBS;
-    @Element(name = "ValorPercCredPresumidoCBS")
+    @Element(name = "ValorPercCredPresumidoCBS", required = false)
     protected BigDecimal ValorPercCredPresumidoCBS;
-    @Element(name = "ValorCredPresumidoCBS")
+    @Element(name = "ValorCredPresumidoCBS", required = false)
     protected BigDecimal ValorCredPresumidoCBS;
-    @Element(name = "ValorAliqEstadualRegularIBS")
+    @Element(name = "ValorAliqEstadualRegularIBS", required = false)
     protected BigDecimal ValorAliqEstadualRegularIBS;
-    @Element(name = "ValorAliqMunicipalRegularIBS")
+    @Element(name = "ValorAliqMunicipalRegularIBS", required = false)
     protected BigDecimal ValorAliqMunicipalRegularIBS;
-    @Element(name = "ValorAliqRegularCBS")
+    @Element(name = "ValorAliqRegularCBS", required = false)
     protected BigDecimal ValorAliqRegularCBS;
-    @Element(name = "ValorEstadualRegularIBS")
+    @Element(name = "ValorEstadualRegularIBS", required = false)
     protected BigDecimal ValorEstadualRegularIBS;
-    @Element(name = "ValorMunicipalRegularIBS")
+    @Element(name = "ValorMunicipalRegularIBS", required = false)
     protected BigDecimal ValorMunicipalRegularIBS;
-    @Element(name = "ValorRegularCBS")
+    @Element(name = "ValorRegularCBS", required = false)
     protected BigDecimal ValorRegularCBS;
-    @Element(name = "ValorTotalReeRepRes")
+    @Element(name = "ValorTotalReeRepRes", required = false)
     protected BigDecimal ValorTotalReeRepRes;
-    @Element(name = "ValorAliqEstadualIBSCompraGov")
+    @Element(name = "ValorAliqEstadualIBSCompraGov", required = false)
     protected BigDecimal ValorAliqEstadualIBSCompraGov;
-    @Element(name = "ValorEstadualBSCompraGov")
+    @Element(name = "ValorEstadualBSCompraGov", required = false)
     protected BigDecimal ValorEstadualBSCompraGov;
-    @Element(name = "ValorAliqMunicipalIBSCompraGov")
+    @Element(name = "ValorAliqMunicipalIBSCompraGov", required = false)
     protected BigDecimal ValorAliqMunicipalIBSCompraGov;
-    @Element(name = "ValorMunicipalIBSCompraGov")
+    @Element(name = "ValorMunicipalIBSCompraGov", required = false)
     protected BigDecimal ValorMunicipalIBSCompraGov;
-    @Element(name = "ValorAliqCBSCompraGov")
+    @Element(name = "ValorAliqCBSCompraGov", required = false)
     protected BigDecimal ValorAliqCBSCompraGov;
-    @Element(name = "ValorCBSCompraGov")
+    @Element(name = "ValorCBSCompraGov", required = false)
     protected BigDecimal ValorCBSCompraGov;
 
     public TpInformacoesPessoa getAdquirente() {

@@ -4,19 +4,19 @@ import org.simpleframework.xml.Element;
 
 public class TpInformacoesPessoa {
 
-    @Element(name = "CPF")
+    @Element(name = "CPF", required = false)
     protected String cpf;
-    @Element(name = "CNPJ")
+    @Element(name = "CNPJ", required = false)
     protected String cnpj;
-    @Element(name = "NIF")
+    @Element(name = "NIF", required = false)
     protected String nif;
-    @Element(name = "NaoNIF")
+    @Element(name = "NaoNIF", required = false)
     protected Integer naoNIF;
-    @Element(name = "xNome", required = true)
+    @Element(name = "xNome", required = false)
     protected String xNome;
-    @Element(name = "end")
+    @Element(name = "end", required = false)
     protected TpEnderecoIBSCBS end;
-    @Element(name = "email")
+    @Element(name = "email", required = false)
     protected String email;
 
     public String getCPF() {

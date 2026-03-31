@@ -4,17 +4,17 @@ import org.simpleframework.xml.Element;
 
 public class TpEnderecoIBSCBS {
 
-    @Element(name = "endNac")
+    @Element(name = "endNac", required = false)
     protected TpEnderecoNacional endNac;
-    @Element(name = "endExt")
+    @Element(name = "endExt", required = false)
     protected TpEnderecoExterior endExt;
-    @Element(name = "xLgr")
+    @Element(name = "xLgr", required = false)
     protected String xLgr;
-    @Element(name = "nro")
+    @Element(name = "nro", required = false)
     protected String nro;
-    @Element(name = "xCpl")
+    @Element(name = "xCpl", required = false)
     protected String xCpl;
-    @Element(name = "xBairro")
+    @Element(name = "xBairro", required = false)
     protected String xBairro;
 
     public TpEnderecoNacional getEndNac() {
