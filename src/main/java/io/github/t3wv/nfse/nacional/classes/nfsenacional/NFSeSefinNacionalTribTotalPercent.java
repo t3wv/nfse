@@ -17,24 +17,27 @@ public class NFSeSefinNacionalTribTotalPercent {
         return percentualTributosFederais;
     }
 
-    public void setPercentualTributosFederais(String value) {
+    public NFSeSefinNacionalTribTotalPercent setPercentualTributosFederais(String value) {
         this.percentualTributosFederais = value;
+        return this;
     }
 
     public String getPercentualTributosEstaduais() {
         return percentualTributosEstaduais;
     }
 
-    public void setPercentualTributosEstaduais(String value) {
+    public NFSeSefinNacionalTribTotalPercent setPercentualTributosEstaduais(String value) {
         this.percentualTributosEstaduais = value;
+        return this;
     }
 
     public String getPercentualTributosMunicipais() {
         return percentualTributosMunicipais;
     }
 
-    public void setPercentualTributosMunicipais(String value) {
+    public NFSeSefinNacionalTribTotalPercent setPercentualTributosMunicipais(String value) {
         this.percentualTributosMunicipais = value;
+        return this;
     }
 
 }

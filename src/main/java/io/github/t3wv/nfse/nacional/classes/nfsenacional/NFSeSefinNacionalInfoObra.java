@@ -34,8 +34,9 @@ public class NFSeSefinNacionalInfoObra {
      *
      * @param value Número de identificação da obra
      */
-    public void setNumeroIdentificacaoObra(String value) {
+    public NFSeSefinNacionalInfoObra setNumeroIdentificacaoObra(String value) {
         this.numeroIdentificacaoObra = value;
+        return this;
     }
 
     /**
@@ -52,8 +53,9 @@ public class NFSeSefinNacionalInfoObra {
      *
      * @param value Inscrição imobiliária fiscal
      */
-    public void setInscricaoImobiliariaFiscal(String value) {
+    public NFSeSefinNacionalInfoObra setInscricaoImobiliariaFiscal(String value) {
         this.inscricaoImobiliariaFiscal = value;
+        return this;
     }
 
     /**
@@ -70,8 +72,9 @@ public class NFSeSefinNacionalInfoObra {
      *
      * @param value Endereço da obra
      */
-    public void setEndereco(NFSeSefinNacionalEnderecoSimples value) {
+    public NFSeSefinNacionalInfoObra setEndereco(NFSeSefinNacionalEnderecoSimples value) {
         this.endereco = value;
+        return this;
     }
 
 }

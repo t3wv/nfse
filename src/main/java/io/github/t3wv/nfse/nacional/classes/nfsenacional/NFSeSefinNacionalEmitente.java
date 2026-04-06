@@ -12,76 +12,87 @@ public class NFSeSefinNacionalEmitente {
     protected String cpf;
     @Element(name = "IM", required = false)
     protected String im;
-    @Element(required = true)
+    @Element(name = "xNome")
     protected String xNome;
+    @Element(name = "xFant", required = false)
     protected String xFant;
-    @Element(required = true)
+    @Element(name = "enderNac")
     protected NFSeSefinNacionalEnderecoEmitente enderNac;
+    @Element(name="fone")
     protected String fone;
+    @Element(name="email")
     protected String email;
 
     public String getCNPJ() {
         return cnpj;
     }
 
-    public void setCNPJ(String value) {
+    public NFSeSefinNacionalEmitente setCNPJ(String value) {
         this.cnpj = value;
+        return this;
     }
 
     public String getCPF() {
         return cpf;
     }
 
-    public void setCPF(String value) {
+    public NFSeSefinNacionalEmitente setCPF(String value) {
         this.cpf = value;
+        return this;
     }
 
     public String getIM() {
         return im;
     }
 
-    public void setIM(String value) {
+    public NFSeSefinNacionalEmitente setIM(String value) {
         this.im = value;
+        return this;
     }
 
     public String getXNome() {
         return xNome;
     }
 
-    public void setXNome(String value) {
+    public NFSeSefinNacionalEmitente setXNome(String value) {
         this.xNome = value;
+        return this;
     }
 
     public String getXFant() {
         return xFant;
     }
 
-    public void setXFant(String value) {
+    public NFSeSefinNacionalEmitente setXFant(String value) {
         this.xFant = value;
+        return this;
     }
 
     public NFSeSefinNacionalEnderecoEmitente getEnderNac() {
         return enderNac;
     }
 
-    public void setEnderNac(NFSeSefinNacionalEnderecoEmitente value) {
+    public NFSeSefinNacionalEmitente setEnderNac(NFSeSefinNacionalEnderecoEmitente value) {
         this.enderNac = value;
+        return this;
     }
 
     public String getFone() {
         return fone;
     }
 
-    public void setFone(String value) {
+    public NFSeSefinNacionalEmitente setFone(String value) {
         this.fone = value;
+        return this;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String value) {
+    public NFSeSefinNacionalEmitente setEmail(String value) {
         this.email = value;
+        return this;
     }
 
 }

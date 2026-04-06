@@ -12,7 +12,8 @@ public class NFSeSefinNacionalPostRequest {
         return dpsXmlGZipB64;
     }
 
-    public void setDpsXmlGZipB64(String dpsXmlGZipB64) {
+    public NFSeSefinNacionalPostRequest setDpsXmlGZipB64(String dpsXmlGZipB64) {
         this.dpsXmlGZipB64 = dpsXmlGZipB64;
+        return this;
     }
 }

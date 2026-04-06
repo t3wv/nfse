@@ -20,7 +20,7 @@ public class NFSeSefinNacionalPostResponseErro {
     @JsonProperty("idDPS")
     private String idDPS;
 
-    @JsonProperty("erro")
+    @JsonProperty("erros")
     private List<NFSeSefinNacionalPostMensagemProcessamento> erros;
 
     public Integer getTipoAmbiente() {

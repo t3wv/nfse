@@ -28,8 +28,9 @@ public class NFSeSefinNacionalInfoCompl {
     /**
      * @param idDocResponsabilidadeTecnica Identificador de Documento de Responsabilidade Técnica: ART, RRT, DRT, Outros.
      */
-    public void setIdDocResponsabilidadeTecnica(String idDocResponsabilidadeTecnica) {
+    public NFSeSefinNacionalInfoCompl setIdDocResponsabilidadeTecnica(String idDocResponsabilidadeTecnica) {
         this.idDocResponsabilidadeTecnica = idDocResponsabilidadeTecnica;
+        return this;
     }
 
     /**
@@ -48,8 +49,9 @@ public class NFSeSefinNacionalInfoCompl {
      * (preenchimento obrigatório caso a nota esteja sendo emitida pelo Tomador ou intermediário do serviço)
      * @param referenciaDocumento Referência do documento
      */
-    public void setReferenciaDocumento(String referenciaDocumento) {
+    public NFSeSefinNacionalInfoCompl setReferenciaDocumento(String referenciaDocumento) {
         this.referenciaDocumento = referenciaDocumento;
+        return this;
     }
 
     /**
@@ -62,8 +64,9 @@ public class NFSeSefinNacionalInfoCompl {
     /**
      * @param informacoesComplementares Informações complementares
      */
-    public void setInformacoesComplementares(String informacoesComplementares) {
+    public NFSeSefinNacionalInfoCompl setInformacoesComplementares(String informacoesComplementares) {
         this.informacoesComplementares = informacoesComplementares;
+        return this;
     }
 
 }

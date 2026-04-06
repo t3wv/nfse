@@ -25,56 +25,63 @@ public class NFSeSefinNacionalEnderObraEvento {
         return cEndPost;
     }
 
-    public void setCEndPost(String value) {
+    public NFSeSefinNacionalEnderObraEvento setCEndPost(String value) {
         this.cEndPost = value;
+        return this;
     }
 
     public String getXLgr() {
         return xLgr;
     }
 
-    public void setXLgr(String value) {
+    public NFSeSefinNacionalEnderObraEvento setXLgr(String value) {
         this.xLgr = value;
+        return this;
     }
 
     public String getNro() {
         return nro;
     }
 
-    public void setNro(String value) {
+    public NFSeSefinNacionalEnderObraEvento setNro(String value) {
         this.nro = value;
+        return this;
     }
 
     public String getXCpl() {
         return xCpl;
     }
 
-    public void setXCpl(String value) {
+    public NFSeSefinNacionalEnderObraEvento setXCpl(String value) {
         this.xCpl = value;
+        return this;
     }
 
     public String getXBairro() {
         return xBairro;
     }
 
-    public void setXBairro(String value) {
+    public NFSeSefinNacionalEnderObraEvento setXBairro(String value) {
         this.xBairro = value;
+        return this;
     }
 
     public String getXCidade() {
         return xCidade;
     }
 
-    public void setXCidade(String value) {
+    public NFSeSefinNacionalEnderObraEvento setXCidade(String value) {
         this.xCidade = value;
+        return this;
     }
 
     public String getXEstProvReg() {
         return xEstProvReg;
     }
 
-    public void setXEstProvReg(String value) {
+    public NFSeSefinNacionalEnderObraEvento setXEstProvReg(String value) {
         this.xEstProvReg = value;
+        return this;
     }
 
 }

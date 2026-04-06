@@ -31,8 +31,9 @@ public class NFSeSefinNacionalEnderecoSimples {
      * Define o CEP do endereço
      * @param value CEP do endereço
      */
-    public void setCEP(String value) {
+    public NFSeSefinNacionalEnderecoSimples setCEP(String value) {
         this.cep = value;
+        return this;
     }
 
     /**
@@ -47,8 +48,9 @@ public class NFSeSefinNacionalEnderecoSimples {
      * Define o endereço no exterior
      * @param value Endereço no exterior
      */
-    public void setEnderecoExterior(NFSeSefinNacionalEnderExtSimples value) {
+    public NFSeSefinNacionalEnderecoSimples setEnderecoExterior(NFSeSefinNacionalEnderExtSimples value) {
         this.enderecoExterior = value;
+        return this;
     }
 
     /**
@@ -63,8 +65,9 @@ public class NFSeSefinNacionalEnderecoSimples {
      * Define o logradouro
      * @param logradouro Logradouro
      */
-    public void setLogradouro(String logradouro) {
+    public NFSeSefinNacionalEnderecoSimples setLogradouro(String logradouro) {
         this.logradouro = logradouro;
+        return this;
     }
 
     /**
@@ -79,8 +82,9 @@ public class NFSeSefinNacionalEnderecoSimples {
      * Define o número
      * @param numero Número
      */
-    public void setNumero(String numero) {
+    public NFSeSefinNacionalEnderecoSimples setNumero(String numero) {
         this.numero = numero;
+        return this;
     }
 
     /**
@@ -95,8 +99,9 @@ public class NFSeSefinNacionalEnderecoSimples {
      * Define o complemento
      * @param complemento Complemento
      */
-    public void setComplemento(String complemento) {
+    public NFSeSefinNacionalEnderecoSimples setComplemento(String complemento) {
         this.complemento = complemento;
+        return this;
     }
 
     /**
@@ -111,7 +116,8 @@ public class NFSeSefinNacionalEnderecoSimples {
      * Define o bairro
      * @param bairro Bairro
      */
-    public void setBairro(String bairro) {
+    public NFSeSefinNacionalEnderecoSimples setBairro(String bairro) {
         this.bairro = bairro;
+        return this;
     }
 }

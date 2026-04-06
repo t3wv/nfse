@@ -77,8 +77,9 @@ public class NFSeSefinNacionalInfoPrestador {
      *
      * @param nif NIF do prestador de serviço
      */
-    public void setNIF(String nif) {
+    public NFSeSefinNacionalInfoPrestador setNIF(String nif) {
         this.nif = nif;
+        return this;
     }
 
     /**
@@ -91,8 +92,9 @@ public class NFSeSefinNacionalInfoPrestador {
     /**
      * @param codigoNaoNIF motivo para não informação do NIF
      */
-    public void setCodigoNaoNIF(NFSeSefinNacionalInfoPrestadorCodigoNaoNIF codigoNaoNIF) {
+    public NFSeSefinNacionalInfoPrestador setCodigoNaoNIF(NFSeSefinNacionalInfoPrestadorCodigoNaoNIF codigoNaoNIF) {
         this.codigoNaoNIF = codigoNaoNIF;
+        return this;
     }
 
     /**
@@ -105,8 +107,9 @@ public class NFSeSefinNacionalInfoPrestador {
     /**
      * @param nroCadastroAtividadeEconomicaPessoaFisica CAEPF - Cadastro de Atividade Econômica da Pessoa Física
      */
-    public void setCAEPF(String nroCadastroAtividadeEconomicaPessoaFisica) {
+    public NFSeSefinNacionalInfoPrestador setCAEPF(String nroCadastroAtividadeEconomicaPessoaFisica) {
         this.nroCadastroAtividadeEconomicaPessoaFisica = nroCadastroAtividadeEconomicaPessoaFisica;
+        return this;
     }
 
     /**
@@ -119,8 +122,9 @@ public class NFSeSefinNacionalInfoPrestador {
     /**
      * @param inscricaoMunicipal Inscrição Municipal do prestador de serviço
      */
-    public void setIM(String inscricaoMunicipal) {
+    public NFSeSefinNacionalInfoPrestador setIM(String inscricaoMunicipal) {
         this.inscricaoMunicipal = inscricaoMunicipal;
+        return this;
     }
 
     /**
@@ -133,8 +137,9 @@ public class NFSeSefinNacionalInfoPrestador {
     /**
      * @param nome Nome do prestador de serviço
      */
-    public void setNome(String nome) {
+    public NFSeSefinNacionalInfoPrestador setNome(String nome) {
         this.nome = nome;
+        return this;
     }
 
     /**
@@ -147,8 +152,9 @@ public class NFSeSefinNacionalInfoPrestador {
     /**
      * @param endereco Endereço do prestador de serviço
      */
-    public void setEndereco(NFSeSefinNacionalEndereco endereco) {
+    public NFSeSefinNacionalInfoPrestador setEndereco(NFSeSefinNacionalEndereco endereco) {
         this.endereco = endereco;
+        return this;
     }
 
     /**
@@ -161,8 +167,9 @@ public class NFSeSefinNacionalInfoPrestador {
     /**
      * @param telefone Telefone do prestador de serviço
      */
-    public void setTelefone(String telefone) {
+    public NFSeSefinNacionalInfoPrestador setTelefone(String telefone) {
         this.telefone = telefone;
+        return this;
     }
 
     /**
@@ -175,8 +182,9 @@ public class NFSeSefinNacionalInfoPrestador {
     /**
      * @param email E-mail do prestador de serviço
      */
-    public void setEmail(String email) {
+    public NFSeSefinNacionalInfoPrestador setEmail(String email) {
         this.email = email;
+        return this;
     }
 
     /**

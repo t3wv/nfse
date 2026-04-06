@@ -21,8 +21,9 @@ public class NFSeSefinNacionalExigSuspensa {
     /**
      * @param tipoSuspensao Tipo de Suspensão da Exigibilidade do Crédito Tributário
      */
-    public void setTipoSuspensao(NFSeSefinNacionalExigSuspensaTipoSuspensao tipoSuspensao) {
+    public NFSeSefinNacionalExigSuspensa setTipoSuspensao(NFSeSefinNacionalExigSuspensaTipoSuspensao tipoSuspensao) {
         this.tipoSuspensao = tipoSuspensao;
+        return this;
     }
 
     /**
@@ -35,8 +36,9 @@ public class NFSeSefinNacionalExigSuspensa {
     /**
      * @param numeroProcesso Número do Processo Administrativo ou Judicial
      */
-    public void setNumeroProcesso(String numeroProcesso) {
+    public NFSeSefinNacionalExigSuspensa setNumeroProcesso(String numeroProcesso) {
         this.numeroProcesso = numeroProcesso;
+        return this;
     }
 
 }

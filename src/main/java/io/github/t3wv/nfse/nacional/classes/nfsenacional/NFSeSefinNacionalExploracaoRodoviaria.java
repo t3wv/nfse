@@ -34,8 +34,9 @@ public class NFSeSefinNacionalExploracaoRodoviaria {
     /**
      * @param categoriaVeiculo Categorias do veículo para cobrança
      */
-    public void setCategoriaVeiculo(NFSeSefinNacionalExploracaoRodoviariaCategoriaVeiculo categoriaVeiculo) {
+    public NFSeSefinNacionalExploracaoRodoviaria setCategoriaVeiculo(NFSeSefinNacionalExploracaoRodoviariaCategoriaVeiculo categoriaVeiculo) {
         this.categoriaVeiculo = categoriaVeiculo;
+        return this;
     }
 
     /**
@@ -48,8 +49,9 @@ public class NFSeSefinNacionalExploracaoRodoviaria {
     /**
      * @param numeroEixos Número de eixos do veículo
      */
-    public void setNumeroEixos(String numeroEixos) {
+    public NFSeSefinNacionalExploracaoRodoviaria setNumeroEixos(String numeroEixos) {
         this.numeroEixos = numeroEixos;
+        return this;
     }
 
     /**
@@ -62,8 +64,9 @@ public class NFSeSefinNacionalExploracaoRodoviaria {
     /**
      * @param tipoRodagem Tipo de rodagem do veículo
      */
-    public void setTipoRodagem(NFSeSefinNacionalExploracaoRodoviariaTipoRodagem tipoRodagem) {
+    public NFSeSefinNacionalExploracaoRodoviaria setTipoRodagem(NFSeSefinNacionalExploracaoRodoviariaTipoRodagem tipoRodagem) {
         this.tipoRodagem = tipoRodagem;
+        return this;
     }
 
     /**
@@ -76,8 +79,9 @@ public class NFSeSefinNacionalExploracaoRodoviaria {
     /**
      * @param sentido Orientação de passagem do veículo: ângulo em graus a partir do norte geográfico em sentido horário, número inteiro de 0 a 359, onde 0º seria o norte, 90º o leste, 180º o sul, 270º o oeste. Precisão mínima de 10
      */
-    public void setSentido(String sentido) {
+    public NFSeSefinNacionalExploracaoRodoviaria setSentido(String sentido) {
         this.sentido = sentido;
+        return this;
     }
 
     /**
@@ -90,8 +94,9 @@ public class NFSeSefinNacionalExploracaoRodoviaria {
     /**
      * @param placaVeiculo Placa do veículo
      */
-    public void setPlacaVeiculo(String placaVeiculo) {
+    public NFSeSefinNacionalExploracaoRodoviaria setPlacaVeiculo(String placaVeiculo) {
         this.placaVeiculo = placaVeiculo;
+        return this;
     }
 
     /**
@@ -104,8 +109,9 @@ public class NFSeSefinNacionalExploracaoRodoviaria {
     /**
      * @param codigoAcesso Código de acesso gerado automaticamente pelo sistema emissor da concessionária.
      */
-    public void setCodigoAcesso(String codigoAcesso) {
+    public NFSeSefinNacionalExploracaoRodoviaria setCodigoAcesso(String codigoAcesso) {
         this.codigoAcesso = codigoAcesso;
+        return this;
     }
 
     /**
@@ -118,8 +124,9 @@ public class NFSeSefinNacionalExploracaoRodoviaria {
     /**
      * @param codigoContrato Código de contrato gerado automaticamente pelo sistema nacional no cadastro da concessionária.
      */
-    public void setCodigoContrato(String codigoContrato) {
+    public NFSeSefinNacionalExploracaoRodoviaria setCodigoContrato(String codigoContrato) {
         this.codigoContrato = codigoContrato;
+        return this;
     }
 
 }

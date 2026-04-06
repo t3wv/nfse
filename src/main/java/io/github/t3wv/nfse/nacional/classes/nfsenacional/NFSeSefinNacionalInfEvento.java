@@ -27,48 +27,54 @@ public class NFSeSefinNacionalInfEvento {
         return versaoApp;
     }
 
-    public void setVersaoApp(String value) {
+    public NFSeSefinNacionalInfEvento setVersaoApp(String value) {
         this.versaoApp = value;
+        return this;
     }
 
     public NFSeSefinNacionalInfEventoAmbienteGeracao getAmbienteGeracao() {
         return ambienteGeracao;
     }
 
-    public void setAmbienteGeracao(NFSeSefinNacionalInfEventoAmbienteGeracao value) {
+    public NFSeSefinNacionalInfEvento setAmbienteGeracao(NFSeSefinNacionalInfEventoAmbienteGeracao value) {
         this.ambienteGeracao = value;
+        return this;
     }
 
     public String getNumeroSequencialEvento() {
         return numeroSequencialEvento;
     }
 
-    public void setNumeroSequencialEvento(String numeroSequencialEvento) {
+    public NFSeSefinNacionalInfEvento setNumeroSequencialEvento(String numeroSequencialEvento) {
         this.numeroSequencialEvento = numeroSequencialEvento;
+        return this;
     }
 
     public ZonedDateTime getDataHoraProcessamento() {
         return dataHoraProcessamento;
     }
 
-    public void setDataHoraProcessamento(ZonedDateTime value) {
+    public NFSeSefinNacionalInfEvento setDataHoraProcessamento(ZonedDateTime value) {
         this.dataHoraProcessamento = value;
+        return this;
     }
 
     public String getNumeroDFe() {
         return numeroDFe;
     }
 
-    public void setNumeroDFe(String numeroDFe) {
+    public NFSeSefinNacionalInfEvento setNumeroDFe(String numeroDFe) {
         this.numeroDFe = numeroDFe;
+        return this;
     }
 
     public NFSeSefinNacionalPedRegEvt getPedidoRegistroEvento() {
         return pedidoRegistroEvento;
     }
 
-    public void setPedidoRegistroEvento(NFSeSefinNacionalPedRegEvt pedidoRegistroEvento) {
+    public NFSeSefinNacionalInfEvento setPedidoRegistroEvento(NFSeSefinNacionalPedRegEvt pedidoRegistroEvento) {
         this.pedidoRegistroEvento = pedidoRegistroEvento;
+        return this;
     }
 
     public String getId() {
@@ -79,8 +85,9 @@ public class NFSeSefinNacionalInfEvento {
      * Identificador do evento: "EVT" + Chave de acesso(50) Tipo do evento (6) + Pedido de Registro do Evento(3) (nPedRegEvento)
      * @param value
      */
-    public void setId(String value) {
+    public NFSeSefinNacionalInfEvento setId(String value) {
         this.id = value;
+        return this;
     }
 
 }

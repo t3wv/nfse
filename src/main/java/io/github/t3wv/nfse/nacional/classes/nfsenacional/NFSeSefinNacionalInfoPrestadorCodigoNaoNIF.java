@@ -5,6 +5,7 @@ import org.simpleframework.xml.Root;
 @Root(name = "cNaoNIF")
 public enum NFSeSefinNacionalInfoPrestadorCodigoNaoNIF {
 
+    NAO_INFORMADO("0", "Não informado na nota de origem"),
     DISPENSADO("1", "Dispensado do NIF"),
     NAO_EXIGENCIA("2", "Não exigência do NIF");
 

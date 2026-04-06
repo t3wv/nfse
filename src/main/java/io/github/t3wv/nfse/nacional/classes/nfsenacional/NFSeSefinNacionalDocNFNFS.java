@@ -23,8 +23,9 @@ public class NFSeSefinNacionalDocNFNFS {
     /**
      * @param numero Número da Nota Fiscal NF ou NFS
      */
-    public void setNumero(String numero) {
+    public NFSeSefinNacionalDocNFNFS setNumero(String numero) {
         this.numero = numero;
+        return this;
     }
 
     /**
@@ -37,8 +38,9 @@ public class NFSeSefinNacionalDocNFNFS {
     /**
      * @param modelo Modelo da Nota Fiscal NF ou NFS
      */
-    public void setModelo(String modelo) {
+    public NFSeSefinNacionalDocNFNFS setModelo(String modelo) {
         this.modelo = modelo;
+        return this;
     }
 
     /**
@@ -51,8 +53,9 @@ public class NFSeSefinNacionalDocNFNFS {
     /**
      * @param serie Série Nota Fiscal NF ou NFS
      */
-    public void setSerie(String serie) {
+    public NFSeSefinNacionalDocNFNFS setSerie(String serie) {
         this.serie = serie;
+        return this;
     }
 
 }

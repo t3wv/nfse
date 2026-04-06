@@ -16,61 +16,24 @@ public class NFSeSefinNacionalNFSe {
     @Element(name = "Signature")
     protected SignatureType signature;
 
-    /**
-     * Gets the value of the infNFSe property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link NFSeSefinNacionalInfNFSe }
-     *     
-     */
     public NFSeSefinNacionalInfNFSe getInfNFSe() {
         return infNFSe;
     }
 
-    /**
-     * Sets the value of the infNFSe property.
-     *
-     * @param value allowed object is
-     *              {@link NFSeSefinNacionalInfNFSe }
-     * @return
-     *
-     */
     public NFSeSefinNacionalNFSe setInfNFSe(NFSeSefinNacionalInfNFSe value) {
         this.infNFSe = value;
         return this;
     }
 
-    /**
-     * Gets the value of the versao property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getVersao() {
         return versao;
     }
 
-    /**
-     * Sets the value of the versao property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setVersao(String value) {
-        this.versao = value;
+    public NFSeSefinNacionalNFSe setVersao(String versao) {
+        this.versao = versao;
+        return this;
     }
 
-    /**
-     * Converte o objeto para XML
-     *
-     * @return String contendo o XML gerado
-     * @throws Exception se houver erro na serialização
-     */
     public String toXml() throws Exception {
         Persister serializer = new Persister();
         StringWriter writer = new StringWriter();

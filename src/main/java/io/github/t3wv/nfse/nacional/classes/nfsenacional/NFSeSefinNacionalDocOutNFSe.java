@@ -23,8 +23,9 @@ public class NFSeSefinNacionalDocOutNFSe {
     /**
      * @param codigoMunicipio Código Município emissor da nota eletrônica municipal (Tabela do IBGE)
      */
-    public void setCodigoMunicipio(String codigoMunicipio) {
+    public NFSeSefinNacionalDocOutNFSe setCodigoMunicipio(String codigoMunicipio) {
         this.codigoMunicipio = codigoMunicipio;
+        return this;
     }
 
     /**
@@ -37,8 +38,9 @@ public class NFSeSefinNacionalDocOutNFSe {
     /**
      * @param numeroNFSe Número da nota eletrônica municipal
      */
-    public void setNumeroNFSe(String numeroNFSe) {
+    public NFSeSefinNacionalDocOutNFSe setNumeroNFSe(String numeroNFSe) {
         this.numeroNFSe = numeroNFSe;
+        return this;
     }
 
     /**
@@ -51,8 +53,9 @@ public class NFSeSefinNacionalDocOutNFSe {
     /**
      * @param codigoVerificacao Código de Verificação da nota eletrônica municipal
      */
-    public void setCodigoVerificacao(String codigoVerificacao) {
+    public NFSeSefinNacionalDocOutNFSe setCodigoVerificacao(String codigoVerificacao) {
         this.codigoVerificacao = codigoVerificacao;
+        return this;
     }
 
 }

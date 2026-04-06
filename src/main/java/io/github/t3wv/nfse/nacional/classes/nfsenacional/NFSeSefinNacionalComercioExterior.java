@@ -43,8 +43,9 @@ public class NFSeSefinNacionalComercioExterior {
      *
      * @param modoPrestacao Modo de prestação do serviço
      */
-    public void setModoPrestacao(NFSeSefinNacionalComercioExteriorModoPrestacao modoPrestacao) {
+    public NFSeSefinNacionalComercioExterior setModoPrestacao(NFSeSefinNacionalComercioExteriorModoPrestacao modoPrestacao) {
         this.modoPrestacao = modoPrestacao;
+        return this;
     }
 
     /**
@@ -59,8 +60,9 @@ public class NFSeSefinNacionalComercioExterior {
      *
      * @param vinculoEntrePartes Vínculo entre as partes
      */
-    public void setVinculoEntrePartes(NFSeSefinNacionalComercioExteriorVinculoEntrePartes vinculoEntrePartes) {
+    public NFSeSefinNacionalComercioExterior setVinculoEntrePartes(NFSeSefinNacionalComercioExteriorVinculoEntrePartes vinculoEntrePartes) {
         this.vinculoEntrePartes = vinculoEntrePartes;
+        return this;
     }
 
     /**
@@ -75,8 +77,9 @@ public class NFSeSefinNacionalComercioExterior {
      *
      * @param moeda Moeda
      */
-    public void setMoeda(String moeda) {
+    public NFSeSefinNacionalComercioExterior setMoeda(String moeda) {
         this.moeda = moeda;
+        return this;
     }
 
     /**
@@ -91,8 +94,9 @@ public class NFSeSefinNacionalComercioExterior {
      *
      * @param value Valor do serviço na moeda estrangeira
      */
-    public void setVServMoeda(String value) {
+    public NFSeSefinNacionalComercioExterior setVServMoeda(String value) {
         this.valorServicoMoedaEstrangeira = value;
+        return this;
     }
 
     /**
@@ -105,8 +109,9 @@ public class NFSeSefinNacionalComercioExterior {
     /**
      * @param mecanismoApoioComercioExteriorPrestador Define o mecanismo de apoio ao comércio exterior utilizado pelo prestador
      */
-    public void setMecanismoApoioComercioExteriorPrestador(NFSeSefinNacionalComercioExteriorMecanismoApoioPrestador mecanismoApoioComercioExteriorPrestador) {
+    public NFSeSefinNacionalComercioExterior setMecanismoApoioComercioExteriorPrestador(NFSeSefinNacionalComercioExteriorMecanismoApoioPrestador mecanismoApoioComercioExteriorPrestador) {
         this.mecanismoApoioComercioExteriorPrestador = mecanismoApoioComercioExteriorPrestador;
+        return this;
     }
 
     /**
@@ -119,8 +124,9 @@ public class NFSeSefinNacionalComercioExterior {
     /**
      * @param mecanismoApoioComercioExteriorTomador Define o mecanismo de apoio ao comércio exterior utilizado pelo tomador
      */
-    public void setMecanismoApoioComercioExteriorTomador(NFSeSefinNacionalComercioExteriorMecanismoApoioTomador mecanismoApoioComercioExteriorTomador) {
+    public NFSeSefinNacionalComercioExterior setMecanismoApoioComercioExteriorTomador(NFSeSefinNacionalComercioExteriorMecanismoApoioTomador mecanismoApoioComercioExteriorTomador) {
         this.mecanismoApoioComercioExteriorTomador = mecanismoApoioComercioExteriorTomador;
+        return this;
     }
 
     /**
@@ -133,8 +139,9 @@ public class NFSeSefinNacionalComercioExterior {
     /**
      * @param movimentacaoTemporariaBens Define se operação está vinculada a movimentação temporária de bens
      */
-    public void setMovimentacaoTemporariaBens(NFSeSefinNacionalComercioExteriorMovimentacaoTemporariaBens movimentacaoTemporariaBens) {
+    public NFSeSefinNacionalComercioExterior setMovimentacaoTemporariaBens(NFSeSefinNacionalComercioExteriorMovimentacaoTemporariaBens movimentacaoTemporariaBens) {
         this.movimentacaoTemporariaBens = movimentacaoTemporariaBens;
+        return this;
     }
 
     /**
@@ -146,10 +153,12 @@ public class NFSeSefinNacionalComercioExterior {
 
     /**
      * Define o número da Declaração de Importação (DI/DSI/DA/DRI-E) averbado
+     *
      * @param ndi Número da declaração de importação averbado
      */
-    public void setNDI(String ndi) {
+    public NFSeSefinNacionalComercioExterior setNDI(String ndi) {
         this.ndi = ndi;
+        return this;
     }
 
     /**
@@ -161,10 +170,12 @@ public class NFSeSefinNacionalComercioExterior {
 
     /**
      * Define o número do Registro de Exportação (RE) averbado
+     *
      * @param nre Número do registro de exportação averbado
      */
-    public void setNRE(String nre) {
+    public NFSeSefinNacionalComercioExterior setNRE(String nre) {
         this.nre = nre;
+        return this;
     }
 
     /**
@@ -179,8 +190,9 @@ public class NFSeSefinNacionalComercioExterior {
      *
      * @param compartilharComMDIC Compartilhamento de informações com o MDIC
      */
-    public void setCompartilharComMDIC(NFSeSefinNacionalComercioExteriorCompartilharComMDIC compartilharComMDIC) {
+    public NFSeSefinNacionalComercioExterior setCompartilharComMDIC(NFSeSefinNacionalComercioExteriorCompartilharComMDIC compartilharComMDIC) {
         this.compartilharComMDIC = compartilharComMDIC;
+        return this;
     }
 
 }

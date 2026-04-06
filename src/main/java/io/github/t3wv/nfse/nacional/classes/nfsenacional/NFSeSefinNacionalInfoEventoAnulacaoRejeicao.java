@@ -35,76 +35,31 @@ public class NFSeSefinNacionalInfoEventoAnulacaoRejeicao {
     @Element(required = true)
     protected String xMotivo;
 
-    /**
-     * Gets the value of the cpfAgTrib property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getCPFAgTrib() {
         return cpfAgTrib;
     }
 
-    /**
-     * Sets the value of the cpfAgTrib property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setCPFAgTrib(String value) {
+    public NFSeSefinNacionalInfoEventoAnulacaoRejeicao setCPFAgTrib(String value) {
         this.cpfAgTrib = value;
+        return this;
     }
 
-    /**
-     * Gets the value of the idEvManifRej property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getIdEvManifRej() {
         return idEvManifRej;
     }
 
-    /**
-     * Sets the value of the idEvManifRej property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setIdEvManifRej(String value) {
+    public NFSeSefinNacionalInfoEventoAnulacaoRejeicao setIdEvManifRej(String value) {
         this.idEvManifRej = value;
+        return this;
     }
 
-    /**
-     * Gets the value of the xMotivo property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getXMotivo() {
         return xMotivo;
     }
 
-    /**
-     * Sets the value of the xMotivo property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setXMotivo(String value) {
+    public NFSeSefinNacionalInfoEventoAnulacaoRejeicao setXMotivo(String value) {
         this.xMotivo = value;
+        return this;
     }
 
 }

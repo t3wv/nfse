@@ -27,9 +27,10 @@ public abstract class NFSeSefinNacionalInfPedRegEventoTE {
         return this.xDesc;
     };
 
-    public void setxDesc(String xDesc){
+    public NFSeSefinNacionalInfPedRegEventoTE setxDesc(String xDesc){
         this.xDesc = xDesc;
-    };
+        return this;
+    }
 
     public String getCodigoEvento() {
         return codigoEvento;

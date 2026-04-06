@@ -36,8 +36,9 @@ public class NFSeSefinNacionalBeneficioMunicipal {
      *
      * @param tipoBeneficio tipoBeneficio
      */
-    public void setTipoBeneficio(NFSeSefinNacionalBeneficioMunicipalTipoBeneficio tipoBeneficio) {
+    public NFSeSefinNacionalBeneficioMunicipal setTipoBeneficio(NFSeSefinNacionalBeneficioMunicipalTipoBeneficio tipoBeneficio) {
         this.tipoBeneficio = tipoBeneficio;
+        return this;
     }
 
     /**
@@ -50,10 +51,12 @@ public class NFSeSefinNacionalBeneficioMunicipal {
 
     /**
      * Identificador do benefício municipal parametrizado pelo município.
+     *
      * @param numeroBeneficio numeroBeneficio
      */
-    public void setNumeroBeneficio(String numeroBeneficio) {
+    public NFSeSefinNacionalBeneficioMunicipal setNumeroBeneficio(String numeroBeneficio) {
         this.numeroBeneficio = numeroBeneficio;
+        return this;
     }
 
     /**
@@ -66,10 +69,12 @@ public class NFSeSefinNacionalBeneficioMunicipal {
 
     /**
      * Valor monetário informado pelo emitente para redução da base de cálculo (BC) do ISSQN devido a um Benefício Municipal (BM)
+     *
      * @param valorReducaoBaseCalculoBeneficioMunicipal valorReducaoBaseCalculoBeneficioMunicipal
      */
-    public void setValorReducaoBaseCalculoBeneficioMunicipal(String valorReducaoBaseCalculoBeneficioMunicipal) {
+    public NFSeSefinNacionalBeneficioMunicipal setValorReducaoBaseCalculoBeneficioMunicipal(String valorReducaoBaseCalculoBeneficioMunicipal) {
         this.valorReducaoBaseCalculoBeneficioMunicipal = valorReducaoBaseCalculoBeneficioMunicipal;
+        return this;
     }
 
     /**
@@ -82,10 +87,12 @@ public class NFSeSefinNacionalBeneficioMunicipal {
 
     /**
      * Valor percentual informado pelo emitente para redução da base de cálculo (BC) do ISSQN devido a um Benefício Municipal (BM)
+     *
      * @param percentualReducaoBaseCalculoBeneficioMunicipal percentualReducaoBaseCalculoBeneficioMunicipal
      */
-    public void setPercentualReducaoBaseCalculoBeneficioMunicipal(String percentualReducaoBaseCalculoBeneficioMunicipal) {
+    public NFSeSefinNacionalBeneficioMunicipal setPercentualReducaoBaseCalculoBeneficioMunicipal(String percentualReducaoBaseCalculoBeneficioMunicipal) {
         this.percentualReducaoBaseCalculoBeneficioMunicipal = percentualReducaoBaseCalculoBeneficioMunicipal;
+        return this;
     }
 
 }

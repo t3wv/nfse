@@ -49,48 +49,54 @@ public class NFSeSefinNacionalServ {
         return comercioExterior;
     }
 
-    public void setComercioExterior(NFSeSefinNacionalComercioExterior value) {
+    public NFSeSefinNacionalServ setComercioExterior(NFSeSefinNacionalComercioExterior value) {
         this.comercioExterior = value;
+        return this;
     }
 
     public NFSeSefinNacionalLocacaoSublocacao getLocalSubLocacao() {
         return localSubLocacao;
     }
 
-    public void setLocalSubLocacao(NFSeSefinNacionalLocacaoSublocacao value) {
+    public NFSeSefinNacionalServ setLocalSubLocacao(NFSeSefinNacionalLocacaoSublocacao value) {
         this.localSubLocacao = value;
+        return this;
     }
 
     public NFSeSefinNacionalInfoObra getObra() {
         return obra;
     }
 
-    public void setObra(NFSeSefinNacionalInfoObra value) {
+    public NFSeSefinNacionalServ setObra(NFSeSefinNacionalInfoObra value) {
         this.obra = value;
+        return this;
     }
 
     public NFSeSefinNacionalAtvEvento getEvento() {
         return evento;
     }
 
-    public void setEvento(NFSeSefinNacionalAtvEvento value) {
+    public NFSeSefinNacionalServ setEvento(NFSeSefinNacionalAtvEvento value) {
         this.evento = value;
+        return this;
     }
 
     public NFSeSefinNacionalExploracaoRodoviaria getExploracaoRodoviaria() {
         return exploracaoRodoviaria;
     }
 
-    public void setExploracaoRodoviaria(NFSeSefinNacionalExploracaoRodoviaria value) {
+    public NFSeSefinNacionalServ setExploracaoRodoviaria(NFSeSefinNacionalExploracaoRodoviaria value) {
         this.exploracaoRodoviaria = value;
+        return this;
     }
 
     public NFSeSefinNacionalInfoCompl getInformacoesComplementares() {
         return informacoesComplementares;
     }
 
-    public void setInformacoesComplementares(NFSeSefinNacionalInfoCompl value) {
+    public NFSeSefinNacionalServ setInformacoesComplementares(NFSeSefinNacionalInfoCompl value) {
         this.informacoesComplementares = value;
+        return this;
     }
 
 }

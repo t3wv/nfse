@@ -31,8 +31,9 @@ public class NFSeSefinNacionalEnderExt {
      *
      * @param pais Código do país
      */
-    public void setPais(String pais) {
+    public NFSeSefinNacionalEnderExt setPais(String pais) {
         this.pais = pais;
+        return this;
     }
 
     /**
@@ -45,8 +46,9 @@ public class NFSeSefinNacionalEnderExt {
     /**
      * @param codigoPostal código alfanumérico do Endereçamento Postal no exterior do prestador do serviço.
      */
-    public void setCodigoPostal(String codigoPostal) {
+    public NFSeSefinNacionalEnderExt setCodigoPostal(String codigoPostal) {
         this.codigoPostal = codigoPostal;
+        return this;
     }
 
     /**
@@ -59,8 +61,9 @@ public class NFSeSefinNacionalEnderExt {
     /**
      * @param cidade Nome da cidade no exterior do prestador do serviço.
      */
-    public void setCidade(String cidade) {
+    public NFSeSefinNacionalEnderExt setCidade(String cidade) {
         this.cidade = cidade;
+        return this;
     }
 
     /**
@@ -73,8 +76,9 @@ public class NFSeSefinNacionalEnderExt {
     /**
      * @param estadoProvinciaRegiao Nome do estado, província ou região no exterior do prestador do serviço.
      */
-    public void setEstadoProvinciaRegiao(String estadoProvinciaRegiao) {
+    public NFSeSefinNacionalEnderExt setEstadoProvinciaRegiao(String estadoProvinciaRegiao) {
         this.estadoProvinciaRegiao = estadoProvinciaRegiao;
+        return this;
     }
 
 }

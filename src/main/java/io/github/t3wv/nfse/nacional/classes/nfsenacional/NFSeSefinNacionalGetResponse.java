@@ -24,39 +24,44 @@ public class NFSeSefinNacionalGetResponse {
         return tipoAmbiente;
     }
 
-    public void setTipoAmbiente(Integer tipoAmbiente) {
+    public NFSeSefinNacionalGetResponse setTipoAmbiente(Integer tipoAmbiente) {
         this.tipoAmbiente = tipoAmbiente;
+        return this;
     }
 
     public String getVersaoAplicativo() {
         return versaoAplicativo;
     }
 
-    public void setVersaoAplicativo(String versaoAplicativo) {
+    public NFSeSefinNacionalGetResponse setVersaoAplicativo(String versaoAplicativo) {
         this.versaoAplicativo = versaoAplicativo;
+        return this;
     }
 
     public String getDataHoraProcessamento() {
         return dataHoraProcessamento;
     }
 
-    public void setDataHoraProcessamento(String dataHoraProcessamento) {
+    public NFSeSefinNacionalGetResponse setDataHoraProcessamento(String dataHoraProcessamento) {
         this.dataHoraProcessamento = dataHoraProcessamento;
+        return this;
     }
 
     public String getChaveAcesso() {
         return chaveAcesso;
     }
 
-    public void setChaveAcesso(String chaveAcesso) {
+    public NFSeSefinNacionalGetResponse setChaveAcesso(String chaveAcesso) {
         this.chaveAcesso = chaveAcesso;
+        return this;
     }
 
     public String getNfseXmlGZipB64() {
         return nfseXmlGZipB64;
     }
 
-    public void setNfseXmlGZipB64(String nfseXmlGZipB64) {
+    public NFSeSefinNacionalGetResponse setNfseXmlGZipB64(String nfseXmlGZipB64) {
         this.nfseXmlGZipB64 = nfseXmlGZipB64;
+        return this;
     }
 }

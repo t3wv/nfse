@@ -27,8 +27,9 @@ public class NFSeSefinNacionalVServPrest {
     /**
      * @param valorRecebidoIntermediario Valor monetário recebido pelo intermediário do serviço (R$)
      */
-    public void setValorRecebidoIntermediario(BigDecimal valorRecebidoIntermediario) {
+    public NFSeSefinNacionalVServPrest setValorRecebidoIntermediario(BigDecimal valorRecebidoIntermediario) {
         this.valorRecebidoIntermediario = valorRecebidoIntermediario;
+        return this;
     }
 
     /**

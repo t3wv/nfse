@@ -47,8 +47,9 @@ public class NFSeSefinNacionalCServ {
      *
      * @param value Código de tributação municipal do ISSQN
      */
-    public void setCodigoMunicipalTributacaoISSQN(String value) {
+    public NFSeSefinNacionalCServ setCodigoMunicipalTributacaoISSQN(String value) {
         this.codigoMunicipalTributacaoISSQN = value;
+        return this;
     }
 
     /**
@@ -93,8 +94,9 @@ public class NFSeSefinNacionalCServ {
     /**
      * @param codigoInternoContribuinte Código interno do contribuinte
      */
-    public void setCodigoInternoContribuinte(String codigoInternoContribuinte) {
+    public NFSeSefinNacionalCServ setCodigoInternoContribuinte(String codigoInternoContribuinte) {
         this.codigoInternoContribuinte = codigoInternoContribuinte;
+        return this;
     }
 
 }

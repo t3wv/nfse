@@ -24,8 +24,9 @@ public class NFSeSefinNacionalEnderExtSimples {
      * Define o Código alfanumérico do Endereçamento Postal no exterior do prestador do serviço.
      * @param value Código alfanumérico do Endereçamento Postal no exterior do prestador do serviço.
      */
-    public void setCodigoPostal(String value) {
+    public NFSeSefinNacionalEnderExtSimples setCodigoPostal(String value) {
         this.codigoPostal = value;
+        return this;
     }
 
     /**
@@ -40,8 +41,9 @@ public class NFSeSefinNacionalEnderExtSimples {
      * Define a cidade
      * @param value Cidade
      */
-    public void setCidade(String value) {
+    public NFSeSefinNacionalEnderExtSimples setCidade(String value) {
         this.cidade = value;
+        return this;
     }
 
     /**
@@ -56,8 +58,9 @@ public class NFSeSefinNacionalEnderExtSimples {
      * Define o estado, província ou região
      * @param value Estado, província ou região
      */
-    public void setEstadoProvinciaRegiao(String value) {
+    public NFSeSefinNacionalEnderExtSimples setEstadoProvinciaRegiao(String value) {
         this.estadoProvinciaRegiao = value;
+        return this;
     }
 
 }

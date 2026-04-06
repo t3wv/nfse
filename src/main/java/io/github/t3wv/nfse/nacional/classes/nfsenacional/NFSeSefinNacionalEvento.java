@@ -21,16 +21,18 @@ public class NFSeSefinNacionalEvento {
         return infEvento;
     }
 
-    public void setInfEvento(NFSeSefinNacionalInfEvento value) {
+    public NFSeSefinNacionalEvento setInfEvento(NFSeSefinNacionalInfEvento value) {
         this.infEvento = value;
+        return this;
     }
 
     public String getVersao() {
         return versao;
     }
 
-    public void setVersao(String value) {
+    public NFSeSefinNacionalEvento setVersao(String value) {
         this.versao = value;
+        return this;
     }
 
     public SignatureType getSignature() {

@@ -41,8 +41,9 @@ public class NFSeSefinNacionalTribFederal {
     /**
      * @param value Valor retido do tributo CP
      */
-    public void setValorCP(String value) {
+    public NFSeSefinNacionalTribFederal setValorCP(String value) {
         this.valorCP = value;
+        return this;
     }
 
     /**
@@ -55,8 +56,9 @@ public class NFSeSefinNacionalTribFederal {
     /**
      * @param value Valor retido do tributo IRRF
      */
-    public void setValorIRRF(String value) {
+    public NFSeSefinNacionalTribFederal setValorIRRF(String value) {
         this.valorIRRF = value;
+        return this;
     }
 
     /**
@@ -69,8 +71,9 @@ public class NFSeSefinNacionalTribFederal {
     /**
      * @param value Valor retido do tributo CSLL
      */
-    public void setValorCSLL(String value) {
+    public NFSeSefinNacionalTribFederal setValorCSLL(String value) {
         this.valorCSLL = value;
+        return this;
     }
 
 }

@@ -23,8 +23,9 @@ public class NFSeSefinNacionalSubstituicao {
     /**
      * @param chaveNFSe Chave de acesso da NFS-e a ser substituída
      */
-    public void setChaveNFSe(String chaveNFSe) {
+    public NFSeSefinNacionalSubstituicao setChaveNFSe(String chaveNFSe) {
         this.chaveNFSe = chaveNFSe;
+        return this;
     }
 
     /**
@@ -39,8 +40,9 @@ public class NFSeSefinNacionalSubstituicao {
      * @param motivo motivo da substituição
      * @see NFSeSefinNacionalTSCodJustSubst
      */
-    public void setMotivo(NFSeSefinNacionalTSCodJustSubst motivo) {
+    public NFSeSefinNacionalSubstituicao setMotivo(NFSeSefinNacionalTSCodJustSubst motivo) {
         this.motivo = motivo;
+        return this;
     }
 
     /**
@@ -53,11 +55,12 @@ public class NFSeSefinNacionalSubstituicao {
     /**
      * @param observacao Descrição do motivo da substituição
      */
-    public void setMotivoObservacao(String observacao) {
+    public NFSeSefinNacionalSubstituicao setMotivoObservacao(String observacao) {
         // Todo
         //  - Verificar se este campo é obrigatório para algum motivo específico, ou se é sempre opcional -
         //  - Layout do enum de motivos não deixa claro se é só a descrição replicada de lá, ou se é algo customizável
         this.observacao = observacao;
+        return this;
     }
 
 }

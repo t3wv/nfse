@@ -5,17 +5,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NFSeSefinNacionalPostMensagemProcessamento {
-    @JsonProperty("mensagem")
+    @JsonProperty("Mensagem")
     private String mensagem;
 
-    @JsonProperty("codigo")
+    @JsonProperty("Codigo")
     private String codigo;
 
-    @JsonProperty("descricao")
+    @JsonProperty("Descricao")
     private String descricao;
 
-    @JsonProperty("complemento")
+    @JsonProperty("Complemento")
     private String complemento;
+
+
 
     public String getMensagem() {
         return mensagem;

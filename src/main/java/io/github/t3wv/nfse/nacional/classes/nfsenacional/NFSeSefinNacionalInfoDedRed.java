@@ -21,24 +21,27 @@ public class NFSeSefinNacionalInfoDedRed {
         return percentualPadrao;
     }
 
-    public void setPercentualPadrao(String percentualPadrao) {
+    public NFSeSefinNacionalInfoDedRed setPercentualPadrao(String percentualPadrao) {
         this.percentualPadrao = percentualPadrao;
+        return this;
     }
 
     public String getValorMonetarioPadrao() {
         return valorMonetarioPadrao;
     }
 
-    public void setValorMonetarioPadrao(String valorMonetarioPadrao) {
+    public NFSeSefinNacionalInfoDedRed setValorMonetarioPadrao(String valorMonetarioPadrao) {
         this.valorMonetarioPadrao = valorMonetarioPadrao;
+        return this;
     }
 
     public NFSeSefinNacionalListaDocDedRed getDocumentos() {
         return documentos;
     }
 
-    public void setDocumentos(NFSeSefinNacionalListaDocDedRed documentos) {
+    public NFSeSefinNacionalInfoDedRed setDocumentos(NFSeSefinNacionalListaDocDedRed documentos) {
         this.documentos = documentos;
+        return this;
     }
 
 }

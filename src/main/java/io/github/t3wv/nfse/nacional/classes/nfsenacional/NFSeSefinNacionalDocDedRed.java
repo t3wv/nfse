@@ -43,8 +43,9 @@ public class NFSeSefinNacionalDocDedRed {
     /**
      * @param chaveNFSe Chave de Acesso da NFS-e (Padrão Nacional)
      */
-    public void setChaveNFSe(String chaveNFSe) {
+    public NFSeSefinNacionalDocDedRed setChaveNFSe(String chaveNFSe) {
         this.chaveNFSe = chaveNFSe;
+        return this;
     }
 
     /**
@@ -57,8 +58,9 @@ public class NFSeSefinNacionalDocDedRed {
     /**
      * @param chaveNFe Chave de Acesso da NF-e
      */
-    public void setChaveNFe(String chaveNFe) {
+    public NFSeSefinNacionalDocDedRed setChaveNFe(String chaveNFe) {
         this.chaveNFe = chaveNFe;
+        return this;
     }
 
     /**
@@ -71,8 +73,9 @@ public class NFSeSefinNacionalDocDedRed {
     /**
      * @param nfseMunicipal Grupo de informações de Outras NFS-e (Padrão anterior de NFS-e)
      */
-    public void setNFSeMunicipal(NFSeSefinNacionalDocOutNFSe nfseMunicipal) {
+    public NFSeSefinNacionalDocDedRed setNFSeMunicipal(NFSeSefinNacionalDocOutNFSe nfseMunicipal) {
         this.nfseMunicipal = nfseMunicipal;
+        return this;
     }
 
     /**
@@ -85,8 +88,9 @@ public class NFSeSefinNacionalDocDedRed {
     /**
      * @param nfNfsNaoEletronico Grupo de informações de NF ou NFS (Modelo não eletrônico)
      */
-    public void setNfNfsNaoEletronico(NFSeSefinNacionalDocNFNFS nfNfsNaoEletronico) {
+    public NFSeSefinNacionalDocDedRed setNfNfsNaoEletronico(NFSeSefinNacionalDocNFNFS nfNfsNaoEletronico) {
         this.nfNfsNaoEletronico = nfNfsNaoEletronico;
+        return this;
     }
 
     /**
@@ -99,8 +103,9 @@ public class NFSeSefinNacionalDocDedRed {
     /**
      * @param numeroDocumentoFiscal Número de documento fiscal
      */
-    public void setNumeroDocumentoFiscal(String numeroDocumentoFiscal) {
+    public NFSeSefinNacionalDocDedRed setNumeroDocumentoFiscal(String numeroDocumentoFiscal) {
         this.numeroDocumentoFiscal = numeroDocumentoFiscal;
+        return this;
     }
 
     /**
@@ -113,8 +118,9 @@ public class NFSeSefinNacionalDocDedRed {
     /**
      * @param numeroDocumentoNaoFiscal Número de documento não fiscal
      */
-    public void setNumeroDocumentoNaoFiscal(String numeroDocumentoNaoFiscal) {
+    public NFSeSefinNacionalDocDedRed setNumeroDocumentoNaoFiscal(String numeroDocumentoNaoFiscal) {
         this.numeroDocumentoNaoFiscal = numeroDocumentoNaoFiscal;
+        return this;
     }
 
     /**
@@ -127,8 +133,9 @@ public class NFSeSefinNacionalDocDedRed {
     /**
      * @param tipoDeducaoReducao Identificação da Dedução/Redução
      */
-    public void setTipoDeducaoReducao(NFSeSefinNacionalDocDedRedTipoDeducaoReducao tipoDeducaoReducao) {
+    public NFSeSefinNacionalDocDedRed setTipoDeducaoReducao(NFSeSefinNacionalDocDedRedTipoDeducaoReducao tipoDeducaoReducao) {
         this.tipoDeducaoReducao = tipoDeducaoReducao;
+        return this;
     }
 
     /**
@@ -141,8 +148,9 @@ public class NFSeSefinNacionalDocDedRed {
     /**
      * @param descricaoOutrasDeducoes Descrição da Dedução/Redução quando a opção é "99 – Outras Deduções"
      */
-    public void setDescricaoOutrasDeducoes(String descricaoOutrasDeducoes) {
+    public NFSeSefinNacionalDocDedRed setDescricaoOutrasDeducoes(String descricaoOutrasDeducoes) {
         this.descricaoOutrasDeducoes = descricaoOutrasDeducoes;
+        return this;
     }
 
     /**
@@ -155,8 +163,9 @@ public class NFSeSefinNacionalDocDedRed {
     /**
      * @param dataEmissao Data da emissão do documento dedutível
      */
-    public void setDataEmissao(LocalDate dataEmissao) {
+    public NFSeSefinNacionalDocDedRed setDataEmissao(LocalDate dataEmissao) {
         this.dataEmissao = dataEmissao;
+        return this;
     }
 
     /**
@@ -175,8 +184,9 @@ public class NFSeSefinNacionalDocDedRed {
      *
      * @param valorTotalDedutivel Valor total dedutível
      */
-    public void setValorTotalDedutivel(String valorTotalDedutivel) {
+    public NFSeSefinNacionalDocDedRed setValorTotalDedutivel(String valorTotalDedutivel) {
         this.valorTotalDedutivel = valorTotalDedutivel;
+        return this;
     }
 
     /**
@@ -195,8 +205,9 @@ public class NFSeSefinNacionalDocDedRed {
      *
      * @param valorDeducao Valor dedução
      */
-    public void setValorDeducao(String valorDeducao) {
+    public NFSeSefinNacionalDocDedRed setValorDeducao(String valorDeducao) {
         this.valorDeducao = valorDeducao;
+        return this;
     }
 
     /**
@@ -209,8 +220,9 @@ public class NFSeSefinNacionalDocDedRed {
     /**
      * @param fornecedor fornecedor
      */
-    public void setFornecedor(NFSeSefinNacionalInfoPessoa fornecedor) {
+    public NFSeSefinNacionalDocDedRed setFornecedor(NFSeSefinNacionalInfoPessoa fornecedor) {
         this.fornecedor = fornecedor;
+        return this;
     }
 
 }

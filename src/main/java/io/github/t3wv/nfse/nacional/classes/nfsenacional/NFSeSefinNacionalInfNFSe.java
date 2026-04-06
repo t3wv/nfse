@@ -83,460 +83,175 @@ public class NFSeSefinNacionalInfNFSe {
     @Attribute(name = "Id", required = false)
     protected String id;
 
-    /**
-     * Gets the value of the xLocEmi property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getXLocEmi() {
         return xLocEmi;
     }
 
-    /**
-     * Sets the value of the xLocEmi property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setXLocEmi(String value) {
+    public NFSeSefinNacionalInfNFSe setXLocEmi(String value) {
         this.xLocEmi = value;
+        return this;
     }
 
-    /**
-     * Gets the value of the xLocPrestacao property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getXLocPrestacao() {
         return xLocPrestacao;
     }
 
-    /**
-     * Sets the value of the xLocPrestacao property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setXLocPrestacao(String value) {
+    public NFSeSefinNacionalInfNFSe setXLocPrestacao(String value) {
         this.xLocPrestacao = value;
+        return this;
     }
 
-    /**
-     * Gets the value of the nnfSe property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getNNFSe() {
         return nnfSe;
     }
 
-    /**
-     * Sets the value of the nnfSe property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setNNFSe(String value) {
+    public NFSeSefinNacionalInfNFSe setNNFSe(String value) {
         this.nnfSe = value;
+        return this;
     }
 
-    /**
-     * Gets the value of the cLocIncid property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getCLocIncid() {
         return cLocIncid;
     }
 
-    /**
-     * Sets the value of the cLocIncid property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setCLocIncid(String value) {
+    public NFSeSefinNacionalInfNFSe setCLocIncid(String value) {
         this.cLocIncid = value;
+        return this;
     }
 
-    /**
-     * Gets the value of the xLocIncid property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getXLocIncid() {
         return xLocIncid;
     }
 
-    /**
-     * Sets the value of the xLocIncid property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setXLocIncid(String value) {
+    public NFSeSefinNacionalInfNFSe setXLocIncid(String value) {
         this.xLocIncid = value;
+        return this;
     }
 
-    /**
-     * Gets the value of the xTribNac property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getXTribNac() {
         return xTribNac;
     }
 
-    /**
-     * Sets the value of the xTribNac property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setXTribNac(String value) {
+    public NFSeSefinNacionalInfNFSe setXTribNac(String value) {
         this.xTribNac = value;
+        return this;
     }
 
-    /**
-     * Gets the value of the xTribMun property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getXTribMun() {
         return xTribMun;
     }
 
-    /**
-     * Sets the value of the xTribMun property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setXTribMun(String value) {
+    public NFSeSefinNacionalInfNFSe setXTribMun(String value) {
         this.xTribMun = value;
+        return this;
     }
 
-    /**
-     * Gets the value of the xnbs property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getXNBS() {
         return xnbs;
     }
 
-    /**
-     * Sets the value of the xnbs property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setXNBS(String value) {
+    public NFSeSefinNacionalInfNFSe setXNBS(String value) {
         this.xnbs = value;
+        return this;
     }
 
-    /**
-     * Gets the value of the verAplic property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getVerAplic() {
         return verAplic;
     }
 
-    /**
-     * Sets the value of the verAplic property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setVerAplic(String value) {
+    public NFSeSefinNacionalInfNFSe setVerAplic(String value) {
         this.verAplic = value;
+        return this;
     }
 
-    /**
-     * Gets the value of the ambGer property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getAmbGer() {
         return ambGer;
     }
 
-    /**
-     * Sets the value of the ambGer property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setAmbGer(String value) {
+    public NFSeSefinNacionalInfNFSe setAmbGer(String value) {
         this.ambGer = value;
+        return this;
     }
 
-    /**
-     * Gets the value of the tpEmis property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getTpEmis() {
         return tpEmis;
     }
 
-    /**
-     * Sets the value of the tpEmis property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setTpEmis(String value) {
+    public NFSeSefinNacionalInfNFSe setTpEmis(String value) {
         this.tpEmis = value;
+        return this;
     }
 
-    /**
-     * Gets the value of the procEmi property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getProcEmi() {
         return procEmi;
     }
 
-    /**
-     * Sets the value of the procEmi property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setProcEmi(String value) {
+    public NFSeSefinNacionalInfNFSe setProcEmi(String value) {
         this.procEmi = value;
+        return this;
     }
 
-    /**
-     * Gets the value of the cStat property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getCStat() {
         return cStat;
     }
 
-    /**
-     * Sets the value of the cStat property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setCStat(String value) {
+    public NFSeSefinNacionalInfNFSe setCStat(String value) {
         this.cStat = value;
+        return this;
     }
 
-    /**
-     * Gets the value of the dhProc property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getDhProc() {
         return dhProc;
     }
 
-    /**
-     * Sets the value of the dhProc property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setDhProc(String value) {
+    public NFSeSefinNacionalInfNFSe setDhProc(String value) {
         this.dhProc = value;
+        return this;
     }
 
-    /**
-     * Gets the value of the ndfSe property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getNDFSe() {
         return ndfSe;
     }
 
-    /**
-     * Sets the value of the ndfSe property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setNDFSe(String value) {
+    public NFSeSefinNacionalInfNFSe setNDFSe(String value) {
         this.ndfSe = value;
+        return this;
     }
 
-    /**
-     * Gets the value of the emit property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link NFSeSefinNacionalEmitente }
-     *     
-     */
     public NFSeSefinNacionalEmitente getEmit() {
         return emit;
     }
 
-    /**
-     * Sets the value of the emit property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NFSeSefinNacionalEmitente }
-     *     
-     */
-    public void setEmit(NFSeSefinNacionalEmitente value) {
+    public NFSeSefinNacionalInfNFSe setEmit(NFSeSefinNacionalEmitente value) {
         this.emit = value;
+        return this;
     }
 
-    /**
-     * Gets the value of the valores property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link NFSeSefinNacionalValoresNFSe }
-     *     
-     */
     public NFSeSefinNacionalValoresNFSe getValores() {
         return valores;
     }
 
-    /**
-     * Sets the value of the valores property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NFSeSefinNacionalValoresNFSe }
-     *     
-     */
-    public void setValores(NFSeSefinNacionalValoresNFSe value) {
+    public NFSeSefinNacionalInfNFSe setValores(NFSeSefinNacionalValoresNFSe value) {
         this.valores = value;
+        return this;
     }
 
-    /**
-     * Gets the value of the dps property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link NFSeSefinNacionalDPS }
-     *     
-     */
     public NFSeSefinNacionalDPS getDPS() {
         return dps;
     }
 
-    /**
-     * Sets the value of the dps property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link NFSeSefinNacionalDPS }
-     *     
-     */
-    public void setDPS(NFSeSefinNacionalDPS value) {
+    public NFSeSefinNacionalInfNFSe setDPS(NFSeSefinNacionalDPS value) {
         this.dps = value;
+        return this;
     }
 
-    /**
-     * Gets the value of the id property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getId() {
         return id;
     }
 
-    /**
-     * Sets the value of the id property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setId(String value) {
+    public NFSeSefinNacionalInfNFSe setId(String value) {
         this.id = value;
+        return this;
     }
 
 }

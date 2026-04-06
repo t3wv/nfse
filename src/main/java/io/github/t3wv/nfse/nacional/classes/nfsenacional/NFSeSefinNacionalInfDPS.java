@@ -39,7 +39,7 @@ public class NFSeSefinNacionalInfDPS {
     protected NFSeSefinNacionalServ servicoPrestado;
     @Element(name = "valores")
     protected NFSeSefinNacionalInfoValores valores;
-    @Element(name = "IBSCBS", required = true)
+    @Element(name = "IBSCBS", required = false)
     protected NFSeSefinNacionalInfoIBSCBS infoIBSCBS;
     @Attribute(name = "Id", empty = "") //todo: implementar a validação da regra (método + teste unitário)
     protected String id;

@@ -44,48 +44,54 @@ public class NFSeSefinNacionalTribOutrosPisCofins {
         return valorBaseCalculoPisCofins;
     }
 
-    public void setValorBaseCalculoPisCofins(String value) {
+    public NFSeSefinNacionalTribOutrosPisCofins setValorBaseCalculoPisCofins(String value) {
         this.valorBaseCalculoPisCofins = value;
+        return this;
     }
 
     public String getAliquotaPIS() {
         return aliquotaPIS;
     }
 
-    public void setAliquotaPIS(String value) {
+    public NFSeSefinNacionalTribOutrosPisCofins setAliquotaPIS(String value) {
         this.aliquotaPIS = value;
+        return this;
     }
 
     public String getAliquotaCOFINS() {
         return aliquotaCOFINS;
     }
 
-    public void setAliquotaCOFINS(String value) {
+    public NFSeSefinNacionalTribOutrosPisCofins setAliquotaCOFINS(String value) {
         this.aliquotaCOFINS = value;
+        return this;
     }
 
     public String getValorPIS() {
         return valorPIS;
     }
 
-    public void setValorPIS(String value) {
+    public NFSeSefinNacionalTribOutrosPisCofins setValorPIS(String value) {
         this.valorPIS = value;
+        return this;
     }
 
     public String getValorCofins() {
         return valorCOFINS;
     }
 
-    public void setValorCofins(String value) {
+    public NFSeSefinNacionalTribOutrosPisCofins setValorCofins(String value) {
         this.valorCOFINS = value;
+        return this;
     }
 
     public NFSeSefinNacionalTribOutrosPisCofinsTipoRetencao getTipoRetencao() {
         return tipoRetencao;
     }
 
-    public void setTipoRetencao(NFSeSefinNacionalTribOutrosPisCofinsTipoRetencao value) {
+    public NFSeSefinNacionalTribOutrosPisCofins setTipoRetencao(NFSeSefinNacionalTribOutrosPisCofinsTipoRetencao value) {
         this.tipoRetencao = value;
+        return this;
     }
 
 }

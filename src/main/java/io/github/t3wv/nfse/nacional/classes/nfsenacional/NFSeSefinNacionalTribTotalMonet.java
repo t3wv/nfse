@@ -17,24 +17,27 @@ public class NFSeSefinNacionalTribTotalMonet {
         return valorTributosFederais;
     }
 
-    public void setValorTributosFederais(String valorTributosFederais) {
+    public NFSeSefinNacionalTribTotalMonet setValorTributosFederais(String valorTributosFederais) {
         this.valorTributosFederais = valorTributosFederais;
+        return this;
     }
 
     public String getValorTributosEstaduais() {
         return valorTributosEstaduais;
     }
 
-    public void setValorTributosEstaduais(String valorTributosFederais) {
+    public NFSeSefinNacionalTribTotalMonet setValorTributosEstaduais(String valorTributosFederais) {
         this.valorTributosEstaduais = valorTributosFederais;
+        return this;
     }
 
     public String getValorTributosMunicipais() {
         return valorTributosMunicipais;
     }
 
-    public void setValorTributosMunicipais(String valorTributosFederais) {
+    public NFSeSefinNacionalTribTotalMonet setValorTributosMunicipais(String valorTributosFederais) {
         this.valorTributosMunicipais = valorTributosFederais;
+        return this;
     }
 
 }

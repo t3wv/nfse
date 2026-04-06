@@ -32,8 +32,9 @@ public class NFSeSefinNacionalLocacaoSublocacao {
      *
      * @param categoria Categoria do serviço
      */
-    public void setCategoria(NFSeSefinNacionalLocacaoSublocacaoCategoriaServico categoria) {
+    public NFSeSefinNacionalLocacaoSublocacao setCategoria(NFSeSefinNacionalLocacaoSublocacaoCategoriaServico categoria) {
         this.categoria = categoria;
+        return this;
     }
 
     /**
@@ -50,8 +51,9 @@ public class NFSeSefinNacionalLocacaoSublocacao {
      *
      * @param objeto Objeto da locação/sublocação
      */
-    public void setObjeto(NFSeSefinNacionalLocacaoSublocacaoObjeto objeto) {
+    public NFSeSefinNacionalLocacaoSublocacao setObjeto(NFSeSefinNacionalLocacaoSublocacaoObjeto objeto) {
         this.objeto = objeto;
+        return this;
     }
 
     /**
@@ -68,8 +70,9 @@ public class NFSeSefinNacionalLocacaoSublocacao {
      *
      * @param value Extensão da locação/sublocação
      */
-    public void setExtensao(String value) {
+    public NFSeSefinNacionalLocacaoSublocacao setExtensao(String value) {
         this.extensao = value;
+        return this;
     }
 
     /**
@@ -84,8 +87,9 @@ public class NFSeSefinNacionalLocacaoSublocacao {
      * Define o número de postes objeto da locação, sublocação, arrendamento, direito de passagem ou permissão de uso
      * @param value Número de postes
      */
-    public void setNumeroPostes(String value) {
+    public NFSeSefinNacionalLocacaoSublocacao setNumeroPostes(String value) {
         this.numeroDePostes = value;
+        return this;
     }
 
 }

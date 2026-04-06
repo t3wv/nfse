@@ -12,7 +12,7 @@ public class NFSeSefinNacionalTribTotal {
     @Element(name = "pTotTrib", required = false)
     protected NFSeSefinNacionalTribTotalPercent percentualTotalTributos;
     @Element(name = "indTotTrib", required = false)
-    protected String indicadorValorTotalTributos = "0";
+    protected String indicadorValorTotalTributos;
     @Element(name = "pTotTribSN", required = false)
     protected String percentualTotalSimplesNacional;
 
@@ -26,8 +26,9 @@ public class NFSeSefinNacionalTribTotal {
     /**
      * @param valorTotalTributos Valor total dos tributos
      */
-    public void setValorTotalTributos(NFSeSefinNacionalTribTotalMonet valorTotalTributos) {
+    public NFSeSefinNacionalTribTotal setValorTotalTributos(NFSeSefinNacionalTribTotalMonet valorTotalTributos) {
         this.valorTotalTributos = valorTotalTributos;
+        return this;
     }
 
     /**
@@ -40,8 +41,9 @@ public class NFSeSefinNacionalTribTotal {
     /**
      * @param percentualTotalTributos Percentual total dos tributos
      */
-    public void setPercentualTotalTributos(NFSeSefinNacionalTribTotalPercent percentualTotalTributos) {
+    public NFSeSefinNacionalTribTotal setPercentualTotalTributos(NFSeSefinNacionalTribTotalPercent percentualTotalTributos) {
         this.percentualTotalTributos = percentualTotalTributos;
+        return this;
     }
 
     /**
@@ -75,8 +77,9 @@ public class NFSeSefinNacionalTribTotal {
     /**
      * @param percentualTotalSimplesNacional Percentual total do Simples Nacional
      */
-    public void setPercentualTotalSimplesNacional(String percentualTotalSimplesNacional) {
+    public NFSeSefinNacionalTribTotal setPercentualTotalSimplesNacional(String percentualTotalSimplesNacional) {
         this.percentualTotalSimplesNacional = percentualTotalSimplesNacional;
+        return this;
     }
 
 }

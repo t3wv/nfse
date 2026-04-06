@@ -47,8 +47,9 @@ public class NFSeSefinNacionalLocPrest {
     /**
      * @param codigoPais Código do país (Tabela de Países ISO)
      */
-    public void setCodigoPais(String codigoPais) {
+    public NFSeSefinNacionalLocPrest setCodigoPais(String codigoPais) {
         this.codigoPais = codigoPais;
+        return this;
     }
 
     /**
@@ -61,8 +62,9 @@ public class NFSeSefinNacionalLocPrest {
     /**
      * @param opcaoConsumoServico Opção para que o emitente informe onde ocorreu o consumo do serviço prestado.
      */
-    public void setOpcaoConsumoServico(NFSeSefinNacionalLocPrestOpcaoConsumoServico opcaoConsumoServico) {
+    public NFSeSefinNacionalLocPrest setOpcaoConsumoServico(NFSeSefinNacionalLocPrestOpcaoConsumoServico opcaoConsumoServico) {
         this.opcaoConsumoServico = opcaoConsumoServico;
+        return this;
     }
 
 }

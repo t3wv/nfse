@@ -24,56 +24,63 @@ public class NFSeSefinNacionalEnderecoEmitente {
         return xLgr;
     }
 
-    public void setXLgr(String value) {
+    public NFSeSefinNacionalEnderecoEmitente setXLgr(String value) {
         this.xLgr = value;
+        return this;
     }
 
     public String getNro() {
         return nro;
     }
 
-    public void setNro(String value) {
+    public NFSeSefinNacionalEnderecoEmitente setNro(String value) {
         this.nro = value;
+        return this;
     }
 
     public String getXCpl() {
         return xCpl;
     }
 
-    public void setXCpl(String value) {
+    public NFSeSefinNacionalEnderecoEmitente setXCpl(String value) {
         this.xCpl = value;
+        return this;
     }
 
     public String getXBairro() {
         return xBairro;
     }
 
-    public void setXBairro(String value) {
+    public NFSeSefinNacionalEnderecoEmitente setXBairro(String value) {
         this.xBairro = value;
+        return this;
     }
 
     public String getCMun() {
         return cMun;
     }
 
-    public void setCMun(String value) {
+    public NFSeSefinNacionalEnderecoEmitente setCMun(String value) {
         this.cMun = value;
+        return this;
     }
 
     public NFSeSefinNacionalUF getUF() {
         return uf;
     }
 
-    public void setUF(NFSeSefinNacionalUF value) {
+    public NFSeSefinNacionalEnderecoEmitente setUF(NFSeSefinNacionalUF value) {
         this.uf = value;
+        return this;
     }
 
     public String getCEP() {
         return cep;
     }
 
-    public void setCEP(String value) {
+    public NFSeSefinNacionalEnderecoEmitente setCEP(String value) {
         this.cep = value;
+        return this;
     }
 
 }

@@ -5,8 +5,6 @@ import org.simpleframework.xml.*;
 
 import java.time.LocalDate;
 
-;
-
 /**
  * Grupo de informações do DPS relativas à Atividade do Evento
  */
@@ -34,10 +32,12 @@ public class NFSeSefinNacionalAtvEvento {
 
     /**
      * Descrição do evento Artístico, Cultural, Esportivo, etc
+     *
      * @param descricao Descrição do evento Artístico, Cultural, Esportivo, etc
      */
-    public void setDescricao(String descricao) {
+    public NFSeSefinNacionalAtvEvento setDescricao(String descricao) {
         this.descricao = descricao;
+        return this;
     }
 
     /**
@@ -49,10 +49,12 @@ public class NFSeSefinNacionalAtvEvento {
 
     /**
      * Data de Início do Evento
+     *
      * @param dataInicio Data de Início do Evento
      */
-    public void setDataInicio(LocalDate dataInicio) {
+    public NFSeSefinNacionalAtvEvento setDataInicio(LocalDate dataInicio) {
         this.dataInicio = dataInicio;
+        return this;
     }
 
     /**
@@ -64,10 +66,12 @@ public class NFSeSefinNacionalAtvEvento {
 
     /**
      * Data de Término do Evento
+     *
      * @param dataFim Data de Término do Evento
      */
-    public void setDataFim(LocalDate dataFim) {
+    public NFSeSefinNacionalAtvEvento setDataFim(LocalDate dataFim) {
         this.dataFim = dataFim;
+        return this;
     }
 
     /**
@@ -79,10 +83,12 @@ public class NFSeSefinNacionalAtvEvento {
 
     /**
      * Id do Evento
+     *
      * @param id Id do Evento
      */
-    public void setId(String id) {
+    public NFSeSefinNacionalAtvEvento setId(String id) {
         this.id = id;
+        return this;
     }
 
     /**
@@ -94,10 +100,12 @@ public class NFSeSefinNacionalAtvEvento {
 
     /**
      * Endereço do Evento
+     *
      * @param endereco endereço do Evento
      */
-    public void setEndereco(NFSeSefinNacionalEnderecoSimples endereco) {
+    public NFSeSefinNacionalAtvEvento setEndereco(NFSeSefinNacionalEnderecoSimples endereco) {
         this.endereco = endereco;
+        return this;
     }
 
 }

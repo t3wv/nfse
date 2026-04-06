@@ -50,8 +50,9 @@ public class NFSeSefinNacionalTribMunicipal {
     /**
      * @param codigoPais Código do país onde se verficou o resultado da prestação do serviço para o caso de Exportação de Serviço.(Tabela de Países ISO)
      */
-    public void setCodigoPais(String codigoPais) {
+    public NFSeSefinNacionalTribMunicipal setCodigoPais(String codigoPais) {
         this.codigoPais = codigoPais;
+        return this;
     }
 
     /**
@@ -64,8 +65,9 @@ public class NFSeSefinNacionalTribMunicipal {
     /**
      * @param beneficioMunicipal Benefício Municipal concedido ao prestador do serviço
      */
-    public void setBeneficioMunicipal(NFSeSefinNacionalBeneficioMunicipal beneficioMunicipal) {
+    public NFSeSefinNacionalTribMunicipal setBeneficioMunicipal(NFSeSefinNacionalBeneficioMunicipal beneficioMunicipal) {
         this.beneficioMunicipal = beneficioMunicipal;
+        return this;
     }
 
     /**
@@ -78,8 +80,9 @@ public class NFSeSefinNacionalTribMunicipal {
     /**
      * @param exigibilidadeSuspensa Exigibilidade Suspensa do ISSQN sobre o serviço prestado
      */
-    public void setExigibilidadeSuspensa(NFSeSefinNacionalExigSuspensa exigibilidadeSuspensa) {
+    public NFSeSefinNacionalTribMunicipal setExigibilidadeSuspensa(NFSeSefinNacionalExigSuspensa exigibilidadeSuspensa) {
         this.exigibilidadeSuspensa = exigibilidadeSuspensa;
+        return this;
     }
 
     /**
@@ -92,8 +95,9 @@ public class NFSeSefinNacionalTribMunicipal {
     /**
      * @param tipoImunidade Tipo de imunidade do ISSQN sobre o serviço prestado
      */
-    public void setTipoImunidade(NFSeSefinNacionalTribMunicipalTipoImunidade tipoImunidade) {
+    public NFSeSefinNacionalTribMunicipal setTipoImunidade(NFSeSefinNacionalTribMunicipalTipoImunidade tipoImunidade) {
         this.tipoImunidade = tipoImunidade;
+        return this;
     }
 
     /**
@@ -106,8 +110,9 @@ public class NFSeSefinNacionalTribMunicipal {
     /**
      * @param percentualAliquota Percentual da alíquota do ISSQN sobre o serviço prestado
      */
-    public void setPercentualAliquota(String percentualAliquota) {
+    public NFSeSefinNacionalTribMunicipal setPercentualAliquota(String percentualAliquota) {
         this.percentualAliquota = percentualAliquota;
+        return this;
     }
 
     /**

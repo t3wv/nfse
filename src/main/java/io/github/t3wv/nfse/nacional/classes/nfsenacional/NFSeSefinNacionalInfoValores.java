@@ -48,8 +48,9 @@ public class NFSeSefinNacionalInfoValores {
      *
      * @param valoresDescontosCondicionadosIncondicionados Valores dos Descontos Condicionados e Incondicionados
      */
-    public void setValoresDescontosCondicionadosEIncondicionados(NFSeSefinNacionalVDescCondIncond valoresDescontosCondicionadosIncondicionados) {
+    public NFSeSefinNacionalInfoValores setValoresDescontosCondicionadosEIncondicionados(NFSeSefinNacionalVDescCondIncond valoresDescontosCondicionadosIncondicionados) {
         this.valoresDescontosCondicionadosIncondicionados = valoresDescontosCondicionadosIncondicionados;
+        return this;
     }
 
     /**
@@ -64,8 +65,9 @@ public class NFSeSefinNacionalInfoValores {
      *
      * @param value Valores de Dedução da Base de Cálculo
      */
-    public void setValoresDeducaoBaseCalculo(NFSeSefinNacionalInfoDedRed value) {
+    public NFSeSefinNacionalInfoValores setValoresDeducaoBaseCalculo(NFSeSefinNacionalInfoDedRed value) {
         this.valoresDeducaoBaseCalculo = value;
+        return this;
     }
 
     /**

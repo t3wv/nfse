@@ -26,8 +26,9 @@ public class NFSeSefinNacionalVDescCondIncond {
     /**
      * @param valorDescontoIncondicionado Valor monetário do desconto incondicionado (R$)
      */
-    public void setValorDescontoIncondicionado(String valorDescontoIncondicionado) {
+    public NFSeSefinNacionalVDescCondIncond setValorDescontoIncondicionado(String valorDescontoIncondicionado) {
         this.valorDescontoIncondicionado = valorDescontoIncondicionado;
+        return this;
     }
 
     /**
@@ -40,8 +41,9 @@ public class NFSeSefinNacionalVDescCondIncond {
     /**
      * @param valorDescontoCondicionado Valor monetário do desconto condicionado (R$)
      */
-    public void setValorDescontoCondicionado(String valorDescontoCondicionado) {
+    public NFSeSefinNacionalVDescCondIncond setValorDescontoCondicionado(String valorDescontoCondicionado) {
         this.valorDescontoCondicionado = valorDescontoCondicionado;
+        return this;
     }
 
 }
