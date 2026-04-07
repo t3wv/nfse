@@ -4,6 +4,8 @@ package io.github.t3wv.nfse.nacional.classes.nfsenacional;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
+import java.math.BigDecimal;
+
 @Root(name = "TribTotal")
 public class NFSeSefinNacionalTribTotal {
 
@@ -14,7 +16,7 @@ public class NFSeSefinNacionalTribTotal {
     @Element(name = "indTotTrib", required = false)
     protected String indicadorValorTotalTributos;
     @Element(name = "pTotTribSN", required = false)
-    protected String percentualTotalSimplesNacional;
+    protected BigDecimal percentualTotalSimplesNacional;
 
     /**
      * @return Valor total dos tributos
@@ -70,14 +72,14 @@ public class NFSeSefinNacionalTribTotal {
     /**
      * @return Percentual total do Simples Nacional
      */
-    public String getPercentualTotalSimplesNacional() {
+    public BigDecimal getPercentualTotalSimplesNacional() {
         return percentualTotalSimplesNacional;
     }
 
     /**
      * @param percentualTotalSimplesNacional Percentual total do Simples Nacional
      */
-    public NFSeSefinNacionalTribTotal setPercentualTotalSimplesNacional(String percentualTotalSimplesNacional) {
+    public NFSeSefinNacionalTribTotal setPercentualTotalSimplesNacional(BigDecimal percentualTotalSimplesNacional) {
         this.percentualTotalSimplesNacional = percentualTotalSimplesNacional;
         return this;
     }

@@ -4,6 +4,8 @@ package io.github.t3wv.nfse.nacional.classes.nfsenacional;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
+import java.math.BigDecimal;
+
 /**
  * Grupo de informações relativas aos descontos condicionados e incondicionados
  */
@@ -12,21 +14,21 @@ import org.simpleframework.xml.Root;
 public class NFSeSefinNacionalVDescCondIncond {
 
     @Element(name = "vDescIncond")
-    protected String valorDescontoIncondicionado;
+    protected BigDecimal valorDescontoIncondicionado;
     @Element(name = "vDescCond")
-    protected String valorDescontoCondicionado;
+    protected BigDecimal valorDescontoCondicionado;
 
     /**
      * @return Valor monetário do desconto incondicionado (R$)
      */
-    public String getValorDescontoIncondicionado() {
+    public BigDecimal getValorDescontoIncondicionado() {
         return valorDescontoIncondicionado;
     }
 
     /**
      * @param valorDescontoIncondicionado Valor monetário do desconto incondicionado (R$)
      */
-    public NFSeSefinNacionalVDescCondIncond setValorDescontoIncondicionado(String valorDescontoIncondicionado) {
+    public NFSeSefinNacionalVDescCondIncond setValorDescontoIncondicionado(BigDecimal valorDescontoIncondicionado) {
         this.valorDescontoIncondicionado = valorDescontoIncondicionado;
         return this;
     }
@@ -34,14 +36,14 @@ public class NFSeSefinNacionalVDescCondIncond {
     /**
      * @return Valor monetário do desconto condicionado (R$)
      */
-    public String getValorDescontoCondicionado() {
+    public BigDecimal getValorDescontoCondicionado() {
         return valorDescontoCondicionado;
     }
 
     /**
      * @param valorDescontoCondicionado Valor monetário do desconto condicionado (R$)
      */
-    public NFSeSefinNacionalVDescCondIncond setValorDescontoCondicionado(String valorDescontoCondicionado) {
+    public NFSeSefinNacionalVDescCondIncond setValorDescontoCondicionado(BigDecimal valorDescontoCondicionado) {
         this.valorDescontoCondicionado = valorDescontoCondicionado;
         return this;
     }

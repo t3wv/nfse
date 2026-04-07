@@ -3,39 +3,41 @@ package io.github.t3wv.nfse.nacional.classes.nfsenacional;
 
 import org.simpleframework.xml.*;
 
+import java.math.BigDecimal;
+
 @Root(name = "TribTotalPercent")
 public class NFSeSefinNacionalTribTotalPercent {
 
     @Element(name = "pTotTribFed")
-    protected String percentualTributosFederais;
+    protected BigDecimal percentualTributosFederais;
     @Element(name = "pTotTribEst")
-    protected String percentualTributosEstaduais;
+    protected BigDecimal percentualTributosEstaduais;
     @Element(name = "pTotTribMun")
-    protected String percentualTributosMunicipais;
+    protected BigDecimal percentualTributosMunicipais;
 
-    public String getPercentualTributosFederais() {
+    public BigDecimal getPercentualTributosFederais() {
         return percentualTributosFederais;
     }
 
-    public NFSeSefinNacionalTribTotalPercent setPercentualTributosFederais(String value) {
+    public NFSeSefinNacionalTribTotalPercent setPercentualTributosFederais(BigDecimal value) {
         this.percentualTributosFederais = value;
         return this;
     }
 
-    public String getPercentualTributosEstaduais() {
+    public BigDecimal getPercentualTributosEstaduais() {
         return percentualTributosEstaduais;
     }
 
-    public NFSeSefinNacionalTribTotalPercent setPercentualTributosEstaduais(String value) {
+    public NFSeSefinNacionalTribTotalPercent setPercentualTributosEstaduais(BigDecimal value) {
         this.percentualTributosEstaduais = value;
         return this;
     }
 
-    public String getPercentualTributosMunicipais() {
+    public BigDecimal getPercentualTributosMunicipais() {
         return percentualTributosMunicipais;
     }
 
-    public NFSeSefinNacionalTribTotalPercent setPercentualTributosMunicipais(String value) {
+    public NFSeSefinNacionalTribTotalPercent setPercentualTributosMunicipais(BigDecimal value) {
         this.percentualTributosMunicipais = value;
         return this;
     }

@@ -3,6 +3,8 @@ package io.github.t3wv.nfse.nacional.classes.nfsenacional;
 
 import org.simpleframework.xml.*;
 
+import java.math.BigDecimal;
+
 /**
  * Grupo de informações dos tributos PIS/COFINS
  */
@@ -13,15 +15,15 @@ public class NFSeSefinNacionalTribOutrosPisCofins {
     @Element(name="CST")
     protected NFSeSefinNacionalTribOutrosPisCofinsSituacaoTributaria situacaoTributaria;
     @Element(name="vBCPisCofins", required=false)
-    protected String valorBaseCalculoPisCofins;
+    protected BigDecimal valorBaseCalculoPisCofins;
     @Element(name="pAliqPis", required=false)
-    protected String aliquotaPIS;
+    protected BigDecimal aliquotaPIS;
     @Element(name="pAliqCofins", required=false)
-    protected String aliquotaCOFINS;
+    protected BigDecimal aliquotaCOFINS;
     @Element(name="vPis", required=false)
-    protected String valorPIS;
+    protected BigDecimal valorPIS;
     @Element(name="vCofins", required=false)
-    protected String valorCOFINS;
+    protected BigDecimal valorCOFINS;
     @Element(name="tpRetPisCofins", required=false)
     protected NFSeSefinNacionalTribOutrosPisCofinsTipoRetencao tipoRetencao;
 
@@ -40,47 +42,47 @@ public class NFSeSefinNacionalTribOutrosPisCofins {
         return this;
     }
 
-    public String getValorBaseCalculoPisCofins() {
+    public BigDecimal getValorBaseCalculoPisCofins() {
         return valorBaseCalculoPisCofins;
     }
 
-    public NFSeSefinNacionalTribOutrosPisCofins setValorBaseCalculoPisCofins(String value) {
+    public NFSeSefinNacionalTribOutrosPisCofins setValorBaseCalculoPisCofins(BigDecimal value) {
         this.valorBaseCalculoPisCofins = value;
         return this;
     }
 
-    public String getAliquotaPIS() {
+    public BigDecimal getAliquotaPIS() {
         return aliquotaPIS;
     }
 
-    public NFSeSefinNacionalTribOutrosPisCofins setAliquotaPIS(String value) {
+    public NFSeSefinNacionalTribOutrosPisCofins setAliquotaPIS(BigDecimal value) {
         this.aliquotaPIS = value;
         return this;
     }
 
-    public String getAliquotaCOFINS() {
+    public BigDecimal getAliquotaCOFINS() {
         return aliquotaCOFINS;
     }
 
-    public NFSeSefinNacionalTribOutrosPisCofins setAliquotaCOFINS(String value) {
+    public NFSeSefinNacionalTribOutrosPisCofins setAliquotaCOFINS(BigDecimal value) {
         this.aliquotaCOFINS = value;
         return this;
     }
 
-    public String getValorPIS() {
+    public BigDecimal getValorPIS() {
         return valorPIS;
     }
 
-    public NFSeSefinNacionalTribOutrosPisCofins setValorPIS(String value) {
+    public NFSeSefinNacionalTribOutrosPisCofins setValorPIS(BigDecimal value) {
         this.valorPIS = value;
         return this;
     }
 
-    public String getValorCofins() {
+    public BigDecimal getValorCofins() {
         return valorCOFINS;
     }
 
-    public NFSeSefinNacionalTribOutrosPisCofins setValorCofins(String value) {
+    public NFSeSefinNacionalTribOutrosPisCofins setValorCofins(BigDecimal value) {
         this.valorCOFINS = value;
         return this;
     }

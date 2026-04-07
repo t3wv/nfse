@@ -3,33 +3,35 @@ package io.github.t3wv.nfse.nacional.classes.nfsenacional;
 
 import org.simpleframework.xml.*;
 
+import java.math.BigDecimal;
+
 @Root(name = "ValoresNFSe")
 public class NFSeSefinNacionalValoresNFSe {
     @Element(name = "vCalcDR", required = false)
-    protected String vCalcDR;
+    protected BigDecimal vCalcDR;
     @Element(name = "tpBM", required = false)
     protected String tpBM;
     @Element(name = "vCalcBM", required = false)
-    protected String vCalcBM;
+    protected BigDecimal vCalcBM;
     @Element(name = "vBC", required = false)
-    protected String vbc;
+    protected BigDecimal vbc;
     @Element(name = "pAliqAplic", required = false)
-    protected String pAliqAplic;
+    protected BigDecimal pAliqAplic;
     @Element(name = "vISSQN", required = false)
-    protected String vissqn;
+    protected BigDecimal vissqn;
     @Element(name = "vTotalRet", required = false)
-    protected String vTotalRet;
+    protected BigDecimal vTotalRet;
     @Element(name = "vLiq", required = false)
-    protected String vLiq;
+    protected BigDecimal vLiq;
     @Element(name = "xOutInf", required = false)
     protected String xOutInf;
 
 
-    public String getVCalcDR() {
+    public BigDecimal getVCalcDR() {
         return vCalcDR;
     }
 
-    public NFSeSefinNacionalValoresNFSe setVCalcDR(String value) {
+    public NFSeSefinNacionalValoresNFSe setVCalcDR(BigDecimal value) {
         this.vCalcDR = value;
         return this;
     }
@@ -43,56 +45,56 @@ public class NFSeSefinNacionalValoresNFSe {
         return this;
     }
 
-    public String getVCalcBM() {
+    public BigDecimal getVCalcBM() {
         return vCalcBM;
     }
 
-    public NFSeSefinNacionalValoresNFSe setVCalcBM(String value) {
+    public NFSeSefinNacionalValoresNFSe setVCalcBM(BigDecimal value) {
         this.vCalcBM = value;
         return this;
     }
 
-    public String getVBC() {
+    public BigDecimal getVBC() {
         return vbc;
     }
 
-    public NFSeSefinNacionalValoresNFSe setVBC(String value) {
+    public NFSeSefinNacionalValoresNFSe setVBC(BigDecimal value) {
         this.vbc = value;
         return this;
     }
 
-    public String getPAliqAplic() {
+    public BigDecimal getPAliqAplic() {
         return pAliqAplic;
     }
 
-    public NFSeSefinNacionalValoresNFSe setPAliqAplic(String value) {
+    public NFSeSefinNacionalValoresNFSe setPAliqAplic(BigDecimal value) {
         this.pAliqAplic = value;
         return this;
     }
 
-    public String getVISSQN() {
+    public BigDecimal getVISSQN() {
         return vissqn;
     }
 
-    public NFSeSefinNacionalValoresNFSe setVISSQN(String value) {
+    public NFSeSefinNacionalValoresNFSe setVISSQN(BigDecimal value) {
         this.vissqn = value;
         return this;
     }
 
-    public String getVTotalRet() {
+    public BigDecimal getVTotalRet() {
         return vTotalRet;
     }
 
-    public NFSeSefinNacionalValoresNFSe setVTotalRet(String value) {
+    public NFSeSefinNacionalValoresNFSe setVTotalRet(BigDecimal value) {
         this.vTotalRet = value;
         return this;
     }
 
-    public String getVLiq() {
+    public BigDecimal getVLiq() {
         return vLiq;
     }
 
-    public NFSeSefinNacionalValoresNFSe setVLiq(String value) {
+    public NFSeSefinNacionalValoresNFSe setVLiq(BigDecimal value) {
         this.vLiq = value;
         return this;
     }

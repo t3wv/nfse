@@ -3,6 +3,8 @@ package io.github.t3wv.nfse.nacional.classes.nfsenacional;
 
 import org.simpleframework.xml.*;
 
+import java.math.BigDecimal;
+
 /**
  * 
  */
@@ -21,7 +23,7 @@ public class NFSeSefinNacionalTribMunicipal {
     @Element(name = "tpImunidade", required = false)
     protected NFSeSefinNacionalTribMunicipalTipoImunidade tipoImunidade;
     @Element(name = "pAliq", required = false)
-    protected String percentualAliquota;
+    protected BigDecimal percentualAliquota;
     @Element(name = "tpRetISSQN")
     protected NFSeSefinNacionalTribMunicipalTipoRetencaoISSQN tipoRetencaoISSQN;
 
@@ -103,14 +105,14 @@ public class NFSeSefinNacionalTribMunicipal {
     /**
      * @return Percentual da alíquota do ISSQN sobre o serviço prestado
      */
-    public String getPercentualAliquota() {
+    public BigDecimal getPercentualAliquota() {
         return percentualAliquota;
     }
 
     /**
      * @param percentualAliquota Percentual da alíquota do ISSQN sobre o serviço prestado
      */
-    public NFSeSefinNacionalTribMunicipal setPercentualAliquota(String percentualAliquota) {
+    public NFSeSefinNacionalTribMunicipal setPercentualAliquota(BigDecimal percentualAliquota) {
         this.percentualAliquota = percentualAliquota;
         return this;
     }
