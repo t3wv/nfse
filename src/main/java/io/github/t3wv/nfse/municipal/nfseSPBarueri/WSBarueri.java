@@ -41,7 +41,7 @@ public class WSBarueri implements NFSeLogger {
 
         final var response = new NFSeHttpClient(config).sendPostRequest(new URI(config.isTeste() ? URL_BASE_HOMOLOGACAO : URL_BASE_PRODUCAO), Map.of("Content-Type", "application/soap+xml; charset=utf-8"), soapEnvelope);
         final var body = response.body();
-        this.getLogger().debug(body);
+        this.getLogger().info(body);
         return (NFSeBarueriLoteEnviarArquivoResponse) new NFSePersister().read(NFSeBarueriSoapEnvelope.class, body).getResponse();
     }
 
@@ -61,7 +61,7 @@ public class WSBarueri implements NFSeLogger {
 
         final var response = new NFSeHttpClient(config).sendPostRequest(new URI(config.isTeste() ? URL_BASE_HOMOLOGACAO : URL_BASE_PRODUCAO), Map.of("Content-Type", "application/soap+xml; charset=utf-8"), soapEnvelope);
         final var body = response.body();
-        this.getLogger().debug(body);
+        this.getLogger().info(body);
         return (NFSeBarueriLoteStatusArquivoResponse) new NFSePersister().read(NFSeBarueriSoapEnvelope.class, body).getResponse();
     }
 
@@ -81,7 +81,7 @@ public class WSBarueri implements NFSeLogger {
 
         final var response = new NFSeHttpClient(config).sendPostRequest(new URI(config.isTeste() ? URL_BASE_HOMOLOGACAO : URL_BASE_PRODUCAO), Map.of("Content-Type", "application/soap+xml; charset=utf-8"), soapEnvelope);
         final var body = response.body();
-        this.getLogger().debug(body);
+        this.getLogger().info(body);
         return (NFSeBarueriLoteBaixarArquivoResponse) new NFSePersister().read(NFSeBarueriSoapEnvelope.class, body).getResponse();
     }
 }

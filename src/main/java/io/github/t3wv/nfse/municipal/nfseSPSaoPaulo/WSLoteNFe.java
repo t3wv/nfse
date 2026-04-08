@@ -24,7 +24,7 @@ public class WSLoteNFe implements NFSeLogger {
 
     public NFSeSPSaoPauloRetornoEnvioLoteRPS enviarTesteLoteRPS(NFSeSPSaoPauloRequestEnvioRPS pedidoEnvioRPS) throws Exception {
         final var body = String.format("<?xml version=\"1.0\" encoding=\"utf-8\"?><soap12:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap12=\"http://www.w3.org/2003/05/soap-envelope\"><soap12:Body><TesteEnvioLoteRPSRequest xmlns=\"http://www.prefeitura.sp.gov.br/nfe\"><VersaoSchema>%s</VersaoSchema><MensagemXML><![CDATA[%s]]></MensagemXML></TesteEnvioLoteRPSRequest></soap12:Body></soap12:Envelope>", pedidoEnvioRPS.getCabecalho().getVersao(), new NFSeAssinaturaDigital(this.config).setOmitirDeclaracaoXML(true).setUsarIdComoReferencia(false).assinarDocumento(NFSeSPSaoPauloUtils.assinarRPSs(config, pedidoEnvioRPS).toXml()));
-        this.getLogger().debug("Enviando RPS de teste para o município de São Paulo com xml: {}", body);
+        this.getLogger().info("Enviando RPS de teste para o município de São Paulo com xml: {}", body);
 
         final var response = new NFSeHttpClient(this.config).sendPostRequest(new URI(URL_BASE), Map.of("Content-Type", "application/soap+xml; charset=utf-8"), body);
         final var responseBody = StringUtils.trimToEmpty(response.body()); // Trim no body porque o webservice retorna espaços em branco antes do XML
@@ -33,7 +33,7 @@ public class WSLoteNFe implements NFSeLogger {
         if (responseCode != 200) {
             throw new Exception("Request de RPS de teste retornou erro '%d'!".formatted(responseCode));
         } else {
-            this.getLogger().debug("RPS de teste enviado com sucesso: {}", responseBody);
+            this.getLogger().info("RPS de teste enviado com sucesso: {}", responseBody);
             return (NFSeSPSaoPauloRetornoEnvioLoteRPS) new NFSePersister().read(NFSeSPSaoPauloSoapEnvelope.class, response.body()).getResponse();
         }
     }
@@ -49,7 +49,7 @@ public class WSLoteNFe implements NFSeLogger {
         if (responseCode != 200) {
             throw new Exception("Request de envio de RPS retornou erro '%d'!".formatted(responseCode));
         } else {
-            this.getLogger().debug("RPS enviado com sucesso: {}", responseBody);
+            this.getLogger().info("RPS enviado com sucesso: {}", responseBody);
             return (NFSeSPSaoPauloRetornoEnvioLoteRPS) new NFSePersister().read(NFSeSPSaoPauloSoapEnvelope.class, response.body()).getResponse();
         }
     }
@@ -65,7 +65,7 @@ public class WSLoteNFe implements NFSeLogger {
         if (responseCode != 200) {
             throw new Exception("Request de consulta de NFe retornou erro '%d'!".formatted(responseCode));
         } else {
-            this.getLogger().debug("Consulta de NFe realizada com sucesso: {}", responseBody);
+            this.getLogger().info("Consulta de NFe realizada com sucesso: {}", responseBody);
             return (NFSeSPSaoPauloRetornoConsultaNFe) new NFSePersister().read(NFSeSPSaoPauloSoapEnvelope.class, response.body()).getResponse();
         }
     }
@@ -77,7 +77,7 @@ public class WSLoteNFe implements NFSeLogger {
         }
 
         final var body = String.format("<?xml version=\"1.0\" encoding=\"utf-8\"?><soap12:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap12=\"http://www.w3.org/2003/05/soap-envelope\"><soap12:Body><CancelamentoNFeRequest xmlns=\"http://www.prefeitura.sp.gov.br/nfe\"><VersaoSchema>%s</VersaoSchema><MensagemXML><![CDATA[%s]]></MensagemXML></CancelamentoNFeRequest></soap12:Body></soap12:Envelope>", pedidoCancelamentoNFe.getCabecalho().getVersao(), new NFSeAssinaturaDigital(this.config).setOmitirDeclaracaoXML(true).setUsarIdComoReferencia(false).assinarDocumento(pedidoCancelamentoNFe.toXml()));
-        this.getLogger().debug("Enviando pedido de cancelamento de NFe para o município de São Paulo com xml: {}", body);
+        this.getLogger().info("Enviando pedido de cancelamento de NFe para o município de São Paulo com xml: {}", body);
 
         final var response = new NFSeHttpClient(this.config).sendPostRequest(new URI(URL_BASE), Map.of("Content-Type", "application/soap+xml; charset=utf-8"), body);
         final var responseBody = StringUtils.trimToEmpty(response.body()); // Trim no body porque o webservice retorna espaços em branco antes do XML
@@ -86,7 +86,7 @@ public class WSLoteNFe implements NFSeLogger {
         if (responseCode != 200) {
             throw new Exception("Request de consulta de NFe retornou erro '%d'!".formatted(responseCode));
         } else {
-            this.getLogger().debug("Pedido de cancelamento de NFe enviado com sucesso: {}", responseBody);
+            this.getLogger().info("Pedido de cancelamento de NFe enviado com sucesso: {}", responseBody);
             return (NFSeSPSaoPauloRetornoCancelamentoNFe) new NFSePersister().read(NFSeSPSaoPauloSoapEnvelope.class, response.body()).getResponse();
         }
     }
