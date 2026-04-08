@@ -27,8 +27,11 @@ public class NFSeSPSaoPauloSoapEnvelope <T> {
     @Root(name = "Body", strict = false)
     public static class SoapBody<T> {
 
-        @Element(name = "EnvioLoteRPSResponse", required = false)
+        @Element(name = "EnvioRPSResponse", required = false)
         private EnvioLoteRPSResponse enviarResponse;
+
+        @Element(name = "EnvioLoteRPSResponse", required = false)
+        private EnvioLoteRPSResponse enviarLoteResponse;
 
         @Element(name = "TesteEnvioLoteRPSResponse", required = false)
         private EnvioLoteRPSResponse testeEnviarResponse;
@@ -41,6 +44,7 @@ public class NFSeSPSaoPauloSoapEnvelope <T> {
 
         public T getContent() throws Exception {
             if (enviarResponse != null) return (T) enviarResponse.getRetornoXML();
+            if (enviarLoteResponse != null) return (T) enviarLoteResponse.getRetornoXML();
             if (testeEnviarResponse != null) return (T) testeEnviarResponse.getRetornoXML();
             if (consultaNFeResponse != null) return (T) consultaNFeResponse.getRetornoXML();
             if (cancelamentoNFeResponse != null) return (T) cancelamentoNFeResponse.getRetornoXML();
