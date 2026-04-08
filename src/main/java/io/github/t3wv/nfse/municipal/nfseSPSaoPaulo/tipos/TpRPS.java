@@ -22,7 +22,7 @@ import java.time.LocalDate;
 @Namespace(reference = "")
 public class TpRPS {
 
-    @Element(name = "Assinatura")
+    @Element(name = "Assinatura", required = false)
     protected String assinatura;
     @Element(name = "ChaveRPS")
     protected TpChaveRPS chaveRPS;

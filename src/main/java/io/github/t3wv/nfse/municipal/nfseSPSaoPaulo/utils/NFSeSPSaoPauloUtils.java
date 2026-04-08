@@ -45,7 +45,6 @@ public abstract class NFSeSPSaoPauloUtils {
                     assinaturaDigitalString.append(versaoSchemas.equals("2") ? (tomador.getNaoNIF() != null ? String.valueOf(tomador.getNaoNIF()) : StringUtils.trim(tomador.getNIF())) : "");
                 }
 
-                System.out.println(assinaturaDigitalString.toString());
                 final var assinaturaDigital = NFSeSPSaoPauloUtils.gerarAssinaturaDigital(config, assinaturaDigitalString.toString());
                 rps.setAssinatura(assinaturaDigital);
             } catch (Exception e) {
