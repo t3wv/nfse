@@ -13,7 +13,7 @@ public class NFSeSPSaoPauloRequestCancelamentoNFeDetalhe {
     @Element(name = "ChaveNFe")
     protected TpChaveNFe chaveNFe;
 
-    @Element(name = "AssinaturaCancelamento")
+    @Element(name = "AssinaturaCancelamento", required = false)
     protected String assinaturaCancelamento;
 
     public TpChaveNFe getChaveNFe() {
