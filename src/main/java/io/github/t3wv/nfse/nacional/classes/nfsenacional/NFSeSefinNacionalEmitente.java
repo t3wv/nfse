@@ -18,9 +18,9 @@ public class NFSeSefinNacionalEmitente {
     protected String xFant;
     @Element(name = "enderNac")
     protected NFSeSefinNacionalEnderecoEmitente enderNac;
-    @Element(name="fone")
+    @Element(name="fone", required = false)
     protected String fone;
-    @Element(name="email")
+    @Element(name="email", required = false)
     protected String email;
 
     public String getCNPJ() {

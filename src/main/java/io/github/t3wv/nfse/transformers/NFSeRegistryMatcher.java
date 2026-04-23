@@ -60,6 +60,8 @@ public class NFSeRegistryMatcher extends RegistryMatcher {
         super.bind(NFSeSefinNacionalTribOutrosPisCofinsSituacaoTributaria.class, new NFSeSefinNacionalTribOutrosPisCofinsSituacaoTributariaTransformer());
         super.bind(NFSeSefinNacionalTribOutrosPisCofinsTipoRetencao.class, new NFSeSefinNacionalTribOutrosPisCofinsTipoRetencaoTransformer());
         super.bind(NFSeSefinNacionalInfEventoAmbienteGeracao.class, new NFSeSefinNacionalInfEventoAmbienteGeracaoTransformer());
+        super.bind(NFSeSefinNacionalInfNFSeTipoEmissao.class, new NFSeSefinNacionalInfNFSeTipoEmissaoTransformer());
+        super.bind(NFSeSefinNacionalInfNFSeProcessoEmissao.class, new NFSeSefinNacionalInfNFSeProcessoEmissaoTransformer());
         super.bind(NFSeSefinNacionalTSCodJustCanc.class, new NFSeSefinNacionalTSCodJustCancTransformer());
         super.bind(NFSeSefinNacionalTSCodJustAnaliseFiscalCancIndef.class, new NFSeSefinNacionalTSCodJustAnaliseFiscalCancIndefTransformer());
         super.bind(NFSeSefinNacionalInfoIBSCBSFinNFSe.class, new NFSeSefinNacionalInfoIBSCBSFinNFSeTransformer());

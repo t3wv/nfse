@@ -3,227 +3,193 @@ package io.github.t3wv.nfse.nacional.classes.nfsenacional;
 
 import org.simpleframework.xml.*;
 
-/**
- * <p>Java class for TCInfNFSe complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * 
- * <pre>
- * &lt;complexType name="TCInfNFSe"&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element name="xLocEmi" type="{http://www.sped.fazenda.gov.br/nfse}TSDesc150"/&gt;
- *         &lt;element name="xLocPrestacao" type="{http://www.sped.fazenda.gov.br/nfse}TSDesc150"/&gt;
- *         &lt;element name="nNFSe" type="{http://www.sped.fazenda.gov.br/nfse}TSNNFSe"/&gt;
- *         &lt;element name="cLocIncid" type="{http://www.sped.fazenda.gov.br/nfse}TSCodMunIBGE" minOccurs="0"/&gt;
- *         &lt;element name="xLocIncid" type="{http://www.sped.fazenda.gov.br/nfse}TSDesc150" minOccurs="0"/&gt;
- *         &lt;element name="xTribNac" type="{http://www.sped.fazenda.gov.br/nfse}TSDesc600"/&gt;
- *         &lt;element name="xTribMun" type="{http://www.sped.fazenda.gov.br/nfse}TSDesc600" minOccurs="0"/&gt;
- *         &lt;element name="xNBS" type="{http://www.sped.fazenda.gov.br/nfse}TSDesc600" minOccurs="0"/&gt;
- *         &lt;element name="verAplic" type="{http://www.sped.fazenda.gov.br/nfse}TSVerAplic"/&gt;
- *         &lt;element name="ambGer" type="{http://www.sped.fazenda.gov.br/nfse}TSAmbGeradorNFSe"/&gt;
- *         &lt;element name="tpEmis" type="{http://www.sped.fazenda.gov.br/nfse}TSTipoEmissao"/&gt;
- *         &lt;element name="procEmi" type="{http://www.sped.fazenda.gov.br/nfse}TSProcEmissao"/&gt;
- *         &lt;element name="cStat" type="{http://www.sped.fazenda.gov.br/nfse}TStat"/&gt;
- *         &lt;element name="dhProc" type="{http://www.sped.fazenda.gov.br/nfse}TSDateTimeUTC"/&gt;
- *         &lt;element name="nDFSe" type="{http://www.sped.fazenda.gov.br/nfse}TSNDFSe"/&gt;
- *         &lt;element name="emit" type="{http://www.sped.fazenda.gov.br/nfse}TCEmitente"/&gt;
- *         &lt;element name="valores" type="{http://www.sped.fazenda.gov.br/nfse}TCValoresNFSe"/&gt;
- *         &lt;element name="DPS" type="{http://www.sped.fazenda.gov.br/nfse}TCDPS"/&gt;
- *       &lt;/sequence&gt;
- *       &lt;attribute name="Id" use="required" type="{http://www.sped.fazenda.gov.br/nfse}TSIdNFSe" /&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
- * </pre>
- * 
- * 
- */
+import java.time.LocalDateTime;
 
 @Root(name = "InfNFSe")
 public class NFSeSefinNacionalInfNFSe {
 
     @Element(name = "xLocEmi", required = true)
-    protected String xLocEmi;
+    protected String localEmissao;
     @Element(name = "xLocPrestacao", required = true)
-    protected String xLocPrestacao;
+    protected String localPrestacao;
     @Element(name = "nNFSe", required = false)
-    protected String nnfSe;
+    protected String numeroNFSe;
     @Element(name = "cLocIncid", required = false)
-    protected String cLocIncid;
+    protected String codigoLocalIncidenciaISSQN;
     @Element(name = "xLocIncid", required = false)
-    protected String xLocIncid;
+    protected String localIncidenciaISSQN;
     @Element(name = "xTribNac", required = true)
-    protected String xTribNac;
+    protected String descricaoNacionalISSQN;
     @Element(name = "xTribMun", required = false)
-    protected String xTribMun;
+    protected String descricaoMunicipalISSQN;
     @Element(name = "xNBS", required = false)
-    protected String xnbs;
+    protected String descricaoNBS;
     @Element(name = "verAplic", required = true)
-    protected String verAplic;
+    protected String versaoAplicacao;
     @Element(name = "ambGer", required = true)
-    protected String ambGer;
+    protected String ambienteGeracao;
     @Element(name = "tpEmis", required = true)
-    protected String tpEmis;
+    protected NFSeSefinNacionalInfNFSeTipoEmissao tipoEmissao;
     @Element(name = "procEmi", required = true)
-    protected String procEmi;
+    protected NFSeSefinNacionalInfNFSeProcessoEmissao processoEmissao;
     @Element(name = "cStat", required = true)
-    protected String cStat;
+    protected String codigoStatus;
     @Element(name = "dhProc", required = true)
-    protected String dhProc;
+    protected LocalDateTime dataHoraProcessamento;
     @Element(name = "nDFSe", required = false)
-    protected String ndfSe;
+    protected String numeroDFSe;
     @Element(name = "emit", required = true)
-    protected NFSeSefinNacionalEmitente emit;
+    protected NFSeSefinNacionalEmitente emitente;
     @Element(name = "valores", required = true)
     protected NFSeSefinNacionalValoresNFSe valores;
+    @Element(name = "IBSCBS", required = false)
+    protected NFSeSefinNacionalInfoIBSCBS infoIBSCBS;
     @Element(name = "DPS", required = false)
     protected NFSeSefinNacionalDPS dps;
     @Attribute(name = "Id", required = false)
     protected String id;
 
-    public String getXLocEmi() {
-        return xLocEmi;
+    public String getLocalEmissao() {
+        return localEmissao;
     }
 
-    public NFSeSefinNacionalInfNFSe setXLocEmi(String value) {
-        this.xLocEmi = value;
+    public NFSeSefinNacionalInfNFSe setLocalEmissao(String localEmissao) {
+        this.localEmissao = localEmissao;
         return this;
     }
 
-    public String getXLocPrestacao() {
-        return xLocPrestacao;
+    public String getLocalPrestacao() {
+        return localPrestacao;
     }
 
-    public NFSeSefinNacionalInfNFSe setXLocPrestacao(String value) {
-        this.xLocPrestacao = value;
+    public NFSeSefinNacionalInfNFSe setLocalPrestacao(String localPrestacao) {
+        this.localPrestacao = localPrestacao;
         return this;
     }
 
-    public String getNNFSe() {
-        return nnfSe;
+    public String getNumeroNFSe() {
+        return numeroNFSe;
     }
 
-    public NFSeSefinNacionalInfNFSe setNNFSe(String value) {
-        this.nnfSe = value;
+    public NFSeSefinNacionalInfNFSe setNumeroNFSe(String numeroNFSe) {
+        this.numeroNFSe = numeroNFSe;
         return this;
     }
 
-    public String getCLocIncid() {
-        return cLocIncid;
+    public String getCodigoLocalIncidenciaISSQN() {
+        return codigoLocalIncidenciaISSQN;
     }
 
-    public NFSeSefinNacionalInfNFSe setCLocIncid(String value) {
-        this.cLocIncid = value;
+    public NFSeSefinNacionalInfNFSe setCodigoLocalIncidenciaISSQN(String codigoLocalIncidenciaISSQN) {
+        this.codigoLocalIncidenciaISSQN = codigoLocalIncidenciaISSQN;
         return this;
     }
 
-    public String getXLocIncid() {
-        return xLocIncid;
+    public String getLocalIncidenciaISSQN() {
+        return localIncidenciaISSQN;
     }
 
-    public NFSeSefinNacionalInfNFSe setXLocIncid(String value) {
-        this.xLocIncid = value;
+    public NFSeSefinNacionalInfNFSe setLocalIncidenciaISSQN(String localIncidenciaISSQN) {
+        this.localIncidenciaISSQN = localIncidenciaISSQN;
         return this;
     }
 
-    public String getXTribNac() {
-        return xTribNac;
+    public String getDescricaoNacionalISSQN() {
+        return descricaoNacionalISSQN;
     }
 
-    public NFSeSefinNacionalInfNFSe setXTribNac(String value) {
-        this.xTribNac = value;
+    public NFSeSefinNacionalInfNFSe setDescricaoNacionalISSQN(String descricaoNacionalISSQN) {
+        this.descricaoNacionalISSQN = descricaoNacionalISSQN;
         return this;
     }
 
-    public String getXTribMun() {
-        return xTribMun;
+    public String getDescricaoMunicipalISSQN() {
+        return descricaoMunicipalISSQN;
     }
 
-    public NFSeSefinNacionalInfNFSe setXTribMun(String value) {
-        this.xTribMun = value;
+    public NFSeSefinNacionalInfNFSe setDescricaoMunicipalISSQN(String descricaoMunicipalISSQN) {
+        this.descricaoMunicipalISSQN = descricaoMunicipalISSQN;
         return this;
     }
 
-    public String getXNBS() {
-        return xnbs;
+    public String getDescricaoNBS() {
+        return descricaoNBS;
     }
 
-    public NFSeSefinNacionalInfNFSe setXNBS(String value) {
-        this.xnbs = value;
+    public NFSeSefinNacionalInfNFSe setDescricaoNBS(String descricaoNBS) {
+        this.descricaoNBS = descricaoNBS;
         return this;
     }
 
-    public String getVerAplic() {
-        return verAplic;
+    public String getVersaoAplicacao() {
+        return versaoAplicacao;
     }
 
-    public NFSeSefinNacionalInfNFSe setVerAplic(String value) {
-        this.verAplic = value;
+    public NFSeSefinNacionalInfNFSe setVersaoAplicacao(String versaoAplicacao) {
+        this.versaoAplicacao = versaoAplicacao;
         return this;
     }
 
-    public String getAmbGer() {
-        return ambGer;
+    public String getAmbienteGeracao() {
+        return ambienteGeracao;
     }
 
-    public NFSeSefinNacionalInfNFSe setAmbGer(String value) {
-        this.ambGer = value;
+    public NFSeSefinNacionalInfNFSe setAmbienteGeracao(String ambienteGeracao) {
+        this.ambienteGeracao = ambienteGeracao;
         return this;
     }
 
-    public String getTpEmis() {
-        return tpEmis;
+    public NFSeSefinNacionalInfNFSeTipoEmissao getTipoEmissao() {
+        return tipoEmissao;
     }
 
-    public NFSeSefinNacionalInfNFSe setTpEmis(String value) {
-        this.tpEmis = value;
+    public NFSeSefinNacionalInfNFSe setTipoEmissao(NFSeSefinNacionalInfNFSeTipoEmissao tipoEmissao) {
+        this.tipoEmissao = tipoEmissao;
         return this;
     }
 
-    public String getProcEmi() {
-        return procEmi;
+    public NFSeSefinNacionalInfNFSeProcessoEmissao getProcessoEmissao() {
+        return processoEmissao;
     }
 
-    public NFSeSefinNacionalInfNFSe setProcEmi(String value) {
-        this.procEmi = value;
+    public NFSeSefinNacionalInfNFSe setProcessoEmissao(NFSeSefinNacionalInfNFSeProcessoEmissao value) {
+        this.processoEmissao = processoEmissao;
         return this;
     }
 
-    public String getCStat() {
-        return cStat;
+    public String getCodigoStatus() {
+        return codigoStatus;
     }
 
-    public NFSeSefinNacionalInfNFSe setCStat(String value) {
-        this.cStat = value;
+    public NFSeSefinNacionalInfNFSe setCodigoStatus(String codigoStatus) {
+        this.codigoStatus = codigoStatus;
         return this;
     }
 
-    public String getDhProc() {
-        return dhProc;
+    public LocalDateTime getDataHoraProcessamento() {
+        return dataHoraProcessamento;
     }
 
-    public NFSeSefinNacionalInfNFSe setDhProc(String value) {
-        this.dhProc = value;
+    public NFSeSefinNacionalInfNFSe setDataHoraProcessamento(LocalDateTime value) {
+        this.dataHoraProcessamento = value;
         return this;
     }
 
-    public String getNDFSe() {
-        return ndfSe;
+    public String getNumeroDFSe() {
+        return numeroDFSe;
     }
 
-    public NFSeSefinNacionalInfNFSe setNDFSe(String value) {
-        this.ndfSe = value;
+    public NFSeSefinNacionalInfNFSe setNumeroDFSe(String numeroDFSe) {
+        this.numeroDFSe = numeroDFSe;
         return this;
     }
 
-    public NFSeSefinNacionalEmitente getEmit() {
-        return emit;
+    public NFSeSefinNacionalEmitente getEmitente() {
+        return emitente;
     }
 
-    public NFSeSefinNacionalInfNFSe setEmit(NFSeSefinNacionalEmitente value) {
-        this.emit = value;
+    public NFSeSefinNacionalInfNFSe setEmitente(NFSeSefinNacionalEmitente emitente) {
+        this.emitente = emitente;
         return this;
     }
 
@@ -233,6 +199,15 @@ public class NFSeSefinNacionalInfNFSe {
 
     public NFSeSefinNacionalInfNFSe setValores(NFSeSefinNacionalValoresNFSe value) {
         this.valores = value;
+        return this;
+    }
+
+    public NFSeSefinNacionalInfoIBSCBS getInfoIBSCBS() {
+        return infoIBSCBS;
+    }
+
+    public NFSeSefinNacionalInfNFSe setInfoIBSCBS(NFSeSefinNacionalInfoIBSCBS infoIBSCBS) {
+        this.infoIBSCBS = infoIBSCBS;
         return this;
     }
 

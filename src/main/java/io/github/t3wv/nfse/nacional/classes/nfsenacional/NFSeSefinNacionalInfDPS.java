@@ -41,7 +41,7 @@ public class NFSeSefinNacionalInfDPS {
     protected NFSeSefinNacionalInfoValores valores;
     @Element(name = "IBSCBS", required = false)
     protected NFSeSefinNacionalInfoIBSCBS infoIBSCBS;
-    @Attribute(name = "Id", empty = "") //todo: implementar a validação da regra (método + teste unitário)
+    @Attribute(name = "Id", empty = "", required = false) //todo: implementar a validação da regra (método + teste unitário)
     protected String id;
 
     /**
