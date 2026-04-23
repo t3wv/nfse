@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
  *
  * Em tese deveria ser um campo chamado 'eventoXmlGZipB64' no json de retorno.
  *
- * @see NFSeSefinNacionalPostResponseSucesso
+ * @see NFSeSefinNacionalNFSePostResponseSucesso
  *
  */
 @JsonIgnoreProperties(ignoreUnknown = true)

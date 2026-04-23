@@ -7,6 +7,7 @@ import io.github.t3wv.nfse.nacional.classes.parametrosmunicipais.consulta.NFSePa
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Map;
 
 /**
  *
@@ -72,10 +73,10 @@ public class WSFacade {
      * Emite uma NFSe utilizando um Documento de Prestação de Serviço (DPS) na API de NFSe da SEFIN Nacional.
      *
      * @param dps Objeto {@link NFSeSefinNacionalDPS} representando o Documento de Prestação de Serviço a ser utilizado para emitir a NFSe.
-     * @return Objeto {@link NFSeSefinNacionalPostResponseSucesso} contendo as informações sobre a NFSe emitida.
+     * @return Objeto {@link NFSeSefinNacionalNFSePostResponseSucesso} contendo as informações sobre a NFSe emitida.
      * @throws Exception Se ocorrer um erro durante a requisição ou no processamento da resposta.
      */
-    public NFSeSefinNacionalPostResponseSucesso emitirNFSe(final NFSeSefinNacionalDPS dps) throws Exception {
+    public Map.Entry<Integer, Object> emitirNFSe(final NFSeSefinNacionalDPS dps) throws Exception {
         return wsSefinNFSe.emitirNFSeByDPS(dps);
     }
 
@@ -83,35 +84,35 @@ public class WSFacade {
      * Cancela uma NFSe utilizando um evento de cancelamento na API de NFSe da SEFIN Nacional.
      *
      * @param eventoCancelamento Objeto {@link NFSeSefinNacionalPedRegEvt} representando o evento de cancelamento da NFSe.
-     * @return Objeto {@link NFSeSefinNacionalPostResponseSucesso} contendo as informações sobre o cancelamento da NFSe.
+     * @return Objeto {@link NFSeSefinNacionalNFSePostResponseSucesso} contendo as informações sobre o cancelamento da NFSe.
      * @throws Exception Se ocorrer um erro durante a requisição ou no processamento da resposta.
      */
-    public NFSeSefinNacionalPostResponseSucesso cancelarNFSe(final NFSeSefinNacionalPedRegEvt eventoCancelamento) throws Exception {
+    public Map.Entry<Integer, Object> cancelarNFSe(final NFSeSefinNacionalPedRegEvt eventoCancelamento) throws Exception {
         return wsSefinNFSe.enviarPedidoRegistroEvento(eventoCancelamento);
     }
 
-    public NFSeSefinNacionalPostResponseSucesso consultaEventoNFSe(final String chave, final String evento, final int sequencial) throws Exception {
+    public Map.Entry<Integer, Object> consultaEventoNFSe(final String chave, final String evento, final int sequencial) throws Exception {
         return wsSefinNFSe.solicitarEventos(chave, evento, sequencial);
     }
 
-    /**
-     * Consulta os eventos de cancelamento de uma NFSe na API de NFSe da SEFIN Nacional.
-     * Itera os possíveis eventos de cancelamento
-     * Caso encontre um evento correspondente, retorna o xml do evento.
-     *
-     * @param chave da NFSe
-     * @return Objeto {@link NFSeSefinNacionalEvento} contendo as informações sobre o evento de cancelamento da NFSe.
-     * @throws Exception Caso erro.
-     */
-    public NFSeSefinNacionalPostResponseSucesso consultaEventoCancelamentoNFSe(final String chave) throws Exception {
-        for (String codigoEvento : NFSeSefinNacionalInfPedRegEventoTE.EVENTOS_CANCELAMENTO) {
-            NFSeSefinNacionalPostResponseSucesso resposta = consultaEventoNFSe(chave, codigoEvento, 1);
-            if (resposta != null) {
-                return resposta;
-            }
-        }
-        return null;
-    }
+//    /**
+//     * Consulta os eventos de cancelamento de uma NFSe na API de NFSe da SEFIN Nacional.
+//     * Itera os possíveis eventos de cancelamento
+//     * Caso encontre um evento correspondente, retorna o xml do evento.
+//     *
+//     * @param chave da NFSe
+//     * @return Objeto {@link NFSeSefinNacionalEvento} contendo as informações sobre o evento de cancelamento da NFSe.
+//     * @throws Exception Caso erro.
+//     */
+//    public Map.Entry<Integer, Object> consultaEventoCancelamentoNFSe(final String chave) throws Exception {
+//        for (String codigoEvento : NFSeSefinNacionalInfPedRegEventoTE.EVENTOS_CANCELAMENTO) {
+//            NFSeSefinNacionalNFSePostResponseSucesso resposta = consultaEventoNFSe(chave, codigoEvento, 1);
+//            if (resposta != null) {
+//                return resposta;
+//            }
+//        }
+//        return null;
+//    }
 
 
     //REVISAR

@@ -7,7 +7,7 @@ import java.time.ZonedDateTime;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class NFSeSefinNacionalPostResponseSucesso {
+public class NFSeSefinNacionalNFSePostResponseSucesso {
     @JsonProperty("tipoAmbiente")
     private Integer tipoAmbiente;
 
@@ -26,11 +26,8 @@ public class NFSeSefinNacionalPostResponseSucesso {
     @JsonProperty("nfseXmlGZipB64")
     private String nfseXmlGZipB64;
 
-    @JsonProperty("eventos")
-    private List<NFSeSefinNacionalEventoJson> eventos;
-
     @JsonProperty("alertas")
-    private List<NFSeSefinNacionalPostMensagemProcessamento> alertas;
+    private List<NFSeSefinNacionalMensagemProcessamento> alertas;
 
     public Integer getTipoAmbiente() {
         return tipoAmbiente;
@@ -80,20 +77,11 @@ public class NFSeSefinNacionalPostResponseSucesso {
         this.nfseXmlGZipB64 = nfseXmlGZipB64;
     }
 
-    public List<NFSeSefinNacionalEventoJson> getEventos() {
-        return eventos;
-    }
-
-    public NFSeSefinNacionalPostResponseSucesso setEventos(List<NFSeSefinNacionalEventoJson> eventos) {
-        this.eventos = eventos;
-        return this;
-    }
-
-    public List<NFSeSefinNacionalPostMensagemProcessamento> getAlertas() {
+    public List<NFSeSefinNacionalMensagemProcessamento> getAlertas() {
         return alertas;
     }
 
-    public void setAlertas(List<NFSeSefinNacionalPostMensagemProcessamento> alertas) {
+    public void setAlertas(List<NFSeSefinNacionalMensagemProcessamento> alertas) {
         this.alertas = alertas;
     }
 
@@ -106,7 +94,6 @@ public class NFSeSefinNacionalPostResponseSucesso {
                ", idDps='" + idDps + '\'' +
                ", chaveAcesso='" + chaveAcesso + '\'' +
                ", nfseXmlGZipB64='" + nfseXmlGZipB64 + '\'' +
-               ", eventos='" + eventos + '\'' +
                ", alertas=" + alertas +
                '}';
     }

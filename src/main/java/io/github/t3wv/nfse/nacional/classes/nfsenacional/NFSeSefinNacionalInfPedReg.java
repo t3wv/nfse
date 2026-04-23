@@ -20,7 +20,7 @@ public class NFSeSefinNacionalInfPedReg {
     protected String cpfAutor;
     @Element(name = "chNFSe")
     protected String chaveAcessoNFSE;
-    @Element(name = "nPedRegEvento")
+    @Element(name = "nPedRegEvento", required = false)
     protected String numeroPedidoRegistroEvento;
     @Attribute(name = "Id")
     protected String id;

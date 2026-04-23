@@ -139,13 +139,14 @@ public abstract class NFSeUtils {
         assert eventoInfo != null : "Informações do Evento devem estar preenchidas para gerar o ID";
         final var codigoEvento = eventoInfo.getCodigoEvento();
         assert codigoEvento != null : "Código do Evento deve estar preenchido para gerar o ID";
-        final var numeroPedidoRegistroEvento = infPedReg.getNPedRegEvento();
-        assert numeroPedidoRegistroEvento != null : "Número do Pedido de Registro do Evento deve estar preenchido para gerar o ID";
+//        final var numeroPedidoRegistroEvento = infPedReg.getNPedRegEvento();
+//        assert numeroPedidoRegistroEvento != null : "Número do Pedido de Registro do Evento deve estar preenchido para gerar o ID";
 
-        return String.format("PRE%s%s%s",
+        return String.format("PRE%s%s",
                 chaveAcessoNFSE,
-                codigoEvento,
-                StringUtils.leftPad(numeroPedidoRegistroEvento, 3, '0')
+                codigoEvento
+//            ,
+//                StringUtils.leftPad(numeroPedidoRegistroEvento, 1, '0')
         );
     }
 

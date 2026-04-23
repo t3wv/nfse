@@ -7,7 +7,7 @@ import java.time.ZonedDateTime;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class NFSeSefinNacionalPostResponseErro {
+public class NFSeSefinNacionalResponseErro {
     @JsonProperty("tipoAmbiente")
     private Integer tipoAmbiente;
 
@@ -17,11 +17,8 @@ public class NFSeSefinNacionalPostResponseErro {
     @JsonProperty("dataHoraProcessamento")
     private ZonedDateTime dataHoraProcessamento;
 
-    @JsonProperty("idDPS")
-    private String idDPS;
-
-    @JsonProperty("erros")
-    private List<NFSeSefinNacionalPostMensagemProcessamento> erros;
+    @JsonProperty("erro")
+    private List<NFSeSefinNacionalMensagemProcessamento> erros;
 
     public Integer getTipoAmbiente() {
         return tipoAmbiente;
@@ -47,20 +44,12 @@ public class NFSeSefinNacionalPostResponseErro {
         this.dataHoraProcessamento = dataHoraProcessamento;
     }
 
-    public String getIdDPS() {
-        return idDPS;
-    }
-
-    public void setIdDPS(String idDPS) {
-        this.idDPS = idDPS;
-    }
-
-    public List<NFSeSefinNacionalPostMensagemProcessamento> getErros() {
+    public List<NFSeSefinNacionalMensagemProcessamento> getErro() {
         return erros;
     }
 
-    public void setErros(List<NFSeSefinNacionalPostMensagemProcessamento> erros) {
-        this.erros = erros;
+    public void setErro(List<NFSeSefinNacionalMensagemProcessamento> erro) {
+        this.erros = erro;
     }
 
     @Override
@@ -69,7 +58,6 @@ public class NFSeSefinNacionalPostResponseErro {
                "tipoAmbiente=" + tipoAmbiente +
                ", versaoAplicativo='" + versaoAplicativo + '\'' +
                ", dataHoraProcessamento=" + dataHoraProcessamento +
-               ", idDPS='" + idDPS + '\'' +
                ", erros=" + erros +
                '}';
     }
