@@ -2,7 +2,10 @@ package io.github.t3wv.nfse.nacional.classes.nfsenacional;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.github.t3wv.nfse.utils.NFSePersister;
+import io.github.t3wv.nfse.utils.NFSeUtils;
 
+import java.io.IOException;
 import java.time.ZonedDateTime;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -49,6 +52,14 @@ public class NFSeSefinNacionalEventosPostResponseSucesso {
 
     public void setEventoXmlGZipB64(String eventoXmlGZipB64) {
         this.eventoXmlGZipB64 = eventoXmlGZipB64;
+    }
+
+    public String getEventoXmlString() throws IOException {
+        return NFSeUtils.decodeXmlGZipB64(eventoXmlGZipB64);
+    }
+
+    public NFSeSefinNacionalEvento getEventoXMLObject() throws Exception {
+        return new NFSePersister().read(NFSeSefinNacionalEvento.class, this.getEventoXmlString());
     }
 
     @Override

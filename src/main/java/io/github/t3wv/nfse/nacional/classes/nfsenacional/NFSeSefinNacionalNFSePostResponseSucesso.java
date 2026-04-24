@@ -2,7 +2,10 @@ package io.github.t3wv.nfse.nacional.classes.nfsenacional;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.github.t3wv.nfse.utils.NFSePersister;
+import io.github.t3wv.nfse.utils.NFSeUtils;
 
+import java.io.IOException;
 import java.time.ZonedDateTime;
 import java.util.List;
 
@@ -83,6 +86,14 @@ public class NFSeSefinNacionalNFSePostResponseSucesso {
 
     public void setAlertas(List<NFSeSefinNacionalMensagemProcessamento> alertas) {
         this.alertas = alertas;
+    }
+
+    public String getNFSeXmlString() throws IOException {
+        return NFSeUtils.decodeXmlGZipB64(nfseXmlGZipB64);
+    }
+
+    public NFSeSefinNacionalNFSe getNFSeXMLObject() throws Exception {
+        return new NFSePersister().read(NFSeSefinNacionalNFSe.class, this.getNFSeXmlString());
     }
 
     @Override

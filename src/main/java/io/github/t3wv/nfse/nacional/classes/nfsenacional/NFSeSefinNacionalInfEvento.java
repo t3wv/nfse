@@ -16,7 +16,7 @@ public class NFSeSefinNacionalInfEvento {
     protected String numeroSequencialEvento;
     @Element(name = "dhProc")
     protected ZonedDateTime dataHoraProcessamento;
-    @Element(name = "nDFe")
+    @Element(name = "nDFSe")
     protected String numeroDFe;
     @Element(name = "pedRegEvento")
     protected NFSeSefinNacionalPedRegEvt pedidoRegistroEvento;
