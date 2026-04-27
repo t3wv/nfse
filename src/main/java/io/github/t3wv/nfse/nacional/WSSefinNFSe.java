@@ -4,6 +4,7 @@ import io.github.t3wv.nfse.NFSeConfig;
 import io.github.t3wv.nfse.NFSeLogger;
 import io.github.t3wv.nfse.nacional.classes.nfsenacional.*;
 import io.github.t3wv.nfse.utils.*;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.xml.transform.stream.StreamSource;
@@ -204,8 +205,8 @@ public class WSSefinNFSe implements NFSeLogger {
      * @return Eventos da NFSe.
      * @throws Exception Caso erro.
      */
-    public Map.Entry<Integer, Object> solicitarEventos(final String chave, final String codigoEvento, final int seq) throws Exception {
-        final var uri = new URI(String.format("%s/%s/eventos/%s/%s", config.isTeste() ? URL_HOMOLOGACAO_NFSE : URL_PRODUCAO_NFSE, chave, codigoEvento, seq));
+    public Map.Entry<Integer, Object> solicitarEventos(final String chave, final String codigoEvento, final Integer seq) throws Exception {
+        final var uri = new URI(String.format("%s/%s/eventos/%s/%s", config.isTeste() ? URL_HOMOLOGACAO_NFSE : URL_PRODUCAO_NFSE, chave, ObjectUtils.firstNonNull(codigoEvento, "="), ObjectUtils.firstNonNull(seq, "=")));
         final var response = new NFSeHttpClient(config).sendGetRequest(uri);
         return switch (response.statusCode()) {
             case HttpURLConnection.HTTP_OK -> new AbstractMap.SimpleEntry<>(HttpURLConnection.HTTP_CREATED, this.objectMapper.convertValue(this.objectMapper.readTree(response.body()), NFSeSefinNacionalEventosPostResponseSucesso.class));

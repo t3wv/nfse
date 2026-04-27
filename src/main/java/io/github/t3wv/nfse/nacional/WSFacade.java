@@ -91,7 +91,11 @@ public class WSFacade {
         return wsSefinNFSe.enviarPedidoRegistroEvento(eventoCancelamento);
     }
 
-    public Map.Entry<Integer, Object> consultaEventoNFSe(final String chave, final String evento, final int sequencial) throws Exception {
+    public Map.Entry<Integer, Object> consultaEventosNFSe(final String chave) throws Exception {
+        return wsSefinNFSe.solicitarEventos(chave, null, null);
+    }
+
+    public Map.Entry<Integer, Object> consultaEventoNFSe(final String chave, final String evento, final Integer sequencial) throws Exception {
         return wsSefinNFSe.solicitarEventos(chave, evento, sequencial);
     }
 

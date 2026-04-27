@@ -7,6 +7,7 @@ import io.github.t3wv.nfse.utils.NFSeUtils;
 
 import java.io.IOException;
 import java.time.ZonedDateTime;
+import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NFSeSefinNacionalEventosPostResponseSucesso {
@@ -21,6 +22,9 @@ public class NFSeSefinNacionalEventosPostResponseSucesso {
 
     @JsonProperty("eventoXmlGZipB64")
     private String eventoXmlGZipB64;
+
+    @JsonProperty("eventos")
+    private List<NFSeSefinNacionalEventoJson> eventos;
 
     public Integer getTipoAmbiente() {
         return tipoAmbiente;
@@ -54,12 +58,15 @@ public class NFSeSefinNacionalEventosPostResponseSucesso {
         this.eventoXmlGZipB64 = eventoXmlGZipB64;
     }
 
-    public String getEventoXmlString() throws IOException {
-        return NFSeUtils.decodeXmlGZipB64(eventoXmlGZipB64);
-    }
+    public String getEventoXmlString() throws IOException { return NFSeUtils.decodeXmlGZipB64(eventoXmlGZipB64); }
 
-    public NFSeSefinNacionalEvento getEventoXMLObject() throws Exception {
-        return new NFSePersister().read(NFSeSefinNacionalEvento.class, this.getEventoXmlString());
+    public NFSeSefinNacionalEvento getEventoXMLObject() throws Exception { return new NFSePersister().read(NFSeSefinNacionalEvento.class, this.getEventoXmlString()); }
+
+    public List<NFSeSefinNacionalEventoJson> getEventos() { return eventos; }
+
+    public NFSeSefinNacionalEventosPostResponseSucesso setEventos(List<NFSeSefinNacionalEventoJson> eventos) {
+        this.eventos = eventos;
+        return this;
     }
 
     @Override
@@ -68,7 +75,7 @@ public class NFSeSefinNacionalEventosPostResponseSucesso {
                "tipoAmbiente=" + tipoAmbiente +
                ", versaoAplicativo='" + versaoAplicativo + '\'' +
                ", dataHoraProcessamento=" + dataHoraProcessamento +
-               ", nfseXmlGZipB64='" + eventoXmlGZipB64 + '\'' +
+               ", eventoXmlGZipB64='" + eventoXmlGZipB64 + '\'' +
                '}';
     }
 }

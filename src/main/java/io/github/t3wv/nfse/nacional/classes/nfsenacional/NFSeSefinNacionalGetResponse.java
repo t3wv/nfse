@@ -2,6 +2,10 @@ package io.github.t3wv.nfse.nacional.classes.nfsenacional;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.github.t3wv.nfse.utils.NFSePersister;
+import io.github.t3wv.nfse.utils.NFSeUtils;
+
+import java.io.IOException;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NFSeSefinNacionalGetResponse {
@@ -63,5 +67,13 @@ public class NFSeSefinNacionalGetResponse {
     public NFSeSefinNacionalGetResponse setNfseXmlGZipB64(String nfseXmlGZipB64) {
         this.nfseXmlGZipB64 = nfseXmlGZipB64;
         return this;
+    }
+
+    public String getNFSeXmlString() throws IOException {
+        return NFSeUtils.decodeXmlGZipB64(nfseXmlGZipB64);
+    }
+
+    public NFSeSefinNacionalNFSe getNFSeXMLObject() throws Exception {
+        return new NFSePersister().read(NFSeSefinNacionalNFSe.class, this.getNFSeXmlString());
     }
 }

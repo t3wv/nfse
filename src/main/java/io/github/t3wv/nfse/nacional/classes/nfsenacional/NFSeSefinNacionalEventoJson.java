@@ -2,8 +2,12 @@ package io.github.t3wv.nfse.nacional.classes.nfsenacional;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.github.t3wv.nfse.utils.NFSePersister;
+import io.github.t3wv.nfse.utils.NFSeUtils;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.Base64;
 
 /**
  * Representa um evento relacionado à NFSe na SEFIN Nacional.
@@ -31,7 +35,7 @@ public class NFSeSefinNacionalEventoJson {
     private LocalDateTime dataHoraProcessamento;
 
     @JsonProperty("arquivoXml")
-    private String arquivoXml;
+    private String arquivoXmlB64;
 
     public String getChaveAcesso() {
         return chaveAcesso;
@@ -69,13 +73,21 @@ public class NFSeSefinNacionalEventoJson {
         return this;
     }
 
-    public String getArquivoXml() {
-        return arquivoXml;
+    public String getArquivoXmlB64() {
+        return arquivoXmlB64;
     }
 
     public NFSeSefinNacionalEventoJson setArquivoXml(String arquivoXml) {
-        this.arquivoXml = arquivoXml;
+        this.arquivoXmlB64 = arquivoXml;
         return this;
+    }
+
+    public String getEventoXmlString() throws IOException {
+        return NFSeUtils.decodeXmlGZipB64(new String(Base64.getDecoder().decode(arquivoXmlB64))); // Sim, vem um base64 de um base64
+    }
+
+    public NFSeSefinNacionalEvento getEventoXmlObject() throws Exception {
+        return new NFSePersister().read(NFSeSefinNacionalEvento.class, this.getEventoXmlString());
     }
 
     @Override
@@ -85,7 +97,7 @@ public class NFSeSefinNacionalEventoJson {
                 ", tipoEvento='" + tipoEvento + '\'' +
                 ", numeroPedidoRegistroEvento=" + numeroPedidoRegistroEvento +
                 ", dataHoraProcessamento=" + dataHoraProcessamento +
-                ", arquivoXml='" + arquivoXml + '\'' +
+                ", arquivoXml='" + arquivoXmlB64 + '\'' +
                 '}';
     }
 }
