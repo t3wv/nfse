@@ -21,6 +21,7 @@ import java.util.AbstractMap;
 import java.util.Base64;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class WSSefinNFSe implements NFSeLogger {
 
@@ -37,13 +38,39 @@ public class WSSefinNFSe implements NFSeLogger {
     }
 
     /**
-     * Consulta NFSe pela chave de acesso
+     * Busca uma NFS-e (Nota Fiscal de Serviços Eletrônica) pelo número de chave de acesso.
      *
-     * @param chaveAcesso chave de acesso da nfse
-     * @return objeto de resposta da consulta
-     * @throws Exception
+     * <p>A chave de acesso é normalizada antes da consulta, removendo quaisquer caracteres
+     * não numéricos. Após a normalização, é validado se a chave possui exatamente 50 dígitos.
+     * A requisição é direcionada ao ambiente de homologação ou produção conforme a configuração
+     * definida em {@code config.isTeste()}.
+     *
+     * <p>Os possíveis retornos são:
+     * <ul>
+     *   <li>{@code 200 OK} – Consulta realizada com sucesso. O valor do par será uma instância
+     *       de {@link NFSeSefinNacionalGetResponse} contendo os dados da NFS-e.</li>
+     *   <li>{@code 400 Bad Request} – Requisição inválida.</li>
+     *   <li>{@code 401 Unauthorized} – Não autorizado.</li>
+     *   <li>{@code 403 Forbidden} – Acesso proibido.</li>
+     *   <li>{@code 404 Not Found} – NFS-e não encontrada.</li>
+     *       Para os casos 400, 401, 403 e 404, o valor do par será uma instância de
+     *       {@link NFSeSefinNacionalResponseErro} contendo os detalhes do erro retornado pela API.
+     * </ul>
+     *
+     * @param chaveAcesso chave de acesso da NFS-e, podendo conter caracteres não numéricos
+     *                    que serão removidos automaticamente antes da validação e consulta;
+     *                    após normalização, deve conter exatamente 50 dígitos numéricos
+     * @return um {@link Map.Entry} onde a chave é o código de status HTTP da resposta
+     *         ({@link java.net.HttpURLConnection#HTTP_OK} para sucesso, ou o código de erro
+     *         correspondente) e o valor é o objeto deserializado da resposta
+     *         ({@link NFSeSefinNacionalGetResponse} ou {@link NFSeSefinNacionalResponseErro})
+     * @throws IllegalArgumentException se a chave de acesso normalizada não contiver
+     *                                  exatamente 50 dígitos numéricos
+     * @throws IllegalStateException    se a API retornar um código de status HTTP não tratado
+     * @throws Exception                se ocorrer qualquer erro de I/O, URI inválida ou falha
+     *                                  na desserialização da resposta
      */
-    public NFSeSefinNacionalGetResponse buscarNFSeByChaveAcesso(final String chaveAcesso) throws Exception {
+    public Map.Entry<Integer, Object> buscarNFSeByChaveAcesso(final String chaveAcesso) throws Exception {
         //normaliza a chave de acesso removendo quaisquer caracteres não numéricos
         final var chaveAcessoNormalizada = chaveAcesso.replaceAll("\\D", "");
 
@@ -56,11 +83,11 @@ public class WSSefinNFSe implements NFSeLogger {
         final var url = new URI(String.format("%s/%s", config.isTeste() ? URL_HOMOLOGACAO_NFSE : URL_PRODUCAO_NFSE, chaveAcesso));
         final var response = new NFSeHttpClient(config).sendGetRequest(url);
         this.getLogger().info("Response {}: {}", response.statusCode(), response.body());
-        if (response.statusCode() != 200) {
-            throw new Exception("Consulta de XML do NFSe '%s' retornou erro '%d'!".formatted(chaveAcessoNormalizada, response.statusCode()));
-        } else {
-            return this.objectMapper.convertValue(this.objectMapper.readTree(response.body()), NFSeSefinNacionalGetResponse.class);
-        }
+        return switch (response.statusCode()) {
+            case HttpURLConnection.HTTP_OK -> new AbstractMap.SimpleEntry<>(HttpURLConnection.HTTP_OK, this.objectMapper.convertValue(this.objectMapper.readTree(response.body()), NFSeSefinNacionalGetResponse.class));
+            case HttpURLConnection.HTTP_BAD_REQUEST, HttpURLConnection.HTTP_UNAUTHORIZED, HttpURLConnection.HTTP_FORBIDDEN, HttpURLConnection.HTTP_NOT_FOUND -> new AbstractMap.SimpleEntry<>(response.statusCode(), this.objectMapper.convertValue(this.objectMapper.readTree(response.body()), NFSeSefinNacionalResponseErro.class));
+            default -> throw new IllegalStateException("Consulta de NFSe '%s' retornou erro '%d'!".formatted(chaveAcessoNormalizada, response.statusCode()));
+        };
     }
 
     /**
@@ -71,8 +98,14 @@ public class WSSefinNFSe implements NFSeLogger {
      * @throws Exception Caso erro.
      */
     public String buscarNFSeXmlByChaveAcesso(final String nfseChaveAcesso) throws Exception {
-        final var nfse = this.buscarNFSeByChaveAcesso(nfseChaveAcesso);
-        return NFSeUtils.decodeXmlGZipB64(nfse.getNfseXmlGZipB64());
+        final var response = this.buscarNFSeByChaveAcesso(nfseChaveAcesso);
+        if (response.getKey().equals(HttpURLConnection.HTTP_OK)) {
+            final var nfse = (NFSeSefinNacionalGetResponse) response.getValue();
+            return NFSeUtils.decodeXmlGZipB64(nfse.getNfseXmlGZipB64());
+        } else {
+            final var erro = (NFSeSefinNacionalResponseErro) response.getValue();
+            throw new Exception("Não foi possível obter o xml da nota fiscal via chave de acesso '%s': [HTTP response code %s] - %s".formatted(nfseChaveAcesso, response.getKey(), erro.getErro().stream().map(e -> "%s - %s;".formatted(e.getCodigo(), e.getDescricao())).collect(Collectors.joining())));
+        }
     }
 
     /**
@@ -139,7 +172,7 @@ public class WSSefinNFSe implements NFSeLogger {
         final var uri = new URI(String.format("%s", config.isTeste() ? URL_HOMOLOGACAO_NFSE : URL_PRODUCAO_NFSE));
         final var body = String.format("{dpsXmlGZipB64:\"%s\"}", Base64.getEncoder().encodeToString(gzipped));
         final var response = new NFSeHttpClient(config).sendPostRequest(uri, body);
-        this.getLogger().info("Response {}: {}", response.statusCode(), response.body());
+        this.getLogger().info("Response emissão by DPS {}: {}", response.statusCode(), response.body());
         return switch (response.statusCode()) {
             case HttpURLConnection.HTTP_CREATED -> new AbstractMap.SimpleEntry<>(HttpURLConnection.HTTP_CREATED, this.objectMapper.convertValue(this.objectMapper.readTree(response.body()), NFSeSefinNacionalNFSePostResponseSucesso.class));
             case HttpURLConnection.HTTP_BAD_REQUEST -> new AbstractMap.SimpleEntry<>(HttpURLConnection.HTTP_BAD_REQUEST, this.objectMapper.convertValue(this.objectMapper.readTree(response.body()), NFSeSefinNacionalNFSePostResponseErro.class));
@@ -209,7 +242,7 @@ public class WSSefinNFSe implements NFSeLogger {
         final var uri = new URI(String.format("%s/%s/eventos/%s/%s", config.isTeste() ? URL_HOMOLOGACAO_NFSE : URL_PRODUCAO_NFSE, chave, ObjectUtils.firstNonNull(codigoEvento, "="), ObjectUtils.firstNonNull(seq, "=")));
         final var response = new NFSeHttpClient(config).sendGetRequest(uri);
         return switch (response.statusCode()) {
-            case HttpURLConnection.HTTP_OK -> new AbstractMap.SimpleEntry<>(HttpURLConnection.HTTP_CREATED, this.objectMapper.convertValue(this.objectMapper.readTree(response.body()), NFSeSefinNacionalEventosPostResponseSucesso.class));
+            case HttpURLConnection.HTTP_OK -> new AbstractMap.SimpleEntry<>(HttpURLConnection.HTTP_OK, this.objectMapper.convertValue(this.objectMapper.readTree(response.body()), NFSeSefinNacionalEventosPostResponseSucesso.class));
             case HttpURLConnection.HTTP_BAD_REQUEST -> new AbstractMap.SimpleEntry<>(HttpURLConnection.HTTP_BAD_REQUEST, this.objectMapper.convertValue(this.objectMapper.readTree(response.body()), NFSeSefinNacionalResponseErro.class));
             default -> throw new IllegalStateException("Erro ao enviar DPS: %s".formatted(this.objectMapper.convertValue(this.objectMapper.readTree(response.body()), NFSeSefinNacionalResponseErro.class).getErro()));
         };
