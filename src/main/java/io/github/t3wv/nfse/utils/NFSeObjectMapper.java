@@ -3,6 +3,7 @@ package io.github.t3wv.nfse.utils;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.deser.std.StdScalarDeserializer;
 import com.fasterxml.jackson.databind.module.SimpleModule;
@@ -25,6 +26,7 @@ public class NFSeObjectMapper extends ObjectMapper {
         this.configure(DeserializationFeature.USE_BIG_DECIMAL_FOR_FLOATS, true);
         this.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
         this.configure(DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_AS_NULL, true);
+        this.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
         this.registerModule(new JavaTimeModule());
         this.registerModule(new SimpleModule().addDeserializer(BigDecimal.class, new StdScalarDeserializer<>(BigDecimal.class) {
             @Override

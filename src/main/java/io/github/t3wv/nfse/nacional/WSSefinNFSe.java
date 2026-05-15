@@ -7,9 +7,9 @@ import io.github.t3wv.nfse.utils.*;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.stream.StreamSource;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
@@ -20,7 +20,6 @@ import java.time.ZonedDateTime;
 import java.util.AbstractMap;
 import java.util.Base64;
 import java.util.Map;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class WSSefinNFSe implements NFSeLogger {
@@ -145,7 +144,7 @@ public class WSSefinNFSe implements NFSeLogger {
 
 
         //cria os validatores
-        final var xmlValidator = new NFSeXmlValidator(new StreamSource(new File(Objects.requireNonNull(WSSefinNFSe.class.getResource("/NFSeNacional_nfse-esquemas_xsd-v1-01-20260209/Schemas/1.01/DPS_v1.01.xsd")).getFile())));
+        final var xmlValidator = new NFSeXmlValidator(new StreamSource(WSSefinNFSe.class.getClassLoader().getResource("NFSeNacional_nfse-esquemas_xsd-v1-01-20260209/Schemas/1.01/DPS_v1.01.xsd").toURI().toString()));
 
         //gera o xml e valida
         final var xmlNaoAssinado = dps.toXml();
@@ -175,8 +174,14 @@ public class WSSefinNFSe implements NFSeLogger {
         this.getLogger().info("Response emissão by DPS {}: {}", response.statusCode(), response.body());
         return switch (response.statusCode()) {
             case HttpURLConnection.HTTP_CREATED -> new AbstractMap.SimpleEntry<>(HttpURLConnection.HTTP_CREATED, this.objectMapper.convertValue(this.objectMapper.readTree(response.body()), NFSeSefinNacionalNFSePostResponseSucesso.class));
-            case HttpURLConnection.HTTP_BAD_REQUEST -> new AbstractMap.SimpleEntry<>(HttpURLConnection.HTTP_BAD_REQUEST, this.objectMapper.convertValue(this.objectMapper.readTree(response.body()), NFSeSefinNacionalNFSePostResponseErro.class));
-            default -> throw new IllegalStateException("Erro ao enviar DPS: %s".formatted(this.objectMapper.convertValue(this.objectMapper.readTree(response.body()), NFSeSefinNacionalNFSePostResponseErro.class).getErros()));
+            case HttpURLConnection.HTTP_BAD_REQUEST, HttpURLConnection.HTTP_UNAUTHORIZED, HttpURLConnection.HTTP_FORBIDDEN, HttpURLConnection.HTTP_NOT_FOUND -> {
+                try {
+                    yield new AbstractMap.SimpleEntry<>(HttpURLConnection.HTTP_BAD_REQUEST, this.objectMapper.convertValue(this.objectMapper.readTree(response.body()), NFSeSefinNacionalNFSePostResponseErro.class));
+                } catch (Exception e) {
+                    throw new ParserConfigurationException("Envio de DPS para emissão de NFSe retornou código '%d' com body não parseável: %s".formatted(response.statusCode(), response.body()));
+                }
+            }
+            default -> throw new IllegalStateException("Envio de DPS para emissão de NFSe retornou código de erro não previsto '%d': %s!".formatted(response.statusCode(), response.body()));
         };
     }
 
