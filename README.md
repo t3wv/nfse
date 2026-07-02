@@ -28,6 +28,11 @@ final var facade = new WSFacade(
         false));
 ```
 
+## Timeout HTTP (SEFIN / ADN)
+Por padrão GET e POST usam 30 segundos. Em implementações de `NFSeConfig`, sobrescreva
+`getHttpGetTimeoutSegundos()` e/ou `getHttpPostTimeoutSegundos()` quando a emissão (POST) demorar
+mais que o default — por exemplo `return 120;` em `getHttpPostTimeoutSegundos()`.
+
 ## Consultar nota emitida
 ``` java
 //PDF

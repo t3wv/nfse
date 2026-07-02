@@ -46,7 +46,7 @@ public class NFSeHttpClient implements NFSeLogger {
                     .GET()
                     .uri(uri)
                     .headers("Content-Type", "application/json; charset=utf-8")
-                    .timeout(Duration.ofSeconds(30))
+                    .timeout(Duration.ofSeconds(config.getHttpGetTimeoutSegundos()))
                     .build(), responseBodyHandler);
         }
     }
@@ -61,7 +61,7 @@ public class NFSeHttpClient implements NFSeLogger {
             return httpClient.send(HttpRequest.newBuilder()
                     .POST(HttpRequest.BodyPublishers.ofString(body))
                     .headers(headers.entrySet().stream().flatMap(entry -> Stream.of(entry.getKey(), entry.getValue())).toArray(String[]::new))
-                    .timeout(Duration.ofSeconds(30))
+                    .timeout(Duration.ofSeconds(config.getHttpPostTimeoutSegundos()))
                     .uri(uri)
                     .build(), HttpResponse.BodyHandlers.ofString());
         }
