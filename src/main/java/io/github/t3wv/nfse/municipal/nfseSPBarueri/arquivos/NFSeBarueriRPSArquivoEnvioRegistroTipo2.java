@@ -487,7 +487,7 @@ public class NFSeBarueriRPSArquivoEnvioRegistroTipo2 extends NFSeBarueriRPSArqui
                 .setEnderecoCidadeLocalServicoPrestado(linha.substring(407, 447))
                 .setEnderecoUFLocalServicoPrestado(linha.substring(447, 449))
                 .setEnderecoCEPLocalServicoPrestado(linha.substring(449, 457))
-                .setQuantidadeServicoPrestado(Integer.parseInt(linha.substring(457, 463).trim()))
+                .setQuantidadeServicoPrestado(StringUtils.isNumeric(linha.substring(457, 463).trim()) ? Integer.parseInt(linha.substring(457, 463).trim()) : null)
                 .setValorServicoPrestado(new BigDecimal(linha.substring(463, 478)).movePointLeft(2))
                 .setAliquotaForaMunicipio(StringUtils.isNotBlank(linha.substring(478, 483)) ? new BigDecimal(linha.substring(478, 483)).movePointLeft(2) : null)
                 .setValorRetencoes(new BigDecimal(linha.substring(483, 498)).movePointLeft(2))

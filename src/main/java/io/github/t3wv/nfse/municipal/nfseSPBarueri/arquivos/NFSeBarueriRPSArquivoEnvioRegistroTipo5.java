@@ -259,10 +259,10 @@ public class NFSeBarueriRPSArquivoEnvioRegistroTipo5 extends NFSeBarueriRPSArqui
                 .setCodigoClassificacaoCreditoPresumidoIBSCBS(linha.substring(1, 3))
                 .setTipoEnteGovernamentalParaAquisicaoServicoPelaAdministracaoPublica(NFSeBarueriEnteGovernamentalTipo.valueOfCodigo(linha.substring(3, 4)))
                 .setTipoOperacaoEnteGovernamentalOuSobreBensImoveis(NFSeBarueriEnteGovernamentalOperacaoTipo.valueOfCodigo(linha.substring(4, 5)))
-                .setChaveNFSeReferenciada(StringUtils.trimToNull(linha.substring(5, 50)))
-                .setCodigoNCM(StringUtils.trimToNull(linha.substring(50, 63)))
+                .setChaveNFSeReferenciada(StringUtils.trimToNull(linha.substring(5, 55)))
+                .setCodigoNCM(StringUtils.trimToNull(linha.substring(55, 63)))
                 .setDescricaoBemMovelObjetoLocacao(StringUtils.trimToNull(linha.substring(63, 213)))
-                .setQuantidadeBemMovelObjetoLocacao(Integer.parseInt(linha.substring(213, 216).trim()))
+                .setQuantidadeBemMovelObjetoLocacao(StringUtils.isNumeric(linha.substring(213, 216).trim()) ? Integer.parseInt(linha.substring(213, 216).trim()) : null)
                 .setIndicadorOperacaoDoacao(NFSeBarueriIndicadorOperacaoDoacao.valueOfCodigo(linha.substring(216, 217)))
                 .setDestinatarioServicoEstrangeiro("1".equals(linha.substring(217, 218)))
                 .setCpfCnpjDestinatarioServico(StringUtils.trimToNull(linha.substring(218, 232)))
@@ -285,7 +285,7 @@ public class NFSeBarueriRPSArquivoEnvioRegistroTipo5 extends NFSeBarueriRPSArqui
 
     @Override
     public String toLinha() {
-        return String.format("%s",
+        return String.format("%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s",
                 getTipoRegistro(),
                 trataString(this.codigoClassificacaoCreditoPresumidoIBSCBS, 2),
                 trataString(this.tipoEnteGovernamentalParaAquisicaoServicoPelaAdministracaoPublica != null ? this.tipoEnteGovernamentalParaAquisicaoServicoPelaAdministracaoPublica.getCodigo() : "", 1),
@@ -295,7 +295,7 @@ public class NFSeBarueriRPSArquivoEnvioRegistroTipo5 extends NFSeBarueriRPSArqui
                 trataString(this.descricaoBemMovelObjetoLocacao, 150),
                 trataNumerico(this.quantidadeBemMovelObjetoLocacao , 3),
                 trataString(this.indicadorOperacaoDoacao != null ? this.indicadorOperacaoDoacao.getCodigo() : "", 1),
-                destinatarioServicoEstrangeiro != null && destinatarioServicoEstrangeiro ? "1" : "0",
+                destinatarioServicoEstrangeiro != null && destinatarioServicoEstrangeiro ? "1" : "2",
                 trataString(this.cpfCnpjDestinatarioServico, 14),
                 trataString(this.razaoSocialDestinatarioServico, 60),
                 trataString(this.enderecoLogradouroDestinatarioServico, 75),
