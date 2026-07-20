@@ -10,63 +10,15 @@ import java.io.StringWriter;
 import java.math.BigDecimal;
 
 public class NFSeSCSaoJoseNFSeIBSCBSValoresTrib {
-    @Element(name = "CST")
-    private String cst;
+    @Element(name = "gIBSCBS")
+    private NFSeSCSaoJoseNFSeIBSCBSValoresTribGIBSCBS gIBSCBS;
 
-    @Element(name = "cClassTrib")
-    private String cClassTrib;
-
-    @Element(name = "cCredPres")
-    private String cCredPres;
-
-    @Element(name = "gTribRegular")
-    private NFSeSCSaoJoseNFSeIBSCBSValoresTribGTribRegular gTribRegular;
-
-    @Element(name = "gDif")
-    private NFSeSCSaoJoseNFSeIBSCBSValoresTribGDif gDif;
-
-    public String getCst() {
-        return cst;
+    public NFSeSCSaoJoseNFSeIBSCBSValoresTribGIBSCBS getgIBSCBS() {
+        return gIBSCBS;
     }
 
-    public NFSeSCSaoJoseNFSeIBSCBSValoresTrib setCst(String cst) {
-        this.cst = cst;
-        return this;
-    }
-
-    public String getcClassTrib() {
-        return cClassTrib;
-    }
-
-    public NFSeSCSaoJoseNFSeIBSCBSValoresTrib setcClassTrib(String cClassTrib) {
-        this.cClassTrib = cClassTrib;
-        return this;
-    }
-
-    public String getcCredPres() {
-        return cCredPres;
-    }
-
-    public NFSeSCSaoJoseNFSeIBSCBSValoresTrib setcCredPres(String cCredPres) {
-        this.cCredPres = cCredPres;
-        return this;
-    }
-
-    public NFSeSCSaoJoseNFSeIBSCBSValoresTribGTribRegular getgTribRegular() {
-        return gTribRegular;
-    }
-
-    public NFSeSCSaoJoseNFSeIBSCBSValoresTrib setgTribRegular(NFSeSCSaoJoseNFSeIBSCBSValoresTribGTribRegular gTribRegular) {
-        this.gTribRegular = gTribRegular;
-        return this;
-    }
-
-    public NFSeSCSaoJoseNFSeIBSCBSValoresTribGDif getgDif() {
-        return gDif;
-    }
-
-    public NFSeSCSaoJoseNFSeIBSCBSValoresTrib setgDif(NFSeSCSaoJoseNFSeIBSCBSValoresTribGDif gDif) {
-        this.gDif = gDif;
+    public NFSeSCSaoJoseNFSeIBSCBSValoresTrib setgIBSCBS(NFSeSCSaoJoseNFSeIBSCBSValoresTribGIBSCBS gIBSCBS) {
+        this.gIBSCBS = gIBSCBS;
         return this;
     }
 

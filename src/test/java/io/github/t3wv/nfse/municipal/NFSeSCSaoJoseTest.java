@@ -34,7 +34,7 @@ class NFSeSCSaoJoseTest implements NFSeLogger {
     @Test
     void testeEmissaoSJ() throws Exception {
         final var arquivo = new NFSeSCSaoJoseEmissaoEnvio()
-            .setTeste(false)
+            .setTeste(true)
             .setNf(
                 new NFSeSCSaoJoseNF()
                     .setValorTotal(new BigDecimal("0.01"))
@@ -61,9 +61,25 @@ class NFSeSCSaoJoseTest implements NFSeLogger {
                     .setValorDeducao(BigDecimal.ZERO)
                     .setValorISSRF(BigDecimal.ZERO)
                     .setUnidadeCodigo("1")
+                    .setCodigoNBS("115072000")
                     .setUnidadeQuantidade(BigDecimal.ONE)
                     .setUnidadeValorUnitario(new BigDecimal("0.01"))
+            ).setIBSCBS(
+                new NFSeSCSaoJoseNFSeIBSCBS()
+                    .setFinNFSe("0")
+                    .setIndFinal(false)
+                    .setcIndOp("100301")
+                    .setValores(
+                        new NFSeSCSaoJoseNFSeIBSCBSValores().setTrib(
+                            new NFSeSCSaoJoseNFSeIBSCBSValoresTrib().setgIBSCBS(
+                                new NFSeSCSaoJoseNFSeIBSCBSValoresTribGIBSCBS()
+                                    .setCst("000")
+                                    .setcClassTrib("000001")
+                            )
+                        )
+                    )
             );
+
 
         final var retorno = ws.enviarEmissaoNFSe(arquivo, "arquivo.xptossssa33");
         this.getLogger().info("NFSe emitida com sucesso: {}", retorno.toXml());

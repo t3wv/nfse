@@ -12,19 +12,19 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public class NFSeSCSaoJoseNFSeIBSCBS {
-    @Element(name = "finNFSe")
+    @Element(name = "finNFSe", required = false)
     private String finNFSe;
 
-    @Element(name = "indFinal")
+    @Element(name = "indFinal", required = false)
     private boolean indFinal;
 
-    @Element(name = "cIndOp")
+    @Element(name = "cIndOp", required = false)
     private String cIndOp;
 
     @Element(name = "tpOper", required = false)
     private String tpOper;
 
-    @ElementList(name = "gRefNFSe", entry = "refNFSe")
+    @ElementList(name = "gRefNFSe", entry = "refNFSe", required = false)
     private List<String> gRefNFSe;
 
     @Element(name = "tpEnteGov", required = false)
@@ -33,7 +33,7 @@ public class NFSeSCSaoJoseNFSeIBSCBS {
     @Element(name = "imovel", required = false)
     private NFSeSCSaoJoseNFSeIBSCBSImovel imovel;
 
-    @Element(name = "valores")
+    @Element(name = "valores", required = false)
     private NFSeSCSaoJoseNFSeIBSCBSValores valores;
 
     public String getFinNFSe() {
