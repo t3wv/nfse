@@ -39,6 +39,55 @@ final var xml = facade.downloadNotaXml("0000..."); //chave de acesso (50 caracte
 Files.writeString(Paths.get("/tmp/%s.xml".formatted(chave)), xml); //grava em algum local
 ```
 
+## Consultar as notas emitidas contra o CNPJ (distribuição de DF-e do ADN)
+
+A API de distribuição do ADN entrega os documentos em que o CNPJ do certificado figura como
+**emitente, tomador ou intermediário** — é por ela que se descobrem as NFS-e emitidas *contra* um
+CNPJ, papel que na NF-e cabe ao `NFeDistribuicaoDFe`.
+
+O modelo é sequencial por NSU: guarda-se o último NSU processado e pedem-se os seguintes. O ADN
+**não devolve um teto de NSU**, então a drenagem termina quando a resposta vem vazia — mantenha
+sempre uma trava de iterações.
+
+``` java
+long nsu = 0; //recupere do seu armazenamento; 0 começa do início
+for (int pagina = 0; pagina < 100; pagina++) { //trava de iterações
+    final var lote = facade.distribuirDFe(nsu);
+    if (!lote.temDocumentos()) {
+        break; //NENHUM_DOCUMENTO_LOCALIZADO
+    }
+    for (final var documento : lote.getLoteDFe()) {
+        documento.getTipoDocumento(); //NFSE, EVENTO, DPS, CNC...
+        documento.getChaveAcesso();   //50 dígitos, não 44 como na NFe
+        documento.getXml();           //XML já desempacotado (o ADN entrega em gzip + base64)
+    }
+    nsu = lote.getMaiorNsu().orElse(nsu); //próxima página parte do maior NSU recebido
+}
+```
+
+Consulta pontual de um NSU, sem avançar em lote:
+
+``` java
+final var lote = facade.consultarDFePorNsu(42);
+```
+
+Eventos vinculados a uma chave de acesso:
+
+``` java
+final var eventos = facade.consultarEventosPorChaveAcesso("0000..."); //chave de acesso (50 caracteres)
+```
+
+Para consultar outro CNPJ de mesma raiz que a do certificado:
+
+``` java
+final var lote = facade.distribuirDFe(nsu, "00000000000000");
+```
+
+> A autenticação é o próprio certificado (mTLS): não há token nem chave de API. Requisições sem
+> certificado recebem `496 SSL Certificate Required`. As respostas `400` e `404` do ADN são de
+> negócio — trazem o mesmo corpo, com o detalhamento em `getErros()` (por exemplo `E2215`, quando
+> não existem documentos a partir do NSU informado).
+
 ## Consultar alíquota municipal de serviço
 ``` java
 //Consulta a aliquota pra serviço 'Analise e desenvolvimento de sistemas" em "São José, SC"

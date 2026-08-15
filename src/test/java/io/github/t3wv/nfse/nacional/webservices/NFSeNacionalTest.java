@@ -4,6 +4,7 @@ package io.github.t3wv.nfse.nacional.webservices;
 import io.github.t3wv.nfse.NFSeConfig;
 import io.github.t3wv.nfse.NFSeConfigTest;
 import io.github.t3wv.nfse.NFSeLogger;
+import io.github.t3wv.nfse.nacional.WSDistribuicaoDFe;
 import io.github.t3wv.nfse.nacional.WSParametrosMunicipais;
 import io.github.t3wv.nfse.nacional.WSSefinNFSe;
 import io.github.t3wv.nfse.nacional.classes.nfsenacional.*;
@@ -113,5 +114,37 @@ public class NFSeNacionalTest implements NFSeLogger {
         );
 
         new WSSefinNFSe(config).enviarPedidoRegistroEvento(evento);
+    }
+
+    /**
+     * Drena a distribuição do ADN a partir do NSU zero, listando os DF-e em que o CNPJ do
+     * certificado figura como emitente, tomador ou intermediário.
+     *
+     * <p>Como o ADN não devolve teto de NSU, o laço para quando a resposta vem vazia — e a trava de
+     * páginas evita laço infinito caso o serviço repita NSU.
+     */
+    @Disabled
+    @Test
+    public void testeDistribuicaoDFePorNsu() throws Exception {
+        final var ws = new WSDistribuicaoDFe(config);
+        final var maximoDePaginas = 100;
+
+        long nsu = 0;
+        for (int pagina = 0; pagina < maximoDePaginas; pagina++) {
+            final var lote = ws.distribuirDFe(nsu);
+            getLogger().info("NSU {}: {}", nsu, lote);
+            if (!lote.temDocumentos()) {
+                break;
+            }
+            lote.getLoteDFe().forEach(documento -> getLogger().info("{} -> {}", documento, documento.getChaveAcesso()));
+            nsu = lote.getMaiorNsu().orElse(nsu);
+        }
+    }
+
+    @Disabled
+    @Test
+    public void testeConsultaEventosPorChaveAcessoNoAdn() throws Exception {
+        final var chaveAcesso = ""; //chave de acesso da NFSe com 50 dígitos
+        getLogger().info(new WSDistribuicaoDFe(config).consultarEventosPorChaveAcesso(chaveAcesso).toString());
     }
 }

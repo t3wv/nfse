@@ -1,6 +1,7 @@
 package io.github.t3wv.nfse.nacional;
 
 import io.github.t3wv.nfse.NFSeConfig;
+import io.github.t3wv.nfse.nacional.classes.adn.NFSeAdnLoteDistribuicaoResponse;
 import io.github.t3wv.nfse.nacional.classes.nfsenacional.*;
 import io.github.t3wv.nfse.nacional.classes.parametrosmunicipais.consulta.NFSeParametrosMunicipaisConvenio;
 import io.github.t3wv.nfse.nacional.classes.parametrosmunicipais.consulta.NFSeParametrosMunicipaisConvenioResponse;
@@ -17,11 +18,13 @@ public class WSFacade {
     private final WSParametrosMunicipais wsParametrosMunicipais;
     private final WSDANFSe wsDANFSe;
     private final WSSefinNFSe wsSefinNFSe;
+    private final WSDistribuicaoDFe wsDistribuicaoDFe;
 
     public WSFacade(final NFSeConfig config) {
         this.wsParametrosMunicipais = new WSParametrosMunicipais(config);
         this.wsDANFSe = new WSDANFSe(config);
         this.wsSefinNFSe = new WSSefinNFSe(config);
+        this.wsDistribuicaoDFe = new WSDistribuicaoDFe(config);
     }
 
     /**
@@ -134,6 +137,57 @@ public class WSFacade {
      */
     public Map.Entry<Integer, Object> buscarNFSeByChaveAcesso(final String chaveAcesso) throws Exception {
         return wsSefinNFSe.buscarNFSeByChaveAcesso(chaveAcesso);
+    }
+
+    /**
+     * Distribui, a partir de um NSU, os DF-e em que o CNPJ do certificado figura como emitente,
+     * tomador ou intermediário — é como se descobrem as NFS-e emitidas contra um CNPJ.
+     *
+     * <p>Como o ADN não informa um teto de NSU, a drenagem é feita chamando este método
+     * repetidamente a partir de {@link NFSeAdnLoteDistribuicaoResponse#getMaiorNsu()} até que a
+     * resposta venha {@link NFSeAdnLoteDistribuicaoResponse#vazio()}, sempre com uma trava de
+     * iterações.
+     *
+     * @param nsu NSU de partida; {@code 0} começa do início.
+     * @return Objeto {@link NFSeAdnLoteDistribuicaoResponse} com os documentos do bloco.
+     * @throws Exception Se ocorrer um erro durante a requisição ou no processamento da resposta.
+     */
+    public NFSeAdnLoteDistribuicaoResponse distribuirDFe(final long nsu) throws Exception {
+        return wsDistribuicaoDFe.distribuirDFe(nsu);
+    }
+
+    /**
+     * Distribui os DF-e a partir de um NSU para um CNPJ de mesma raiz que a do certificado.
+     *
+     * @param nsu          NSU de partida; {@code 0} começa do início.
+     * @param cnpjConsulta CNPJ a consultar, de mesma raiz que a do certificado.
+     * @return Objeto {@link NFSeAdnLoteDistribuicaoResponse} com os documentos do bloco.
+     * @throws Exception Se ocorrer um erro durante a requisição ou no processamento da resposta.
+     */
+    public NFSeAdnLoteDistribuicaoResponse distribuirDFe(final long nsu, final String cnpjConsulta) throws Exception {
+        return wsDistribuicaoDFe.distribuirDFe(nsu, cnpjConsulta);
+    }
+
+    /**
+     * Consulta o DF-e de um NSU específico, sem avançar em lote.
+     *
+     * @param nsu NSU do documento.
+     * @return Objeto {@link NFSeAdnLoteDistribuicaoResponse} com, no máximo, um documento.
+     * @throws Exception Se ocorrer um erro durante a requisição ou no processamento da resposta.
+     */
+    public NFSeAdnLoteDistribuicaoResponse consultarDFePorNsu(final long nsu) throws Exception {
+        return wsDistribuicaoDFe.consultarDFePorNsu(nsu);
+    }
+
+    /**
+     * Consulta, no ADN, os DF-e do tipo Evento vinculados a uma chave de acesso.
+     *
+     * @param chaveAcesso Chave de acesso da NFSe com 50 dígitos.
+     * @return Objeto {@link NFSeAdnLoteDistribuicaoResponse} com os eventos da chave.
+     * @throws Exception Se ocorrer um erro durante a requisição ou no processamento da resposta.
+     */
+    public NFSeAdnLoteDistribuicaoResponse consultarEventosPorChaveAcesso(final String chaveAcesso) throws Exception {
+        return wsDistribuicaoDFe.consultarEventosPorChaveAcesso(chaveAcesso);
     }
 
 //    /**
