@@ -11,22 +11,11 @@ import java.math.BigDecimal;
 
 public class NFSeSCSaoJoseNFSeNfIBSCBSTotCIBSgCBS {
 
-    @Element(name = "gCBSCredPres")
-    private NFSeSCSaoJoseNFSeNfIBSCBSTotCIBSgCBSgCBSCredPres gCBSCredPres;
-
-    @Element(name = "vDifCBS")
-    private BigDecimal vDifCBS;
     @Element(name = "vCBS")
     private BigDecimal vCBS;
 
-    public NFSeSCSaoJoseNFSeNfIBSCBSTotCIBSgCBSgCBSCredPres getgCBSCredPres() {
-        return gCBSCredPres;
-    }
-
-    public NFSeSCSaoJoseNFSeNfIBSCBSTotCIBSgCBS setgCBSCredPres(NFSeSCSaoJoseNFSeNfIBSCBSTotCIBSgCBSgCBSCredPres gCBSCredPres) {
-        this.gCBSCredPres = gCBSCredPres;
-        return this;
-    }
+    @Element(name = "vDifCBS")
+    private BigDecimal vDifCBS;
 
     public BigDecimal getvDifCBS() {
         return vDifCBS;

@@ -14,12 +14,6 @@ public class NFSeSCSaoJoseNFSeNfIBSCBSTotCIBS {
     @Element(name = "vTotNF", required = false)
     private BigDecimal valorTotalNF;
 
-    @Element(name = "gTribRegular", required = false)
-    private NFSeSCSaoJoseNFSeNfIBSCBSTotCIBSgTribRegular gTribRegular;
-
-    @Element(name = "gTribCompraGov", required = false)
-    private NFSeSCSaoJoseNFSeNfIBSCBSTotCIBSgTribCompraGov gTribCompraGov;
-
     @Element(name = "gIBS", required = false)
     private NFSeSCSaoJoseNFSeNfIBSCBSTotCIBSgIBS gIBS;
 
@@ -32,24 +26,6 @@ public class NFSeSCSaoJoseNFSeNfIBSCBSTotCIBS {
 
     public NFSeSCSaoJoseNFSeNfIBSCBSTotCIBS setValorTotalNF(BigDecimal valorTotalNF) {
         this.valorTotalNF = valorTotalNF;
-        return this;
-    }
-
-    public NFSeSCSaoJoseNFSeNfIBSCBSTotCIBSgTribRegular getgTribRegular() {
-        return gTribRegular;
-    }
-
-    public NFSeSCSaoJoseNFSeNfIBSCBSTotCIBS setgTribRegular(NFSeSCSaoJoseNFSeNfIBSCBSTotCIBSgTribRegular gTribRegular) {
-        this.gTribRegular = gTribRegular;
-        return this;
-    }
-
-    public NFSeSCSaoJoseNFSeNfIBSCBSTotCIBSgTribCompraGov getgTribCompraGov() {
-        return gTribCompraGov;
-    }
-
-    public NFSeSCSaoJoseNFSeNfIBSCBSTotCIBS setgTribCompraGov(NFSeSCSaoJoseNFSeNfIBSCBSTotCIBSgTribCompraGov gTribCompraGov) {
-        this.gTribCompraGov = gTribCompraGov;
         return this;
     }
 

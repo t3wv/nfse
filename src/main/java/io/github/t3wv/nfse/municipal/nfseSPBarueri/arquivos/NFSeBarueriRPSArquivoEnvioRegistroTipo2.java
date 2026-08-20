@@ -37,7 +37,7 @@ public class NFSeBarueriRPSArquivoEnvioRegistroTipo2 extends NFSeBarueriRPSArqui
     private Integer quantidadeServicoPrestado;
     private BigDecimal valorServicoPrestado;
 
-    private String reservado;
+    private BigDecimal aliquotaForaMunicipio;
 
     private BigDecimal valorRetencoes;
 
@@ -277,12 +277,12 @@ public class NFSeBarueriRPSArquivoEnvioRegistroTipo2 extends NFSeBarueriRPSArqui
         return this;
     }
 
-    public String getReservado() {
-        return reservado;
+    public BigDecimal getAliquotaForaMunicipio() {
+        return aliquotaForaMunicipio;
     }
 
-    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setReservado(String reservado) {
-        this.reservado = reservado;
+    public NFSeBarueriRPSArquivoEnvioRegistroTipo2 setAliquotaForaMunicipio(BigDecimal aliquotaForaMunicipio) {
+        this.aliquotaForaMunicipio = aliquotaForaMunicipio;
         return this;
     }
 
@@ -487,9 +487,9 @@ public class NFSeBarueriRPSArquivoEnvioRegistroTipo2 extends NFSeBarueriRPSArqui
                 .setEnderecoCidadeLocalServicoPrestado(linha.substring(407, 447))
                 .setEnderecoUFLocalServicoPrestado(linha.substring(447, 449))
                 .setEnderecoCEPLocalServicoPrestado(linha.substring(449, 457))
-                .setQuantidadeServicoPrestado(Integer.parseInt(linha.substring(457, 463).trim()))
+                .setQuantidadeServicoPrestado(StringUtils.isNumeric(linha.substring(457, 463).trim()) ? Integer.parseInt(linha.substring(457, 463).trim()) : null)
                 .setValorServicoPrestado(new BigDecimal(linha.substring(463, 478)).movePointLeft(2))
-                .setReservado(linha.substring(478, 483))
+                .setAliquotaForaMunicipio(StringUtils.isNotBlank(linha.substring(478, 483)) ? new BigDecimal(linha.substring(478, 483)).movePointLeft(2) : null)
                 .setValorRetencoes(new BigDecimal(linha.substring(483, 498)).movePointLeft(2))
                 .setTomadorEstrangeiro("1".equals(linha.substring(498, 499)))
                 .setPaisTomadorEstrangeiro(NFSeBarueriPais.valueOfCodigo(linha.substring(499, 502)))
@@ -541,13 +541,13 @@ public class NFSeBarueriRPSArquivoEnvioRegistroTipo2 extends NFSeBarueriRPSArqui
                 trataNumerico(this.enderecoCEPLocalServicoPrestado, 8),
                 trataNumerico(this.quantidadeServicoPrestado, 6),
                 trataNumerico(this.valorServicoPrestado, 15),
-                trataString(this.reservado, 5),
+                this.aliquotaForaMunicipio != null ? trataNumerico(this.aliquotaForaMunicipio, 5) : trataString("", 5),
                 trataNumerico(this.valorRetencoes, 15),
                 this.tomadorEstrangeiro ? "1" : "2",
                 trataNumerico(this.paisTomadorEstrangeiro != null ? this.paisTomadorEstrangeiro.getCodigo() : "", 3),
                 this.servicoExportacao ? "1" : "2",
                 this.indicadorCpfCnpjTomador != null ? this.indicadorCpfCnpjTomador.getCodigo() : NFSeBarueriPessoaTipo.ESTRANGEIRA.getCodigo(),
-                StringUtils.isNotBlank(this.cpfCnpjTomador) ? trataNumerico(this.cpfCnpjTomador, 14) : trataString("", 14),
+                trataString(this.cpfCnpjTomador, 14),
                 trataString(this.razaoSocialTomador, 60),
                 trataString(this.enderecoLogradouroTomador, 75),
                 trataString(this.enderecoNumeroTomador, 9),

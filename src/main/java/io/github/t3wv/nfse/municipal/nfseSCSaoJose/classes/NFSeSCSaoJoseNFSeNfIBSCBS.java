@@ -10,23 +10,11 @@ import java.io.StringWriter;
 import java.math.BigDecimal;
 
 public class NFSeSCSaoJoseNFSeNfIBSCBS {
-    @Element(name = "pRedutor", required = false)
-    private Double percentualRedutor;
-
     @Element(name = "valores", required = false)
     private NFSeSCSaoJoseNFSeNfIBSCBSValores valores;
 
     @Element(name = "totCIBS", required = false)
     private NFSeSCSaoJoseNFSeNfIBSCBSTotCIBS totCIBS;
-
-    public Double getPercentualRedutor() {
-        return percentualRedutor;
-    }
-
-    public NFSeSCSaoJoseNFSeNfIBSCBS setPercentualRedutor(Double percentualRedutor) {
-        this.percentualRedutor = percentualRedutor;
-        return this;
-    }
 
     public NFSeSCSaoJoseNFSeNfIBSCBSValores getValores() {
         return valores;

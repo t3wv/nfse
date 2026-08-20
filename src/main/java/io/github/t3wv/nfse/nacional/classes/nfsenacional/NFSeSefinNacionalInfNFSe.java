@@ -43,7 +43,7 @@ public class NFSeSefinNacionalInfNFSe {
     @Element(name = "valores", required = true)
     protected NFSeSefinNacionalValoresNFSe valores;
     @Element(name = "IBSCBS", required = false)
-    protected NFSeSefinNacionalInfoIBSCBS infoIBSCBS;
+    protected NFSeSefinNacionalInfNFSeIBSCBS ibsCbs;
     @Element(name = "DPS", required = false)
     protected NFSeSefinNacionalDPS dps;
     @Attribute(name = "Id", required = false)
@@ -202,12 +202,12 @@ public class NFSeSefinNacionalInfNFSe {
         return this;
     }
 
-    public NFSeSefinNacionalInfoIBSCBS getInfoIBSCBS() {
-        return infoIBSCBS;
+    public NFSeSefinNacionalInfNFSeIBSCBS getIbsCbs() {
+        return ibsCbs;
     }
 
-    public NFSeSefinNacionalInfNFSe setInfoIBSCBS(NFSeSefinNacionalInfoIBSCBS infoIBSCBS) {
-        this.infoIBSCBS = infoIBSCBS;
+    public NFSeSefinNacionalInfNFSe setIbsCbs(NFSeSefinNacionalInfNFSeIBSCBS ibsCbs) {
+        this.ibsCbs = ibsCbs;
         return this;
     }
 

@@ -14,14 +14,12 @@ public class NFSeSCSaoJoseNFSeNfIBSCBSTotCIBSgIBS {
     @Element(name = "vIBSTot")
     private BigDecimal vIBSTot;
 
-    @Element(name = "gIBSCredPres")
-    private NFSeSCSaoJoseNFSeNfIBSCBSTotCIBSgIBSgIBSCredPres gIBSCredPres;
-
     @Element(name = "gIBSUFTot")
     private NFSeSCSaoJoseNFSeNfIBSCBSTotCIBSgIBSgIBSUFTot gIBSUFTot;
 
     @Element(name = "gIBSMunTot")
     private NFSeSCSaoJoseNFSeNfIBSCBSTotCIBSgIBSgIBSMunTot gIBSMunTot;
+
 
     public BigDecimal getvIBSTot() {
         return vIBSTot;
@@ -29,15 +27,6 @@ public class NFSeSCSaoJoseNFSeNfIBSCBSTotCIBSgIBS {
 
     public NFSeSCSaoJoseNFSeNfIBSCBSTotCIBSgIBS setvIBSTot(BigDecimal vIBSTot) {
         this.vIBSTot = vIBSTot;
-        return this;
-    }
-
-    public NFSeSCSaoJoseNFSeNfIBSCBSTotCIBSgIBSgIBSCredPres getgIBSCredPres() {
-        return gIBSCredPres;
-    }
-
-    public NFSeSCSaoJoseNFSeNfIBSCBSTotCIBSgIBS setgIBSCredPres(NFSeSCSaoJoseNFSeNfIBSCBSTotCIBSgIBSgIBSCredPres gIBSCredPres) {
-        this.gIBSCredPres = gIBSCredPres;
         return this;
     }
 
