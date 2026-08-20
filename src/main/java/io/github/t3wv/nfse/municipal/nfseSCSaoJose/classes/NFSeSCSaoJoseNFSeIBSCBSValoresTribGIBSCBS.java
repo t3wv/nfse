@@ -9,27 +9,28 @@ import org.simpleframework.xml.Element;
 import java.io.StringWriter;
 import java.math.BigDecimal;
 
-public class NFSeSCSaoJoseNFSeIBSCBSValoresTribGTribRegular {
-    @Element(name = "CSTReg")
-    private String CSTReg;
-    @Element(name = "cClassTribReg")
-    private String cClassTribReg;
+public class NFSeSCSaoJoseNFSeIBSCBSValoresTribGIBSCBS {
+    @Element(name = "CST")
+    private String cst;
 
-    public String getCSTReg() {
-        return CSTReg;
+    @Element(name = "cClassTrib")
+    private String cClassTrib;
+
+    public String getCst() {
+        return cst;
     }
 
-    public NFSeSCSaoJoseNFSeIBSCBSValoresTribGTribRegular setCSTReg(String CSTReg) {
-        this.CSTReg = CSTReg;
+    public NFSeSCSaoJoseNFSeIBSCBSValoresTribGIBSCBS setCst(String cst) {
+        this.cst = cst;
         return this;
     }
 
-    public String getcClassTribReg() {
-        return cClassTribReg;
+    public String getcClassTrib() {
+        return cClassTrib;
     }
 
-    public NFSeSCSaoJoseNFSeIBSCBSValoresTribGTribRegular setcClassTribReg(String cClassTribReg) {
-        this.cClassTribReg = cClassTribReg;
+    public NFSeSCSaoJoseNFSeIBSCBSValoresTribGIBSCBS setcClassTrib(String cClassTrib) {
+        this.cClassTrib = cClassTrib;
         return this;
     }
 

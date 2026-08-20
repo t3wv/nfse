@@ -8,21 +8,21 @@ import java.time.ZonedDateTime;
 @Root(name = "infPedReg")
 public class NFSeSefinNacionalInfPedReg {
 
-    @Element(name = "tpAmb")
+    @Element(name = "tpAmb", required = false)
     protected NFSeSefinNacionalTipoAmbiente tpAmb;
-    @Element(name = "verAplic")
+    @Element(name = "verAplic", required = false)
     protected String verAplic;
-    @Element(name = "dhEvento")
+    @Element(name = "dhEvento", required = false)
     protected ZonedDateTime dhEvento;
     @Element(name = "CNPJAutor", required = false)
     protected String cnpjAutor;
     @Element(name = "CPFAutor", required = false)
     protected String cpfAutor;
-    @Element(name = "chNFSe")
+    @Element(name = "chNFSe", required = false)
     protected String chaveAcessoNFSE;
     @Element(name = "nPedRegEvento", required = false)
     protected String numeroPedidoRegistroEvento;
-    @Attribute(name = "Id")
+    @Attribute(name = "Id", required = false)
     protected String id;
 
     @ElementUnion({

@@ -99,6 +99,43 @@ public class WSFacade {
         return wsSefinNFSe.solicitarEventos(chave, evento, sequencial);
     }
 
+    /**
+     * Busca uma NFS-e (Nota Fiscal de Serviços Eletrônica) pelo número de chave de acesso.
+     *
+     * <p>A chave de acesso é normalizada antes da consulta, removendo quaisquer caracteres
+     * não numéricos. Após a normalização, é validado se a chave possui exatamente 50 dígitos.
+     * A requisição é direcionada ao ambiente de homologação ou produção conforme a configuração
+     * definida em {@code config.isTeste()}.
+     *
+     * <p>Os possíveis retornos são:
+     * <ul>
+     *   <li>{@code 200 OK} – Consulta realizada com sucesso. O valor do par será uma instância
+     *       de {@link NFSeSefinNacionalGetResponse} contendo os dados da NFS-e.</li>
+     *   <li>{@code 400 Bad Request} – Requisição inválida.</li>
+     *   <li>{@code 401 Unauthorized} – Não autorizado.</li>
+     *   <li>{@code 403 Forbidden} – Acesso proibido.</li>
+     *   <li>{@code 404 Not Found} – NFS-e não encontrada.</li>
+     *       Para os casos 400, 401, 403 e 404, o valor do par será uma instância de
+     *       {@link NFSeSefinNacionalResponseErro} contendo os detalhes do erro retornado pela API.
+     * </ul>
+     *
+     * @param chaveAcesso chave de acesso da NFS-e, podendo conter caracteres não numéricos
+     *                    que serão removidos automaticamente antes da validação e consulta;
+     *                    após normalização, deve conter exatamente 50 dígitos numéricos
+     * @return um {@link Map.Entry} onde a chave é o código de status HTTP da resposta
+     *         ({@link java.net.HttpURLConnection#HTTP_OK} para sucesso, ou o código de erro
+     *         correspondente) e o valor é o objeto deserializado da resposta
+     *         ({@link NFSeSefinNacionalGetResponse} ou {@link NFSeSefinNacionalResponseErro})
+     * @throws IllegalArgumentException se a chave de acesso normalizada não contiver
+     *                                  exatamente 50 dígitos numéricos
+     * @throws IllegalStateException    se a API retornar um código de status HTTP não tratado
+     * @throws Exception                se ocorrer qualquer erro de I/O, URI inválida ou falha
+     *                                  na desserialização da resposta
+     */
+    public Map.Entry<Integer, Object> buscarNFSeByChaveAcesso(final String chaveAcesso) throws Exception {
+        return wsSefinNFSe.buscarNFSeByChaveAcesso(chaveAcesso);
+    }
+
 //    /**
 //     * Consulta os eventos de cancelamento de uma NFSe na API de NFSe da SEFIN Nacional.
 //     * Itera os possíveis eventos de cancelamento

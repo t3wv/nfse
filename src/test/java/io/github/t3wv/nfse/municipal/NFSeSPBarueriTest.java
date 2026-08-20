@@ -31,34 +31,13 @@ public class NFSeSPBarueriTest implements NFSeLogger {
     }
 
     @Test
-    void name() {
-        NFSeBarueriRPSArquivoEnvioRegistroTipo1 linha1 = new NFSeBarueriRPSArquivoEnvioRegistroTipo1().fromLinha("14458481PMB00326013070205");
-        NFSeBarueriRPSArquivoEnvioRegistroTipo2 linha2 = new NFSeBarueriRPSArquivoEnvioRegistroTipo2().fromLinha("2RPS           000822690420260130193005E                                                                                                                                                                                                          10030122012Av Ipanema                                                                 165                                    Dezoito do Forte Emp                    Alphaville                              SP06472002000001000000006591636     00000000000000010751               Paramount Pictures Corporation                              5555 Melrose Avenue, 5555                                                  SN                                     5555 MELROSE AVENUE                     Los Angeles                               00000000faturamento@imagemfilmes.com.br                                                                                                                                                             Licenciamento para exibi��o de obra audiovisual.|PREDESTINADO: ARIG� E O ESP�RITO DO DR. FRITZ; SVOD; De 01/04/2025 a 30/06/2025; R$ 65.916,36                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ");
-        NFSeBarueriRPSArquivoEnvioRegistroTipo4 linha4 = new NFSeBarueriRPSArquivoEnvioRegistroTipo4().fromLinha("41    3505708       132574663                               12501400090038      CA                                                          0                                                                                                                                                                                                                                                                                                                                                                                                    01");
-        NFSeBarueriRPSArquivoEnvioRegistroTipo9 linha9 = new NFSeBarueriRPSArquivoEnvioRegistroTipo9().fromLinha("94      000000006591636000000000000000");
-
-        final var arquivo = new NFSeBarueriRPSArquivoEnvio()
-            .addRegistro(linha1)
-            .addRegistro(linha2)
-            .addRegistro(linha4)
-            .addRegistro(linha9);
-
-        System.out.println(linha2.getPaisTomadorEstrangeiro());
-        System.out.println(linha2.getEnderecoUFTomador());
-        System.out.println(linha2.getEnderecoCEPTomador());
-        System.out.println(linha2.getServicoExportacao());
-        System.out.println(linha4.getCodigoNBS());
-
-    }
-
-    @Test
     public void testeEmiteCancela() throws Exception {
-        NFSeBarueriRPSArquivoEnvioRegistroTipo1 linha1 = new NFSeBarueriRPSArquivoEnvioRegistroTipo1().fromLinha("14458481PMB00326013070205");
-        NFSeBarueriRPSArquivoEnvioRegistroTipo2 linha2 = new NFSeBarueriRPSArquivoEnvioRegistroTipo2().fromLinha("2RPS           000822690420260130193005E                                                                                                                                                                                                          10030122012Av Ipanema                                                                 165                                    Dezoito do Forte Emp                    Alphaville                              SP06472002000001000000006591636     00000000000000010751               Paramount Pictures Corporation                              5555 Melrose Avenue, 5555                                                  SN                                     5555 MELROSE AVENUE                     Los Angeles                               00000000faturamento@imagemfilmes.com.br                                                                                                                                                             Licenciamento para exibi��o de obra audiovisual.|PREDESTINADO: ARIG� E O ESP�RITO DO DR. FRITZ; SVOD; De 01/04/2025 a 30/06/2025; R$ 65.916,36                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ");
-        NFSeBarueriRPSArquivoEnvioRegistroTipo4 linha4 = new NFSeBarueriRPSArquivoEnvioRegistroTipo4().fromLinha("41    3505708       132574663                               12501400090038      CA                                                          0                                                                                                                                                                                                                                                                                                                                                                                                    01");
-        NFSeBarueriRPSArquivoEnvioRegistroTipo9 linha9 = new NFSeBarueriRPSArquivoEnvioRegistroTipo9().fromLinha("94      000000006591636000000000000000");
+        NFSeBarueriRPSArquivoEnvioRegistroTipo1 linha1 = new NFSeBarueriRPSArquivoEnvioRegistroTipo1().fromLinha("");
+        NFSeBarueriRPSArquivoEnvioRegistroTipo2 linha2 = new NFSeBarueriRPSArquivoEnvioRegistroTipo2().fromLinha("");
+        NFSeBarueriRPSArquivoEnvioRegistroTipo4 linha4 = new NFSeBarueriRPSArquivoEnvioRegistroTipo4().fromLinha("");
+        NFSeBarueriRPSArquivoEnvioRegistroTipo9 linha9 = new NFSeBarueriRPSArquivoEnvioRegistroTipo9().fromLinha("");
 
-        linha1.setIdentificacaoRemessaContribuinte("26013070211");
+        linha1.setIdentificacaoRemessaContribuinte("");
 
         linha2.setLocalPrestacaoServico(NFSeBarueriLocalPrestacaoServico.OUTROS);
 
@@ -76,8 +55,8 @@ public class NFSeSPBarueriTest implements NFSeLogger {
         final var wsBarueri = new WSBarueri(config);
 
         final var arquivoRequest = new NFSeBarueriLoteEnviarArquivoRequest()
-                .setCpfCnpjContribuinte("03918609000647")
-                .setInscricaoMunicipal("4458481")
+                .setCpfCnpjContribuinte("")
+                .setInscricaoMunicipal("")
                 .setApenasValidaArquivo(false)
                 .setNomeArquivoRPS("RPS_%s.rem".formatted(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"))))
                 .setArquivoRPSBase64(arquivo.toBase64());
@@ -91,7 +70,7 @@ public class NFSeSPBarueriTest implements NFSeLogger {
 
         // Consulto o status do arquivo enviado
         final NFSeBarueriLoteStatusArquivoResponse responseStatusEmissao = wsBarueri
-                .loteStatusArquivo(new NFSeBarueriLoteStatusArquivoRequest("4458481", "03918609000647", responseEnvioEmissao.getResultado().getProtocoloRemessa()));
+                .loteStatusArquivo(new NFSeBarueriLoteStatusArquivoRequest("", "", responseEnvioEmissao.getResultado().getProtocoloRemessa()));
         Files.writeString(Path.of("/tmp/%s".formatted(arquivoRequest.getNomeArquivoRPS().replaceAll(".rem", "_response_%s.xml".formatted(responseEnvioEmissao.getResultado().getProtocoloRemessa())))), responseStatusEmissao.toXml());
         this.getLogger().info("Arquivo enviado {}, com nome de retorno {}, com situacao {}: {}",
                 responseStatusEmissao.getResult().getListaNfeArquivosRPS().getNomeArquivoOriginal(),
@@ -103,8 +82,8 @@ public class NFSeSPBarueriTest implements NFSeLogger {
         // Baixo o arquivo de retorno da emissão
         final NFSeBarueriLoteBaixarArquivoResponse responseBaixarEmissao = wsBarueri
                 .loteBaixarArquivo(new NFSeBarueriLoteBaixarArquivoRequest(
-                        "4458481",
-                        "03918609000647",
+                        "",
+                        "",
                         responseStatusEmissao.getResult().getListaNfeArquivosRPS().getNomeArquivoRetorno()));
         Files.writeString(Path.of("/tmp/%s".formatted(arquivoRequest.getNomeArquivoRPS().replaceAll(".rem", "_download_%s.xml".formatted(responseEnvioEmissao.getResultado().getProtocoloRemessa())))), responseBaixarEmissao.toXml());
 
@@ -236,105 +215,5 @@ public class NFSeSPBarueriTest implements NFSeLogger {
                 }
             }
         }
-
-
-//        arquivoRetorno.getNotas()
-//        final var errosEmissao = resultadoEmissao.getErros();
-//
-//        // Se houverem erros, lanço exceção
-//        Assertions.assertTrue(errosEmissao.isEmpty(), String.format("Foram encontrados erros no retorno da emissao da NFS-e: %s", errosEmissao.entrySet().stream().map((entry) -> "Linha %s - Código %s: %s -  %s".formatted(entry.getKey(), entry.getValue().getCodigo(), entry.getValue().getDescricao(), entry.getValue().getSolucao())).collect(Collectors.joining("; "))));
-//
-//        // Caso não haja erros, extraio os dados relevantes da nota e prossigo com o cancelamento
-//        final var serieNf = arquivoRetorno.getNotas().getFirst().getSerieNFe();
-//        final var numeroNf = arquivoRetorno.getNotas().getFirst().getNumeroNFe();
-//        final var chaveNFSeNacional = arquivoRetorno.getNotas().getFirst().getChaveAcessoNFSeNacional();
-//
-//        // Realizo o cancelamento da nota através do mesmo objeto RPS, alterando os campos necessários para o cancelamento
-//        rps.setRpsSituacao(NFSeBarueriRPSSituacao.CANCELADO)
-//                .setMotivoCancelamento(NFSeBarueriRPSCodigoMotivoCancelamento.CANCELAMENTO)
-//                .setNotaSubstituidaDescricaoCancelamento("Teste de cancelamento")
-//                .setNotaSubstituidaNumero(String.valueOf(numeroNf))
-//                .setNotaSerie(serieNf)
-//                .setNotaSubstituidaDataEmissao(rps.getRpsDataEmissao())//
-//                .setCodigoServicoPrestado("101001220")
-//                .setChaveNFSeReferenciada(chaveNFSeNacional);
-//
-//        // Gero o arquivo no formato que deve ser enviado dentro do SOAP para o cancelamento
-//        final var arquivoRpsCancelamento = new NFSeBarueriRPSArquivoEnvio("", "", "PMB003", LocalDateTime.now(), List.of(rps));
-//
-//        // Envio o lote para cancelamento
-//        final NFSeBarueriLoteEnviarArquivoResponse responseEnvioCancelamento = new WSRPS(config).loteEnviarArquivo(new NFSeBarueriLoteEnviarArquivoRequest(arquivoRpsCancelamento));
-//        Thread.sleep(5000);
-//
-//        // Consulto o status do arquivo de cancelamento enviado
-//        final NFSeBarueriLoteStatusArquivoResponse responseStatusCancelamento = new WSRPS(config).loteStatusArquivo(new NFSeBarueriLoteStatusArquivoRequest("", "", responseEnvioCancelamento.getResultado().getProtocoloRemessa()));
-//        Thread.sleep(5000);
-//
-//        // Baixo o arquivo de retorno do cancelamento
-//        final NFSeBarueriLoteBaixarArquivoResponse responseBaixarCancelamento = new WSRPS(config).loteBaixarArquivo(new NFSeBarueriLoteBaixarArquivoRequest("", "", responseStatusCancelamento.getResultado().getListaNfeArquivosRPS().getNomeArqRetorno()));
-//        final NFSeBarueriLoteBaixarArquivoResult resultadoCancelamento = responseBaixarCancelamento.getResultado();
-//        final byte[] arquivoCancelamentoB64 = Base64.getDecoder().decode(resultadoCancelamento.getArquivoRPSBase64());
-//        Files.write(Paths.get(String.format("", arquivoRequest.getNomeArquivo())), arquivoCancelamentoB64);
-//        final var errosCancelamento = resultadoCancelamento.getErros();
-//
-//        // Se houverem erros, lanço exceção
-//        Assertions.assertTrue(errosCancelamento.isEmpty(), String.format("Foram encontrados erros no retorno do cancelmaneto da NFS-e: %s", errosCancelamento.entrySet().stream().map((entry) -> "Linha %s - Código %s: %s -  %s".formatted(entry.getKey(), entry.getValue().getCodigo(), entry.getValue().getDescricao(), entry.getValue().getSolucao())).collect(Collectors.joining("; "))));
     }
-
-//    @Disabled
-//    @Test
-//    public void testeCancelamentoBarueri() throws Exception {
-//        final var rps = new NFSeBarueriRPS()
-//                .setRpsSerie("")
-//                .setRpsNumero("")
-//                .setRpsDataEmissao(LocalDate.now())
-//                .setRpsHoraEmissao(LocalTime.now())
-//                .setRpsSituacao(NFSeBarueriRPSSituacao.CANCELADO)
-//                .setMotivoCancelamento(NFSeBarueriRPSCodigoMotivoCancelamento.CANCELAMENTO)
-//                .setNotaSubstituidaNumero("")
-//                .setNotaSubstituidaDataEmissao(LocalDate.of(2025, 12, 3))//
-//                .setNotaSubstituidaDescricaoCancelamento("")
-//                .setCodigoServicoPrestado("")
-//                .setLocalPrestacaoServico(NFSeBarueriRPSLocalPrestacaoServico.OUTROS)
-//                .setServicoPrestadoEmViasPublicas(NFSeBarueriRPSServicoPrestadoViasPublicas.SIM)
-//                .setEnderecoServicoPrestado("")
-//                .setEnderecoServicoPrestadoNumero("")
-//                .setEnderecoServicoPrestadoComplemento("")
-//                .setEnderecoServicoPrestadoBairro("")
-//                .setEnderecoServicoPrestadoCidade("")
-//                .setEnderecoServicoPrestadoUF("")
-//                .setEnderecoServicoPrestadoCodigoPostal("")
-//                .setQuantidadeServicoPrestado("")
-//                .setValorServico(BigDecimal.valueOf(2.99))
-//                .setTomadorTipo(NFSeBarueriRPSTomadorTipo.BRASILEIRO)
-//                .setServicoExportacao(NFSeBarueriRPSServicoExportacao.NAO)
-//                .setTomadorDocumento("")
-//                .setTomadorRazaoSocial("")
-//                .setTomadorEndereco("")
-//                .setTomadorEnderecoNumero("")
-//                .setTomadorEnderecoComplemento("")
-//                .setTomadorEnderecoBairro("")
-//                .setTomadorEnderecoCidade("")
-//                .setTomadorEnderecoUF("")
-//                .setTomadorEnderecoCodigoPostal("")
-//                .setTomadorEmail("")
-//                .setDiscriminacaoServicos("")
-//                .setOptanteSimplesNacional(NFSeBarueriRPSOptanteSimplesNacional.NAO_OPTANTE)
-//                .setRegimeApuracaoTributariaSimplesNacional(NFSeBarueriRPSRegimeApuracaoTributariaSimplesNacional.LEGISLACAO_FEDERAL_E_MUNICIPAL_TRIBUTO)
-//                .setServicoPrestadoCidadeCodigoIBGE("")
-//                .setTomadorCidadeCodigoIBGE("")
-//                .setVinculoEntrePartes(NFSeBarueriRPSVinculoEntrePartes.SEM_VINCULO);
-//
-//
-//        final var arquivoRps = new NFSeBarueriRPSArquivoEnvio("", "", "PMB002", LocalDateTime.now(), List.of(rps));
-//        Files.write(Paths.get("".formatted(arquivoRps.getNomeArquivo())), arquivoRps.geraConteudoArquivo());
-//        final NFSeBarueriLoteEnviarArquivoResponse responseEnvioCancelamento = new WSRPS(config).loteEnviarArquivo(new NFSeBarueriLoteEnviarArquivoRequest(arquivoRps));
-//        Files.writeString(Paths.get("".formatted(responseEnvioCancelamento.getResultado().getProtocoloRemessa())), responseEnvioCancelamento.toXml());
-//        Thread.sleep(5000);
-//        final NFSeBarueriLoteStatusArquivoResponse responseStatusCancelamento = new WSRPS(config).loteStatusArquivo(new NFSeBarueriLoteStatusArquivoRequest("", "", responseEnvioCancelamento.getResultado().getProtocoloRemessa()));
-//        Files.writeString(Paths.get("".formatted(responseEnvioCancelamento.getResultado().getProtocoloRemessa())), responseStatusCancelamento.toXml());
-//        Thread.sleep(5000);
-//        final NFSeBarueriLoteBaixarArquivoResponse responseBaixarCancelamento = new WSRPS(config).loteBaixarArquivo(new NFSeBarueriLoteBaixarArquivoRequest("", "", responseStatusCancelamento.getResultado().getListaNfeArquivosRPS().getNomeArqRetorno()));
-//        Files.writeString(Paths.get("".formatted(responseEnvioCancelamento.getResultado().getProtocoloRemessa())), responseBaixarCancelamento.toXml());
-//    }
 }
