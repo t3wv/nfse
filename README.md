@@ -55,20 +55,39 @@ O modelo é sequencial por NSU: guarda-se o último NSU processado e pedem-se os
 sempre uma trava de iterações.
 
 ``` java
-long nsu = 0; //recupere do seu armazenamento; 0 começa do início
+long nsu = 0;                 //recupere do seu armazenamento; 0 começa do início
+long ultimoNsuProcessado = -1;
 for (int pagina = 0; pagina < 100; pagina++) { //trava de iterações
     final var lote = facade.distribuirDFe(nsu);
-    if (!lote.temDocumentos()) {
-        break; //NENHUM_DOCUMENTO_LOCALIZADO
+    if (lote.vazio()) {
+        break; //NENHUM_DOCUMENTO_LOCALIZADO: drenagem concluída
+    }
+    if (!lote.temDocumentos()) { //REJEICAO, ou um status que esta versão da lib não conhece
+        throw new IllegalStateException("Distribuição rejeitada: %s".formatted(lote.getErros()));
+    }
+    final long maiorNsu = lote.getMaiorNsu().orElse(-1);
+    if (maiorNsu <= ultimoNsuProcessado) {
+        break; //o lote não trouxe nada novo: para em vez de girar até a trava
     }
     for (final var documento : lote.getLoteDFe()) {
+        if (documento.getNsu() == null || documento.getNsu() <= ultimoNsuProcessado) {
+            continue; //o NSU de partida pode voltar repetido no lote seguinte
+        }
         documento.getTipoDocumento(); //NFSE, EVENTO, DPS, CNC...
         documento.getChaveAcesso();   //50 dígitos, não 44 como na NFe
         documento.getXml();           //XML já desempacotado (o ADN entrega em gzip + base64)
     }
-    nsu = lote.getMaiorNsu().orElse(nsu); //próxima página parte do maior NSU recebido
+    ultimoNsuProcessado = maiorNsu;
+    nsu = maiorNsu; //próxima página parte do último NSU conhecido
 }
 ```
+
+Duas armadilhas que o exemplo acima evita de propósito:
+
+- `temDocumentos()` é `false` tanto para lote vazio quanto para `REJEICAO` — quem usa só ele
+  encerra a drenagem em silêncio diante de uma rejeição. O critério de parada é `vazio()`.
+- o lote seguinte pode reincluir o NSU de partida; sem a comparação com o último NSU processado,
+  o documento é reprocessado a cada página e o laço só termina na trava de iterações.
 
 Consulta pontual de um NSU, sem avançar em lote:
 

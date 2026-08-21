@@ -9,6 +9,7 @@ import io.github.t3wv.nfse.nacional.WSParametrosMunicipais;
 import io.github.t3wv.nfse.nacional.WSSefinNFSe;
 import io.github.t3wv.nfse.nacional.classes.nfsenacional.*;
 import io.github.t3wv.nfse.utils.NFSeCadeiaCertificadosTest;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -120,8 +121,9 @@ public class NFSeNacionalTest implements NFSeLogger {
      * Drena a distribuição do ADN a partir do NSU zero, listando os DF-e em que o CNPJ do
      * certificado figura como emitente, tomador ou intermediário.
      *
-     * <p>Como o ADN não devolve teto de NSU, o laço para quando a resposta vem vazia — e a trava de
-     * páginas evita laço infinito caso o serviço repita NSU.
+     * <p>Como o ADN não devolve teto de NSU, o laço para quando a resposta vem
+     * {@code vazio()} — uma rejeição falha o teste em vez de passar por drenagem concluída — e a
+     * trava de páginas evita laço infinito caso o serviço repita NSU.
      */
     @Disabled
     @Test
@@ -130,14 +132,21 @@ public class NFSeNacionalTest implements NFSeLogger {
         final var maximoDePaginas = 100;
 
         long nsu = 0;
+        long ultimoNsuProcessado = -1;
         for (int pagina = 0; pagina < maximoDePaginas; pagina++) {
             final var lote = ws.distribuirDFe(nsu);
             getLogger().info("NSU {}: {}", nsu, lote);
-            if (!lote.temDocumentos()) {
+            if (lote.vazio()) {
                 break;
             }
+            Assertions.assertTrue(lote.temDocumentos(), "lote sem documentos e sem NENHUM_DOCUMENTO_LOCALIZADO: %s".formatted(lote.getErros()));
+
+            final long maiorNsu = lote.getMaiorNsu().orElse(-1);
+            Assertions.assertTrue(maiorNsu > ultimoNsuProcessado, "o lote não avançou o NSU: %d".formatted(maiorNsu));
+
             lote.getLoteDFe().forEach(documento -> getLogger().info("{} -> {}", documento, documento.getChaveAcesso()));
-            nsu = lote.getMaiorNsu().orElse(nsu);
+            ultimoNsuProcessado = maiorNsu;
+            nsu = maiorNsu;
         }
     }
 

@@ -150,7 +150,8 @@ public class WSFacade {
      *
      * @param nsu NSU de partida; {@code 0} começa do início.
      * @return Objeto {@link NFSeAdnLoteDistribuicaoResponse} com os documentos do bloco.
-     * @throws Exception Se ocorrer um erro durante a requisição ou no processamento da resposta.
+     * @throws IllegalArgumentException Se o NSU for negativo.
+     * @throws Exception                Se ocorrer um erro durante a requisição ou no processamento da resposta.
      */
     public NFSeAdnLoteDistribuicaoResponse distribuirDFe(final long nsu) throws Exception {
         return wsDistribuicaoDFe.distribuirDFe(nsu);
@@ -162,7 +163,8 @@ public class WSFacade {
      * @param nsu          NSU de partida; {@code 0} começa do início.
      * @param cnpjConsulta CNPJ a consultar, de mesma raiz que a do certificado.
      * @return Objeto {@link NFSeAdnLoteDistribuicaoResponse} com os documentos do bloco.
-     * @throws Exception Se ocorrer um erro durante a requisição ou no processamento da resposta.
+     * @throws IllegalArgumentException Se o NSU for negativo ou o CNPJ for inválido.
+     * @throws Exception                Se ocorrer um erro durante a requisição ou no processamento da resposta.
      */
     public NFSeAdnLoteDistribuicaoResponse distribuirDFe(final long nsu, final String cnpjConsulta) throws Exception {
         return wsDistribuicaoDFe.distribuirDFe(nsu, cnpjConsulta);
@@ -173,10 +175,25 @@ public class WSFacade {
      *
      * @param nsu NSU do documento.
      * @return Objeto {@link NFSeAdnLoteDistribuicaoResponse} com, no máximo, um documento.
-     * @throws Exception Se ocorrer um erro durante a requisição ou no processamento da resposta.
+     * @throws IllegalArgumentException Se o NSU for negativo.
+     * @throws Exception                Se ocorrer um erro durante a requisição ou no processamento da resposta.
      */
     public NFSeAdnLoteDistribuicaoResponse consultarDFePorNsu(final long nsu) throws Exception {
         return wsDistribuicaoDFe.consultarDFePorNsu(nsu);
+    }
+
+    /**
+     * Consulta o DF-e de um NSU específico para um CNPJ de mesma raiz que a do certificado, sem
+     * avançar em lote.
+     *
+     * @param nsu          NSU do documento.
+     * @param cnpjConsulta CNPJ a consultar, de mesma raiz que a do certificado.
+     * @return Objeto {@link NFSeAdnLoteDistribuicaoResponse} com, no máximo, um documento.
+     * @throws IllegalArgumentException Se o NSU for negativo ou o CNPJ for inválido.
+     * @throws Exception                Se ocorrer um erro durante a requisição ou no processamento da resposta.
+     */
+    public NFSeAdnLoteDistribuicaoResponse consultarDFePorNsu(final long nsu, final String cnpjConsulta) throws Exception {
+        return wsDistribuicaoDFe.consultarDFePorNsu(nsu, cnpjConsulta);
     }
 
     /**

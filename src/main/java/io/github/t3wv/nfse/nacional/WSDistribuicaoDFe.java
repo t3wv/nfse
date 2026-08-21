@@ -150,7 +150,8 @@ public class WSDistribuicaoDFe implements NFSeLogger {
      */
     private NFSeAdnLoteDistribuicaoResponse executarConsulta(final URI url) throws Exception {
         final var response = new NFSeHttpClient(this.config).sendGetRequest(url);
-        this.getLogger().debug("Response {}: {}", response.statusCode(), response.body());
+        //só metadados no log: o corpo traz o XML fiscal de todos os documentos do lote
+        this.getLogger().debug("Response {}: {} bytes", response.statusCode(), StringUtils.length(response.body()));
 
         switch (response.statusCode()) {
             case HttpURLConnection.HTTP_OK, HttpURLConnection.HTTP_BAD_REQUEST, HttpURLConnection.HTTP_NOT_FOUND -> {

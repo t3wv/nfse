@@ -140,6 +140,13 @@ public class NFSeAdnDistribuicaoTest {
     }
 
     @Test
+    public void desempacotaArquivoXmlCorrompido() {
+        //conteúdo corrompido precisa sair como IOException, que é o que getXml() declara
+        final var documento = new NFSeAdnDocumentoDistribuido().setNsu(9L).setArquivoXml("não é base64!!");
+        Assertions.assertThrows(java.io.IOException.class, documento::getXml);
+    }
+
+    @Test
     public void rejeitaChaveAcessoInvalidaNaConsultaDeEventos() {
         final var ws = new WSDistribuicaoDFe(new NFSeConfigDistribuicaoStub());
         Assertions.assertThrows(IllegalArgumentException.class, () -> ws.consultarEventosPorChaveAcesso("123"));

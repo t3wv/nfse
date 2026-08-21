@@ -111,13 +111,19 @@ public class NFSeAdnDocumentoDistribuido {
      * que um eventual retorno sem compressão continue sendo tratado.
      *
      * @return XML do documento, ou {@code null} se não houver conteúdo.
-     * @throws IOException Se o conteúdo estiver corrompido.
+     * @throws IOException Se o conteúdo estiver corrompido, seja no base64 ou no gzip.
      */
     public String getXml() throws IOException {
         if (this.arquivoXml == null || this.arquivoXml.isBlank()) {
             return null;
         }
-        final byte[] conteudo = Base64.getDecoder().decode(this.arquivoXml);
+        final byte[] conteudo;
+        try {
+            conteudo = Base64.getDecoder().decode(this.arquivoXml);
+        } catch (final IllegalArgumentException e) {
+            //conteúdo corrompido sai como IOException, para não escapar do que o contrato declara
+            throw new IOException("Conteúdo de 'ArquivoXml' do NSU '%s' não é um base64 válido!".formatted(this.nsu), e);
+        }
         if (conteudo.length < 2 || (conteudo[0] & 0xFF) != 0x1F || (conteudo[1] & 0xFF) != 0x8B) {
             return new String(conteudo, StandardCharsets.UTF_8);
         }
