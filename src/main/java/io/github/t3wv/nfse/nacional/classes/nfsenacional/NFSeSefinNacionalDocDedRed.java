@@ -3,6 +3,7 @@ package io.github.t3wv.nfse.nacional.classes.nfsenacional;
 
 import org.simpleframework.xml.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Root(name = "DocDedRed")
@@ -27,9 +28,9 @@ public class NFSeSefinNacionalDocDedRed {
     @Element(name = "dtEmiDoc")
     protected LocalDate dataEmissao;
     @Element(name = "vDedutivelRedutivel")
-    protected String valorTotalDedutivel;
+    protected BigDecimal valorTotalDedutivel;
     @Element(name = "vDeducaoReducao")
-    protected String valorDeducao;
+    protected BigDecimal valorDeducao;
     @Element(name = "fornec", required = false)
     protected NFSeSefinNacionalInfoPessoa fornecedor;
 
@@ -174,7 +175,7 @@ public class NFSeSefinNacionalDocDedRed {
      *
      * @return Valor total dedutível
      */
-    public String getValorTotalDedutivel() {
+    public BigDecimal getValorTotalDedutivel() {
         return valorTotalDedutivel;
     }
 
@@ -184,7 +185,7 @@ public class NFSeSefinNacionalDocDedRed {
      *
      * @param valorTotalDedutivel Valor total dedutível
      */
-    public NFSeSefinNacionalDocDedRed setValorTotalDedutivel(String valorTotalDedutivel) {
+    public NFSeSefinNacionalDocDedRed setValorTotalDedutivel(BigDecimal valorTotalDedutivel) {
         this.valorTotalDedutivel = valorTotalDedutivel;
         return this;
     }
@@ -195,7 +196,7 @@ public class NFSeSefinNacionalDocDedRed {
      *
      * @return Valor dedução
      */
-    public String getValorDeducao() {
+    public BigDecimal getValorDeducao() {
         return valorDeducao;
     }
 
@@ -205,7 +206,7 @@ public class NFSeSefinNacionalDocDedRed {
      *
      * @param valorDeducao Valor dedução
      */
-    public NFSeSefinNacionalDocDedRed setValorDeducao(String valorDeducao) {
+    public NFSeSefinNacionalDocDedRed setValorDeducao(BigDecimal valorDeducao) {
         this.valorDeducao = valorDeducao;
         return this;
     }

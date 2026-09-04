@@ -5,9 +5,9 @@ import org.simpleframework.xml.Element;
 import java.math.BigDecimal;
 
 public class NFSeSefinNacionalInfNFSeIBSCBSTotaisIBSCredPres {
-    @Element(name = "pCredPresIBS", required = false)
+    @Element(name = "pCredPresIBS")
     private BigDecimal pCredPresIBS;
-    @Element(name = "vCredPresIBS", required = false)
+    @Element(name = "vCredPresIBS")
     private BigDecimal vCredPresIBS;
 
     public BigDecimal getpCredPresIBS() {

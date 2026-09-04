@@ -10,7 +10,7 @@ public class NFSeSefinNacionalValoresNFSe {
     @Element(name = "vCalcDR", required = false)
     protected BigDecimal vCalcDR;
     @Element(name = "tpBM", required = false)
-    protected String tpBM;
+    protected NFSeSefinNacionalValoresNFSeTipoBeneficioMunicipal tpBM;
     @Element(name = "vCalcBM", required = false)
     protected BigDecimal vCalcBM;
     @Element(name = "vBC", required = false)
@@ -21,10 +21,8 @@ public class NFSeSefinNacionalValoresNFSe {
     protected BigDecimal vissqn;
     @Element(name = "vTotalRet", required = false)
     protected BigDecimal vTotalRet;
-    @Element(name = "vLiq", required = false)
+    @Element(name = "vLiq")
     protected BigDecimal vLiq;
-    @Element(name = "xOutInf", required = false)
-    protected String xOutInf;
 
 
     public BigDecimal getVCalcDR() {
@@ -36,11 +34,11 @@ public class NFSeSefinNacionalValoresNFSe {
         return this;
     }
 
-    public String getTpBM() {
+    public NFSeSefinNacionalValoresNFSeTipoBeneficioMunicipal getTpBM() {
         return tpBM;
     }
 
-    public NFSeSefinNacionalValoresNFSe setTpBM(String value) {
+    public NFSeSefinNacionalValoresNFSe setTpBM(NFSeSefinNacionalValoresNFSeTipoBeneficioMunicipal value) {
         this.tpBM = value;
         return this;
     }
@@ -96,15 +94,6 @@ public class NFSeSefinNacionalValoresNFSe {
 
     public NFSeSefinNacionalValoresNFSe setVLiq(BigDecimal value) {
         this.vLiq = value;
-        return this;
-    }
-
-    public String getXOutInf() {
-        return xOutInf;
-    }
-
-    public NFSeSefinNacionalValoresNFSe setXOutInf(String value) {
-        this.xOutInf = value;
         return this;
     }
 

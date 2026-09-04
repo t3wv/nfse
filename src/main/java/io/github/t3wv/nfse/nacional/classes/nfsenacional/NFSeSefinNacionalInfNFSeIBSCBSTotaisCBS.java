@@ -5,19 +5,19 @@ import org.simpleframework.xml.Element;
 import java.math.BigDecimal;
 
 public class NFSeSefinNacionalInfNFSeIBSCBSTotaisCBS {
-    @Element(name = "vCBS", required = false)
-    private BigDecimal vCBS;
-    @Element(name = "vDifCBS", required = false)
-    private BigDecimal vDifCBS;
     @Element(name = "gCBSCredPres", required = false)
     private NFSeSefinNacionalInfNFSeIBSCBSTotaisCBSCredPres gCBSCredPres;
+    @Element(name = "vDifCBS", required = false)
+    private BigDecimal vDifCBS;
+    @Element(name = "vCBS")
+    private BigDecimal vCBS;
 
-    public BigDecimal getvCBS() {
-        return vCBS;
+    public NFSeSefinNacionalInfNFSeIBSCBSTotaisCBSCredPres getgCBSCredPres() {
+        return gCBSCredPres;
     }
 
-    public NFSeSefinNacionalInfNFSeIBSCBSTotaisCBS setvCBS(BigDecimal vCBS) {
-        this.vCBS = vCBS;
+    public NFSeSefinNacionalInfNFSeIBSCBSTotaisCBS setgCBSCredPres(NFSeSefinNacionalInfNFSeIBSCBSTotaisCBSCredPres gCBSCredPres) {
+        this.gCBSCredPres = gCBSCredPres;
         return this;
     }
 
@@ -30,12 +30,12 @@ public class NFSeSefinNacionalInfNFSeIBSCBSTotaisCBS {
         return this;
     }
 
-    public NFSeSefinNacionalInfNFSeIBSCBSTotaisCBSCredPres getgCBSCredPres() {
-        return gCBSCredPres;
+    public BigDecimal getvCBS() {
+        return vCBS;
     }
 
-    public NFSeSefinNacionalInfNFSeIBSCBSTotaisCBS setgCBSCredPres(NFSeSefinNacionalInfNFSeIBSCBSTotaisCBSCredPres gCBSCredPres) {
-        this.gCBSCredPres = gCBSCredPres;
+    public NFSeSefinNacionalInfNFSeIBSCBSTotaisCBS setvCBS(BigDecimal vCBS) {
+        this.vCBS = vCBS;
         return this;
     }
 }

@@ -28,8 +28,8 @@ public class NFSeSefinNacionalTribTotalMonet {
         return valorTributosEstaduais;
     }
 
-    public NFSeSefinNacionalTribTotalMonet setValorTributosEstaduais(BigDecimal valorTributosFederais) {
-        this.valorTributosEstaduais = valorTributosFederais;
+    public NFSeSefinNacionalTribTotalMonet setValorTributosEstaduais(BigDecimal valorTributosEstaduais) {
+        this.valorTributosEstaduais = valorTributosEstaduais;
         return this;
     }
 
@@ -37,8 +37,8 @@ public class NFSeSefinNacionalTribTotalMonet {
         return valorTributosMunicipais;
     }
 
-    public NFSeSefinNacionalTribTotalMonet setValorTributosMunicipais(BigDecimal valorTributosFederais) {
-        this.valorTributosMunicipais = valorTributosFederais;
+    public NFSeSefinNacionalTribTotalMonet setValorTributosMunicipais(BigDecimal valorTributosMunicipais) {
+        this.valorTributosMunicipais = valorTributosMunicipais;
         return this;
     }
 

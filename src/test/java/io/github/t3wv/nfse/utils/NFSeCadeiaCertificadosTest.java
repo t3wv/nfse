@@ -22,6 +22,6 @@ public class NFSeCadeiaCertificadosTest {
     @Test
     @Disabled("Geracao de cacerts. Executar sob demanda.")
     public void geraCadeiaCertificados() throws Exception {
-        Files.write(Paths.get("/tmp/nfse_cacerts.jks"), NFSeCadeiaCertificados.geraCadeiaCertificados(config));
+        Files.write(Paths.get("/tmp/nfse_cacerts.jks"), NFSeCadeiaCertificados.geraCadeiaCertificados(config.getCadeiaCertificadosSenha()));
     }
 }

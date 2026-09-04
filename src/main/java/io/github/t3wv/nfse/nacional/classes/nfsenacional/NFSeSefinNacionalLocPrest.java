@@ -15,8 +15,6 @@ public class NFSeSefinNacionalLocPrest {
     protected String codigoMunicipio;
     @Element(name = "cPaisPrestacao", required = false)
     protected String codigoPais;
-    @Element(name = "opConsumServ", required = false)
-    protected NFSeSefinNacionalLocPrestOpcaoConsumoServico opcaoConsumoServico;
 
     /**
      * <a href="https://www.gov.br/nfse/pt-br/biblioteca/documentacao-tecnica/documentacao-atual">Documentações e anexos</a>
@@ -49,21 +47,6 @@ public class NFSeSefinNacionalLocPrest {
      */
     public NFSeSefinNacionalLocPrest setCodigoPais(String codigoPais) {
         this.codigoPais = codigoPais;
-        return this;
-    }
-
-    /**
-     * @return Opção para que o emitente informe onde ocorreu o consumo do serviço prestado.
-     */
-    public NFSeSefinNacionalLocPrestOpcaoConsumoServico getOpcaoConsumoServico() {
-        return opcaoConsumoServico;
-    }
-
-    /**
-     * @param opcaoConsumoServico Opção para que o emitente informe onde ocorreu o consumo do serviço prestado.
-     */
-    public NFSeSefinNacionalLocPrest setOpcaoConsumoServico(NFSeSefinNacionalLocPrestOpcaoConsumoServico opcaoConsumoServico) {
-        this.opcaoConsumoServico = opcaoConsumoServico;
         return this;
     }
 

@@ -8,21 +8,19 @@ import java.time.ZonedDateTime;
 @Root(name = "infPedReg")
 public class NFSeSefinNacionalInfPedReg {
 
-    @Element(name = "tpAmb", required = false)
+    @Element(name = "tpAmb")
     protected NFSeSefinNacionalTipoAmbiente tpAmb;
-    @Element(name = "verAplic", required = false)
+    @Element(name = "verAplic")
     protected String verAplic;
-    @Element(name = "dhEvento", required = false)
+    @Element(name = "dhEvento")
     protected ZonedDateTime dhEvento;
     @Element(name = "CNPJAutor", required = false)
     protected String cnpjAutor;
     @Element(name = "CPFAutor", required = false)
     protected String cpfAutor;
-    @Element(name = "chNFSe", required = false)
+    @Element(name = "chNFSe")
     protected String chaveAcessoNFSE;
-    @Element(name = "nPedRegEvento", required = false)
-    protected String numeroPedidoRegistroEvento;
-    @Attribute(name = "Id", required = false)
+    @Attribute(name = "Id")
     protected String id;
 
     @ElementUnion({
@@ -96,15 +94,6 @@ public class NFSeSefinNacionalInfPedReg {
 
     public NFSeSefinNacionalInfPedReg setChaveAcessoNFSE(String value) {
         this.chaveAcessoNFSE = value;
-        return this;
-    }
-
-    public String getNPedRegEvento() {
-        return numeroPedidoRegistroEvento;
-    }
-
-    public NFSeSefinNacionalInfPedReg setNPedRegEvento(String value) {
-        this.numeroPedidoRegistroEvento = value;
         return this;
     }
 

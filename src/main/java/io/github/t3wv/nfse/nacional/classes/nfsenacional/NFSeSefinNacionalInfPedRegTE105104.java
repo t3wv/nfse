@@ -9,7 +9,7 @@ public class NFSeSefinNacionalInfPedRegTE105104 extends NFSeSefinNacionalInfPedR
     @Element(name = "nProcAdm", required = false)
     protected String nProcAdm;
     @Element(name = "cMotivo")
-    protected String cMotivo;
+    protected NFSeSefinNacionalTSCodJustAnaliseFiscalCancDef cMotivo;
     @Element(name = "xMotivo")
     protected String xMotivo;
 
@@ -35,11 +35,11 @@ public class NFSeSefinNacionalInfPedRegTE105104 extends NFSeSefinNacionalInfPedR
         return this;
     }
 
-    public String getcMotivo() {
+    public NFSeSefinNacionalTSCodJustAnaliseFiscalCancDef getcMotivo() {
         return cMotivo;
     }
 
-    public NFSeSefinNacionalInfPedRegTE105104 setcMotivo(String cMotivo) {
+    public NFSeSefinNacionalInfPedRegTE105104 setcMotivo(NFSeSefinNacionalTSCodJustAnaliseFiscalCancDef cMotivo) {
         this.cMotivo = cMotivo;
         return this;
     }

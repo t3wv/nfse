@@ -5,11 +5,11 @@ import org.simpleframework.xml.Element;
 import java.math.BigDecimal;
 
 public class NFSeSefinNacionalInfNFSeIBSCBSValoresUF {
-    @Element(name = "pIBSUF", required = false)
+    @Element(name = "pIBSUF")
     private BigDecimal pIBSUF;
     @Element(name = "pRedAliqUF", required = false)
     private BigDecimal pRedAliqUF;
-    @Element(name = "pAliqEfetUF", required = false)
+    @Element(name = "pAliqEfetUF")
     private BigDecimal pAliqEfetUF;
 
     public BigDecimal getpIBSUF() {

@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 public class NFSeSefinNacionalInfNFSeIBSCBSTotaisIBSMunTot {
     @Element(name = "vDifMun", required = false)
     private BigDecimal vDifMun;
-    @Element(name = "vIBSMun", required = false)
+    @Element(name = "vIBSMun")
     private BigDecimal vIBSMun;
 
     public BigDecimal getvDifMun() {

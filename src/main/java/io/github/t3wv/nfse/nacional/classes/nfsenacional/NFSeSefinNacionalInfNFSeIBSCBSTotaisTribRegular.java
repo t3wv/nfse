@@ -5,17 +5,17 @@ import org.simpleframework.xml.Element;
 import java.math.BigDecimal;
 
 public class NFSeSefinNacionalInfNFSeIBSCBSTotaisTribRegular {
-    @Element(name = "pAliqEfeRegIBSUF", required = false)
+    @Element(name = "pAliqEfeRegIBSUF")
     private BigDecimal pAliqEfeRegIBSUF;
-    @Element(name = "vTribRegIBSUF", required = false)
+    @Element(name = "vTribRegIBSUF")
     private BigDecimal vTribRegIBSUF;
-    @Element(name = "pAliqEfeRegIBSMun", required = false)
+    @Element(name = "pAliqEfeRegIBSMun")
     private BigDecimal pAliqEfeRegIBSMun;
-    @Element(name = "vTribRegIBSMun", required = false)
+    @Element(name = "vTribRegIBSMun")
     private BigDecimal vTribRegIBSMun;
-    @Element(name = "pAliqEfeRegCBS", required = false)
+    @Element(name = "pAliqEfeRegCBS")
     private BigDecimal pAliqEfeRegCBS;
-    @Element(name = "vTribRegCBS", required = false)
+    @Element(name = "vTribRegCBS")
     private BigDecimal vTribRegCBS;
 
     public BigDecimal getpAliqEfeRegIBSUF() {

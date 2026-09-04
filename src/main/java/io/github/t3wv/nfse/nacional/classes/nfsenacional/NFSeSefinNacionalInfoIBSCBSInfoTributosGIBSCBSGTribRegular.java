@@ -4,16 +4,16 @@ import org.simpleframework.xml.Element;
 
 public class NFSeSefinNacionalInfoIBSCBSInfoTributosGIBSCBSGTribRegular {
     @Element(name="CSTReg")
-    protected String cSTReg;
+    protected String cstReg;
     @Element(name="cClassTribReg")
     protected String cClassTribReg;
 
-    public String getcSTReg() {
-        return cSTReg;
+    public String getCstReg() {
+        return cstReg;
     }
 
-    public NFSeSefinNacionalInfoIBSCBSInfoTributosGIBSCBSGTribRegular setcSTReg(String cSTReg) {
-        this.cSTReg = cSTReg;
+    public NFSeSefinNacionalInfoIBSCBSInfoTributosGIBSCBSGTribRegular setCstReg(String cstReg) {
+        this.cstReg = cstReg;
         return this;
     }
 

@@ -16,6 +16,15 @@ public class NFSeSCSaoJoseNFSeIBSCBSValoresTribGIBSCBS {
     @Element(name = "cClassTrib")
     private String cClassTrib;
 
+    @Element(name = "cCredPres", required = false)
+    private String cCredPres;
+
+    @Element(name = "gTribRegular", required = false)
+    private NFSeSCSaoJoseNFSeIBSCBSValoresTribGTribRegular gTribRegular;
+
+    @Element(name = "gDif", required = false)
+    private NFSeSCSaoJoseNFSeIBSCBSValoresTribGDif gDif;
+
     public String getCst() {
         return cst;
     }
@@ -31,6 +40,33 @@ public class NFSeSCSaoJoseNFSeIBSCBSValoresTribGIBSCBS {
 
     public NFSeSCSaoJoseNFSeIBSCBSValoresTribGIBSCBS setcClassTrib(String cClassTrib) {
         this.cClassTrib = cClassTrib;
+        return this;
+    }
+
+    public String getcCredPres() {
+        return cCredPres;
+    }
+
+    public NFSeSCSaoJoseNFSeIBSCBSValoresTribGIBSCBS setcCredPres(String cCredPres) {
+        this.cCredPres = cCredPres;
+        return this;
+    }
+
+    public NFSeSCSaoJoseNFSeIBSCBSValoresTribGTribRegular getgTribRegular() {
+        return gTribRegular;
+    }
+
+    public NFSeSCSaoJoseNFSeIBSCBSValoresTribGIBSCBS setgTribRegular(NFSeSCSaoJoseNFSeIBSCBSValoresTribGTribRegular gTribRegular) {
+        this.gTribRegular = gTribRegular;
+        return this;
+    }
+
+    public NFSeSCSaoJoseNFSeIBSCBSValoresTribGDif getgDif() {
+        return gDif;
+    }
+
+    public NFSeSCSaoJoseNFSeIBSCBSValoresTribGIBSCBS setgDif(NFSeSCSaoJoseNFSeIBSCBSValoresTribGDif gDif) {
+        this.gDif = gDif;
         return this;
     }
 

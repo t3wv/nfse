@@ -5,11 +5,11 @@ import org.simpleframework.xml.Element;
 import java.math.BigDecimal;
 
 public class NFSeSefinNacionalInfNFSeIBSCBSValoresMun {
-    @Element(name="pIBSMun", required = false)
+    @Element(name="pIBSMun")
     private BigDecimal pIBSMun;
     @Element(name="pRedAliqMun", required = false)
     private BigDecimal pRedAliqMun;
-    @Element(name="pAliqEfetMun", required = false)
+    @Element(name="pAliqEfetMun")
     private BigDecimal pAliqEfetMun;
 
     public BigDecimal getpIBSMun() {

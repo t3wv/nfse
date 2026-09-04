@@ -5,19 +5,19 @@ import org.simpleframework.xml.Element;
 import java.math.BigDecimal;
 
 public class NFSeSefinNacionalInfNFSeIBSCBSValores {
-    @Element(name = "vBC", required = false)
+    @Element(name = "vBC")
     private BigDecimal vBC;
 
     @Element(name = "vCalcReeRepRes", required = false)
     private BigDecimal vCalcReeRepRes;
 
-    @Element(name = "uf", required = false)
+    @Element(name = "uf")
     private NFSeSefinNacionalInfNFSeIBSCBSValoresUF uf;
 
-    @Element(name = "mun", required = false)
+    @Element(name = "mun")
     private NFSeSefinNacionalInfNFSeIBSCBSValoresMun mun;
 
-    @Element(name = "fed", required = false)
+    @Element(name = "fed")
     private NFSeSefinNacionalInfNFSeIBSCBSValoresFed fed;
 
     public BigDecimal getvBC() {

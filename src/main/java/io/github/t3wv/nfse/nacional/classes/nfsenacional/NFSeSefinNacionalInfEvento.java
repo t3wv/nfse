@@ -8,7 +8,7 @@ import java.time.ZonedDateTime;
 @Root(name = "infEvento")
 public class NFSeSefinNacionalInfEvento {
 
-    @Element(name = "verAplic", required = false)
+    @Element(name = "verAplic")
     protected String versaoApp;
     @Element(name = "ambGer")
     protected NFSeSefinNacionalInfEventoAmbienteGeracao ambienteGeracao;

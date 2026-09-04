@@ -14,7 +14,7 @@ public class NFSeSefinNacionalInfoIBSCBSListaDoc {
     })
     protected NFSeSefinNacionalInfoIBSCBSDocumento documento;
     @Element(name = "fornec", required = false)
-    protected NFSeSefinNacionalInfoPessoa fornec;
+    protected NFSeSefinNacionalInfoIBSCBSListaDocFornec fornec;
     @Element(name = "dtEmiDoc")
     protected LocalDate dtEmiDoc;
     @Element(name = "dtCompDoc")
@@ -35,11 +35,11 @@ public class NFSeSefinNacionalInfoIBSCBSListaDoc {
         return this;
     }
 
-    public NFSeSefinNacionalInfoPessoa getFornec() {
+    public NFSeSefinNacionalInfoIBSCBSListaDocFornec getFornec() {
         return fornec;
     }
 
-    public NFSeSefinNacionalInfoIBSCBSListaDoc setFornec(NFSeSefinNacionalInfoPessoa fornec) {
+    public NFSeSefinNacionalInfoIBSCBSListaDoc setFornec(NFSeSefinNacionalInfoIBSCBSListaDocFornec fornec) {
         this.fornec = fornec;
         return this;
     }

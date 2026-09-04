@@ -5,11 +5,11 @@ import org.simpleframework.xml.Element;
 import java.math.BigDecimal;
 
 public class NFSeSefinNacionalInfNFSeIBSCBSTotais {
-    @Element( name="vTotNF", required = false)
+    @Element( name="vTotNF")
     private BigDecimal vTotNF;
-    @Element( name="gIBS", required = false)
+    @Element( name="gIBS")
     private NFSeSefinNacionalInfNFSeIBSCBSTotaisIBS gIBS;
-    @Element( name="gCBS", required = false)
+    @Element( name="gCBS")
     private NFSeSefinNacionalInfNFSeIBSCBSTotaisCBS gCBS;
     @Element( name="gTribRegular", required = false)
     private NFSeSefinNacionalInfNFSeIBSCBSTotaisTribRegular gTribRegular;

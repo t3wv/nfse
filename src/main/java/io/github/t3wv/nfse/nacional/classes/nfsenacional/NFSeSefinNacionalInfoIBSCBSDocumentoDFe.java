@@ -5,7 +5,7 @@ import org.simpleframework.xml.Element;
 public class NFSeSefinNacionalInfoIBSCBSDocumentoDFe extends NFSeSefinNacionalInfoIBSCBSDocumento {
     @Element(name = "tipoChaveDFe")
     protected NFSeSefinNacionalInfoIBSCBSTipoChaveDFe tipoChaveDFe;
-    @Element(name = "xTipoChaveDFe")
+    @Element(name = "xTipoChaveDFe", required = false)
     protected String xTipoChaveDFe;
     @Element(name = "chaveDFe")
     protected String chaveDFe;

@@ -15,8 +15,10 @@ public class NFSeSefinNacionalInfoObra {
     String numeroIdentificacaoObra;
     @Element(name = "inscImobFisc", required = false)
     String inscricaoImobiliariaFiscal;
+    @Element(name = "cCIB", required = false)
+    String cCIB;
     @Element(name = "end", required = false)
-    NFSeSefinNacionalEnderecoSimples endereco;
+    NFSeSefinNacionalEnderObraEvento endereco;
 
     /**
      * Número de identificação da obra
@@ -59,11 +61,30 @@ public class NFSeSefinNacionalInfoObra {
     }
 
     /**
+     * Código do Cadastro Imobiliário Brasileiro - CIB
+     *
+     * @return Código do Cadastro Imobiliário Brasileiro
+     */
+    public String getCCIB() {
+        return cCIB;
+    }
+
+    /**
+     * Define o código do Cadastro Imobiliário Brasileiro - CIB
+     *
+     * @param value Código do Cadastro Imobiliário Brasileiro
+     */
+    public NFSeSefinNacionalInfoObra setCCIB(String value) {
+        this.cCIB = value;
+        return this;
+    }
+
+    /**
      * Endereço da obra
      *
      * @return Endereço da obra
      */
-    public NFSeSefinNacionalEnderecoSimples getEndereco() {
+    public NFSeSefinNacionalEnderObraEvento getEndereco() {
         return endereco;
     }
 
@@ -72,7 +93,7 @@ public class NFSeSefinNacionalInfoObra {
      *
      * @param value Endereço da obra
      */
-    public NFSeSefinNacionalInfoObra setEndereco(NFSeSefinNacionalEnderecoSimples value) {
+    public NFSeSefinNacionalInfoObra setEndereco(NFSeSefinNacionalEnderObraEvento value) {
         this.endereco = value;
         return this;
     }

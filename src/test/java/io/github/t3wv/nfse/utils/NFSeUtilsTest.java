@@ -80,9 +80,6 @@ public class NFSeUtilsTest {
         evento.setInfPedReg(new NFSeSefinNacionalInfPedReg().setChaveAcessoNFSE("12345123451234512134512345123451234512345123451234"));
         Assertions.assertThrows(AssertionError.class, () -> NFSeUtils.gerarEventoId(evento));
 
-        evento.getInfPedReg().setNPedRegEvento("1");
-        Assertions.assertThrows(AssertionError.class, () -> NFSeUtils.gerarEventoId(evento));
-
         evento.getInfPedReg().setEvento(new NFSeSefinNacionalInfPedRegTE101101());
         Assertions.assertEquals("PRE12345123451234512134512345123451234512345123451234101101001", NFSeUtils.gerarEventoId(evento));
     }

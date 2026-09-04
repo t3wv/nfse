@@ -16,14 +16,10 @@ public class NFSeSefinNacionalServ {
     protected NFSeSefinNacionalCServ codigoServico;
     @Element(name = "comExt", required = false)
     protected NFSeSefinNacionalComercioExterior comercioExterior;
-    @Element(name = "lsadppu", required = false)
-    protected NFSeSefinNacionalLocacaoSublocacao localSubLocacao;
     @Element(name = "obra", required = false)
     protected NFSeSefinNacionalInfoObra obra;
     @Element(name = "atvEvento", required = false)
     protected NFSeSefinNacionalAtvEvento evento;
-    @Element(name = "explRod", required = false)
-    protected NFSeSefinNacionalExploracaoRodoviaria exploracaoRodoviaria;
     @Element(name = "infoCompl", required = false)
     protected NFSeSefinNacionalInfoCompl informacoesComplementares;
 
@@ -54,15 +50,6 @@ public class NFSeSefinNacionalServ {
         return this;
     }
 
-    public NFSeSefinNacionalLocacaoSublocacao getLocalSubLocacao() {
-        return localSubLocacao;
-    }
-
-    public NFSeSefinNacionalServ setLocalSubLocacao(NFSeSefinNacionalLocacaoSublocacao value) {
-        this.localSubLocacao = value;
-        return this;
-    }
-
     public NFSeSefinNacionalInfoObra getObra() {
         return obra;
     }
@@ -78,15 +65,6 @@ public class NFSeSefinNacionalServ {
 
     public NFSeSefinNacionalServ setEvento(NFSeSefinNacionalAtvEvento value) {
         this.evento = value;
-        return this;
-    }
-
-    public NFSeSefinNacionalExploracaoRodoviaria getExploracaoRodoviaria() {
-        return exploracaoRodoviaria;
-    }
-
-    public NFSeSefinNacionalServ setExploracaoRodoviaria(NFSeSefinNacionalExploracaoRodoviaria value) {
-        this.exploracaoRodoviaria = value;
         return this;
     }
 

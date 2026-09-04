@@ -23,7 +23,7 @@ public class NFSeSefinNacionalInfoIBSCBS {
     @Element(name="indDest")
     protected NFSeSefinNacionalInfoIBSCBSIndDest indDest;
     @Element(name="dest", required = false)
-    protected NFSeSefinNacionalInfoPessoa dest;
+    protected NFSeSefinNacionalInfoIBSCBSInfoDest dest;
     @Element(name="imovel", required = false)
     protected NFSeSefinNacionalInfoIBSCBSInfoImovel imovel;
     @Element(name="valores")
@@ -165,7 +165,7 @@ public class NFSeSefinNacionalInfoIBSCBS {
      * Dados do destinatário dos serviços
      * @return dest
      */
-    public NFSeSefinNacionalInfoPessoa getDest() {
+    public NFSeSefinNacionalInfoIBSCBSInfoDest getDest() {
         return dest;
     }
 
@@ -174,7 +174,7 @@ public class NFSeSefinNacionalInfoIBSCBS {
      * @param dest
      * @return NFSeSefinNacionalInfoIBSCBS
      */
-    public NFSeSefinNacionalInfoIBSCBS setDest(NFSeSefinNacionalInfoPessoa dest) {
+    public NFSeSefinNacionalInfoIBSCBS setDest(NFSeSefinNacionalInfoIBSCBSInfoDest dest) {
         this.dest = dest;
         return this;
     }

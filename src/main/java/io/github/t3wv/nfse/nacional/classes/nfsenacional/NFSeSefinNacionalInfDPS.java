@@ -25,6 +25,10 @@ public class NFSeSefinNacionalInfDPS {
     protected LocalDate dataInicioPrestacaoServico;
     @Element(name = "tpEmit")
     protected NFSeSefinNacionalInfDPSTipoEmitente tipoEmitente;
+    @Element(name = "cMotivoEmisTI", required = false)
+    protected NFSeSefinNacionalTSMotivoEmisTI motivoEmissaoTomadorIntermediario;
+    @Element(name = "chNFSeRej", required = false)
+    protected String chaveNFSeRejeitada;
     @Element(name = "cLocEmi")
     protected String codigoMunicipioEmissao;
     @Element(name = "subst", required = false)
@@ -151,6 +155,36 @@ public class NFSeSefinNacionalInfDPS {
      */
     public NFSeSefinNacionalInfDPS setTipoEmitente(NFSeSefinNacionalInfDPSTipoEmitente tipoEmitente) {
         this.tipoEmitente = tipoEmitente;
+        return this;
+    }
+
+    /**
+     * @return motivo da emissão da DPS pelo Tomador/Intermediário
+     */
+    public NFSeSefinNacionalTSMotivoEmisTI getMotivoEmissaoTomadorIntermediario() {
+        return motivoEmissaoTomadorIntermediario;
+    }
+
+    /**
+     * @param motivoEmissaoTomadorIntermediario motivo da emissão da DPS pelo Tomador/Intermediário
+     */
+    public NFSeSefinNacionalInfDPS setMotivoEmissaoTomadorIntermediario(NFSeSefinNacionalTSMotivoEmisTI motivoEmissaoTomadorIntermediario) {
+        this.motivoEmissaoTomadorIntermediario = motivoEmissaoTomadorIntermediario;
+        return this;
+    }
+
+    /**
+     * @return chave de acesso da NFS-e rejeitada pelo Tomador/Intermediário
+     */
+    public String getChaveNFSeRejeitada() {
+        return chaveNFSeRejeitada;
+    }
+
+    /**
+     * @param chaveNFSeRejeitada chave de acesso da NFS-e rejeitada pelo Tomador/Intermediário
+     */
+    public NFSeSefinNacionalInfDPS setChaveNFSeRejeitada(String chaveNFSeRejeitada) {
+        this.chaveNFSeRejeitada = chaveNFSeRejeitada;
         return this;
     }
 

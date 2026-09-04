@@ -5,11 +5,11 @@ import org.simpleframework.xml.Element;
 import java.math.BigDecimal;
 
 public class NFSeSefinNacionalInfNFSeIBSCBSValoresFed {
-    @Element(name="pCBS", required = false)
+    @Element(name="pCBS")
     private BigDecimal pCBS;
     @Element(name="pRedAliqCBS", required = false)
     private BigDecimal pRedAliqCBS;
-    @Element(name="pAliqEfetCBS", required = false)
+    @Element(name="pAliqEfetCBS")
     private BigDecimal pAliqEfetCBS;
 
     public BigDecimal getpCBS() {

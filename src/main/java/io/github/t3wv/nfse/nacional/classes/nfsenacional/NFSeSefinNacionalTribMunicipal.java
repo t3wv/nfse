@@ -16,16 +16,16 @@ public class NFSeSefinNacionalTribMunicipal {
     protected NFSeSefinNacionalTribMunicipalTributacaoISSQN tributacaoISSQN;
     @Element(name = "cPaisResult", required = false)
     protected String codigoPais;
-    @Element(name = "BM", required = false)
-    protected NFSeSefinNacionalBeneficioMunicipal beneficioMunicipal;
-    @Element(name = "exigSusp", required = false)
-    protected NFSeSefinNacionalExigSuspensa exigibilidadeSuspensa;
     @Element(name = "tpImunidade", required = false)
     protected NFSeSefinNacionalTribMunicipalTipoImunidade tipoImunidade;
-    @Element(name = "pAliq", required = false)
-    protected BigDecimal percentualAliquota;
+    @Element(name = "exigSusp", required = false)
+    protected NFSeSefinNacionalExigSuspensa exigibilidadeSuspensa;
+    @Element(name = "BM", required = false)
+    protected NFSeSefinNacionalBeneficioMunicipal beneficioMunicipal;
     @Element(name = "tpRetISSQN")
     protected NFSeSefinNacionalTribMunicipalTipoRetencaoISSQN tipoRetencaoISSQN;
+    @Element(name = "pAliq", required = false)
+    protected BigDecimal percentualAliquota;
 
     /**
      * @return tributação do ISSQN sobre o serviço prestado
@@ -58,17 +58,17 @@ public class NFSeSefinNacionalTribMunicipal {
     }
 
     /**
-     * @return Benefício Municipal concedido ao prestador do serviço
+     * @return Tipo de imunidade do ISSQN sobre o serviço prestado
      */
-    public NFSeSefinNacionalBeneficioMunicipal getBeneficioMunicipal() {
-        return beneficioMunicipal;
+    public NFSeSefinNacionalTribMunicipalTipoImunidade getTipoImunidade() {
+        return tipoImunidade;
     }
 
     /**
-     * @param beneficioMunicipal Benefício Municipal concedido ao prestador do serviço
+     * @param tipoImunidade Tipo de imunidade do ISSQN sobre o serviço prestado
      */
-    public NFSeSefinNacionalTribMunicipal setBeneficioMunicipal(NFSeSefinNacionalBeneficioMunicipal beneficioMunicipal) {
-        this.beneficioMunicipal = beneficioMunicipal;
+    public NFSeSefinNacionalTribMunicipal setTipoImunidade(NFSeSefinNacionalTribMunicipalTipoImunidade tipoImunidade) {
+        this.tipoImunidade = tipoImunidade;
         return this;
     }
 
@@ -88,32 +88,17 @@ public class NFSeSefinNacionalTribMunicipal {
     }
 
     /**
-     * @return Tipo de imunidade do ISSQN sobre o serviço prestado
+     * @return Benefício Municipal concedido ao prestador do serviço
      */
-    public NFSeSefinNacionalTribMunicipalTipoImunidade getTipoImunidade() {
-        return tipoImunidade;
+    public NFSeSefinNacionalBeneficioMunicipal getBeneficioMunicipal() {
+        return beneficioMunicipal;
     }
 
     /**
-     * @param tipoImunidade Tipo de imunidade do ISSQN sobre o serviço prestado
+     * @param beneficioMunicipal Benefício Municipal concedido ao prestador do serviço
      */
-    public NFSeSefinNacionalTribMunicipal setTipoImunidade(NFSeSefinNacionalTribMunicipalTipoImunidade tipoImunidade) {
-        this.tipoImunidade = tipoImunidade;
-        return this;
-    }
-
-    /**
-     * @return Percentual da alíquota do ISSQN sobre o serviço prestado
-     */
-    public BigDecimal getPercentualAliquota() {
-        return percentualAliquota;
-    }
-
-    /**
-     * @param percentualAliquota Percentual da alíquota do ISSQN sobre o serviço prestado
-     */
-    public NFSeSefinNacionalTribMunicipal setPercentualAliquota(BigDecimal percentualAliquota) {
-        this.percentualAliquota = percentualAliquota;
+    public NFSeSefinNacionalTribMunicipal setBeneficioMunicipal(NFSeSefinNacionalBeneficioMunicipal beneficioMunicipal) {
+        this.beneficioMunicipal = beneficioMunicipal;
         return this;
     }
 
@@ -129,6 +114,21 @@ public class NFSeSefinNacionalTribMunicipal {
      */
     public NFSeSefinNacionalTribMunicipal setTipoRetencaoISSQN(NFSeSefinNacionalTribMunicipalTipoRetencaoISSQN tipoRetencaoISSQN) {
         this.tipoRetencaoISSQN = tipoRetencaoISSQN;
+        return this;
+    }
+
+    /**
+     * @return Percentual da alíquota do ISSQN sobre o serviço prestado
+     */
+    public BigDecimal getPercentualAliquota() {
+        return percentualAliquota;
+    }
+
+    /**
+     * @param percentualAliquota Percentual da alíquota do ISSQN sobre o serviço prestado
+     */
+    public NFSeSefinNacionalTribMunicipal setPercentualAliquota(BigDecimal percentualAliquota) {
+        this.percentualAliquota = percentualAliquota;
         return this;
     }
 

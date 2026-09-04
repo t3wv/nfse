@@ -1,21 +1,26 @@
 package io.github.t3wv.nfse.utils;
 
-import io.github.t3wv.nfse.NFSeConfig;
-import io.github.t3wv.nfse.NFSeLogger;
-import io.github.t3wv.nfse.municipal.nfseSPBarueri.WSBarueri;
-import io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.WSLoteNFe;
-import io.github.t3wv.nfse.nacional.WSDANFSe;
-import io.github.t3wv.nfse.nacional.WSParametrosMunicipais;
-import io.github.t3wv.nfse.nacional.WSSefinNFSe;
-import org.apache.commons.lang3.StringUtils;
-
-import javax.net.ssl.*;
 import java.io.ByteArrayOutputStream;
 import java.net.URI;
 import java.security.KeyStore;
 import java.security.MessageDigest;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSocket;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.TrustManagerFactory;
+import javax.net.ssl.X509TrustManager;
+
+import org.apache.commons.lang3.StringUtils;
+
+import io.github.t3wv.nfse.NFSeLogger;
+import io.github.t3wv.nfse.municipal.nfseSPBarueri.WSBarueri;
+import io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.WSLoteNFe;
+import io.github.t3wv.nfse.nacional.WSDANFSe;
+import io.github.t3wv.nfse.nacional.WSParametrosMunicipais;
+import io.github.t3wv.nfse.nacional.WSSefinNFSe;
 
 /**
  * Classe utilitaria para gerar a cadeia de certificados (cacerts) necessaria para comunicacao com os webservices de NFSe.
@@ -24,10 +29,9 @@ public abstract class NFSeCadeiaCertificados implements NFSeLogger {
 
     private static final int PORT = 443;
 
-    public static byte[] geraCadeiaCertificados(final NFSeConfig config) throws Exception {
-        final var cadeiaCertificadosSenha = config.getCadeiaCertificadosSenha();
+    public static byte[] geraCadeiaCertificados(final String senha) throws Exception {
         final KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
-        keyStore.load(null, cadeiaCertificadosSenha.toCharArray());
+        keyStore.load(null, senha.toCharArray());
         try (ByteArrayOutputStream out = new ByteArrayOutputStream()) {
             NFSeCadeiaCertificados.get(keyStore, WSSefinNFSe.URL_BASE_PRODUCAO);
             NFSeCadeiaCertificados.get(keyStore, WSSefinNFSe.URL_BASE_HOMOLOGACAO);
@@ -40,7 +44,7 @@ public abstract class NFSeCadeiaCertificados implements NFSeLogger {
             NFSeCadeiaCertificados.get(keyStore, WSLoteNFe.URL_BASE);
 
             // grava o keystore em um array de bytes
-            keyStore.store(out, cadeiaCertificadosSenha.toCharArray());
+            keyStore.store(out, senha.toCharArray());
             return out.toByteArray();
         }
     }

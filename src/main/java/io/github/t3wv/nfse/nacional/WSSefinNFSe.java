@@ -199,9 +199,6 @@ public class WSSefinNFSe implements NFSeLogger {
         if (StringUtils.isBlank(pedidoRegistroEvento.getInfPedReg().getVerAplic())) {
             pedidoRegistroEvento.getInfPedReg().setVerAplic("T3W %s".formatted(pedidoRegistroEvento.getInfPedReg().getTpAmb().getDescricao()));
         }
-        if (StringUtils.isBlank(pedidoRegistroEvento.getInfPedReg().getNPedRegEvento())) {
-//            pedidoRegistroEvento.getInfPedReg().setNPedRegEvento("1");
-        }
         if (pedidoRegistroEvento.getInfPedReg().getEvento() == null) {
             pedidoRegistroEvento.getInfPedReg().setEvento(new NFSeSefinNacionalInfPedRegTE101101()
                 .setcMotivo(NFSeSefinNacionalTSCodJustCanc.OUTROS)

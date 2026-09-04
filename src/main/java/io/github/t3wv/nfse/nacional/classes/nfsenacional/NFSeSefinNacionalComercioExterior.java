@@ -3,6 +3,8 @@ package io.github.t3wv.nfse.nacional.classes.nfsenacional;
 
 import org.simpleframework.xml.*;
 
+import java.math.BigDecimal;
+
 /**
  * Grupo de informações relativas à exportação/importação de serviço prestado
  */
@@ -17,7 +19,7 @@ public class NFSeSefinNacionalComercioExterior {
     @Element(name = "tpMoeda")
     protected String moeda;
     @Element(name = "vServMoeda")
-    protected String valorServicoMoedaEstrangeira;
+    protected BigDecimal valorServicoMoedaEstrangeira;
     @Element(name = "mecAFComexP")
     protected NFSeSefinNacionalComercioExteriorMecanismoApoioPrestador mecanismoApoioComercioExteriorPrestador;
     @Element(name = "mecAFComexT")
@@ -85,7 +87,7 @@ public class NFSeSefinNacionalComercioExterior {
     /**
      * @return Valor do serviço na moeda estrangeira
      */
-    public String getVServMoeda() {
+    public BigDecimal getVServMoeda() {
         return valorServicoMoedaEstrangeira;
     }
 
@@ -94,7 +96,7 @@ public class NFSeSefinNacionalComercioExterior {
      *
      * @param value Valor do serviço na moeda estrangeira
      */
-    public NFSeSefinNacionalComercioExterior setVServMoeda(String value) {
+    public NFSeSefinNacionalComercioExterior setVServMoeda(BigDecimal value) {
         this.valorServicoMoedaEstrangeira = value;
         return this;
     }
