@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.marcoslombardi</groupId>
     <artifactId>nfse</artifactId>
-    <version>1.0.52</version>
+    <version>1.0.53-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>nfse</name>
     <description>Biblioteca de comunicacao de nota fiscal de serviço eletronica brasileira</description>
@@ -18,7 +18,7 @@
         <url>https://github.com/marcoslombardi/nfse.git</url>
         <connection>scm:git:https://github.com/marcoslombardi/nfse.git</connection>
         <developerConnection>scm:git:https://github.com/marcoslombardi/nfse.git</developerConnection>
-        <tag>nfse-1.0.52</tag>
+        <tag>HEAD</tag>
     </scm>
     <developers>
         <developer>
