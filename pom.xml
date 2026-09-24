@@ -1,12 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>io.github.marcoslombardi</groupId>
+    <groupId>io.github.t3wv</groupId>
     <artifactId>nfse</artifactId>
     <version>1.0.53-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>nfse</name>
     <description>Biblioteca de comunicacao de nota fiscal de serviço eletronica brasileira</description>
-    <url>https://github.com/marcoslombardi/nfse</url>
+    <url>https://github.com/t3wv/nfse</url>
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
@@ -15,9 +15,9 @@
         </license>
     </licenses>
     <scm>
-        <url>https://github.com/marcoslombardi/nfse.git</url>
-        <connection>scm:git:https://github.com/marcoslombardi/nfse.git</connection>
-        <developerConnection>scm:git:https://github.com/marcoslombardi/nfse.git</developerConnection>
+        <url>https://github.com/t3wv/nfse.git</url>
+        <connection>scm:git:https://github.com/t3wv/nfse.git</connection>
+        <developerConnection>scm:git:https://github.com/t3wv/nfse.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
     <developers>
@@ -25,11 +25,6 @@
             <id>fincatto</id>
             <name>Diego Fincatto</name>
             <url>https://github.com/fincatto</url>
-        </developer>
-        <developer>
-            <id>marcoslombardi</id>
-            <name>Marcos Lombardi</name>
-            <url>https://github.com/marcoslombardi</url>
         </developer>
     </developers>
     <properties>
@@ -39,6 +34,7 @@
         <jackson.version>2.21.5</jackson.version>
         <simple-xml.version>2.7.1</simple-xml.version>
         <commons-lang3.version>3.20.0</commons-lang3.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <dependencies>
         <!-- Commons Lang -->
@@ -126,9 +122,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.16.0</version>
                 <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                    <optimize>true</optimize>
+                    <release>${java.version}</release>
                     <debug>false</debug>
                 </configuration>
             </plugin>
@@ -163,7 +157,7 @@
             <distributionManagement>
                 <repository>
                     <id>github</id>
-                    <url>https://maven.pkg.github.com/marcoslombardi/nfse</url>
+                    <url>https://maven.pkg.github.com/t3wv/nfse</url>
                 </repository>
             </distributionManagement>
         </profile>
@@ -210,9 +204,8 @@
                             <scmCommentPrefix>[maven-release-plugin] [skip ci]</scmCommentPrefix>
                             <allowTimestampedSnapshots>true</allowTimestampedSnapshots>
                             <autoVersionSubmodules>true</autoVersionSubmodules>
-                            <tagNameFormat>nfse-@{project.version}</tagNameFormat>
+                            <tagNameFormat>v@{project.version}</tagNameFormat>
                             <remoteTagging>false</remoteTagging>
-                            <localCheckout>true</localCheckout>
                         </configuration>
                         <executions>
                             <execution>
