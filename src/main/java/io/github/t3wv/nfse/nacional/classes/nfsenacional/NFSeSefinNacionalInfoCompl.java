@@ -11,11 +11,11 @@ import org.simpleframework.xml.Root;
 @Root(name = "infoCompl")
 public class NFSeSefinNacionalInfoCompl {
 
-    @Element(name = "idDocTec")
+    @Element(name = "idDocTec", required = false)
     protected String idDocResponsabilidadeTecnica;
-    @Element(name = "docRef")
+    @Element(name = "docRef", required = false)
     protected String referenciaDocumento;
-    @Element(name = "xInfComp")
+    @Element(name = "xInfComp", required = false)
     protected String informacoesComplementares;
 
     /**
