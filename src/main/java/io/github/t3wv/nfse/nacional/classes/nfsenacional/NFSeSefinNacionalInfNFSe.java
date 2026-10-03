@@ -27,13 +27,13 @@ public class NFSeSefinNacionalInfNFSe {
     @Element(name = "verAplic", required = true)
     protected String versaoAplicacao;
     @Element(name = "ambGer", required = true)
-    protected String ambienteGeracao;
+    protected NFSeSefinNacionalInfNFSeAmbienteGeracao ambienteGeracao;
     @Element(name = "tpEmis", required = true)
     protected NFSeSefinNacionalInfNFSeTipoEmissao tipoEmissao;
     @Element(name = "procEmi", required = false)
     protected NFSeSefinNacionalInfNFSeProcessoEmissao processoEmissao;
     @Element(name = "cStat", required = true)
-    protected String codigoStatus;
+    protected NFSeSefinNacionalInfNFSeSituacao situacao;
     @Element(name = "dhProc", required = true)
     protected ZonedDateTime dataHoraProcessamento;
     @Element(name = "nDFSe", required = false)
@@ -132,11 +132,11 @@ public class NFSeSefinNacionalInfNFSe {
         return this;
     }
 
-    public String getAmbienteGeracao() {
+    public NFSeSefinNacionalInfNFSeAmbienteGeracao getAmbienteGeracao() {
         return ambienteGeracao;
     }
 
-    public NFSeSefinNacionalInfNFSe setAmbienteGeracao(String ambienteGeracao) {
+    public NFSeSefinNacionalInfNFSe setAmbienteGeracao(NFSeSefinNacionalInfNFSeAmbienteGeracao ambienteGeracao) {
         this.ambienteGeracao = ambienteGeracao;
         return this;
     }
@@ -159,12 +159,12 @@ public class NFSeSefinNacionalInfNFSe {
         return this;
     }
 
-    public String getCodigoStatus() {
-        return codigoStatus;
+    public NFSeSefinNacionalInfNFSeSituacao getSituacao() {
+        return situacao;
     }
 
-    public NFSeSefinNacionalInfNFSe setCodigoStatus(String codigoStatus) {
-        this.codigoStatus = codigoStatus;
+    public NFSeSefinNacionalInfNFSe setSituacao(NFSeSefinNacionalInfNFSeSituacao situacao) {
+        this.situacao = situacao;
         return this;
     }
 

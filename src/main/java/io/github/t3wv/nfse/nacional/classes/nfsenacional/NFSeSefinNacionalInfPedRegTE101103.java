@@ -5,7 +5,7 @@ import org.simpleframework.xml.Element;
 public class NFSeSefinNacionalInfPedRegTE101103 extends NFSeSefinNacionalInfPedRegEventoTE{
 
     @Element(name = "cMotivo")
-    protected String cMotivo;
+    protected NFSeSefinNacionalTSCodJustAnaliseFiscalCanc cMotivo;
     @Element(name = "xMotivo")
     protected String xMotivo;
 
@@ -13,11 +13,11 @@ public class NFSeSefinNacionalInfPedRegTE101103 extends NFSeSefinNacionalInfPedR
         super("Solicitação de Análise Fiscal para Cancelamento de NFS-e", "101103");
     }
 
-    public String getcMotivo() {
+    public NFSeSefinNacionalTSCodJustAnaliseFiscalCanc getcMotivo() {
         return cMotivo;
     }
 
-    public NFSeSefinNacionalInfPedRegTE101103 setcMotivo(String cMotivo) {
+    public NFSeSefinNacionalInfPedRegTE101103 setcMotivo(NFSeSefinNacionalTSCodJustAnaliseFiscalCanc cMotivo) {
         this.cMotivo = cMotivo;
         return this;
     }
