@@ -8,7 +8,7 @@ public class NFSeSefinNacionalInfPedRegTE305102 extends NFSeSefinNacionalInfPedR
     @Element(name = "xMotivo")
     protected String xMotivo;
     @Element(name = "codEvento")
-    protected String codEvento;
+    protected NFSeSefinNacionalTSCodigoEventoNFSe codEvento;
 
     public NFSeSefinNacionalInfPedRegTE305102() {
         super("Bloqueio de NFS-e por Ofício", "305102");
@@ -32,11 +32,11 @@ public class NFSeSefinNacionalInfPedRegTE305102 extends NFSeSefinNacionalInfPedR
         return this;
     }
 
-    public String getCodEvento() {
+    public NFSeSefinNacionalTSCodigoEventoNFSe getCodEvento() {
         return codEvento;
     }
 
-    public NFSeSefinNacionalInfPedRegTE305102 setCodEvento(String codEvento) {
+    public NFSeSefinNacionalInfPedRegTE305102 setCodEvento(NFSeSefinNacionalTSCodigoEventoNFSe codEvento) {
         this.codEvento = codEvento;
         return this;
     }
