@@ -6,8 +6,8 @@ public class TpIBSCBS {
 
     @Element(name = "finNFSe")
     protected int finNFSe;
-    @Element(name = "indFinal")
-    protected boolean indFinal;
+    @Element(name = "indFinal", required = false) // Required 'false' provisoriamente - api retornando fora do padrão dos schemas
+    protected Boolean indFinal;
     @Element(name = "cIndOp")
     protected String cIndOp;
     @Element(name = "tpOper", required = false)
@@ -34,11 +34,11 @@ public class TpIBSCBS {
         return this;
     }
 
-    public boolean isIndFinal() {
+    public Boolean isIndFinal() {
         return indFinal;
     }
 
-    public TpIBSCBS setIndFinal(boolean value) {
+    public TpIBSCBS setIndFinal(Boolean value) {
         this.indFinal = value;
         return this;
     }
