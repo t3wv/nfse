@@ -24,6 +24,9 @@ import java.util.stream.Collectors;
 
 public class WSSefinNFSe implements NFSeLogger {
 
+    /** XSD da DPS validado antes do envio: produção restrita de 20/10/2026, leiaute da NT SE/CGNFS-e 009 */
+    public static final String XSD_DPS = "NFSeNacional_nfse-esquemas_xsd-v1-01-20261020/DPS_v1.01.xsd";
+
     public static final String URL_BASE_PRODUCAO = "https://sefin.nfse.gov.br/sefinnacional";
     public static final String URL_BASE_HOMOLOGACAO = "https://sefin.producaorestrita.nfse.gov.br/sefinnacional";
     private static final String URL_PRODUCAO_NFSE = URL_BASE_PRODUCAO + "/nfse";
@@ -145,7 +148,7 @@ public class WSSefinNFSe implements NFSeLogger {
 
 
         //cria os validatores
-        final var xmlValidator = new NFSeXmlValidator(new StreamSource(WSSefinNFSe.class.getClassLoader().getResource("NFSeNacional_nfse-esquemas_xsd-v1-01-20260209/Schemas/1.01/DPS_v1.01.xsd").toURI().toString()));
+        final var xmlValidator = new NFSeXmlValidator(new StreamSource(WSSefinNFSe.class.getClassLoader().getResource(XSD_DPS).toURI().toString()));
 
         //gera o xml e valida
         final var xmlNaoAssinado = dps.toXml();

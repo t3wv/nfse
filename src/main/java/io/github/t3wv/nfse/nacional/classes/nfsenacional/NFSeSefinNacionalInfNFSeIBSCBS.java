@@ -5,13 +5,13 @@ import org.simpleframework.xml.Element;
 import java.math.BigDecimal;
 
 public class NFSeSefinNacionalInfNFSeIBSCBS {
-    @Element(name = "cLocalidadeIncid")
+    @Element(name = "cLocalidadeIncid", required = false)
     private String cLocalidadeIncid;
-    @Element(name = "xLocalidadeIncid")
+    @Element(name = "xLocalidadeIncid", required = false)
     private String xLocalidadeIncid;
     @Element(name = "pRedutor", required = false)
     private BigDecimal pRedutor;
-    @Element(name = "valores")
+    @Element(name = "valores", required = false)
     private NFSeSefinNacionalInfNFSeIBSCBSValores valores;
     @Element(name = "totCIBS")
     private NFSeSefinNacionalInfNFSeIBSCBSTotais totCIBS;

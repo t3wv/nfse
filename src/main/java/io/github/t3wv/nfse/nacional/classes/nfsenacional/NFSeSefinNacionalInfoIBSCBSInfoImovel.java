@@ -1,41 +1,70 @@
 package io.github.t3wv.nfse.nacional.classes.nfsenacional;
 
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
+import java.util.List;
+
+/**
+ * Informações de operações com bens imóveis (TCRTCInfoImovel), reestruturado pela NT SE/CGNFS-e 009
+ */
 @Root(name = "imovel")
 public class NFSeSefinNacionalInfoIBSCBSInfoImovel {
-    @Element(name="inscImobFisc", required = false)
-    protected String inscImobFisc;
-    @Element(name="cCIB", required = false)
-    protected String cCIB;
-    @Element(name="end", required = false)
-    protected NFSeSefinNacionalEnderObraEvento end;
+    // Obrigatório no XSD da NT 009; required = false só para ler o imovel do leiaute anterior, sem cMun.
+    // Numa DPS nova sem ele, quem recusa é a SEFIN (a validação local em WSSefinNFSe é um assert).
+    @Element(name = "cMun", required = false)
+    protected String cMun;
+    @Element(name = "gLocacao", required = false)
+    protected NFSeSefinNacionalInfoIBSCBSImovelLocacao gLocacao;
+    @ElementList(name = "gUnidImob", entry = "gUnidImob", inline = true, required = false)
+    protected List<NFSeSefinNacionalInfoIBSCBSImovelUnidade> gUnidImob;
 
-    public String getInscImobFisc() {
-        return inscImobFisc;
+    /**
+     * Código IBGE do município do imóvel
+     * @return cMun
+     */
+    public String getcMun() {
+        return cMun;
     }
 
-    public NFSeSefinNacionalInfoIBSCBSInfoImovel setInscImobFisc(String inscImobFisc) {
-        this.inscImobFisc = inscImobFisc;
+    public NFSeSefinNacionalInfoIBSCBSInfoImovel setcMun(String cMun) {
+        this.cMun = cMun;
         return this;
     }
 
-    public String getcCIB() {
-        return cCIB;
+    /**
+     * Informações da locação, cessão onerosa ou arrendamento do imóvel
+     * @return gLocacao
+     */
+    public NFSeSefinNacionalInfoIBSCBSImovelLocacao getgLocacao() {
+        return gLocacao;
     }
 
-    public NFSeSefinNacionalInfoIBSCBSInfoImovel setcCIB(String cCIB) {
-        this.cCIB = cCIB;
+    public NFSeSefinNacionalInfoIBSCBSInfoImovel setgLocacao(NFSeSefinNacionalInfoIBSCBSImovelLocacao gLocacao) {
+        this.gLocacao = gLocacao;
         return this;
     }
 
-    public NFSeSefinNacionalEnderObraEvento getEnd() {
-        return end;
+    /**
+     * Unidades imobiliárias (até 99)
+     * @return gUnidImob
+     */
+    public List<NFSeSefinNacionalInfoIBSCBSImovelUnidade> getgUnidImob() {
+        return gUnidImob;
     }
 
-    public NFSeSefinNacionalInfoIBSCBSInfoImovel setEnd(NFSeSefinNacionalEnderObraEvento end) {
-        this.end = end;
+    public NFSeSefinNacionalInfoIBSCBSInfoImovel setgUnidImob(List<NFSeSefinNacionalInfoIBSCBSImovelUnidade> gUnidImob) {
+        this.gUnidImob = gUnidImob;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return "NFSeSefinNacionalInfoIBSCBSInfoImovel{" +
+                "cMun=" + cMun +
+                ", gLocacao=" + gLocacao +
+                ", gUnidImob=" + gUnidImob +
+                '}';
     }
 }

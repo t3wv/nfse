@@ -14,8 +14,8 @@ public class NFSeSefinNacionalInfoValores {
     protected NFSeSefinNacionalVServPrest valoresServicoPrestado;
     @Element(name="vDescCondIncond", required = false)
     protected NFSeSefinNacionalVDescCondIncond valoresDescontosCondicionadosIncondicionados;
-    @Element(name="vDedRed", required = false)
-    protected NFSeSefinNacionalInfoDedRed valoresDeducaoBaseCalculo;
+    @Element(name="vAjusteBC", required = false)
+    protected NFSeSefinNacionalInfoAjusteBC valoresAjusteBaseCalculo;
     @Element(name="trib")
     protected NFSeSefinNacionalInfoTributacao tributos;
 
@@ -54,19 +54,19 @@ public class NFSeSefinNacionalInfoValores {
     }
 
     /**
-     * @return Valores de Dedução da Base de Cálculo
+     * @return Valores para ajuste da base de cálculo (vAjusteBC, NT SE/CGNFS-e 009; substitui o vDedRed)
      */
-    public NFSeSefinNacionalInfoDedRed getValoresDeducaoBaseCalculo() {
-        return valoresDeducaoBaseCalculo;
+    public NFSeSefinNacionalInfoAjusteBC getValoresAjusteBaseCalculo() {
+        return valoresAjusteBaseCalculo;
     }
 
     /**
-     * Define os Valores de Dedução da Base de Cálculo
+     * Define os valores para ajuste da base de cálculo (vAjusteBC, NT SE/CGNFS-e 009; substitui o vDedRed)
      *
-     * @param value Valores de Dedução da Base de Cálculo
+     * @param value valores para ajuste da base de cálculo
      */
-    public NFSeSefinNacionalInfoValores setValoresDeducaoBaseCalculo(NFSeSefinNacionalInfoDedRed value) {
-        this.valoresDeducaoBaseCalculo = value;
+    public NFSeSefinNacionalInfoValores setValoresAjusteBaseCalculo(NFSeSefinNacionalInfoAjusteBC value) {
+        this.valoresAjusteBaseCalculo = value;
         return this;
     }
 

@@ -23,7 +23,7 @@ public class NFSeSefinNacionalInfoPessoa {
     protected String nroCadastroAtividadeEconomicaPessoaFisica;
     @Element(name = "IM", required = false)
     protected String inscricaoMunicipal;
-    @Element(name = "xNome")
+    @Element(name = "xNome", required = false)
     protected String nome;
     @Element(name = "end", required = false)
     protected NFSeSefinNacionalEndereco endereco;
