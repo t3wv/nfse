@@ -3,9 +3,9 @@ package io.github.t3wv.nfse.nacional.classes.nfsenacional;
 public enum NFSeSefinNacionalTribMunicipalTributacaoISSQN {
 
     OPERACAO_TRIBUTAVEL("1", "Operação tributável"),
-    EXPORTACAO_SERVICO("2", "Exportação de serviço"),
-    NAO_INCIDENCIA("3", "Não Incidência"),
-    IMUNIDADE("4", "Imunidade");
+    IMUNIDADE("2", "Imunidade"),
+    EXPORTACAO_SERVICO("3", "Exportação de serviço"),
+    NAO_INCIDENCIA("4", "Não Incidência");
 
     private final String codigo;
     private final String descricao;
