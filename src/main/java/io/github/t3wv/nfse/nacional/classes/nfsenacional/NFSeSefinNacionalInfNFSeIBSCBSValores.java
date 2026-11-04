@@ -5,11 +5,14 @@ import org.simpleframework.xml.Element;
 import java.math.BigDecimal;
 
 public class NFSeSefinNacionalInfNFSeIBSCBSValores {
-    @Element(name = "vBC")
+    @Element(name = "vBC", required = false)
     private BigDecimal vBC;
 
-    @Element(name = "vCalcReeRepRes", required = false)
-    private BigDecimal vCalcReeRepRes;
+    @Element(name = "vCalcAjusteBCLocImoveis", required = false)
+    private BigDecimal vCalcAjusteBCLocImoveis;
+
+    @Element(name = "vCalcAjusteBCIBSCBS", required = false)
+    private BigDecimal vCalcAjusteBCIBSCBS;
 
     @Element(name = "uf")
     private NFSeSefinNacionalInfNFSeIBSCBSValoresUF uf;
@@ -29,12 +32,27 @@ public class NFSeSefinNacionalInfNFSeIBSCBSValores {
         return this;
     }
 
-    public BigDecimal getvCalcReeRepRes() {
-        return vCalcReeRepRes;
+    /**
+     * Valor calculado do ajuste da base de cálculo do IBS/CBS na locação de imóveis (NT SE/CGNFS-e 009)
+     */
+    public BigDecimal getvCalcAjusteBCLocImoveis() {
+        return vCalcAjusteBCLocImoveis;
     }
 
-    public NFSeSefinNacionalInfNFSeIBSCBSValores setvCalcReeRepRes(BigDecimal vCalcReeRepRes) {
-        this.vCalcReeRepRes = vCalcReeRepRes;
+    public NFSeSefinNacionalInfNFSeIBSCBSValores setvCalcAjusteBCLocImoveis(BigDecimal vCalcAjusteBCLocImoveis) {
+        this.vCalcAjusteBCLocImoveis = vCalcAjusteBCLocImoveis;
+        return this;
+    }
+
+    /**
+     * Valor calculado do ajuste da base de cálculo do IBS/CBS por documentos (NT SE/CGNFS-e 009; substitui o vCalcReeRepRes)
+     */
+    public BigDecimal getvCalcAjusteBCIBSCBS() {
+        return vCalcAjusteBCIBSCBS;
+    }
+
+    public NFSeSefinNacionalInfNFSeIBSCBSValores setvCalcAjusteBCIBSCBS(BigDecimal vCalcAjusteBCIBSCBS) {
+        this.vCalcAjusteBCIBSCBS = vCalcAjusteBCIBSCBS;
         return this;
     }
 
