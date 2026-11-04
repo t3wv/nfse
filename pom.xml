@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.t3wv</groupId>
     <artifactId>nfse</artifactId>
-    <version>1.0.59-SNAPSHOT</version>
+    <version>1.0.61-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>nfse</name>
     <description>Biblioteca de comunicacao de nota fiscal de serviço eletronica brasileira</description>
@@ -129,7 +129,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.6.0</version> <!-- Use a recent version -->
+                <version>3.6.1</version> <!-- Use a recent version -->
                 <configuration>
                     <systemPropertyVariables>
                         <org.slf4j.simpleLogger.defaultLogLevel>DEBUG</org.slf4j.simpleLogger.defaultLogLevel>
