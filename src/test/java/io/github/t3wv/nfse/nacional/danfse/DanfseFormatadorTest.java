@@ -28,7 +28,8 @@ class DanfseFormatadorTest {
         Assertions.assertEquals("-", DanfseFormatador.percentual(null));
         Assertions.assertEquals("-", DanfseFormatador.data(null));
         Assertions.assertEquals("-", DanfseFormatador.dataHora(null));
-        Assertions.assertEquals("-", DanfseFormatador.documento(null, " ", null));
+        Assertions.assertEquals("-", DanfseFormatador.documento(null));
+        Assertions.assertEquals("-", DanfseFormatador.documento(" "));
     }
 
     @Test
@@ -46,12 +47,21 @@ class DanfseFormatadorTest {
         Assertions.assertEquals("12.ABC.345/01DE-35", DanfseFormatador.cnpjOuCpf("12ABC34501DE35"));
         Assertions.assertEquals("529.982.247-25", DanfseFormatador.cnpjOuCpf("52998224725"));
         Assertions.assertEquals("NIF-123", DanfseFormatador.cnpjOuCpf("NIF-123"));
-        Assertions.assertEquals("529.982.247-25", DanfseFormatador.documento(null, "52998224725", "X"));
-        Assertions.assertEquals("X", DanfseFormatador.documento(null, null, "X"));
-        // NIF e documento estrangeiro: nao recebe mascara de CPF ou CNPJ, mesmo com o mesmo comprimento
-        Assertions.assertEquals("12345678901", DanfseFormatador.documento(null, null, "12345678901"));
-        Assertions.assertEquals("12345678000195", DanfseFormatador.documento(null, null, "12345678000195"));
-        Assertions.assertEquals("12.345.678/0001-95", DanfseFormatador.documento("12345678000195", null, null));
+    }
+
+    @Test
+    void deveIdentificarODocumentoPeloDigitoVerificador() {
+        Assertions.assertEquals("12.345.678/0001-95", DanfseFormatador.documento("12345678000195"));
+        Assertions.assertEquals("12.ABC.345/01DE-35", DanfseFormatador.documento("12ABC34501DE35"), "CNPJ alfanumérico");
+        Assertions.assertEquals("529.982.247-25", DanfseFormatador.documento("52998224725"));
+        Assertions.assertEquals("NIF-123", DanfseFormatador.documento("NIF-123"));
+        // NIF estrangeiro com o comprimento de CPF ou CNPJ, mas sem os digitos verificadores validos: sai como informado
+        Assertions.assertEquals("12345678901", DanfseFormatador.documento("12345678901"));
+        Assertions.assertEquals("12345678000199", DanfseFormatador.documento("12345678000199"));
+        // sequencias repetidas fecham o modulo 11, mas nao sao documentos
+        Assertions.assertEquals("00000000000", DanfseFormatador.documento("00000000000"));
+        Assertions.assertEquals("00000000000000", DanfseFormatador.documento("00000000000000"));
+        Assertions.assertEquals(40, DanfseFormatador.documento("N".repeat(60)).length());
     }
 
     @Test
@@ -85,8 +95,6 @@ class DanfseFormatadorTest {
         Assertions.assertEquals("R$ 1.234.567,89", DanfseFormatador.valor(new BigDecimal("1234567.89")));
         Assertions.assertEquals("5,00 %", DanfseFormatador.percentual(new BigDecimal("5")));
         Assertions.assertEquals("0,10 %", DanfseFormatador.percentual(new BigDecimal("0.10")));
-        Assertions.assertNull(DanfseFormatador.somar(null, null));
-        Assertions.assertEquals(new BigDecimal("3.50"), DanfseFormatador.somar(new BigDecimal("1.25"), null, new BigDecimal("2.25")));
     }
 
     @Test

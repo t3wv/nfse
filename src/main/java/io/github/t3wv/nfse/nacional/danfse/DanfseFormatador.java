@@ -10,7 +10,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -123,19 +122,51 @@ final class DanfseFormatador {
     }
 
     /**
-     * @param cnpj CNPJ, ou null
-     * @param cpf CPF, ou null
-     * @param nif NIF, ou null
-     * @return o primeiro documento informado, ou um traço; só o CNPJ e o CPF recebem máscara, e o NIF (documento estrangeiro)
-     * sai como informado, mesmo que tenha o comprimento de um CPF ou CNPJ
+     * Formata o documento do participante (CNPJ, CPF ou NIF), identificando o tipo pelo próprio valor: o CNPJ (inclusive o
+     * alfanumérico) e o CPF com dígitos verificadores válidos recebem a máscara; qualquer outro valor, como o NIF de um
+     * participante do exterior, sai como informado. Validar os dígitos evita mascarar como CPF ou CNPJ um NIF que tenha o mesmo
+     * comprimento.
+     *
+     * @param valor documento informado na NFS-e, ou null
+     * @return documento formatado (até 40 caracteres), ou um traço
      */
-    static String documento(final String cnpj, final String cpf, final String nif) {
-        for (final var valor : new String[]{cnpj, cpf}) {
-            if (!texto(valor).isEmpty()) {
-                return limitar(cnpjOuCpf(valor), 40);
-            }
+    static String documento(final String valor) {
+        final var documento = texto(valor);
+        if (cnpjValido(documento) || cpfValido(documento)) {
+            return cnpjOuCpf(documento);
         }
-        return ouTraco(limitar(nif, 40));
+        return ouTraco(limitar(documento, 40));
+    }
+
+    private static boolean cnpjValido(final String valor) {
+        if (!valor.matches("[0-9A-Z]{12}\\d{2}") || valor.chars().distinct().count() == 1) {
+            return false;
+        }
+        final var primeiro = digitoVerificador(valor.substring(0, 12), 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2);
+        final var segundo = digitoVerificador(valor.substring(0, 12) + primeiro, 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2);
+        return valor.endsWith("" + primeiro + segundo);
+    }
+
+    private static boolean cpfValido(final String valor) {
+        if (!valor.matches("\\d{11}") || valor.chars().distinct().count() == 1) {
+            return false;
+        }
+        final var primeiro = digitoVerificador(valor.substring(0, 9), 10, 9, 8, 7, 6, 5, 4, 3, 2);
+        final var segundo = digitoVerificador(valor.substring(0, 9) + primeiro, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2);
+        return valor.endsWith("" + primeiro + segundo);
+    }
+
+    /**
+     * Dígito verificador em módulo 11. Cada caractere vale o seu código menos o do "0", como define a Receita Federal para o
+     * CNPJ alfanumérico; nos dígitos, isso é o próprio algarismo.
+     */
+    private static int digitoVerificador(final String base, final int... pesos) {
+        int soma = 0;
+        for (int i = 0; i < pesos.length; i++) {
+            soma += (base.charAt(i) - '0') * pesos[i];
+        }
+        final var resto = soma % 11;
+        return resto < 2 ? 0 : 11 - resto;
     }
 
     /**
@@ -225,16 +256,6 @@ final class DanfseFormatador {
     private static String numero(final BigDecimal valor) {
         final var formato = new DecimalFormat("#,##0.00", DecimalFormatSymbols.getInstance(PT_BR));
         return formato.format(valor.setScale(Math.max(2, valor.scale()), RoundingMode.HALF_EVEN));
-    }
-
-    /**
-     * Soma os valores informados, ignorando os nulos.
-     *
-     * @param valores valores, que podem ser null
-     * @return a soma, ou null se nenhum valor foi informado
-     */
-    static BigDecimal somar(final BigDecimal... valores) {
-        return Arrays.stream(valores).filter(Objects::nonNull).reduce(BigDecimal::add).orElse(null);
     }
 
     /**

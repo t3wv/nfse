@@ -155,8 +155,11 @@ final class DanfseTributos {
         final var deducao = nota.dps().getValores() == null ? null : nota.dps().getValores().getValoresDeducaoBaseCalculo();
         final var calculado = valores == null ? null : valores.getVCalcDR();
         final var deducaoInformada = calculado != null ? calculado : deducao == null ? null : deducao.getValorMonetarioPadrao();
-        return DanfseFormatador.somar(deducaoInformada, nota.ibsCbsNota() == null || nota.ibsCbsNota().getValores() == null ? null
-                : nota.ibsCbsNota().getValores().getvCalcReeRepRes());
+        final var reeRepRes = nota.ibsCbsNota() == null || nota.ibsCbsNota().getValores() == null ? null : nota.ibsCbsNota().getValores().getvCalcReeRepRes();
+        if (deducaoInformada == null) {
+            return reeRepRes;
+        }
+        return reeRepRes == null ? deducaoInformada : deducaoInformada.add(reeRepRes);
     }
 
     private static BigDecimal descontoIncondicionado(final DanfseNota nota) {
@@ -208,7 +211,21 @@ final class DanfseTributos {
         final var retencao = pisCofins == null ? null : pisCofins.getTipoRetencao();
         final var pis = retencao != null && retencao.isPisRetido() ? pisCofins.getValorPIS() : null;
         final var cofins = retencao != null && retencao.isCofinsRetido() ? pisCofins.getValorCofins() : null;
-        return DanfseFormatador.somar(tribFed == null ? null : tribFed.getValorCSLL(), pis, cofins);
+        final var csll = tribFed == null ? null : tribFed.getValorCSLL();
+        if (csll == null && pis == null && cofins == null) {
+            return null;
+        }
+        var total = BigDecimal.ZERO;
+        if (csll != null) {
+            total = total.add(csll);
+        }
+        if (pis != null) {
+            total = total.add(pis);
+        }
+        if (cofins != null) {
+            total = total.add(cofins);
+        }
+        return total;
     }
 
     /**
@@ -288,11 +305,31 @@ final class DanfseTributos {
         final var valores = nota.inf().getValores();
         final var pisCofins = nota.pisCofins();
         final var ibsCbs = nota.ibsCbsNota();
-        return DanfseFormatador.somar(descontoIncondicionado(nota),
-                ibsCbs == null || ibsCbs.getValores() == null ? null : ibsCbs.getValores().getvCalcReeRepRes(),
-                valores == null ? null : valores.getVISSQN(),
-                pisCofins == null ? null : pisCofins.getValorPIS(),
-                pisCofins == null ? null : pisCofins.getValorCofins());
+        final var descontoIncondicionado = descontoIncondicionado(nota);
+        final var reeRepRes = ibsCbs == null || ibsCbs.getValores() == null ? null : ibsCbs.getValores().getvCalcReeRepRes();
+        final var issqn = valores == null ? null : valores.getVISSQN();
+        final var pis = pisCofins == null ? null : pisCofins.getValorPIS();
+        final var cofins = pisCofins == null ? null : pisCofins.getValorCofins();
+        if (descontoIncondicionado == null && reeRepRes == null && issqn == null && pis == null && cofins == null) {
+            return null;
+        }
+        var total = BigDecimal.ZERO;
+        if (descontoIncondicionado != null) {
+            total = total.add(descontoIncondicionado);
+        }
+        if (reeRepRes != null) {
+            total = total.add(reeRepRes);
+        }
+        if (issqn != null) {
+            total = total.add(issqn);
+        }
+        if (pis != null) {
+            total = total.add(pis);
+        }
+        if (cofins != null) {
+            total = total.add(cofins);
+        }
+        return total;
     }
 
     private static void total(final DanfseCanvas canvas, final DanfseNota nota) {
@@ -312,7 +349,8 @@ final class DanfseTributos {
 
         canvas.campo(0, 1, "Total das Retenções (ISSQN / Federais)", DanfseFormatador.valor(valores == null ? null : valores.getVTotalRet()));
         canvas.campo(1, 1, "VALOR LÍQUIDO DA NFS-e", DanfseFormatador.valor(valores == null ? null : valores.getVLiq()));
-        canvas.campo(2, 1, "Total do IBS/CBS", DanfseFormatador.valor(totais == null ? null : DanfseFormatador.somar(ibs, cbs)));
+        final var totalIbsCbs = ibs == null ? cbs : cbs == null ? ibs : ibs.add(cbs);
+        canvas.campo(2, 1, "Total do IBS/CBS", DanfseFormatador.valor(totalIbsCbs));
         canvas.campo(3, 1, "VALOR LÍQUIDO DA NFS-e + IBS/CBS", DanfseFormatador.valor(totais == null ? null : totais.getvTotNF()));
         canvas.avancar(LINHA_TOTAL);
     }

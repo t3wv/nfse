@@ -6,6 +6,8 @@ import io.github.t3wv.nfse.nacional.classes.nfsenacional.NFSeSefinNacionalInfDPS
 import io.github.t3wv.nfse.nacional.classes.nfsenacional.NFSeSefinNacionalInfoIBSCBSIndDest;
 import io.github.t3wv.nfse.nacional.classes.nfsenacional.NFSeSefinNacionalInfoPessoa;
 
+import java.util.Arrays;
+
 import static io.github.t3wv.nfse.nacional.danfse.DanfseCanvas.CM;
 import static io.github.t3wv.nfse.nacional.danfse.DanfseCanvas.LINHA;
 
@@ -61,8 +63,8 @@ final class DanfseParticipantes {
         final var prest = nota.dps().getPrestador();
         final var participante = new Participante();
         if (prest != null) {
-            preencher(participante, nota, prest.getCNPJ(), prest.getCPF(), prest.getNIF(), prest.getInscricaoMunicipal(), prest.getTelefone(),
-                    prest.getNome(), prest.getEndereco(), prest.getEmail());
+            preencher(participante, nota, informado(prest.getCNPJ(), prest.getCPF(), prest.getNIF()), prest.getInscricaoMunicipal(),
+                    prest.getTelefone(), prest.getNome(), prest.getEndereco(), prest.getEmail());
         }
         completarComEmitente(participante, nota, NFSeSefinNacionalInfDPSTipoEmitente.PRESTADOR);
         linhasDoParticipante(canvas, "PRESTADOR / FORNECEDOR", participante, true);
@@ -97,7 +99,8 @@ final class DanfseParticipantes {
             return;
         }
         final var participante = new Participante();
-        preencher(participante, nota, dest.getCNPJ(), dest.getCPF(), dest.getNIF(), null, dest.getTelefone(), dest.getNome(), dest.getEndereco(), dest.getEmail());
+        preencher(participante, nota, informado(dest.getCNPJ(), dest.getCPF(), dest.getNIF()), null, dest.getTelefone(), dest.getNome(),
+                dest.getEndereco(), dest.getEmail());
         linhasDoParticipante(canvas, "DESTINATÁRIO DA OPERAÇÃO", participante, false);
     }
 
@@ -144,17 +147,24 @@ final class DanfseParticipantes {
     private static Participante pessoa(final DanfseNota nota, final NFSeSefinNacionalInfoPessoa pessoa, final NFSeSefinNacionalInfDPSTipoEmitente papel) {
         final var participante = new Participante();
         if (pessoa != null) {
-            preencher(participante, nota, pessoa.getCNPJ(), pessoa.getCPF(), pessoa.getNIF(), pessoa.getInscricaoMunicipal(), pessoa.getTelefone(),
-                    pessoa.getNome(), pessoa.getEndereco(), pessoa.getEmail());
+            preencher(participante, nota, informado(pessoa.getCNPJ(), pessoa.getCPF(), pessoa.getNIF()), pessoa.getInscricaoMunicipal(),
+                    pessoa.getTelefone(), pessoa.getNome(), pessoa.getEndereco(), pessoa.getEmail());
         }
         completarComEmitente(participante, nota, papel);
         return participante;
     }
 
-    private static void preencher(final Participante participante, final DanfseNota nota, final String cnpj, final String cpf, final String nif,
+    /**
+     * O leiaute traz um só documento por participante (CNPJ, CPF ou NIF): devolve o que foi informado.
+     */
+    private static String informado(final String... documentos) {
+        return Arrays.stream(documentos).filter(documento -> !DanfseFormatador.texto(documento).isEmpty()).findFirst().orElse(null);
+    }
+
+    private static void preencher(final Participante participante, final DanfseNota nota, final String documento,
                                   final String inscricaoMunicipal, final String telefone, final String nome, final NFSeSefinNacionalEndereco endereco,
                                   final String email) {
-        participante.documento = DanfseFormatador.documento(cnpj, cpf, nif);
+        participante.documento = DanfseFormatador.documento(documento);
         participante.inscricaoMunicipal = DanfseFormatador.ouTraco(DanfseFormatador.limitar(inscricaoMunicipal, 15));
         participante.telefone = DanfseFormatador.telefone(telefone);
         participante.nome = DanfseFormatador.ouTraco(DanfseFormatador.limitar(nome, 80));
@@ -186,7 +196,7 @@ final class DanfseParticipantes {
         }
         final var semInformacao = DanfseFormatador.SEM_INFORMACAO;
         if (semInformacao.equals(participante.documento)) {
-            participante.documento = DanfseFormatador.documento(emitente.getCNPJ(), emitente.getCPF(), null);
+            participante.documento = DanfseFormatador.documento(informado(emitente.getCNPJ(), emitente.getCPF()));
         }
         if (semInformacao.equals(participante.inscricaoMunicipal)) {
             participante.inscricaoMunicipal = DanfseFormatador.ouTraco(DanfseFormatador.limitar(emitente.getIM(), 15));
