@@ -10,6 +10,7 @@ public class NFSeSefinNacionalEnderecoEmitente {
     protected String xLgr;
     @Element(required = true)
     protected String nro;
+    @Element(required = false)
     protected String xCpl;
     @Element(required = true)
     protected String xBairro;
