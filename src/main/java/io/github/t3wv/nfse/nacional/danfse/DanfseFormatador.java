@@ -126,15 +126,16 @@ final class DanfseFormatador {
      * @param cnpj CNPJ, ou null
      * @param cpf CPF, ou null
      * @param nif NIF, ou null
-     * @return o primeiro documento informado, formatado, ou um traço
+     * @return o primeiro documento informado, ou um traço; só o CNPJ e o CPF recebem máscara, e o NIF (documento estrangeiro)
+     * sai como informado, mesmo que tenha o comprimento de um CPF ou CNPJ
      */
     static String documento(final String cnpj, final String cpf, final String nif) {
-        for (final var valor : new String[]{cnpj, cpf, nif}) {
+        for (final var valor : new String[]{cnpj, cpf}) {
             if (!texto(valor).isEmpty()) {
                 return limitar(cnpjOuCpf(valor), 40);
             }
         }
-        return SEM_INFORMACAO;
+        return ouTraco(limitar(nif, 40));
     }
 
     /**

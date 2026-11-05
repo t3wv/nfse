@@ -92,7 +92,8 @@ final class DanfseCabecalho {
 
     /**
      * Município emissor e UF, como "Município / UF" (até 37 caracteres); não é exibido quando o item do código de tributação
-     * nacional é 99 (item 2.4.5).
+     * nacional é 99 (item 2.4.5). O nome (xLocEmi) descreve o código do município emissor (cLocEmi), então a UF também sai desse
+     * código, para os dois serem da mesma localidade; a UF do endereço do emitente só é usada quando o código não a identifica.
      *
      * @return município e UF, ou null quando não deve ser exibido
      */
@@ -104,7 +105,8 @@ final class DanfseCabecalho {
         }
         final var emitente = nota.inf().getEmitente();
         final var endereco = emitente == null ? null : emitente.getEnderNac();
-        final var uf = endereco != null && endereco.getUF() != null ? endereco.getUF().name() : DanfseFormatador.uf(nota.dps().getCodigoMunicipioEmissao());
+        final var ufEmissao = DanfseFormatador.uf(nota.dps().getCodigoMunicipioEmissao());
+        final var uf = !ufEmissao.isEmpty() || endereco == null || endereco.getUF() == null ? ufEmissao : endereco.getUF().name();
         return DanfseFormatador.limitar(DanfseFormatador.juntar(" / ", nota.inf().getLocalEmissao(), uf), 37);
     }
 

@@ -33,10 +33,8 @@ final class DanfseNota {
         this.nfse = nfse;
         final var inf = inf();
         final var dps = dps();
+        // xLocEmi descreve o cLocEmi, e nao o municipio do endereco do emitente, que pode ser outro
         conhecer(dps.getCodigoMunicipioEmissao(), inf.getLocalEmissao());
-        if (inf.getEmitente() != null && inf.getEmitente().getEnderNac() != null) {
-            conhecer(inf.getEmitente().getEnderNac().getCMun(), inf.getLocalEmissao());
-        }
         if (dps.getServicoPrestado() != null && dps.getServicoPrestado().getLocalPrestacao() != null) {
             conhecer(dps.getServicoPrestado().getLocalPrestacao().getCodigoMunicipio(), inf.getLocalPrestacao());
         }

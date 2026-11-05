@@ -1,5 +1,6 @@
 package io.github.t3wv.nfse.nacional.danfse;
 
+import io.github.t3wv.nfse.nacional.classes.nfsenacional.NFSeSefinNacionalUF;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -63,6 +64,26 @@ class DanfseCanvasTest {
         Assertions.assertEquals(540, imagem.getWidth());
         Assertions.assertEquals(107, imagem.getHeight());
         Assertions.assertTrue(imagem.getColorModel().hasAlpha(), "a logomarca tem fundo transparente");
+    }
+
+    @Test
+    void naoDeveMisturarOMunicipioEmissorComOEnderecoDoEmitente() {
+        // municipio emissor em Sao Paulo (cLocEmi 3550308 / xLocEmi "São Paulo"), endereco do emitente no Rio de Janeiro
+        final var nfse = DanfseFixtures.nfse(DanfseFixtures.COMPLETA);
+        nfse.getInfNFSe().getEmitente().getEnderNac().setCMun("3304557").setUF(NFSeSefinNacionalUF.RJ);
+        final var nota = new DanfseNota(nfse);
+        // nome e UF do cabecalho sao do mesmo municipio, o emissor
+        Assertions.assertEquals("São Paulo / SP", DanfseCabecalho.municipio(nota));
+        // o nome do municipio emissor nao e atribuido ao codigo do endereco do emitente
+        Assertions.assertNull(nota.nomeMunicipio("3304557"));
+        Assertions.assertEquals("3304557 / RJ", nota.municipioUf("3304557"));
+    }
+
+    @Test
+    void deveUsarAUfDoEnderecoDoEmitenteSoSemOCodigoDoMunicipioEmissor() {
+        final var nfse = DanfseFixtures.nfse(DanfseFixtures.COMPLETA);
+        nfse.getInfNFSe().getDPS().getInfDPS().setCodigoMunicipioEmissao(null);
+        Assertions.assertEquals("São Paulo / SP", DanfseCabecalho.municipio(new DanfseNota(nfse)));
     }
 
     @Test

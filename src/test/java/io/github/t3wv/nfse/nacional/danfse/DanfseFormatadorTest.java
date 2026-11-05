@@ -48,6 +48,10 @@ class DanfseFormatadorTest {
         Assertions.assertEquals("NIF-123", DanfseFormatador.cnpjOuCpf("NIF-123"));
         Assertions.assertEquals("529.982.247-25", DanfseFormatador.documento(null, "52998224725", "X"));
         Assertions.assertEquals("X", DanfseFormatador.documento(null, null, "X"));
+        // NIF e documento estrangeiro: nao recebe mascara de CPF ou CNPJ, mesmo com o mesmo comprimento
+        Assertions.assertEquals("12345678901", DanfseFormatador.documento(null, null, "12345678901"));
+        Assertions.assertEquals("12345678000195", DanfseFormatador.documento(null, null, "12345678000195"));
+        Assertions.assertEquals("12.345.678/0001-95", DanfseFormatador.documento("12345678000195", null, null));
     }
 
     @Test
