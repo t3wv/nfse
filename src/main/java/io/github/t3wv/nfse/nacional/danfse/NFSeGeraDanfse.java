@@ -23,11 +23,8 @@ import static io.github.t3wv.nfse.nacional.danfse.DanfseCanvas.TAMANHO_CONTEUDO;
  */
 public class NFSeGeraDanfse {
 
-    /**
-     * Elemento raiz NFSe (com ou sem prefixo de namespace), no início do XML: antes dele só podem vir o BOM, espaços, a
-     * declaração XML e outras instruções de processamento, e comentários.
-     */
-    private static final Pattern RAIZ_NFSE = Pattern.compile("\\uFEFF?\\s*(?:(?:<\\?.*?\\?>|<!--.*?-->)\\s*)*<([A-Za-z_][\\w.-]*:)?NFSe[\\s>/]", Pattern.DOTALL);
+    /** Abertura do elemento NFSe, com ou sem prefixo de namespace. */
+    private static final Pattern ELEMENTO_NFSE = Pattern.compile("<([A-Za-z_][\\w.-]*:)?NFSe[\\s>/]");
     private static final String MENSAGEM_XML_NAO_INFORMADO = "XML da NFS-e não informado";
     private static final String MENSAGEM_NAO_E_NFSE = "O XML não é de uma NFS-e de padrão nacional (elemento raiz NFSe)";
     private static final String MENSAGEM_XML_INVALIDO = "XML da NFS-e inválido";
@@ -93,7 +90,7 @@ public class NFSeGeraDanfse {
         if (xmlNfse == null || xmlNfse.isBlank()) {
             throw new IllegalArgumentException(MENSAGEM_XML_NAO_INFORMADO);
         }
-        if (!RAIZ_NFSE.matcher(xmlNfse).lookingAt()) {
+        if (!raizNfse(xmlNfse)) {
             throw new IllegalArgumentException(MENSAGEM_NAO_E_NFSE);
         }
         try {
@@ -101,6 +98,40 @@ public class NFSeGeraDanfse {
         } catch (final Exception e) {
             throw new IllegalArgumentException(MENSAGEM_XML_INVALIDO, e);
         }
+    }
+
+    /**
+     * Confere se o elemento raiz do XML é NFSe: antes dele só podem vir o BOM, espaços, a declaração XML e outras instruções de
+     * processamento, e comentários. O prólogo é percorrido com indexOf, em tempo linear: uma expressão regular com repetição
+     * sobre ele retrocede demais (e até estoura a pilha) com entradas como muitos "?&gt;&lt;?" seguidos.
+     *
+     * @param xml XML não vazio
+     * @return true se a raiz é o elemento NFSe
+     */
+    private static boolean raizNfse(final String xml) {
+        var posicao = xml.startsWith("﻿") ? 1 : 0;
+        while (true) {
+            while (posicao < xml.length() && Character.isWhitespace(xml.charAt(posicao))) {
+                posicao++;
+            }
+            final String abertura;
+            final String fechamento;
+            if (xml.startsWith("<?", posicao)) {
+                abertura = "<?";
+                fechamento = "?>";
+            } else if (xml.startsWith("<!--", posicao)) {
+                abertura = "<!--";
+                fechamento = "-->";
+            } else {
+                break;
+            }
+            final var fim = xml.indexOf(fechamento, posicao + abertura.length());
+            if (fim < 0) {
+                return false;
+            }
+            posicao = fim + fechamento.length();
+        }
+        return ELEMENTO_NFSE.matcher(xml).region(posicao, xml.length()).lookingAt();
     }
 
     /**

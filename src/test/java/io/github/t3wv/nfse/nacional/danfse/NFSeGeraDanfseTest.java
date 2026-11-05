@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.nio.charset.StandardCharsets;
+import java.time.Duration;
 
 import static io.github.t3wv.nfse.nacional.danfse.DanfseCanvas.CM;
 
@@ -48,6 +49,17 @@ class NFSeGeraDanfseTest {
         for (final var outraRaiz : new String[]{"<retorno>" + semDeclaracao + "</retorno>", "<!-- <NFSe> --><DPS/>", "<DPS><!-- <NFSe> --></DPS>"}) {
             final var e = Assertions.assertThrows(IllegalArgumentException.class, () -> gerador.gerar(outraRaiz));
             Assertions.assertTrue(e.getMessage().contains("elemento raiz NFSe"), e.getMessage());
+        }
+    }
+
+    @Test
+    void deveRecusarRapidamenteUmPrologoMalicioso() {
+        // com a expressao regular anterior, cerca de 1000 repeticoes ja estouravam a pilha (StackOverflowError)
+        for (final var prologo : new String[]{"<?" + "?><?".repeat(100_000), "<!--" + "--><!--".repeat(100_000)}) {
+            Assertions.assertTimeoutPreemptively(Duration.ofSeconds(2), () -> {
+                final var e = Assertions.assertThrows(IllegalArgumentException.class, () -> gerador.gerar(prologo));
+                Assertions.assertTrue(e.getMessage().contains("elemento raiz NFSe"), e.getMessage());
+            });
         }
     }
 
