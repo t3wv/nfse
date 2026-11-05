@@ -5,6 +5,8 @@ import io.github.t3wv.nfse.nacional.classes.adn.NFSeAdnLoteDistribuicaoResponse;
 import io.github.t3wv.nfse.nacional.classes.nfsenacional.*;
 import io.github.t3wv.nfse.nacional.classes.parametrosmunicipais.consulta.NFSeParametrosMunicipaisConvenio;
 import io.github.t3wv.nfse.nacional.classes.parametrosmunicipais.consulta.NFSeParametrosMunicipaisConvenioResponse;
+import io.github.t3wv.nfse.nacional.danfse.DanfseOpcoes;
+import io.github.t3wv.nfse.nacional.danfse.NFSeGeraDanfse;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -16,26 +18,61 @@ import java.util.Map;
 public class WSFacade {
 
     private final WSParametrosMunicipais wsParametrosMunicipais;
-    private final WSDANFSe wsDANFSe;
     private final WSSefinNFSe wsSefinNFSe;
     private final WSDistribuicaoDFe wsDistribuicaoDFe;
 
     public WSFacade(final NFSeConfig config) {
         this.wsParametrosMunicipais = new WSParametrosMunicipais(config);
-        this.wsDANFSe = new WSDANFSe(config);
         this.wsSefinNFSe = new WSSefinNFSe(config);
         this.wsDistribuicaoDFe = new WSDistribuicaoDFe(config);
     }
 
     /**
-     * Faz o download do DANFSe em PDF utilizando a chave de acesso da NFSe.
+     * Gera o DANFSe em PDF a partir do XML da NFS-e, conforme a NT 008 (sem acessar o Sistema Nacional), com o canhoto e sem
+     * marca d'água.
      *
-     * @param nfseChaveAcesso Chave de acesso da NFSe com 50 dígitos.
+     * @param xmlNfse XML da NFS-e (elemento raiz NFSe), como o devolvido por {@link #downloadNotaXml(String)}.
      * @return Array de bytes representando o arquivo PDF do DANFSe.
-     * @throws Exception Se ocorrer um erro durante a requisição ou no processamento da resposta.
+     * @throws IllegalArgumentException Se o XML for vazio, inválido ou não for de uma NFS-e.
      */
-    public byte[] downloadNotaPdf(final String nfseChaveAcesso) throws Exception {
-        return wsDANFSe.downloadDANFSePdfByChaveAcesso(nfseChaveAcesso);
+    public byte[] geraDanfse(final String xmlNfse) {
+        return new NFSeGeraDanfse().gerar(xmlNfse);
+    }
+
+    /**
+     * Gera o DANFSe em PDF a partir do XML da NFS-e, conforme a NT 008 (sem acessar o Sistema Nacional).
+     *
+     * @param xmlNfse XML da NFS-e (elemento raiz NFSe), como o devolvido por {@link #downloadNotaXml(String)}.
+     * @param opcoes  Opções de impressão: canhoto e situação da NFS-e (cancelada ou substituída saem com marca d'água).
+     * @return Array de bytes representando o arquivo PDF do DANFSe.
+     * @throws IllegalArgumentException Se o XML for vazio, inválido ou não for de uma NFS-e.
+     */
+    public byte[] geraDanfse(final String xmlNfse, final DanfseOpcoes opcoes) {
+        return new NFSeGeraDanfse().gerar(xmlNfse, opcoes);
+    }
+
+    /**
+     * Gera o DANFSe em PDF a partir da NFS-e, conforme a NT 008 (sem acessar o Sistema Nacional), com o canhoto e sem marca
+     * d'água.
+     *
+     * @param nfse Objeto {@link NFSeSefinNacionalNFSe} com a NFS-e.
+     * @return Array de bytes representando o arquivo PDF do DANFSe.
+     * @throws IllegalArgumentException Se a NFS-e for nula ou estiver sem os grupos obrigatórios.
+     */
+    public byte[] geraDanfse(final NFSeSefinNacionalNFSe nfse) {
+        return new NFSeGeraDanfse().gerar(nfse);
+    }
+
+    /**
+     * Gera o DANFSe em PDF a partir da NFS-e, conforme a NT 008 (sem acessar o Sistema Nacional).
+     *
+     * @param nfse   Objeto {@link NFSeSefinNacionalNFSe} com a NFS-e.
+     * @param opcoes Opções de impressão: canhoto e situação da NFS-e (cancelada ou substituída saem com marca d'água).
+     * @return Array de bytes representando o arquivo PDF do DANFSe.
+     * @throws IllegalArgumentException Se a NFS-e for nula ou estiver sem os grupos obrigatórios.
+     */
+    public byte[] geraDanfse(final NFSeSefinNacionalNFSe nfse, final DanfseOpcoes opcoes) {
+        return new NFSeGeraDanfse().gerar(nfse, opcoes);
     }
 
     /**
