@@ -3,12 +3,15 @@ package io.github.t3wv.nfse.nacional.classes.nfsenacional;
 
 import org.simpleframework.xml.*;
 
+/**
+ * Endereço simples (TCEnderecoSimples do leiaute 1.01): deve ser informado o CEP, no Brasil, ou o endereço no exterior, não os dois.
+ */
 @Root(name = "EnderecoSimples")
 public class NFSeSefinNacionalEnderecoSimples {
 
-    @Element(name="CEP")
+    @Element(name="CEP", required = false)
     protected String cep;
-    @Element(name="endExt")
+    @Element(name="endExt", required = false)
     protected NFSeSefinNacionalEnderExtSimples enderecoExterior;
     @Element(name="xLgr")
     protected String logradouro;

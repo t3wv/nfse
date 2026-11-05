@@ -6,21 +6,22 @@ import org.simpleframework.xml.*;
 import java.time.LocalDate;
 
 /**
- * Grupo de informações do DPS relativas à Atividade do Evento
+ * Grupo de informações do DPS relativas à Atividade do Evento (TCAtvEvento do leiaute 1.01).
+ * Deve ser informado o identificador da atividade de evento ou o endereço do evento, não os dois.
  */
 
 @Root(name = "atvEvento")
 public class NFSeSefinNacionalAtvEvento {
 
-    @Element(name = "desc")
+    @Element(name = "xNome")
     protected String descricao;
     @Element(name = "dtIni")
     protected LocalDate dataInicio;
     @Element(name = "dtFim")
     protected LocalDate dataFim;
-    @Element(name = "id")
+    @Element(name = "idAtvEvt", required = false)
     protected String id;
-    @Element(name = "end")
+    @Element(name = "end", required = false)
     protected NFSeSefinNacionalEnderecoSimples endereco;
 
     /**
@@ -75,16 +76,18 @@ public class NFSeSefinNacionalAtvEvento {
     }
 
     /**
-     * @return Id do Evento
+     * @return Identificação da Atividade de Evento (código identificador de evento determinado pela Administração Tributária
+     * Municipal), ou null quando informado o endereço do evento
      */
     public String getId() {
         return id;
     }
 
     /**
-     * Id do Evento
+     * Identificação da Atividade de Evento (código identificador de evento determinado pela Administração Tributária Municipal),
+     * com até 30 caracteres. Alternativa ao endereço do evento.
      *
-     * @param id Id do Evento
+     * @param id Identificação da Atividade de Evento
      */
     public NFSeSefinNacionalAtvEvento setId(String id) {
         this.id = id;
@@ -92,14 +95,14 @@ public class NFSeSefinNacionalAtvEvento {
     }
 
     /**
-     * @return Endereço do Evento
+     * @return Endereço do Evento, ou null quando informada a identificação da atividade de evento
      */
     public NFSeSefinNacionalEnderecoSimples getEndereco() {
         return endereco;
     }
 
     /**
-     * Endereço do Evento
+     * Endereço do Evento. Alternativa à identificação da atividade de evento.
      *
      * @param endereco endereço do Evento
      */

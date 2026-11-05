@@ -35,14 +35,60 @@ mais que o default — por exemplo `return 120;` em `getHttpPostTimeoutSegundos(
 
 ## Consultar nota emitida
 ``` java
-//PDF
-final var pdf = facade.downloadNotaPdf("0000..."); //chave de acesso (50 caracteres)
-Files.write(Paths.get("/tmp/%s.pdf".formatted(chave)), pdf); //grava em algum local
-
 //XML
 final var xml = facade.downloadNotaXml("0000..."); //chave de acesso (50 caracteres)
 Files.writeString(Paths.get("/tmp/%s.xml".formatted(chave)), xml); //grava em algum local
+
+//PDF (DANFSe gerado pela propria biblioteca a partir do XML, ver a secao abaixo)
+final var pdf = facade.geraDanfse(xml);
+Files.write(Paths.get("/tmp/%s.pdf".formatted(chave)), pdf); //grava em algum local
 ```
+
+## Gerar o DANFSe em PDF (NT 008)
+
+A API de geração do DANFSe do ADN foi suspensa em 03/08/2026 e o antigo `downloadNotaPdf` foi removido.
+O DANFSe agora é gerado pela própria biblioteca, a partir do XML da NFS-e, sem acessar o Sistema
+Nacional e sem certificado, conforme a **Nota Técnica nº 008 (Especificações Técnicas do DANFSe), versão 1.02**:
+modelo do Anexo I (DANFSe v2.0), página única A4 retrato.
+
+``` java
+//a partir do XML da NFS-e (elemento raiz NFSe)
+final var pdf = facade.geraDanfse(xml);
+
+//ou a partir do objeto
+final var pdf = facade.geraDanfse(nfse); //NFSeSefinNacionalNFSe
+
+//ou sem o facade (nao precisa de NFSeConfig)
+final var pdf = new NFSeGeraDanfse().gerar(xml);
+
+//opcoes: sem o canhoto e com a marca d'agua de NFS-e cancelada (ou SUBSTITUIDA)
+final var pdf = facade.geraDanfse(xml, new DanfseOpcoes()
+        .setCanhoto(false)
+        .setSituacao(DanfseSituacao.CANCELADA));
+```
+
+- **Canhoto:** sai por padrão (é opcional na NT). Sem ele, as informações complementares ocupam o espaço do bloco (item 2.3.3).
+- **Cancelamento e substituição:** o XML da NFS-e não traz esses eventos, então quem gera o DANFSe informa a situação
+  (`DanfseSituacao`); as canceladas e substituídas saem com a marca d'água "CANCELADA" ou "SUBSTITUÍDA" (itens 2.5.1 e 2.5.2).
+- **Produção restrita:** NFS-e com `tpAmb` = 2 saem com "NFS-e SEM VALIDADE JURÍDICA" em vermelho no cabeçalho (item 2.4.3).
+- **QR Code:** `https://www.nfse.gov.br/ConsultaPublica/?tpc=1&chave=` seguido da chave de acesso, com 1,52 cm (item 2.4.3).
+- **Blocos sem dados:** tomador, destinatário e intermediário não informados, o destinatário que é o próprio tomador
+  (`indDest` = 0) e as operações não sujeitas ao ISSQN (`tribISSQN` = 4) saem com as mensagens das notas 2 a 4 do item 2.4.5;
+  as linhas do ISSQN sem dados são suprimidas (nota 5) e a linha do PIS/COFINS de apuração própria só sai para competência
+  até 2026 (nota 6). Campos sem informação saem com um traço (nota 12).
+- **PIS/COFINS retidos:** quando o `tpRetPisCofins` indica o PIS e/ou a COFINS retidos, o `vPis`/`vCofins` é somado às
+  "Contribuições Sociais - Retidas" e o débito de apuração própria sai 0,00. A NT 1.02 descreve essa regra para o código 1;
+  a biblioteca aplica a mesma regra, tributo a tributo, aos demais códigos do leiaute 1.01 com PIS ou COFINS retidos.
+- **Município dos participantes:** a NT não permite imprimir informações que não constem do XML (item 2.1), e o XML só
+  traz o código IBGE do município. O nome sai quando o próprio XML o informa para o mesmo código (local de emissão, de
+  prestação e de incidência do ISSQN e do IBS/CBS); nos demais casos, sai `código / UF` (ex.: `3304557 / RJ`).
+- **Textos longos:** os campos respeitam a quantidade de caracteres do item 2.4.5 e terminam com reticências quando não
+  cabem. Nome, endereço e e-mail dos participantes usam até duas linhas. A descrição do serviço (até 1300 caracteres) e as
+  informações complementares (até 2000) ocupam o espaço livre da página; se as duas não couberem, são cortadas com
+  reticências, mantendo a linha dos totais aproximados dos tributos.
+- **Fontes:** Helvetica e Helvetica Bold, fontes padrão do PDF com as métricas da Arial pedida no item 2.4 (a Microsoft
+  Sans Serif não é livre para embutir). Cores em CMYK: preto K100, vermelho M100/Y100, fundo do cabeçalho K5 e marca d'água K35.
+- **Logomarca:** a da NFS-e, embutida na biblioteca.
 
 ## Consultar as notas emitidas contra o CNPJ (distribuição de DF-e do ADN)
 

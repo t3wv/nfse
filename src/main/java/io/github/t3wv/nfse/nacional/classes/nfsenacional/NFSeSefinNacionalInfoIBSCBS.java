@@ -4,6 +4,7 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Root(name = "IBSCBS")
@@ -16,8 +17,9 @@ public class NFSeSefinNacionalInfoIBSCBS {
     protected String cIndOp;
     @Element(name="tpOper", required = false)
     protected NFSeSefinNacionalInfoIBSCBSTpOper tpOper;
+    // ArrayList, e nao List: com o tipo declarado diferente do objeto, o persister grava o atributo "class", que o XSD recusa
     @ElementList(name="gRefNFSe", entry = "refNFSe", required = false)
-    protected List<String> gRefNFSe;
+    protected ArrayList<String> gRefNFSe;
     @Element(name="tpEnteGov", required = false)
     protected NFSeSefinNacionalInfoIBSCBSTpEnteGov tpEnteGov;
     @Element(name="indDest")
@@ -119,7 +121,7 @@ public class NFSeSefinNacionalInfoIBSCBS {
      * @return NFSeSefinNacionalInfoIBSCBS
      */
     public NFSeSefinNacionalInfoIBSCBS setgRefNFSe(List<String> gRefNFSe) {
-        this.gRefNFSe = gRefNFSe;
+        this.gRefNFSe = gRefNFSe == null ? null : new ArrayList<>(gRefNFSe);
         return this;
     }
 

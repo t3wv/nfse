@@ -12,7 +12,8 @@ public enum NFSeSefinNacionalRegimeTributarioRegimeEspecialTributacao {
     MICROEMPRESA_MUNICIPAL("3", "Microempresa Municipal"),
     NOTARIO_REGISTRADOR("4", "Notário ou Registrador"),
     AUTONOMO("5", "Profissional Autônomo"),
-    SOCIEDADE_PROFISSIONAIS("6", "Sociedade de Profissionais");
+    SOCIEDADE_PROFISSIONAIS("6", "Sociedade de Profissionais"),
+    OUTROS("9", "Outros");
 
     private final String codigo;
     private final String descricao;
