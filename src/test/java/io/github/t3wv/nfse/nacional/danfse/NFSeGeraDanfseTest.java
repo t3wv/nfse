@@ -41,6 +41,30 @@ class NFSeGeraDanfseTest {
     }
 
     @Test
+    void deveExigirNfseComoElementoRaiz() {
+        final var xml = DanfseFixtures.xml(DanfseFixtures.MINIMA);
+        final var semDeclaracao = xml.substring(xml.indexOf("<NFSe"));
+        // a NFS-e dentro de outro elemento, ou citada so num comentario, nao e o elemento raiz
+        for (final var outraRaiz : new String[]{"<retorno>" + semDeclaracao + "</retorno>", "<!-- <NFSe> --><DPS/>", "<DPS><!-- <NFSe> --></DPS>"}) {
+            final var e = Assertions.assertThrows(IllegalArgumentException.class, () -> gerador.gerar(outraRaiz));
+            Assertions.assertTrue(e.getMessage().contains("elemento raiz NFSe"), e.getMessage());
+        }
+    }
+
+    @Test
+    void deveAceitarComentariosEEspacosAntesDaRaiz() throws Exception {
+        final var xml = DanfseFixtures.xml(DanfseFixtures.MINIMA);
+        final var comComentario = xml.replaceFirst("\\?>\\s*<NFSe", "?>\n<!-- NFS-e baixada do ADN -->\n  <NFSe");
+        Assertions.assertNotEquals(xml, comComentario);
+        try (final var documento = Loader.loadPDF(gerador.gerar(comComentario))) {
+            Assertions.assertEquals(1, documento.getNumberOfPages());
+        }
+        try (final var documento = Loader.loadPDF(gerador.gerar("\n  " + xml.substring(xml.indexOf("<NFSe"))))) {
+            Assertions.assertEquals(1, documento.getNumberOfPages());
+        }
+    }
+
+    @Test
     void deveRejeitarXmlMalformado() {
         final var e = Assertions.assertThrows(IllegalArgumentException.class, () -> gerador.gerar("<NFSe><infNFSe>"));
         Assertions.assertEquals("XML da NFS-e inválido", e.getMessage());

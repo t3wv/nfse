@@ -118,7 +118,8 @@ final class DanfseTributos {
         final var regime = prestador == null || prestador.getRegimeTributario() == null ? null : prestador.getRegimeTributario().getRegimeEspecialTributacao();
         // "0 - Nenhum" nao e dado de regime especial: a linha do modelo do Sistema Nacional some nesse caso
         final var temRegime = regime != null && regime != NFSeSefinNacionalRegimeTributarioRegimeEspecialTributacao.NENHUM;
-        return temRegime || tribMun != null && (tribMun.getTipoImunidade() != null || tribMun.getExigibilidadeSuspensa() != null);
+        final var temImunidadeOuSuspensao = tribMun != null && (tribMun.getTipoImunidade() != null || tribMun.getExigibilidadeSuspensa() != null);
+        return temRegime || temImunidadeOuSuspensao;
     }
 
     /**
@@ -126,7 +127,8 @@ final class DanfseTributos {
      */
     private static boolean temBeneficioOuDeducao(final DanfseNota nota) {
         final var valores = nota.inf().getValores();
-        return valores != null && valores.getTpBM() != null || diferenteDeZero(calculoBeneficioMunicipal(nota)) || diferenteDeZero(totalDeducoesReducoes(nota))
+        final var temBeneficio = valores != null && valores.getTpBM() != null;
+        return temBeneficio || diferenteDeZero(calculoBeneficioMunicipal(nota)) || diferenteDeZero(totalDeducoesReducoes(nota))
                 || diferenteDeZero(descontoIncondicionado(nota));
     }
 

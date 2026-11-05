@@ -23,7 +23,11 @@ import static io.github.t3wv.nfse.nacional.danfse.DanfseCanvas.TAMANHO_CONTEUDO;
  */
 public class NFSeGeraDanfse {
 
-    private static final Pattern RAIZ_NFSE = Pattern.compile("<([A-Za-z_][\\w.-]*:)?NFSe[\\s>/]");
+    /**
+     * Elemento raiz NFSe (com ou sem prefixo de namespace), no início do XML: antes dele só podem vir o BOM, espaços, a
+     * declaração XML e outras instruções de processamento, e comentários.
+     */
+    private static final Pattern RAIZ_NFSE = Pattern.compile("\\uFEFF?\\s*(?:(?:<\\?.*?\\?>|<!--.*?-->)\\s*)*<([A-Za-z_][\\w.-]*:)?NFSe[\\s>/]", Pattern.DOTALL);
     private static final String MENSAGEM_XML_NAO_INFORMADO = "XML da NFS-e não informado";
     private static final String MENSAGEM_NAO_E_NFSE = "O XML não é de uma NFS-e de padrão nacional (elemento raiz NFSe)";
     private static final String MENSAGEM_XML_INVALIDO = "XML da NFS-e inválido";
@@ -89,7 +93,7 @@ public class NFSeGeraDanfse {
         if (xmlNfse == null || xmlNfse.isBlank()) {
             throw new IllegalArgumentException(MENSAGEM_XML_NAO_INFORMADO);
         }
-        if (!RAIZ_NFSE.matcher(xmlNfse).find()) {
+        if (!RAIZ_NFSE.matcher(xmlNfse).lookingAt()) {
             throw new IllegalArgumentException(MENSAGEM_NAO_E_NFSE);
         }
         try {
