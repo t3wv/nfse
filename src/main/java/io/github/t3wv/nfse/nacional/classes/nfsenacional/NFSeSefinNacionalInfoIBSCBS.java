@@ -15,7 +15,7 @@ public class NFSeSefinNacionalInfoIBSCBS {
     protected String cIndOp;
     @Element(name="tpOper", required = false)
     protected NFSeSefinNacionalInfoIBSCBSTpOper tpOper;
-    // ArrayList, não List: com o tipo da interface o simple-xml grava o atributo class, que o XSD recusa
+    // ArrayList, e nao List: com o tipo declarado diferente do objeto, o persister grava o atributo "class", que o XSD recusa
     @ElementList(name="gRefNFSe", entry = "refNFSe", required = false)
     protected ArrayList<String> gRefNFSe;
     @Element(name="tpEnteGov", required = false)
@@ -102,6 +102,7 @@ public class NFSeSefinNacionalInfoIBSCBS {
      * @return NFSeSefinNacionalInfoIBSCBS
      */
     public NFSeSefinNacionalInfoIBSCBS setgRefNFSe(List<String> gRefNFSe) {
+        // Lista vazia vira null: <gRefNFSe/> sem refNFSe nao passa no XSD.
         this.gRefNFSe = gRefNFSe == null || gRefNFSe.isEmpty() ? null : new ArrayList<>(gRefNFSe);
         return this;
     }

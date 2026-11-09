@@ -19,7 +19,7 @@ import io.github.t3wv.nfse.NFSeConfig;
 import io.github.t3wv.nfse.NFSeLogger;
 import io.github.t3wv.nfse.municipal.nfseSPBarueri.WSBarueri;
 import io.github.t3wv.nfse.municipal.nfseSPSaoPaulo.WSLoteNFe;
-import io.github.t3wv.nfse.nacional.WSDANFSe;
+import io.github.t3wv.nfse.nacional.WSDistribuicaoDFe;
 import io.github.t3wv.nfse.nacional.WSParametrosMunicipais;
 import io.github.t3wv.nfse.nacional.WSSefinNFSe;
 
@@ -44,8 +44,8 @@ public abstract class NFSeCadeiaCertificados implements NFSeLogger {
         try (ByteArrayOutputStream out = new ByteArrayOutputStream()) {
             NFSeCadeiaCertificados.get(keyStore, WSSefinNFSe.URL_BASE_PRODUCAO);
             NFSeCadeiaCertificados.get(keyStore, WSSefinNFSe.URL_BASE_HOMOLOGACAO);
-            NFSeCadeiaCertificados.get(keyStore, WSDANFSe.URL_BASE_PRODUCAO);
-            NFSeCadeiaCertificados.get(keyStore, WSDANFSe.URL_BASE_HOMOLOGACAO);
+            NFSeCadeiaCertificados.get(keyStore, WSDistribuicaoDFe.URL_BASE_PRODUCAO);
+            NFSeCadeiaCertificados.get(keyStore, WSDistribuicaoDFe.URL_BASE_HOMOLOGACAO);
             NFSeCadeiaCertificados.get(keyStore, WSParametrosMunicipais.URL_BASE_PRODUCAO);
             NFSeCadeiaCertificados.get(keyStore, WSParametrosMunicipais.URL_BASE_HOMOLOGACAO);
             NFSeCadeiaCertificados.get(keyStore, WSBarueri.URL_BASE_PRODUCAO);
