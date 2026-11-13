@@ -7,10 +7,10 @@ public class DanfseOpcoes {
 
     private boolean canhoto = true;
     private DanfseSituacao situacao = DanfseSituacao.NORMAL;
-    private float margemSegurancaCm = MARGEM_SEGURANCA_PADRAO_CM;
+    private float margemSegurancaCm = 0f;
 
-    /** Margem de segurança padrão entre a borda do DANFSe e a beira do papel, parecida com a da DANFE. */
-    public static final float MARGEM_SEGURANCA_PADRAO_CM = 0.70f;
+    /** Margem de segurança sugerida para impressoras que cortam o texto, parecida com a da DANFE. */
+    public static final float MARGEM_SEGURANCA_SUGERIDA_CM = 0.70f;
 
     /**
      * @return true se o DANFSe é impresso com o canhoto (bloco opcional, item 2.1.13 da NT 008)
@@ -58,8 +58,8 @@ public class DanfseOpcoes {
 
     /**
      * Define a margem de segurança de impressão: a distância entre a borda do DANFSe e a beira do papel, para que a impressora
-     * não corte o texto. O DANFSe é reduzido proporcionalmente para caber. O padrão é {@value #MARGEM_SEGURANCA_PADRAO_CM} cm; zero
-     * mantém o leiaute exato da NT 008 (borda a 0,18 cm do papel).
+     * não corte o texto. O DANFSe é reduzido proporcionalmente para caber. O padrão é zero, que mantém o leiaute exato da NT 008
+     * (borda a 0,18 cm do papel); {@value #MARGEM_SEGURANCA_SUGERIDA_CM} cm costuma evitar cortes na impressão.
      *
      * @param margemSegurancaCm margem em cm, de zero a 3
      * @return as próprias opções

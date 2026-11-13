@@ -260,7 +260,7 @@ class NFSeGeraDanfseTest {
 
     @Test
     void deveGerarQrCodeComOEnderecoDeConsultaEAChave() throws Exception {
-        try (final var documento = Loader.loadPDF(gerador.gerar(DanfseFixtures.xml(DanfseFixtures.COMPLETA), new DanfseOpcoes().setMargemSegurancaCm(0)))) {
+        try (final var documento = Loader.loadPDF(gerador.gerar(DanfseFixtures.xml(DanfseFixtures.COMPLETA)))) {
             final var escala = 300f / 72f;
             final var imagem = new PDFRenderer(documento).renderImageWithDPI(0, 300);
             // quadro do QR Code: 1,52 cm em X 17,48 cm e Y 1,67 cm (item 2.4.3), com folga em volta
@@ -280,7 +280,7 @@ class NFSeGeraDanfseTest {
         infDps.getServicoPrestado().getInformacoesComplementares().setInformacoesComplementares("Informação complementar extensa. ".repeat(80));
         final var limiteCanhoto = DanfseRodape.TOPO_CANHOTO;
 
-        final var pdf = gerador.gerar(nfse, new DanfseOpcoes().setMargemSegurancaCm(0));
+        final var pdf = gerador.gerar(nfse);
         final var texto = DanfseFixtures.texto(pdf);
         Assertions.assertTrue(texto.contains("..."));
         Assertions.assertTrue(texto.contains("Totais Aproximados dos Tributos"), "a linha dos totais aproximados é fixa");
@@ -300,7 +300,7 @@ class NFSeGeraDanfseTest {
         // o corpo termina a 0,30 cm da beira do papel, como comeca a 0,30 cm do topo: a folga ate a borda e a mesma nos dois lados
         Assertions.assertEquals(PDRectangle.A4.getHeight() - 0.30f * CM, DanfseRodape.FIM_DO_CORPO, 0.01f);
         Assertions.assertEquals(DanfseRodape.FIM_DO_CORPO - 0.67f * CM, DanfseRodape.TOPO_CANHOTO, 0.01f);
-        final var glifos = DanfseFixtures.glifos(gerador.gerar(DanfseFixtures.xml(DanfseFixtures.COMPLETA), new DanfseOpcoes().setMargemSegurancaCm(0)));
+        final var glifos = DanfseFixtures.glifos(gerador.gerar(DanfseFixtures.xml(DanfseFixtures.COMPLETA)));
         final var canhoto = glifos.stream().filter(glifo -> glifo.y > DanfseRodape.TOPO_CANHOTO).toList();
         Assertions.assertFalse(canhoto.isEmpty());
         // a linha "numero / chave", a ultima do canhoto, fica no ultimo terco do quadro, junto do fim do corpo
@@ -311,13 +311,13 @@ class NFSeGeraDanfseTest {
     @Test
     void deveManterMargemDeSegurancaDeImpressao() {
         final var xml = DanfseFixtures.xml(DanfseFixtures.COMPLETA);
-        final var minimo = DanfseOpcoes.MARGEM_SEGURANCA_PADRAO_CM * CM - 1f;
-        // por padrao nenhum texto fica a menos de 0,70 cm da beira do papel
-        final var glifos = DanfseFixtures.glifos(gerador.gerar(xml));
+        final var minimo = DanfseOpcoes.MARGEM_SEGURANCA_SUGERIDA_CM * CM - 1f;
+        // com a margem sugerida nenhum texto fica a menos de 0,70 cm da beira do papel
+        final var glifos = DanfseFixtures.glifos(gerador.gerar(xml, new DanfseOpcoes().setMargemSegurancaCm(DanfseOpcoes.MARGEM_SEGURANCA_SUGERIDA_CM)));
         Assertions.assertFalse(glifos.isEmpty());
         Assertions.assertTrue(glifos.stream().allMatch(glifo -> glifo.y > minimo && glifo.y < PDRectangle.A4.getHeight() - minimo));
-        // sem a margem, o corpo da NT 008 chega a 0,30 cm da beira
-        final var semMargem = DanfseFixtures.glifos(gerador.gerar(xml, new DanfseOpcoes().setMargemSegurancaCm(0)));
+        // por padrao (sem margem), o corpo da NT 008 chega a 0,30 cm da beira
+        final var semMargem = DanfseFixtures.glifos(gerador.gerar(xml));
         Assertions.assertTrue(semMargem.stream().anyMatch(glifo -> glifo.y < minimo));
         Assertions.assertThrows(IllegalArgumentException.class, () -> new DanfseOpcoes().setMargemSegurancaCm(-1));
         Assertions.assertThrows(IllegalArgumentException.class, () -> new DanfseOpcoes().setMargemSegurancaCm(Float.NaN));
