@@ -319,8 +319,13 @@ class NFSeGeraDanfseTest {
         // por padrao (sem margem), o corpo da NT 008 chega a 0,30 cm da beira
         final var semMargem = DanfseFixtures.glifos(gerador.gerar(xml));
         Assertions.assertTrue(semMargem.stream().anyMatch(glifo -> glifo.y < minimo));
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new DanfseOpcoes().setMargemSegurancaCm(-1));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new DanfseOpcoes().setMargemSegurancaCm(-1f));
         Assertions.assertThrows(IllegalArgumentException.class, () -> new DanfseOpcoes().setMargemSegurancaCm(Float.NaN));
+        // null segue o leiaute da NT 008, igual ao padrao
+        Assertions.assertNull(new DanfseOpcoes().getMargemSegurancaCm());
+        final var comNulo = DanfseFixtures.glifos(gerador.gerar(xml, new DanfseOpcoes().setMargemSegurancaCm(0.7f).setMargemSegurancaCm(null)));
+        Assertions.assertEquals(semMargem.stream().mapToDouble(glifo -> glifo.y).min().orElseThrow(),
+                comNulo.stream().mapToDouble(glifo -> glifo.y).min().orElseThrow(), 0.01);
     }
 
     @Test

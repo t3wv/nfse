@@ -162,7 +162,7 @@ public class NFSeGeraDanfse {
      */
     private static byte[] renderizar(final DanfseNota nota, final DanfseOpcoes opcoes) {
         try (final var documento = new PDDocument(); final var saida = new ByteArrayOutputStream()) {
-            final var canvas = new DanfseCanvas(documento, opcoes.getMargemSegurancaCm());
+            final var canvas = new DanfseCanvas(documento, opcoes.getMargemSegurancaCm() == null ? 0f : opcoes.getMargemSegurancaCm());
             DanfseCabecalho.desenhar(canvas, nota);
             DanfseParticipantes.desenhar(canvas, nota);
 
