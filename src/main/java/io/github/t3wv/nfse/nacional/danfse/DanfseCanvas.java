@@ -96,6 +96,20 @@ final class DanfseCanvas {
      * @param documento documento onde a página é criada
      */
     DanfseCanvas(final PDDocument documento) {
+        this(documento, 0f);
+    }
+
+    /**
+     * Cria a página A4 do DANFSe no documento, com o cursor no topo da página e uma margem de segurança de impressão.
+     * <p>
+     * O leiaute da NT 008 deixa a borda a 0,18 cm da beira do papel, dentro da área que muitas impressoras não imprimem. Com a
+     * margem de segurança, todo o desenho (borda, textos, QR Code) é reduzido proporcionalmente e centralizado, de modo que a
+     * borda da página fique a essa distância da beira do papel, como na DANFE.
+     *
+     * @param documento documento onde a página é criada
+     * @param margemSegurancaCm distância mínima, em cm, entre a borda do DANFSe e a beira do papel; zero mantém o leiaute da NT 008
+     */
+    DanfseCanvas(final PDDocument documento, final float margemSegurancaCm) {
         this.documento = documento;
         this.pagina = new PDPage(PDRectangle.A4);
         this.documento.addPage(this.pagina);
@@ -105,6 +119,14 @@ final class DanfseCanvas {
         this.negrito = new PDType1Font(Standard14Fonts.FontName.HELVETICA_BOLD);
         try {
             this.conteudo = new PDPageContentStream(documento, this.pagina);
+            final var margem = margemSegurancaCm * CM;
+            if (margem > MARGEM_BORDA) {
+                final var larguraPagina = this.pagina.getMediaBox().getWidth();
+                final var alturaPagina = this.pagina.getMediaBox().getHeight();
+                final var escala = Math.min((larguraPagina - 2 * margem) / (larguraPagina - 2 * MARGEM_BORDA),
+                        (alturaPagina - 2 * margem) / (alturaPagina - 2 * MARGEM_BORDA));
+                this.conteudo.transform(new Matrix(escala, 0, 0, escala, larguraPagina * (1 - escala) / 2, alturaPagina * (1 - escala) / 2));
+            }
         } catch (final IOException e) {
             throw new UncheckedIOException(e);
         }
