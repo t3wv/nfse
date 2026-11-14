@@ -1,9 +1,12 @@
 package io.github.t3wv.nfse.nacional.danfse;
 
+import io.github.t3wv.nfse.nacional.classes.nfsenacional.NFSeSefinNacionalInfoIBSCBSImovelUnidade;
+import io.github.t3wv.nfse.nacional.classes.nfsenacional.NFSeSefinNacionalInfoIBSCBSInfoImovel;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static io.github.t3wv.nfse.nacional.danfse.DanfseCanvas.Alinhamento.ESQUERDA;
 import static io.github.t3wv.nfse.nacional.danfse.DanfseCanvas.CM;
@@ -60,7 +63,7 @@ final class DanfseRodape {
         final var evento = servico == null ? null : servico.getEvento();
         final var imovel = nota.ibsCbsDps() == null ? null : nota.ibsCbsDps().getImovel();
         final var inscricaoObra = obra == null ? null : obra.getInscricaoImobiliariaFiscal();
-        final var inscricaoImobiliaria = DanfseFormatador.texto(inscricaoObra).isEmpty() && imovel != null ? imovel.getInscImobFisc() : inscricaoObra;
+        final var inscricaoImobiliaria = DanfseFormatador.texto(inscricaoObra).isEmpty() ? inscricoesDoImovel(imovel) : inscricaoObra;
 
         final List<String> partes = new ArrayList<>();
         adicionar(partes, "Inf. Cont.: ", complemento == null ? null : complemento.getInformacoesComplementares());
@@ -75,6 +78,21 @@ final class DanfseRodape {
                 : DanfseFormatador.juntar(", ", complemento.getItensPedido().toArray(new String[0])));
         adicionar(partes, "Inf. A. T. Mun.: ", nota.inf().getInformacoesUsoAdministracaoTributaria());
         return DanfseFormatador.limitar(String.join(SEPARADOR, partes), 2000);
+    }
+
+    /**
+     * Inscrições imobiliárias das unidades do imóvel (gUnidImob, NT 009), separadas por vírgula; null se não houver.
+     */
+    private static String inscricoesDoImovel(final NFSeSefinNacionalInfoIBSCBSInfoImovel imovel) {
+        if (imovel == null || imovel.getgUnidImob() == null) {
+            return null;
+        }
+        final var inscricoes = imovel.getgUnidImob().stream()
+                .filter(Objects::nonNull)
+                .map(NFSeSefinNacionalInfoIBSCBSImovelUnidade::getInscImobFisc)
+                .filter(inscricao -> !DanfseFormatador.texto(inscricao).isEmpty())
+                .toList();
+        return inscricoes.isEmpty() ? null : String.join(", ", inscricoes);
     }
 
     private static void adicionar(final List<String> partes, final String titulo, final String valor) {

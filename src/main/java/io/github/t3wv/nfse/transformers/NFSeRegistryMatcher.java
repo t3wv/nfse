@@ -46,7 +46,8 @@ public class NFSeRegistryMatcher extends RegistryMatcher {
         super.bind(NFSeSefinNacionalComercioExteriorMecanismoApoioTomador.class, new NFSeSefinNacionalComercioExteriorMecanismoApoioTomadorTransformer());
         super.bind(NFSeSefinNacionalComercioExteriorMovimentacaoTemporariaBens.class, new NFSeSefinNacionalComercioExteriorMovimentacaoTemporariaBensTransformer());
         super.bind(NFSeSefinNacionalComercioExteriorCompartilharComMDIC.class, new NFSeSefinNacionalComercioExteriorCompartilharComMDICTransformer());
-        super.bind(NFSeSefinNacionalDocDedRedTipoDeducaoReducao.class, new NFSeSefinNacionalDocDedRedTipoDeducaoReducaoTransformer());
+        super.bind(NFSeSefinNacionalDocAjusteBCTipoAjuste.class, new NFSeSefinNacionalDocAjusteBCTipoAjusteTransformer());
+        super.bind(NFSeSefinNacionalInfoIBSCBSImovelTipoAjusteBC.class, new NFSeSefinNacionalInfoIBSCBSImovelTipoAjusteBCTransformer());
         super.bind(NFSeSefinNacionalTribMunicipalTributacaoISSQN.class, new NFSeSefinNacionalTribMunicipalTributacaoISSQNTransformer());
         super.bind(NFSeSefinNacionalValoresNFSeTipoBeneficioMunicipal.class, new NFSeSefinNacionalValoresNFSeTipoBeneficioMunicipalTransformer());
         super.bind(NFSeSefinNacionalExigSuspensaTipoSuspensao.class, new NFSeSefinNacionalExigSuspensaTipoSuspensaoTransformer());
@@ -71,7 +72,6 @@ public class NFSeRegistryMatcher extends RegistryMatcher {
         super.bind(NFSeSefinNacionalInfoIBSCBSTpEnteGov.class, new NFSeSefinNacionalInfoIBSCBSTpEnteGovTransformer());
         super.bind(NFSeSefinNacionalInfoIBSCBSIndDest.class, new NFSeSefinNacionalInfoIBSCBSIndDestTransformer());
         super.bind(NFSeSefinNacionalInfoIBSCBSTipoChaveDFe.class, new NFSeSefinNacionalInfoIBSCBSTipoChaveDFeTransformer());
-        super.bind(NFSeSefinNacionalInfoIBSCBSTpReeRepRes.class, new NFSeSefinNacionalInfoIBSCBSTpReeRepResTransformer());
 
         // NFSe São Paulo
         super.bind(TpOpcaoSimplesNFe.class, new NFSeSPSaoPauloTpOpcaoSimplesNFeTransformer());

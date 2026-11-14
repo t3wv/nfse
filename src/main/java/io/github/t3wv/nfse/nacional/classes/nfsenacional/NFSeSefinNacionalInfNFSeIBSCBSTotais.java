@@ -7,9 +7,9 @@ import java.math.BigDecimal;
 public class NFSeSefinNacionalInfNFSeIBSCBSTotais {
     @Element( name="vTotNF")
     private BigDecimal vTotNF;
-    @Element( name="gIBS")
+    @Element( name="gIBS", required = false)
     private NFSeSefinNacionalInfNFSeIBSCBSTotaisIBS gIBS;
-    @Element( name="gCBS")
+    @Element( name="gCBS", required = false)
     private NFSeSefinNacionalInfNFSeIBSCBSTotaisCBS gCBS;
     @Element( name="gTribRegular", required = false)
     private NFSeSefinNacionalInfNFSeIBSCBSTotaisTribRegular gTribRegular;

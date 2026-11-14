@@ -7,8 +7,9 @@ import java.math.BigDecimal;
 
 @Root(name = "ValoresNFSe")
 public class NFSeSefinNacionalValoresNFSe {
-    @Element(name = "vCalcDR", required = false)
-    protected BigDecimal vCalcDR;
+    @Element(name = "vCalcAjusteBCISSQN", required = false)
+    protected BigDecimal vCalcAjusteBCISSQN;
+
     @Element(name = "tpBM", required = false)
     protected NFSeSefinNacionalValoresNFSeTipoBeneficioMunicipal tpBM;
     @Element(name = "vCalcBM", required = false)
@@ -25,12 +26,15 @@ public class NFSeSefinNacionalValoresNFSe {
     protected BigDecimal vLiq;
 
 
-    public BigDecimal getVCalcDR() {
-        return vCalcDR;
+    /**
+     * Valor calculado do ajuste da base de cálculo do ISSQN (NT SE/CGNFS-e 009; substitui o vCalcDR)
+     */
+    public BigDecimal getVCalcAjusteBCISSQN() {
+        return vCalcAjusteBCISSQN;
     }
 
-    public NFSeSefinNacionalValoresNFSe setVCalcDR(BigDecimal value) {
-        this.vCalcDR = value;
+    public NFSeSefinNacionalValoresNFSe setVCalcAjusteBCISSQN(BigDecimal value) {
+        this.vCalcAjusteBCISSQN = value;
         return this;
     }
 

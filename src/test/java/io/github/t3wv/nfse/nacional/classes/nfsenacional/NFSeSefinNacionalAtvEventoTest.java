@@ -1,5 +1,6 @@
 package io.github.t3wv.nfse.nacional.classes.nfsenacional;
 
+import io.github.t3wv.nfse.nacional.WSSefinNFSe;
 import io.github.t3wv.nfse.utils.NFSePersister;
 import io.github.t3wv.nfse.utils.NFSeXmlValidator;
 import org.junit.jupiter.api.Assertions;
@@ -13,7 +14,8 @@ import java.time.LocalDate;
  */
 class NFSeSefinNacionalAtvEventoTest {
 
-    private static final String XSD_DPS = "NFSeNacional_nfse-esquemas_xsd-v1-01-20260209/Schemas/1.01/DPS_v1.01.xsd";
+    // O mesmo XSD da DPS que a lib usa no envio (producao restrita, leiaute da NT 009).
+    private static final String XSD_DPS = WSSefinNFSe.XSD_DPS;
 
     private static String xmlComEvento(final String evento) {
         // atvEvento vem depois de obra e antes de infoCompl no grupo serv

@@ -73,8 +73,16 @@ class DanfseTributosTest {
 
     @Test
     void deveSomarAsExclusoesEReducoesDaBaseDoIbsCbs() {
-        // vDescIncond 750,00 + vCalcReeRepRes 100,00 + vISSQN 175,00 + vPis 65,00 + vCofins 300,00
+        // vDescIncond 750,00 + vCalcAjusteBCIBSCBS 100,00 + vISSQN 175,00 + vPis 65,00 + vCofins 300,00
         Assertions.assertEquals(new BigDecimal("1390.00"), DanfseTributos.exclusoesEReducoes(DanfseFixtures.nota(DanfseFixtures.COMPLETA)));
+    }
+
+    @Test
+    void deveUsarOAjusteDaLocacaoDeImoveisQuandoNaoHaAjusteDoIbsCbs() {
+        // o vBC do IBS/CBS usa vCalcAjusteBCIBSCBS ou vCalcAjusteBCLocImoveis (subitem 99.03), nunca os dois
+        final var nota = DanfseFixtures.nota(DanfseFixtures.COMPLETA);
+        nota.ibsCbsNota().getValores().setvCalcAjusteBCIBSCBS(null).setvCalcAjusteBCLocImoveis(new BigDecimal("40.00"));
+        Assertions.assertEquals(new BigDecimal("1330.00"), DanfseTributos.exclusoesEReducoes(nota));
     }
 
     @Test
