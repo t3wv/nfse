@@ -123,7 +123,7 @@ final class DanfseTributos {
     }
 
     /**
-     * Valores zerados (como o vCalcReeRepRes 0.00 que o Sistema Nacional sempre informa) não contam como dado da linha.
+     * Valores zerados (como o vCalcAjusteBCIBSCBS 0.00 que o Sistema Nacional informa) não contam como dado da linha.
      */
     private static boolean temBeneficioOuDeducao(final DanfseNota nota) {
         final var valores = nota.inf().getValores();
@@ -150,18 +150,34 @@ final class DanfseTributos {
     }
 
     /**
-     * Total de deduções e reduções: vCalcDR (ou, sem ele, vDR) mais vCalcReeRepRes do IBS/CBS (item 2.4.5).
+     * Total de deduções e reduções (item 2.4.5). No leiaute da NT 009, vDedRed e gReeRepRes viraram vAjusteBC: soma o
+     * vCalcAjusteBCISSQN (ou, sem ele, o vAjusteBCISSQN da DPS) com o vCalcAjusteBCIBSCBS do IBS/CBS.
      */
     private static BigDecimal totalDeducoesReducoes(final DanfseNota nota) {
         final var valores = nota.inf().getValores();
-        final var deducao = nota.dps().getValores() == null ? null : nota.dps().getValores().getValoresDeducaoBaseCalculo();
-        final var calculado = valores == null ? null : valores.getVCalcDR();
-        final var deducaoInformada = calculado != null ? calculado : deducao == null ? null : deducao.getValorMonetarioPadrao();
-        final var reeRepRes = nota.ibsCbsNota() == null || nota.ibsCbsNota().getValores() == null ? null : nota.ibsCbsNota().getValores().getvCalcReeRepRes();
-        if (deducaoInformada == null) {
-            return reeRepRes;
+        final var ajuste = nota.dps().getValores() == null ? null : nota.dps().getValores().getValoresAjusteBaseCalculo();
+        final var calculado = valores == null ? null : valores.getVCalcAjusteBCISSQN();
+        final var ajusteIssqn = calculado != null ? calculado : ajuste == null ? null : ajuste.getvAjusteBCISSQN();
+        // so o vCalcAjusteBCIBSCBS (o antigo vCalcReeRepRes): o ajuste da locacao de imoveis e so do IBS/CBS
+        final var ibsCbs = nota.ibsCbsNota();
+        final var ajusteIbsCbs = ibsCbs == null || ibsCbs.getValores() == null ? null : ibsCbs.getValores().getvCalcAjusteBCIBSCBS();
+        if (ajusteIssqn == null) {
+            return ajusteIbsCbs;
         }
-        return reeRepRes == null ? deducaoInformada : deducaoInformada.add(reeRepRes);
+        return ajusteIbsCbs == null ? ajusteIssqn : ajusteIssqn.add(ajusteIbsCbs);
+    }
+
+    /**
+     * Ajuste da base de cálculo do IBS/CBS: vCalcAjusteBCIBSCBS ou, sem ele, vCalcAjusteBCLocImoveis (só da locação de imóveis,
+     * subitem 99.03). O XSD usa um "ou" o outro na fórmula do vBC, então os dois não se somam.
+     */
+    private static BigDecimal ajusteBaseCalculoIbsCbs(final DanfseNota nota) {
+        final var ibsCbs = nota.ibsCbsNota();
+        final var valores = ibsCbs == null ? null : ibsCbs.getValores();
+        if (valores == null) {
+            return null;
+        }
+        return valores.getvCalcAjusteBCIBSCBS() != null ? valores.getvCalcAjusteBCIBSCBS() : valores.getvCalcAjusteBCLocImoveis();
     }
 
     private static BigDecimal descontoIncondicionado(final DanfseNota nota) {
@@ -263,7 +279,8 @@ final class DanfseTributos {
         final var ibs = totais == null ? null : totais.getgIBS();
         final var cbs = totais == null ? null : totais.getgCBS();
         final var dps = nota.ibsCbsDps();
-        final var tributos = dps == null || dps.getValores() == null || dps.getValores().getTrib() == null ? null : dps.getValores().getTrib().getgIBSCBS();
+        // NT 009: CST e cClassTrib sairam do gIBSCBS e ficam direto em trib
+        final var tributos = dps == null || dps.getValores() == null ? null : dps.getValores().getTrib();
 
         canvas.divisoria();
         canvas.tituloBloco("TRIBUTAÇÃO IBS/CBS");
@@ -300,27 +317,26 @@ final class DanfseTributos {
     }
 
     /**
-     * Exclusões e reduções da base de cálculo do IBS/CBS: soma de vDescIncond, vCalcReeRepRes, vISSQN, vPis e vCofins
-     * (item 2.4.5).
+     * Exclusões e reduções da base de cálculo do IBS/CBS: soma de vDescIncond,
+     * ajuste da BC do IBS/CBS (o antigo vCalcReeRepRes), vISSQN, vPis e vCofins (item 2.4.5).
      */
     static BigDecimal exclusoesEReducoes(final DanfseNota nota) {
         final var valores = nota.inf().getValores();
         final var pisCofins = nota.pisCofins();
-        final var ibsCbs = nota.ibsCbsNota();
         final var descontoIncondicionado = descontoIncondicionado(nota);
-        final var reeRepRes = ibsCbs == null || ibsCbs.getValores() == null ? null : ibsCbs.getValores().getvCalcReeRepRes();
+        final var ajusteIbsCbs = ajusteBaseCalculoIbsCbs(nota);
         final var issqn = valores == null ? null : valores.getVISSQN();
         final var pis = pisCofins == null ? null : pisCofins.getValorPIS();
         final var cofins = pisCofins == null ? null : pisCofins.getValorCofins();
-        if (descontoIncondicionado == null && reeRepRes == null && issqn == null && pis == null && cofins == null) {
+        if (descontoIncondicionado == null && ajusteIbsCbs == null && issqn == null && pis == null && cofins == null) {
             return null;
         }
         var total = BigDecimal.ZERO;
         if (descontoIncondicionado != null) {
             total = total.add(descontoIncondicionado);
         }
-        if (reeRepRes != null) {
-            total = total.add(reeRepRes);
+        if (ajusteIbsCbs != null) {
+            total = total.add(ajusteIbsCbs);
         }
         if (issqn != null) {
             total = total.add(issqn);

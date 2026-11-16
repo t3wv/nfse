@@ -150,7 +150,8 @@ public abstract class NFSeUtils {
         final String codigoMunicipioEmissao = infDps.getCodigoMunicipioEmissao();
         assert codigoMunicipioEmissao != null : "Código do município de emissão não pode ser nulo para geração do ID da DPS";
         final int serie = Integer.parseInt(infDps.getSerie());
-        assert serie > 0 && serie <= 99999 : "Série do DPS deve estar entre 1 e 99999 para geração do ID";
+        // TSSerieDPS (XSD de 20/10/2026): [0-9]{1,4}|[0-8][0-9]{4}, ou seja, até 89999
+        assert serie > 0 && serie <= 89999 : "Série do DPS deve estar entre 1 e 89999 para geração do ID";
         final long numeroDPS = infDps.getNumeroDPS();
         assert numeroDPS > 0 && numeroDPS <= 999999999999999L : "Numero do DPS deve estar entre 1 e 999999999999999 para geração do ID";
 

@@ -27,6 +27,10 @@ public class NFSeSefinNacionalInfDPS {
     protected NFSeSefinNacionalInfDPSTipoEmitente tipoEmitente;
     @Element(name = "cMotivoEmisTI", required = false)
     protected NFSeSefinNacionalTSMotivoEmisTI motivoEmissaoTomadorIntermediario;
+    // required = false só para ler DPS anteriores à NT 009, que não têm o campo aqui; como o
+    // padrão é REGULAR, toda DPS nova sai com finNFSe.
+    @Element(name = "finNFSe", required = false)
+    protected NFSeSefinNacionalInfoIBSCBSFinNFSe finalidade = NFSeSefinNacionalInfoIBSCBSFinNFSe.REGULAR;
     @Element(name = "chNFSeRej", required = false)
     protected String chaveNFSeRejeitada;
     @Element(name = "cLocEmi")
@@ -170,6 +174,23 @@ public class NFSeSefinNacionalInfDPS {
      */
     public NFSeSefinNacionalInfDPS setMotivoEmissaoTomadorIntermediario(NFSeSefinNacionalTSMotivoEmisTI motivoEmissaoTomadorIntermediario) {
         this.motivoEmissaoTomadorIntermediario = motivoEmissaoTomadorIntermediario;
+        return this;
+    }
+
+    /**
+     * Indicador da finalidade da emissão de NFS-e (NT SE/CGNFS-e 009: saiu do grupo IBSCBS para o infDPS)
+     *
+     * @return finalidade da emissão
+     */
+    public NFSeSefinNacionalInfoIBSCBSFinNFSe getFinalidade() {
+        return finalidade;
+    }
+
+    /**
+     * @param finalidade finalidade da emissão de NFS-e
+     */
+    public NFSeSefinNacionalInfDPS setFinalidade(NFSeSefinNacionalInfoIBSCBSFinNFSe finalidade) {
+        this.finalidade = finalidade;
         return this;
     }
 

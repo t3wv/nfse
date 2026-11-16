@@ -136,8 +136,8 @@ final class DanfseCabecalho {
         canvas.campo(0, 1, "EMITENTE DA NFS-e", TAMANHO_ROTULO_IDENTIFICACAO, DanfseFormatador.ouTraco(emitente));
         final var situacao = inf.getSituacao() == null ? null : inf.getSituacao().getDescricao();
         canvas.campo(1, 1, "SITUAÇÃO DA NFS-e", TAMANHO_ROTULO_IDENTIFICACAO, DanfseFormatador.ouTraco(DanfseFormatador.limitar(situacao, 40)));
-        final var ibsCbs = nota.ibsCbsDps();
-        final var finalidade = ibsCbs == null || ibsCbs.getFinNFSe() == null ? null : ibsCbs.getFinNFSe().getDescricao();
+        // NT 009: finNFSe saiu do grupo IBS/CBS e foi para infDPS
+        final var finalidade = dps.getFinalidade() == null ? null : dps.getFinalidade().getDescricao();
         canvas.campo(2, 1, "FINALIDADE", TAMANHO_ROTULO_IDENTIFICACAO, DanfseFormatador.ouTraco(DanfseFormatador.limitar(finalidade, 40)));
     }
 

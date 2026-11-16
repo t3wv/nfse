@@ -93,7 +93,9 @@ public class NFSeSefinNacionalNFSePostResponseSucesso {
     }
 
     public NFSeSefinNacionalNFSe getNFSeXMLObject() throws Exception {
-        return new NFSePersister().read(NFSeSefinNacionalNFSe.class, this.getNFSeXmlString());
+        // Não estrito: uma NFS-e emitida num leiaute anterior traz elementos que o modelo atual não tem
+        // (ex.: vDedRed, gReeRepRes, finNFSe no IBSCBS antes da NT SE/CGNFS-e 009) e deve continuar legível.
+        return new NFSePersister(false).read(NFSeSefinNacionalNFSe.class, this.getNFSeXmlString());
     }
 
     @Override

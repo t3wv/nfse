@@ -1,10 +1,14 @@
 package io.github.t3wv.nfse.nacional.danfse;
 
+import io.github.t3wv.nfse.nacional.classes.nfsenacional.NFSeSefinNacionalInfoIBSCBSImovelUnidade;
+import io.github.t3wv.nfse.nacional.classes.nfsenacional.NFSeSefinNacionalInfoIBSCBSInfoImovel;
 import io.github.t3wv.nfse.nacional.classes.nfsenacional.NFSeSefinNacionalTribTotalPercent;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Testes das informações complementares e dos totais aproximados dos tributos (item 2.4.5 da NT 008, notas 7 a 10).
@@ -27,6 +31,19 @@ class DanfseRodapeTest {
         final var nfse = new io.github.t3wv.nfse.utils.NFSePersister().read(io.github.t3wv.nfse.nacional.classes.nfsenacional.NFSeSefinNacionalNFSe.class, xml);
         final var informacoes = DanfseRodape.informacoes(new DanfseNota(nfse));
         Assertions.assertTrue(informacoes.contains("Insc. Imob.: 000.111.222-3 | Cod. Evt.: EVT-2026-001 | Doc. Tec.: ART-2026-0001"), informacoes);
+    }
+
+    @Test
+    void deveUsarAsInscricoesDasUnidadesDoImovelQuandoAObraNaoTemInscricao() {
+        // NT 009: a inscricao imobiliaria do imovel fica em cada unidade (gUnidImob)
+        final var nota = DanfseFixtures.nota(DanfseFixtures.COMPLETA);
+        nota.dps().getServicoPrestado().getObra().setInscricaoImobiliariaFiscal(null);
+        nota.ibsCbsDps().setImovel(new NFSeSefinNacionalInfoIBSCBSInfoImovel().setgUnidImob(new ArrayList<>(List.of(
+                new NFSeSefinNacionalInfoIBSCBSImovelUnidade().setInscImobFisc("IM-001"),
+                new NFSeSefinNacionalInfoIBSCBSImovelUnidade().setcCIB("12345678901234"),
+                new NFSeSefinNacionalInfoIBSCBSImovelUnidade().setInscImobFisc("IM-002")))));
+        final var informacoes = DanfseRodape.informacoes(nota);
+        Assertions.assertTrue(informacoes.contains("Insc. Imob.: IM-001, IM-002 | "), informacoes);
     }
 
     @Test

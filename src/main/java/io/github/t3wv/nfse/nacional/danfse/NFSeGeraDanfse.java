@@ -94,7 +94,8 @@ public class NFSeGeraDanfse {
             throw new IllegalArgumentException(MENSAGEM_NAO_E_NFSE);
         }
         try {
-            return new NFSePersister().read(NFSeSefinNacionalNFSe.class, xmlNfse);
+            // Sem modo estrito, como na consulta: uma NFS-e emitida no leiaute anterior a NT 009 continua legivel
+            return new NFSePersister(false).read(NFSeSefinNacionalNFSe.class, xmlNfse);
         } catch (final Exception e) {
             throw new IllegalArgumentException(MENSAGEM_XML_INVALIDO, e);
         }

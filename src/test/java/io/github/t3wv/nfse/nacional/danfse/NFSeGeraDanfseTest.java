@@ -77,6 +77,22 @@ class NFSeGeraDanfseTest {
     }
 
     @Test
+    void deveGerarODanfseDeUmaNfseNoLeiauteAnteriorANt009() {
+        // NFS-e emitida antes da NT 009: vCalcDR, vDedRed, vCalcReeRepRes, finNFSe no IBS/CBS e CST/cClassTrib no gIBSCBS
+        final var xml = DanfseFixtures.xml(DanfseFixtures.COMPLETA)
+                .replace("<vCalcAjusteBCISSQN>500.00</vCalcAjusteBCISSQN>", "<vCalcDR>500.00</vCalcDR>")
+                .replace("<vCalcAjusteBCIBSCBS>100.00</vCalcAjusteBCIBSCBS>", "<vCalcReeRepRes>100.00</vCalcReeRepRes>")
+                .replace("<vAjusteBC>", "<vDedRed>").replace("</vAjusteBC>", "</vDedRed>")
+                .replace("<vAjusteBCISSQN>500.00</vAjusteBCISSQN>", "<vDR>500.00</vDR>")
+                .replace("<finNFSe>0</finNFSe>", "")
+                .replace("<indFinal>0</indFinal>", "<finNFSe>0</finNFSe><indFinal>0</indFinal>")
+                .replace("<CST>200</CST>", "<gIBSCBS><CST>200</CST>").replace("<cClassTrib>200001</cClassTrib>", "<cClassTrib>200001</cClassTrib></gIBSCBS>");
+        Assertions.assertTrue(xml.contains("<vCalcDR>") && xml.contains("<gIBSCBS><CST>200</CST>"), "o XML de teste nao foi convertido para o leiaute anterior");
+        final var texto = DanfseFixtures.texto(gerador.gerar(xml));
+        Assertions.assertTrue(texto.contains(CHAVE));
+    }
+
+    @Test
     void deveRejeitarXmlMalformado() {
         final var e = Assertions.assertThrows(IllegalArgumentException.class, () -> gerador.gerar("<NFSe><infNFSe>"));
         Assertions.assertEquals("XML da NFS-e inválido", e.getMessage());
@@ -159,14 +175,14 @@ class NFSeGeraDanfseTest {
         Assertions.assertTrue(texto.contains("Estimativa"));
         Assertions.assertTrue(texto.contains("123456789012345678901234567890"));
         Assertions.assertTrue(texto.contains("Redução da BC em percentual"));
-        Assertions.assertTrue(texto.contains("R$ 600,00"), "deduções: vCalcDR + vCalcReeRepRes");
+        Assertions.assertTrue(texto.contains("R$ 600,00"), "deduções: vCalcAjusteBCISSQN + vCalcAjusteBCIBSCBS");
         Assertions.assertTrue(texto.contains("2,00 %"));
         Assertions.assertTrue(texto.contains("Retido pelo Tomador"));
         Assertions.assertTrue(texto.contains("R$ 465,00"), "contribuições retidas: vRetCSLL + vPis + vCofins");
         Assertions.assertTrue(texto.contains("PIS/COFINS Retidos"));
         Assertions.assertTrue(texto.contains("200 / 200001"));
         Assertions.assertTrue(texto.contains("100301 / 3509502 / Campinas / SP"));
-        Assertions.assertTrue(texto.contains("R$ 1.390,00"), "exclusões: vDescIncond + vCalcReeRepRes + vISSQN + vPis + vCofins");
+        Assertions.assertTrue(texto.contains("R$ 1.390,00"), "exclusões: vDescIncond + vCalcAjusteBCIBSCBS + vISSQN + vPis + vCofins");
         Assertions.assertTrue(texto.contains("10,00 % / 20,00 % / 30,00 %"));
         Assertions.assertTrue(texto.contains("0,10 % / 0,05 %"));
         Assertions.assertTrue(texto.contains("R$ 10.000,00"));
@@ -213,10 +229,10 @@ class NFSeGeraDanfseTest {
         tribMun.setBeneficioMunicipal(null);
         nfse.getInfNFSe().getDPS().getInfDPS().getPrestador().getRegimeTributario()
                 .setRegimeEspecialTributacao(io.github.t3wv.nfse.nacional.classes.nfsenacional.NFSeSefinNacionalRegimeTributarioRegimeEspecialTributacao.NENHUM);
-        nfse.getInfNFSe().getValores().setTpBM(null).setVCalcBM(null).setVCalcDR(null);
-        nfse.getInfNFSe().getDPS().getInfDPS().getValores().setValoresDeducaoBaseCalculo(null).setValoresDescontosCondicionadosEIncondicionados(null);
-        // o vCalcReeRepRes zerado, sempre informado pelo Sistema Nacional, nao conta como dado da linha
-        nfse.getInfNFSe().getIbsCbs().getValores().setvCalcReeRepRes(java.math.BigDecimal.ZERO);
+        nfse.getInfNFSe().getValores().setTpBM(null).setVCalcBM(null).setVCalcAjusteBCISSQN(null);
+        nfse.getInfNFSe().getDPS().getInfDPS().getValores().setValoresAjusteBaseCalculo(null).setValoresDescontosCondicionadosEIncondicionados(null);
+        // o vCalcAjusteBCIBSCBS zerado, sempre informado pelo Sistema Nacional, nao conta como dado da linha
+        nfse.getInfNFSe().getIbsCbs().getValores().setvCalcAjusteBCIBSCBS(java.math.BigDecimal.ZERO);
         final var texto = DanfseFixtures.texto(gerador.gerar(nfse));
         Assertions.assertFalse(texto.contains("Regime Especial de Tributação do ISSQN"));
         Assertions.assertFalse(texto.contains("Benefício Municipal"));

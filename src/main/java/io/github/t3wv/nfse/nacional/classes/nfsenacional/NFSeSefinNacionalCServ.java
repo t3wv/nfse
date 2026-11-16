@@ -10,12 +10,12 @@ public class NFSeSefinNacionalCServ {
     protected String codigoNacionalTributacaoISSQN;
     @Element(name = "cTribMun", required = false)
     protected String codigoMunicipalTributacaoISSQN;
-    @Element(name = "xDescServ")
-    protected String descricaoServico;
     @Element(name = "cNBS", required = false)
     protected String codigoNBS;
     @Element(name = "cIntContrib", required = false)
     protected String codigoInternoContribuinte;
+    @Element(name = "xDescServ")
+    protected String descricaoServico;
 
     /**
      * @return Código de tributação nacional do ISSQN

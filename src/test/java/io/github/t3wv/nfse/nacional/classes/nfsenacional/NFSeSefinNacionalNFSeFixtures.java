@@ -46,7 +46,7 @@ public final class NFSeSefinNacionalNFSeFixtures {
                         <email>fiscal@prestadora.example.com</email>
                     </emit>
                     <valores>
-                        <vCalcDR>500.00</vCalcDR>
+                        <vCalcAjusteBCISSQN>500.00</vCalcAjusteBCISSQN>
                         <tpBM>2</tpBM>
                         <vCalcBM>250.00</vCalcBM>
                         <vBC>8750.00</vBC>
@@ -61,7 +61,7 @@ public final class NFSeSefinNacionalNFSeFixtures {
                         <xLocalidadeIncid>Campinas</xLocalidadeIncid>
                         <valores>
                             <vBC>8000.00</vBC>
-                            <vCalcReeRepRes>100.00</vCalcReeRepRes>
+                            <vCalcAjusteBCIBSCBS>100.00</vCalcAjusteBCIBSCBS>
                             <uf>
                                 <pIBSUF>0.10</pIBSUF>
                                 <pRedAliqUF>10.00</pRedAliqUF>
@@ -103,6 +103,7 @@ public final class NFSeSefinNacionalNFSeFixtures {
                             <nDPS>77</nDPS>
                             <dCompet>2026-09-15</dCompet>
                             <tpEmit>1</tpEmit>
+                            <finNFSe>0</finNFSe>
                             <cLocEmi>3550308</cLocEmi>
                             <subst>
                                 <chSubstda>35503082211222333000181000000000123326091234567891</chSubstda>
@@ -157,10 +158,10 @@ public final class NFSeSefinNacionalNFSeFixtures {
                                 <cServ>
                                     <cTribNac>010101</cTribNac>
                                     <cTribMun>001</cTribMun>
+                                    <cNBS>115021000</cNBS>
                                     <xDescServ>Desenvolvimento de módulo de faturamento conforme proposta comercial 2026/042.
                                         Inclui levantamento de requisitos, implementação, testes e implantação em ambiente de produção.
                                     </xDescServ>
-                                    <cNBS>115021000</cNBS>
                                 </cServ>
                                 <obra>
                                     <inscImobFisc>000.111.222-3</inscImobFisc>
@@ -185,9 +186,9 @@ public final class NFSeSefinNacionalNFSeFixtures {
                                     <vDescIncond>750.00</vDescIncond>
                                     <vDescCond>50.00</vDescCond>
                                 </vDescCondIncond>
-                                <vDedRed>
-                                    <vDR>500.00</vDR>
-                                </vDedRed>
+                                <vAjusteBC>
+                                    <vAjusteBCISSQN>500.00</vAjusteBCISSQN>
+                                </vAjusteBC>
                                 <trib>
                                     <tribMun>
                                         <tribISSQN>1</tribISSQN>
@@ -225,7 +226,6 @@ public final class NFSeSefinNacionalNFSeFixtures {
                                 </trib>
                             </valores>
                             <IBSCBS>
-                                <finNFSe>0</finNFSe>
                                 <indFinal>0</indFinal>
                                 <cIndOp>100301</cIndOp>
                                 <indDest>1</indDest>
@@ -248,10 +248,8 @@ public final class NFSeSefinNacionalNFSeFixtures {
                                 </dest>
                                 <valores>
                                     <trib>
-                                        <gIBSCBS>
-                                            <CST>200</CST>
-                                            <cClassTrib>200001</cClassTrib>
-                                        </gIBSCBS>
+                                        <CST>200</CST>
+                                        <cClassTrib>200001</cClassTrib>
                                     </trib>
                                 </valores>
                             </IBSCBS>
@@ -321,6 +319,7 @@ public final class NFSeSefinNacionalNFSeFixtures {
                             <nDPS>56</nDPS>
                             <dCompet>2027-01-15</dCompet>
                             <tpEmit>1</tpEmit>
+                            <finNFSe>0</finNFSe>
                             <cLocEmi>3505708</cLocEmi>
                             <prest>
                                 <CNPJ>11222333000181</CNPJ>
