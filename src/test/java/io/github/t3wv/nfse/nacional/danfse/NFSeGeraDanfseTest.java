@@ -309,6 +309,26 @@ class NFSeGeraDanfseTest {
     }
 
     @Test
+    void deveManterMargemDeSegurancaDeImpressao() {
+        final var xml = DanfseFixtures.xml(DanfseFixtures.COMPLETA);
+        final var minimo = DanfseOpcoes.MARGEM_SEGURANCA_SUGERIDA_CM * CM - 1f;
+        // com a margem sugerida nenhum texto fica a menos de 0,70 cm da beira do papel
+        final var glifos = DanfseFixtures.glifos(gerador.gerar(xml, new DanfseOpcoes().setMargemSegurancaCm(DanfseOpcoes.MARGEM_SEGURANCA_SUGERIDA_CM)));
+        Assertions.assertFalse(glifos.isEmpty());
+        Assertions.assertTrue(glifos.stream().allMatch(glifo -> glifo.y > minimo && glifo.y < PDRectangle.A4.getHeight() - minimo));
+        // por padrao (sem margem), o corpo da NT 008 chega a 0,30 cm da beira
+        final var semMargem = DanfseFixtures.glifos(gerador.gerar(xml));
+        Assertions.assertTrue(semMargem.stream().anyMatch(glifo -> glifo.y < minimo));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new DanfseOpcoes().setMargemSegurancaCm(-1f));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new DanfseOpcoes().setMargemSegurancaCm(Float.NaN));
+        // null segue o leiaute da NT 008, igual ao padrao
+        Assertions.assertNull(new DanfseOpcoes().getMargemSegurancaCm());
+        final var comNulo = DanfseFixtures.glifos(gerador.gerar(xml, new DanfseOpcoes().setMargemSegurancaCm(0.7f).setMargemSegurancaCm(null)));
+        Assertions.assertEquals(semMargem.stream().mapToDouble(glifo -> glifo.y).min().orElseThrow(),
+                comNulo.stream().mapToDouble(glifo -> glifo.y).min().orElseThrow(), 0.01);
+    }
+
+    @Test
     void deveGerarPeloWSFacade() throws Exception {
         final var facade = new WSFacade(null);
         final var xml = DanfseFixtures.xml(DanfseFixtures.MINIMA);
