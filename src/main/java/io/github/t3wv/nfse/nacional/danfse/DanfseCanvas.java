@@ -89,6 +89,8 @@ final class DanfseCanvas {
     private final PDFont negrito;
     private float y;
     private String marcaDagua;
+    /** Transformação da margem de segurança, reaplicada à marca d'água; null quando o leiaute não é reduzido. */
+    private Matrix transformacao;
 
     /**
      * Cria a página A4 do DANFSe no documento, com o cursor no topo da página.
@@ -125,7 +127,8 @@ final class DanfseCanvas {
                 final var alturaPagina = this.pagina.getMediaBox().getHeight();
                 final var escala = Math.min((larguraPagina - 2 * margem) / (larguraPagina - 2 * MARGEM_BORDA),
                         (alturaPagina - 2 * margem) / (alturaPagina - 2 * MARGEM_BORDA));
-                this.conteudo.transform(new Matrix(escala, 0, 0, escala, larguraPagina * (1 - escala) / 2, alturaPagina * (1 - escala) / 2));
+                this.transformacao = new Matrix(escala, 0, 0, escala, larguraPagina * (1 - escala) / 2, alturaPagina * (1 - escala) / 2);
+                this.conteudo.transform(this.transformacao);
             }
         } catch (final IOException e) {
             throw new UncheckedIOException(e);
@@ -612,6 +615,10 @@ final class DanfseCanvas {
         final var mistura = new PDExtendedGraphicsState();
         mistura.setBlendMode(BlendMode.MULTIPLY);
         try (final var fluxo = new PDPageContentStream(this.documento, this.pagina, PDPageContentStream.AppendMode.APPEND, true, true)) {
+            if (this.transformacao != null) {
+                // mesma reducao do restante do DANFSe, para a marca d'agua manter a proporcao com o conteudo
+                fluxo.transform(this.transformacao);
+            }
             fluxo.setGraphicsStateParameters(mistura);
             fluxo.setNonStrokingColor(CINZA_MARCA_DAGUA);
             fluxo.beginText();

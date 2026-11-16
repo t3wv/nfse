@@ -59,7 +59,7 @@ public class DanfseOpcoes {
     /**
      * Define a margem de segurança de impressão: a distância entre a borda do DANFSe e a beira do papel, para que a impressora
      * não corte o texto. O DANFSe é reduzido proporcionalmente para caber. O padrão é null, que (assim como zero) mantém o
-     * leiaute exato da NT 008 (borda a 0,18 cm do papel); {@value #MARGEM_SEGURANCA_SUGERIDA_CM} cm costuma evitar cortes na
+     * leiaute exato da NT 008 (borda a 0,18 cm do papel); {@link #MARGEM_SEGURANCA_SUGERIDA_CM} (0,70 cm) costuma evitar cortes na
      * impressão.
      *
      * @param margemSegurancaCm margem em cm, de zero a 3; null segue o leiaute da NT 008
