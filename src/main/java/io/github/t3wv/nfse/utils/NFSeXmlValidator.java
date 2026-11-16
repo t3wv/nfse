@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Reader;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,6 +18,7 @@ import javax.xml.validation.SchemaFactory;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.Pair;
+import org.w3c.dom.ls.LSInput;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
@@ -55,6 +57,10 @@ public class NFSeXmlValidator {
      */
     public NFSeXmlValidator(final Source... xsd) throws SAXException {
         final var factory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
+        // O xmldsig-core-schema.xsd do W3C declara um DOCTYPE apontando para http://www.w3.org/2001/XMLSchema.dtd.
+        // Baixar esse DTD faz a validacao depender da rede (o w3.org responde 429) e o schema deixa de carregar.
+        factory.setResourceResolver((type, namespaceURI, publicId, systemId, baseURI) ->
+                systemId != null && systemId.endsWith("/XMLSchema.dtd") ? new LSInputVazio(publicId, systemId) : null);
         this.schema = factory.newSchema(xsd);
     }
 
@@ -352,6 +358,36 @@ public class NFSeXmlValidator {
      * com informações sobre a linha, coluna e mensagem do problema.
      * </p>
      */
+    /**
+     * Entrada vazia usada no lugar de DTDs externos que nao precisam ser baixados.
+     */
+    private static final class LSInputVazio implements LSInput {
+        private final String publicId;
+        private final String systemId;
+
+        LSInputVazio(final String publicId, final String systemId) {
+            this.publicId = publicId;
+            this.systemId = systemId;
+        }
+
+        @Override public Reader getCharacterStream() { return new StringReader(""); }
+        @Override public void setCharacterStream(final Reader characterStream) { }
+        @Override public InputStream getByteStream() { return null; }
+        @Override public void setByteStream(final InputStream byteStream) { }
+        @Override public String getStringData() { return ""; }
+        @Override public void setStringData(final String stringData) { }
+        @Override public String getSystemId() { return systemId; }
+        @Override public void setSystemId(final String systemId) { }
+        @Override public String getPublicId() { return publicId; }
+        @Override public void setPublicId(final String publicId) { }
+        @Override public String getBaseURI() { return null; }
+        @Override public void setBaseURI(final String baseURI) { }
+        @Override public String getEncoding() { return null; }
+        @Override public void setEncoding(final String encoding) { }
+        @Override public boolean getCertifiedText() { return false; }
+        @Override public void setCertifiedText(final boolean certifiedText) { }
+    }
+
     private static class T3WXmlErrorHandler implements ErrorHandler {
 
         /**
